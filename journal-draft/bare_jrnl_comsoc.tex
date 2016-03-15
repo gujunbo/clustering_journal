@@ -468,14 +468,14 @@ Besides, this scheme leads to a high variance on the size of clusters, which is 
 %%
 %Primary users access the allocated channels in $\mathcal{F}$ according to its need without sending any explicit notification to secondary users.
 
-We consider wireless sensor nodes distributed on a two-dimensional Euclidean plane. We denote the set of these nodes as $V$ which is partitioned into sets of primary users $V_P$ and secondary users $V_N$, i.e., $V~=~V_P~\dot\cup~V_N$. These users share a number of non-overlapping licenced channels according to the spectrum overlay model. The set of these licenced channels is denoted as $\mathcal{C}$. Secondary users are allowed to transmit on a channel $c \in \mathcal{C}$ only if every primary user $p \in V_P$ that has access to channel $c$ is idle. Further, we consider a \textit{cognitive radio ad-hoc network} which consists of all secondary users and does not contain any primary user.
+We consider wireless sensor nodes distributed on a two-dimensional Euclidean plane. We denote the set of these nodes as $V$ which is partitioned into sets of primary users $V_P$ and secondary users $V_N$, i.e., $V~=~V_P~\dot\cup~V_N$. These users share a number of non-overlapping licensed channels according to the spectrum overlay model. The set of these licensed channels is denoted as $\mathcal{C}$. Secondary users are allowed to transmit on a channel $c \in \mathcal{C}$ only if every primary user $p \in V_P$ that has access to channel $c$ is idle. Further, we consider a \textit{cognitive radio ad-hoc network} which consists of all secondary users and does not contain any primary user.
 
 %Secondary users conduct spectrum sensing independently, and every secondary user conducts spectrum sensing on all licensed channels sequentially.
 %The sensing duration and frequency on one channel is a technical problem~\cite{sensing_survey_2009}, but we assume that every node can to certain extend accurately and agilely detect the presence of primary user on each channel. \footnote{The spectrum availability can be validated with a certain probability of detection. Spectrum sensing/validation is out of the scope of this paper.}
 %The available channels sensed on secondary user $i$ is denoted by $V_i$ and there is $\vert V_i \vert \leq F$. % indicating the total number of 
 %%Each secondary user notifies its neighbours of the sensing result about the available channels.
 
-Secondary users conduct spectrum sensing independently and sequentially on all licenced channels. In our system model, we assume that a secondary node $n$ is able to detect for each channel $c$ whether any primary user utilizes $c$. We denote $C_n \subseteq \mathcal{C}$ as the set of available channels for $n$.
+Secondary users conduct spectrum sensing independently and sequentially on all licensed channels. In our system model, we assume that a secondary node $n$ is able to detect for each channel $c$ whether any primary user utilizes $c$. We denote $C_n \subseteq \mathcal{C}$ as the set of available channels for $n$.
 
 %One dedicated control channel is assumed to be available for all the secondary nodes to exchange control messages with neighbours in the process of cluster formation.
 %The control channel could be in ISM band or other reserved spectrum which is exclusively used for transmitting control messages.
@@ -484,7 +484,8 @@ Secondary users conduct spectrum sensing independently and sequentially on all l
 %Over the control channel, secondary users exchange their spectrum sensing results $V_{i}$ with one hop neighbours. 
 %Secondary users have the same transmission range on both licensed and control channel, and the communication links are reciprocal.
 
-In addition to the licenced channels there is one dedicated control channel. It is available for any secondary node $n$ to exchange control messages with any other node in its proximity (or neighborhood) $N(n)$ during the cluster formation phase. $N(n)$ is simply defined as the set of nodes located within the transmission range of $n$. Control messages involved in the clustering process can be transmitted on available licenced channels through a rendez-vous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}. \textcolor{red}{(The rendez-vous should be briefly explained! TODO)} Over the control channel, a secondary user $n$ can exchange its spectrum sensing result $C_n$ to any $n' \in N(n)$.
+In addition to the licensed channels there is one dedicated control channel. It is available for any secondary node $n$ to exchange control messages with any other node in its proximity (or neighborhood) $N(n)$ during the cluster formation phase. $N(n)$ is simply defined as the set of nodes located within the transmission range of $n$. 
+Control messages involved in the clustering process can be transmitted on available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., . \textcolor{red}{(The rendez-vous should be briefly explained! TODO)} Over the control channel, a secondary user $n$ can exchange its spectrum sensing result $C_n$ to any $n' \in N(n)$.
 
 
 
