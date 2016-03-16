@@ -607,6 +607,46 @@ $k_{C_i}$ & num. of CCCs of cluster $C_i$, $k_{C_i} = |K_{C_i}|$\\
 
 \textcolor{red}{The notation is not well chosen. Does it make sense to have only one letter for a potential cluster? What happens if we have two clusters? Find some comments next to your proposed notation.}
 
+xxxxxx
+
+\begin{table}[h!]
+\caption{Notations in robust clustering problem}
+\label{tab1}
+\centering
+\begin{tabular}{llr}
+\toprule
+%\multicolumn{2}{c}{Item} \\
+%\cmidrule(r){1-2}
+Symbol & Description \\
+\midrule
+$\mathcal{N}$  & collection of secondary users\\
+$N(i)$ & neighborhood of node $i$    \\
+$K(i)$ & a cluster whose cluster head is $i$  \\
+$C(i)$   & set of available channels at CR node $i$  \\
+$C(K)$   & set of available CCCs of cluster $K$ \\
+$C(K(i))$   & set of available CCCs of cluster $K(i)$ \\
+$C_{K_i}$   & set of available CCCs of cluster $K(i)$ \\
+$h(K)$ & cluster head of a cluster $K$\\
+$h_K$ & cluster head of a cluster $K$\\
+$\delta$ & desired cluster size\\
+$S(i)$ & set of claiming clusters, each of which includes \\
+& debatable node $i$ after phase I\\
+
+$\mathcal{N}$  & collection of secondary users\\
+$N_i$ & neighborhood of node $i$    \\
+$C_i$ & a cluster whose cluster head is $i$  \\
+$K_i$   & set of available channels at CR node $i$  \\
+$K_C$   & set of available CCCs of cluster $C$ \\
+$K_{C_i}$   & set of available CCCs of cluster $C_i$ \\
+$h_C$ & cluster head of a cluster $C$\\
+$\delta$ & desired cluster size\\
+$S_i$ & set of claiming clusters, each of which includes \\
+& debatable node $i$ after phase I\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+xxxxx
 
 
 \section{Distributed Coordination Framework: Clustering Algorithm}
@@ -652,7 +692,7 @@ Figure~\ref{fig1} illustrates an example CRN where each node's connectivity vect
   \centering
 \includegraphics[width=0.7\linewidth]{figure1.pdf}
 % \includegraphics{figure1.pdf}
-	\caption{Connectivity graph and the connectivity vector $\{D_i, G_i\}$ on each node. The available channels sensed by each CR node are: $V_A=\{1,2,3,4,5,6,10\}, V_B=\{1,2,3,5,7\}, V_C=\{1,3,4,10\}, V_D=\{1,2,3,5\}, V_E=\{2,3,5,7\}, V_F=\{2,4,5,6,7\}, V_G=\{1,2,3,4,8\}, V_H=\{1,2,5,8\}$. Dashed lines indicates two end nodes are within transmission range of each other. Each edge is labelled by the number of common channels between the two ends.}
+	\caption{Connectivity graph and the connectivity vector $(D_i, G_i)$ on each node. The available channels sensed by each CR node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$. Dashed lines indicates two end nodes are within transmission range of each other. Each edge is labelled by the number of common channels between the two ends.}
 	\label{fig1}
 \end{figure}
 
@@ -852,8 +892,8 @@ In case there are multiple claiming clusters demonstrating the same on the afore
 IDs of cluster heads will be used to break tie if the previous rule could not decide on the unique cluster to stay.
 
 Algorithm for debatable node $i$ to decide which claiming cluster to stay is described as Algorithm~\ref{alg4}.
-To conduct Algorithm~\ref{alg4}, debatable node $i$ needs to know the necessary information about its claiming clusters, \ie $V_C$ (the set of available channels in $C$), $V_{H_C}$ (the set of available channels on $C$'s cluster head $H_C$) and $|C|, C\in S_i$ (sizes of $i$'s claiming clusters).
-After deciding which cluster to stay based on Algorithm~\ref{alg4}, node $i$ notifies all its claiming clusters, and retrieves the updated information of the necessary information $V_C$, $V_{H_C}$, $|C|$, where $C\in S_i$.
+To conduct Algorithm~\ref{alg4}, debatable node $i$ needs to know the necessary information about its claiming clusters, \ie $K_C$ (the set of available channels in $C$), $K_{H_C}$ (the set of available channels on $C$'s cluster head $H_C$) and $|C|, C\in S_i$ (sizes of $i$'s claiming clusters).
+After deciding which cluster to stay based on Algorithm~\ref{alg4}, node $i$ notifies all its claiming clusters, and retrieves the updated information of the necessary information $K_C$, $K_{H_C}$, $|C|$, where $C\in S_i$.
 
 
 
@@ -1033,14 +1073,14 @@ In the following, we refer this problem as \textit{centralized clustering}, and 
 Given a cognitive radio network $\mathcal{N}$ where nodes are indexed from 1 to $N$ sequentially.
 Based on certain correlation, certain secondary users constitute one cluster $C$.
 $1\leq |C| \leqslant k$ where $|C|$ is the size of cluster $C$ and $k$ is a positive integer.
-We name the collection of such clusters as $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ (the subscript $i$ is the unique index of cluster in $\mathcal{S}$, not the ID of cluster head of that cluster), $\mathcal{S}$ satisfies the following properties: $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$ and $V_{C_i}\neq \emptyset$ for any $i$ which satisfies $1\leq i \leq |\mathcal{S}|$.
+We name the collection of such clusters as $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ (the subscript $i$ is the unique index of cluster in $\mathcal{S}$, not the ID of cluster head of that cluster), $\mathcal{S}$ satisfies the following properties: $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$ and $K_{C_i}\neq \emptyset$ for any $i$ which satisfies $1\leq i \leq |\mathcal{S}|$.
 
 Following condition distinguishes the centralized clustering problem discussed in this paper.
-The number of common control channels is $|V_{C}|$ if $|V_{C}|>1$, and is zero when $|V_{C}|=1$.
+The number of common control channels is $|K_{C}|$ if $|K_{C}|>1$, and is zero when $|K_{C}|=1$.
 We use $f$ to denoted this new number of CCCs. 
 The question of this problem is to find a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, so that $\bigcup_{C_j\in \mathcal{S}'} C_j = N$, and $C_j'\cap C_j =\emptyset$ for $C_j', C_j\in \mathcal{S}'$, so that $\sum_{C\in \mathcal{S}'} f$ is maximized.
 % when $|C|>1$, and $f(\cdot)=0$ when $|C|=1$.
-%As to $f(\cdot):z\rightarrow z$, under this problem setting, if only number of common channels are given consideration, only singleton clusters will be preferred, which contradicts to our goal of clustering CR nodes together, thus we choose $f(\cdot)= |V_{C}|\cdot |C|$, the product of number of common channels and cluster size.
+%As to $f(\cdot):z\rightarrow z$, under this problem setting, if only number of common channels are given consideration, only singleton clusters will be preferred, which contradicts to our goal of clustering CR nodes together, thus we choose $f(\cdot)= |K_{C}|\cdot |C|$, the product of number of common channels and cluster size.
 The decision version of centralized clustering in CRN is to ask whether exist $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C\in \mathcal{S}'} f \geqslant \lambda$ where $\lambda$ is a real number.% in stead of to maximize $\sum_{C\in \mathcal{S}'} f$.
 \end{mydef}
 
@@ -1427,9 +1467,9 @@ Some notations are written as follows,  $h$: number of cluster heads, $m$: numbe
 %\hline
 % Scheme 					&   Number of transmissions 					& Content of message \\ \hline
 % ROSS-DGA, ROSS-x-DGA 		&   $h+2*m^2c$ (upper bound)
-%				& $ID_{H_C}$ and $V_C$ for $h+m^2c$ times, notification to join in one cluster for $m^2c$ times					\\ \hline
-% ROSS-DFA, ROSS-x-DFA 		&   $h+ 2m$	 (upper bound) 						& $ID_{H_C}$ and $V_C$ for $h+m$ times, notification to join in one cluster for $m$ times	 					\\ \hline
-% SOC 						&   $3*n$					& $\{V_i\}, i\in M\subseteq \texttt{Nb}_i$						\\ \hline
+%				& $ID_{H_C}$ and $K_C$ for $h+m^2c$ times, notification to join in one cluster for $m^2c$ times					\\ \hline
+% ROSS-DFA, ROSS-x-DFA 		&   $h+ 2m$	 (upper bound) 						& $ID_{H_C}$ and $K_C$ for $h+m$ times, notification to join in one cluster for $m$ times	 					\\ \hline
+% SOC 						&   $3*n$					& $\{K_i\}, i\in M\subseteq \texttt{Nb}_i$						\\ \hline
 % Centralized				&	$n$						& $\{C\}$         	\\ 
 % \hline
 %\end{tabular}
@@ -1445,7 +1485,7 @@ Some notations are written as follows,  $h$: number of cluster heads, $m$: numbe
  Scheme 				&Message Complexity 	&   Quantitative number of messages 		& Content of message 									\\ \hline
  ROSS-DGA, ROSS-x-DGA 	&$\mathcal{O}(N^3)$ (worst case)		&   $h+2*m^2d$ (upper bound)  				&   \multirow{2}{*}{\parbox{6.4cm}{Phase I: notification from cluster head (1 byte), new individual connectivity degree (1 byte);  Phase II: update of debatable nodes' affiliation (1 byte), claiming clusters' new membership ($|C_i|$ bytes)}}								\\ \cline{1-3}
  ROSS-DFA, ROSS-x-DFA 	&$\mathcal{O}(N)$ (worst case)		&   $h + 2m$	 (upper bound) 					& 	      												\\ \hline
- SOC 					&$\mathcal{O}(N)$		&   $3*N$									& $C_i$ ($|C_i|$ bytes), $V_i$ ($P$ bytes), $i\in \mathcal{N}$						\\ \hline
+ SOC 					&$\mathcal{O}(N)$		&   $3*N$									& $C_i$ ($|C_i|$ bytes), $K_i$ ($P$ bytes), $i\in \mathcal{N}$						\\ \hline
  Centralized			&$\mathcal{O}(N)$			&	$h + m + N$ (upper bound)~\cite{Efficient_broadcasting_gathering_adhoc}		& $\{C\}$ ($|C_i|*N$ bytes)        					\\ \hline
 \end{tabular}
 }
@@ -1682,7 +1722,7 @@ In the other way around, forming big cluster which extends out side of cluster h
 \KwIn{Cluster C, empty sets $\tau_1, \tau_2$}
 \KwOut{Cluster C has at least one CCC, or satisfies the requirement on cluster size}
 %\tcc*[r]{When to guarantee available CCCs, execute from line 1, when to control cluster size, execute from line 2}
-\textbf{while} $V_C =\emptyset$ \textbf{do}\\
+\textbf{while} $K_C =\emptyset$ \textbf{do}\\
 \While{$|C|> \delta$}{
 	%calculate $\lambda = \min_{i\in C, i\neq H_C}(|K_{H_C}\cap K_i|)$;\\
 	\eIf{$\exists$ only one $i\in C\setminus H_C$, $i = \argmin(|K_{H_C}\cap K_i|)$}{
@@ -1691,10 +1731,10 @@ In the other way around, forming big cluster which extends out side of cluster h
 				$\exists$ multiple $i$ which satisfies $i = \argmin(|K_{H_C}\cap K_i|)$;\\ $\tau_1\leftarrow i$;		
 		}
 		
-	\eIf{$\exists$ only one $i\in \tau_1$, $i = \argmax(|\cap_{j\in C\setminus i} V_j|-|\cap_{j\in C} V_j|)$}{
+	\eIf{$\exists$ only one $i\in \tau_1$, $i = \argmax(|\cap_{j\in C\setminus i} K_j|-|\cap_{j\in C} K_j|)$}{
 		$C=C\setminus i$;
 		}{
-			%$\exists$ multiple $i$ which satisfies $i = \argmax(|\cap_{j\in C\setminus i} V_j|-|\cap_{j\in C} V_j|)$;\\
+			%$\exists$ multiple $i$ which satisfies $i = \argmax(|\cap_{j\in C\setminus i} K_j|-|\cap_{j\in C} K_j|)$;\\
 			$C=C\setminus i$, where $i = \argmin_{i\in \tau_1} \texttt{ID}_i $
 			%$\texttt{ID}_i$ is smaller than any $\texttt{ID}_j$, $j\in \tau_2\setminus i$;
 	}
@@ -1719,10 +1759,10 @@ In the other way around, forming big cluster which extends out side of cluster h
 				$\exists$ multiple $C\in S_i$ which satisfies $C = \argmin(|K_{C\setminus i}| - |K_C|)$;\\ 
 				$\tau_1\leftarrow C$;		
 		}
-	\eIf{$\exists$ only one $C\in \tau_1$, $C = \argmax(V_{H_C}\cap V_i)$}{
+	\eIf{$\exists$ only one $C\in \tau_1$, $C = \argmax(K_{H_C}\cap K_i)$}{
 			return $C$;
 		}{
-				$\exists$ multiple $C\in S_i$ which satisfies $C = \argmax(V_{H_C}\cap V_i)$;\\ 
+				$\exists$ multiple $C\in S_i$ which satisfies $C = \argmax(K_{H_C}\cap K_i)$;\\ 
 				$\tau_2\leftarrow C$;		
 		}
 	\eIf{$\exists$ only one $C\in \tau_2$, $C = \argmin|C|)$}{
