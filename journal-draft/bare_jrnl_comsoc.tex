@@ -472,7 +472,7 @@ We consider a set of cognitive radio users $\mathcal{N}$ and a set of primary us
 %We denote the set of these nodes as $V$ which is partitioned into sets of primary users $V_P$ and secondary users $V_N$, i.e., $V~=~V_P~\dot\cup~V_N$. 
 These users share a number of non-overlapping licensed channels according to the spectrum overlay model. 
 The set of these licensed channels is denoted as $\mathcal{K}$. 
-As secondary users, the CR users are allowed to transmit on a channel $k \in \mathcal{K}$ only if no primary user is detected being accessing channel $k$ in the secondary users' neighbourhoods. 
+As secondary users, the CR users are allowed to transmit on a channel $k \in \mathcal{K}$ only if no primary user is detected being accessing channel $k$. 
 Further, we consider a \textit{cognitive radio ad-hoc network} which consists of all secondary users and does not contain any primary user.
 
 %The available channels sensed on secondary user $i$ is denoted by $V_i$ and there is $\vert V_i \vert \leq F$. % indicating the total number of 
@@ -538,11 +538,11 @@ A cognitive radio network (CRN) can be represented as an undirected graph $G = (
 %\item There exists as least one common control channel in the cluster, \ie $\cap_{i\in C} V_i \neq \emptyset$.
 %\end{itemize}
 In this section, we describe what a cluster in the context of CRNs means.
-A cluster $\textsf{C} \subseteq \mathcal{N}$ is a set of secondary nodes consisting of a cluster head $h_{\textsf{C}}$ and a number of cluster members.
+A cluster $C \subseteq \mathcal{N}$ is a set of secondary nodes consisting of a cluster head $h_{\textsf{C}}$ and a number of cluster members.
 The cluster head is able to communicate with any cluster member directly.
-In other terms, for any cluster member $i \in \textsf{C}$, $i \in \text{Nb} (h_{\textsf{C}}) $ holds.
+In other terms, for any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds.
 
-A cluster head coordinates the activities of cluster members, \ie it notifies all the members to vacate a channel if a primary user's presence is detected by one cluster member. Further it also notifies the members to use a different common control channel for payload communication. (\textcolor{red}{(Not clear what the meaning of payload communication is. Why not omitting payload here?)} \textcolor{brown}{payload communication happens when the clusters are formed, and start to support network functionalities, e.g. routing. Thus I think it is necessary to leave it here.}
+%A cluster head coordinates the activities of cluster members, \ie it notifies all the members to vacate a channel if a primary user's presence is detected by one cluster member. Further it also notifies the members to use a different common control channel for payload communication. %(\textcolor{red}{(Not clear what the meaning of payload communication is. Why not omitting payload here?)} \textcolor{brown}{payload communication happens when the clusters are formed, and start to support network functionalities, e.g. routing. Thus I think it is necessary to leave it here.}
 
 
 ----------- No modifications from here on ... -------------
@@ -908,7 +908,7 @@ In the following we will introduce an \textit{server matching}~\cite{kothari:con
 
 In the following, we show that the decision of debatable nodes to clarify their membership can be mapped to the behaviour of the players in a \textit{player-specific singleton congestion game} when proper cost function is given.
 
-The game to be constructed can be represented by a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},(\sum_i)_{i \in \mathcal{N}},\Delta\vert K^i_C \vert)$, where the elements in $\Gamma$ are given below,
+The game to be constructed can be represented by a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, f)$, and the elements in $\Gamma$ are explained below,
 %To make the model of this game more clear, we make some change to our original problem. Previously, the nodes in overlapping areas belong to more than one cluster, and our scheme is to remove them out of some clusters to increase the set of common channels within the cluster form which the mode leave. In the new model, we assume all the nodes in overlapping nodes don't belong any cluster and the problem become into how do these nodes decide which cluster to join.
 
 %The components of the game are listed as follows,
@@ -917,14 +917,16 @@ The game to be constructed can be represented by a 4-tuple $\Gamma=(\mathcal{P},
 %	\item $\mathcal{D}=\left\{1,\ldots,n\right\}$, the set of players (debatable nodes).
 	\item $\mathcal{P}$, the set of players of the game, which are the debatable nodes after phase I of ROSS.
 %	\item $\mathcal{R}=\left\{1,\ldots,m\right\}$, the set of resources which player can choose, which are all the clusters in our model.
-	\item $\mathcal{R} = \cup S_i, i\in \mathcal{P}$, denotes the set of resources for players to choose, $S_i$ is the set of claiming clusters of node $i$. $\mathcal{R}$ is the set of claiming clusters after phase I in our clustering problem.
-	\item As to the strategy space $\sum_i$ of player $i\in \mathcal{N}$, there is $\sum_i \subseteq 2^{\left[S_i\right]}$. As one debatable node is supposed to choose one claiming cluster in our problem, thus only one resource is allocated for $i$, accordingly this congestion game is a singleton game.
+	\item $\mathcal{R} = \cup S_i, i\in \mathcal{P}$, denotes the set of resources for players to choose, $S_i$ is the set of claiming clusters of node $i$. 
+	$\mathcal{R}$ is the set of claiming clusters after phase I in our clustering problem.
+	\item Strategy space $\sum_i, i \in \mathcal{P}$ is the set of claiming clusters $S_i$.
+	As debatable node $i$ is supposed to choose one claiming cluster in our problem, only one piece of resource is allocated for $i$.%, accordingly this congestion game is a singleton game.
 	%when $i$ makes decision, only one resource (one claiming cluster) from the allowed resources is allocated.
 	
 	%\item We denote by $\mathcal{S}=\left(\mathcal{S}_1,\ldots,\mathcal{S}_n\right)\in \sum_1\times \cdots\times\sum_n$ the state of game where player $i$ plays strategy $\mathcal{S}_i\in \Sigma_i$.
 	
 	\item %For the clusters which are possible destination of debatable nodes, the decrement of common channels caused by different debatable node' join can be different because of the heterogeneity of channel availability within itself and on the debatable nodes. %furthermore, the sequence of debatable node's join can also alter the decrement. 
-	The utility (cost) function $f(C)$ of resource $C\in \mathcal{R}$, (or to say $f(r)$ of resource $r \in \mathcal{R}$) is $\Delta\vert K^i_C \vert$ which represents the decrement of CCCs in cluster $C$ caused by debatable node $i$' joining in it.
+	The utility (cost) function $f$ as to resource $C\in \mathcal{R}$ is $\Delta\vert K^i_C \vert$, which represents the decrement of CCCs in cluster $C$ when debatable node $i$' joins in it.
 	As to cluster $C\in S_i$, the decrement of CCCs caused by the enrolment of debatable nodes is $\sum_{i:C\in S_i, i\rightarrow C} \Delta\vert K^i_C \vert$. 
 $i\rightarrow C$ means $i$ joins in cluster $C$.
 Obviously this function is non-decreasing with respect to the number of nodes joining in cluster $C$.
@@ -983,9 +985,9 @@ In DFA, debatable nodes regard their claiming clusters includes all their debata
 To run ROSS-DFA, debatable node executes only one loop in Algorithm~\ref{alg4}.
 
 Now we apply the two versions of ROSS to the toy network in Figure \ref{fig2}, which has finished cluster head selection.
-In the network, node $A$'s claiming clusters are cluster $C_C, C_H\in S_A$, their members are $\{A,B,C,D\}$ and $\{A,B,H,G\}$ respectively. 
+In the network, node $A$'s claiming clusters are cluster $C(C), C(H)\in S_A$, their members are $\{A,B,C,D\}$ and $\{A,B,H,G\}$ respectively. 
 The two possible strategies of node $A$'s clarification is illustrated in Figure \ref{fig3}.
-In Figure \ref{AinC}, node $A$ staying in $C_C$ and leaving $C_H$ brings 2 more CCC into $S_A$, which is more than that brought by another strategy showed in \ref{AinH}.
+In Figure \ref{AinC}, node $A$ staying in $C(C)$ and leaving $C(H)$ brings 2 more CCC into $S_A$, which is more than that brought by another strategy showed in \ref{AinH}.
 After the decisions made similarly by the other debatable nodes $B$ and $D$, the final clusters formed are shown in Figure~\ref{fig4}.
 
 %Using DFA in phase II, the time complexity is decreased drastically to 1. Thus, the total complexity of ROSS-DFA is $|I|$, while, ROSS-DGA's complexity is $|I|^3$ in the worst case.
@@ -993,12 +995,12 @@ After the decisions made similarly by the other debatable nodes $B$ and $D$, the
 
 \begin{figure}[h]
 \centering
-\subfigure[Node A stays in cluster $C_C$, quits $C_H$, $\Delta\vert K_{C_C}\vert+\Delta\vert K_{C_H}\vert=2$]{
+\subfigure[Node A stays in cluster $C(C)$, quits $C(H)$, $\Delta\vert K_{C(C)}\vert+\Delta\vert K_{C(H)}\vert=2$]{
 \includegraphics[width=0.435\linewidth]{figure4AinC.pdf}
 \label{AinC}
 }
 \hspace{.15 in}
-\subfigure[Node A stays in cluster $C_H$, quits $C_C$, $\Delta\vert K_{C_C}\vert+\Delta\vert K_{C_H}\vert=1$]{
+\subfigure[Node A stays in cluster $C(H)$, quits $C(C)$, $\Delta\vert K_{C(C)}\vert+\Delta\vert K_{C(H)}\vert=1$]{
 \includegraphics[width=0.435\linewidth]{figure4AinH.pdf}
 \label{AinH}
 }
