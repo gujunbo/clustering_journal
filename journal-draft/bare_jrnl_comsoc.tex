@@ -315,7 +315,7 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-Cluster structure in CRN facilitates cooperative spectrum sensing, routing and other functionalities.
+Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionalities.
 The availability of unlicensed channels which are available for every member in a cluster decides the survival of that cluster from licensed users' influence.
 Thus in order to be robust against licensed users, there should be more unlicensed channels in the clusters.
 In the process of forming clusters, every secondary user needs to decide with whom to form a cluster, or which cluster to join.
@@ -368,7 +368,7 @@ Collaborative sensing relies on the consensus of CR users within certain area, a
 In this regard, clustering is regarded as an effective method in cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing, Zhao07}, as a cluster forms adjacent secondary users as a collectivity to perform spectrum sensing together.
 %As a result, more accurate sensing result can be obtained by collaborative sensing, and the improvement on spectrum sensing decreases the interference originating from CR users to primary users, which is highly desirable.
 %Also,  prevents CR users from using channels that are occupied by primary users. 
-Clustering is also efficient to enable all CR devices within the same cluster to stop payload transmission on the operating channel and initiate the sensing process, so that all the CR users\footnote{User and node are used interchangeably in this paper, in particular, user is used when its networking or cognitive ability are discussed or stressed, and node is used when the network topology is discussed.} within the one cluster are able to vacate the channel swiftly when primary users are detected by at least one CR node residing in the cluster~\cite{willkomm08}.
+Clustering is also efficient to enable all CR devices within the same cluster to stop payload transmission on the operating channel and initiate the sensing process, so that all the CR users\footnote{The term $\textit{user}$ and $\textit{node}$ are used interchangeably in this paper, in particular, user is used when its networking or cognitive ability are discussed or stressed, and node is used when the network topology is discussed.} within the one cluster are able to vacate the channel swiftly when primary users are detected by at least one CR node residing in the cluster~\cite{willkomm08}.
 With cluster structure, as CR users can be notified by cluster head (CH) or other cluster members about the possible collision, the possibility for them to interfere neighbouring clusters is reduced~\cite{centralizedSharing80222}. 
 Clustering algorithm has also proposed to support routing in cognitive ad-hoc networks~\cite{Abbasi_survey_07}.
 
@@ -460,7 +460,7 @@ Besides, this scheme leads to a high variance on the size of clusters, which is 
 \section{System Model}
 \label{sec:model}
 %Let us consider a two dimensional area where primary and secondary users coexist together.
-%They share the licensed channels according to the spectrum overlay model, where secondary transmitters are only allowed to transmit when the primary users are detected as being idle, and they should vacate the working channel when the presence of primary user is detected.
+%They share the licensed channels according to the spectrum overlay model, where secondary transmitters are only allowed to transmit when the prifcan exchange its spectrum sensing resulmary users are detected as being idle, and they should vacate the working channel when the presence of primary user is detected.
 %The set of primary users and secondary users are presented by $\mathcal{P}$ and $\mathcal{N}$ separately, there are $|\mathcal{P}| = P$ and $|\mathcal{N}| = N$.
 %Cognitive radio ad hoc network is constituted by all the secondary users in $\mathcal{N}$.
 %The collection of non-overlapping licensed frequency bands is denoted as $\mathcal{F}$ with $|\mathcal{F}| =F$, which is shared by the the primary and secondary users.
@@ -468,41 +468,55 @@ Besides, this scheme leads to a high variance on the size of clusters, which is 
 %%
 %Primary users access the allocated channels in $\mathcal{F}$ according to its need without sending any explicit notification to secondary users.
 
-We consider wireless sensor nodes distributed on a two-dimensional Euclidean plane. We denote the set of these nodes as $V$ which is partitioned into sets of primary users $V_P$ and secondary users $V_N$, i.e., $V~=~V_P~\dot\cup~V_N$. These users share a number of non-overlapping licensed channels according to the spectrum overlay model. The set of these licensed channels is denoted as $\mathcal{C}$. Secondary users are allowed to transmit on a channel $c \in \mathcal{C}$ only if every primary user $p \in V_P$ that has access to channel $c$ is idle. Further, we consider a \textit{cognitive radio ad-hoc network} which consists of all secondary users and does not contain any primary user.
+We consider a set of cognitive radio users $\mathcal{N}$ and a set of primary users distributed on a two-dimensional Euclidean plane.
+%We denote the set of these nodes as $V$ which is partitioned into sets of primary users $V_P$ and secondary users $V_N$, i.e., $V~=~V_P~\dot\cup~V_N$. 
+These users share a number of non-overlapping licensed channels according to the spectrum overlay model. 
+The set of these licensed channels is denoted as $\mathcal{K}$. 
+As secondary users, the CR users are allowed to transmit on a channel $k \in \mathcal{K}$ only if no primary user is detected being accessing channel $k$ in the secondary users' neighbourhoods. 
+Further, we consider a \textit{cognitive radio ad-hoc network} which consists of all secondary users and does not contain any primary user.
 
-%Secondary users conduct spectrum sensing independently, and every secondary user conducts spectrum sensing on all licensed channels sequentially.
-%The sensing duration and frequency on one channel is a technical problem~\cite{sensing_survey_2009}, but we assume that every node can to certain extend accurately and agilely detect the presence of primary user on each channel. \footnote{The spectrum availability can be validated with a certain probability of detection. Spectrum sensing/validation is out of the scope of this paper.}
 %The available channels sensed on secondary user $i$ is denoted by $V_i$ and there is $\vert V_i \vert \leq F$. % indicating the total number of 
 %%Each secondary user notifies its neighbours of the sensing result about the available channels.
 
-Secondary users conduct spectrum sensing independently and sequentially on all licensed channels. In our system model, we assume that a secondary node $n$ is able to detect for each channel $c$ whether any primary user utilizes $c$. We denote $C_n \subseteq \mathcal{C}$ as the set of available channels for $n$.
+Secondary users conduct spectrum sensing independently and sequentially on all licensed channels.
+The sensing duration and frequency on one channel is a research topic~\cite{sensing_survey_2009}, and we assume that every node can detect the presence of primary user on each channel with certain accuracy. \footnote{The spectrum availability can be validated with a certain probability of detection. Spectrum sensing/validation is out of the scope of this paper.}
+%In our system model, we assume that a secondary node $n$ is able to detect for each channel $c$ whether any primary user utilizes $c$.
+We denote $K_i \subseteq \mathcal{K}$ as the set of available channels for $i$.
 
 %One dedicated control channel is assumed to be available for all the secondary nodes to exchange control messages with neighbours in the process of cluster formation.
-%The control channel could be in ISM band or other reserved spectrum which is exclusively used for transmitting control messages.
 %Note that the assumption of dedicated control channel is to simplify the discussion so that we can focus on the kernel of this paper, the robustness of clusters.
 %Actually, the control messages involved in the clustering process can be conveyed on available licensed channels through rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}. 
 %Over the control channel, secondary users exchange their spectrum sensing results $V_{i}$ with one hop neighbours. 
 %Secondary users have the same transmission range on both licensed and control channel, and the communication links are reciprocal.
 
-In addition to the licensed channels there is one dedicated control channel. It is available for any secondary node $n$ to exchange control messages with any other node in its proximity (or neighborhood) $N(n)$ during the cluster formation phase. $N(n)$ is simply defined as the set of nodes located within the transmission range of $n$. 
-%To establish the communications with neighbours, 
-Control messages involved in the clustering process can be transmitted on available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., two neighbouring nodes establish communication on the same channel. \textcolor{brown}{rendezvous, done} Over the control channel, a secondary user $n$ can exchange its spectrum sensing result $C_n$ to any $n' \in N(n)$.
+We adopt the unit disk model~\cite{unitDiskModel} for the transmission of both primary and CR users.
+Both primary users and CR users have fixed transmission ranges respectively, and the all the channels are regarded to be identical in terms of signal propagation.
+If a CR node locates within the transmission range of primary user $p$, that CR node is not allowed to use the channel $k(p)$.
+
+We assume that in addition to the licensed channels, there is one dedicated control channel.
+This control channel could be in ISM band or other reserved spectrum which is exclusively used for transmitting control messages.
+Actually, the control messages involved in the clustering process can be transmitted on available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., two neighbouring nodes establish communication on the same channel.
+Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ to any $i' \in \text{Nb}(i)$.
+It is available for any secondary node $i$ to exchange control messages with any other node in its proximity (or neighborhood) $\text{Nb}(i)$ during the cluster formation phase.
+$\text{Nb}(i)$ is simply defined as the set of nodes located within the transmission range of $i$. 
+
+
 
 
 
 %Primary users also have fixed transmission range on the licensed channels\footnote{This assumption is made to simplify the discussion, and doesn't affect the effectiveness of the proposed scheme}.
 
-As to a pair of secondary users, when the Euclidean distance between them is smaller than secondary users' transmission range, we assume the pair is able to communicate on both control channel and licensed channel, and the both are considered to be neighbours of each other. DEFINE DISTANCE! \textcolor{brown}{distance, done}
+%As to a pair of secondary users, when the Euclidean distance between them is smaller than secondary users' transmission range, we assume the pair is able to communicate on both control channel and licensed channel, and the both are considered to be neighbours of each other. DEFINE DISTANCE! \textcolor{brown}{distance, done}
 %
-If a secondary user $n$ is not in the transmission range of a primary user $u$, $n$ can certainly not detect the presence of $u$.
-As the transmission range of primary users is limited and secondary users are located at different locations, different secondary users may have different views of the spectrum availability, i.e., for any $n, n' \in V_N$, $C_n = C_{n'}$ does not necessarily hold.	
+If a secondary user $i$ is not in the transmission range of a primary user $p$, $i$ can certainly not detect the presence of $p$.
+As the transmission range of primary users is limited and secondary users are located at different locations, different secondary users may have different views of the spectrum availability, i.e., for any $i, i' \in \mathcal{N}$, $K_i = K_{i'}$ does not necessarily hold.	
 %
 %Neighbourhood establishment and maintenance with control channel and according to a neighborhood discovery protocol which is out of scope of our work.
 %While primary users are assumed to be fixed, secondary users can be mobile.
 %Validation refers to the process of ensuring that no primary transmission is actually taking place on the respective channel.
 %All $N$ secondary users constitute an ad-hoc network in which data can be transmitted from one certain node to any other node should available c.hannels are available on the source node, destination node and other intermediate nodes.
 %Communication on licensed channels is possible only when nodes $i, j$ are both located in each other's transmission range and both share a validated licensed channel.
-As the assumed $0/1$ state \textcolor{red}{(What is that?? Define! Fix it TODO)}\textcolor{brown}{Di: 0/1 means the connectivity is either available or not} of connectivity is solely based on the Euclidean distance between secondary users,
+As the assumed $0/1$ state of connectivity is solely based on the Euclidean distance between secondary users,
 %CRN can be represented by a graph $\mathcal{G}(I,\mathcal{E})$, where $\mathcal{E}=\lbrace(i,j,v) \vert i, j \in \mathcal{N} \wedge v\in V_i \wedge v\in V_j \rbrace$ is wireless link between any secondary node $i$ and its neighbour $j$ with licensed channel $v$.
 %Due to relatively low primary user dynamics, time index is omitted here.
 %%In order to perform clustering, CR users first need to establish their neighborhood.
@@ -511,7 +525,7 @@ As the assumed $0/1$ state \textcolor{red}{(What is that?? Define! Fix it TODO)}
 %%The clustering phase is initialized during which any control message is again conveyed by the control channel.
 %In the rest of this paper, \textit{channel} only refers to the licensed common control channel unless the dedicated control channel is particularly mentioned.
 
-A cognitive radio network (CRN) can be represented as an undirected graph $G = (V_N, E)$, where $E \subseteq V_N \times V_N$ such that $\{n_1,n_2\} \in E$  if, and only if, there exists a channel $c \in \mathcal{C}$ with $c \in C_{n_1} \cap C_{n_2}$. Note that we consider the channel availability only for \textit{one} snapshot of time. For the rest of this paper the word channel is referred to licensed channel, if the control channel is not explicitly mentioned.
+A cognitive radio network (CRN) can be represented as an undirected graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, i'\} \in E$  if, and only if, there exists a channel $k \in \mathcal{K}$ with $k \in K_{i} \cap K_{i'}$. Note that we consider the channel availability only for \textit{one} snapshot of time. For the rest of this paper the word channel is referred to licensed channel, if the control channel is not explicitly mentioned.
 
 
 
@@ -523,7 +537,10 @@ A cognitive radio network (CRN) can be represented as an undirected graph $G = (
 %\item Cluster head $H_C$ is able to communicate with any cluster member \textit{directly}, \ie for any cluster member $i\in C$, there is $i\in \texttt{Nb}_{H_C}$.
 %\item There exists as least one common control channel in the cluster, \ie $\cap_{i\in C} V_i \neq \emptyset$.
 %\end{itemize}
-In this section, we describe what a cluster in the context of CRNs means. A cluster $\textsf{Cl} \subseteq V_N$ is a set of secondary nodes consisting of a cluster head $h_{\textsf{Cl}}$ and a number of cluster members. The cluster head is able to communicate with any cluster member directly. In other terms, for any cluster member $m \in \textsf{Cl}$, $m \in N \left( h_{\textsf{Cl}} \right)$ holds.
+In this section, we describe what a cluster in the context of CRNs means.
+A cluster $\textsf{C} \subseteq \mathcal{N}$ is a set of secondary nodes consisting of a cluster head $h_{\textsf{C}}$ and a number of cluster members.
+The cluster head is able to communicate with any cluster member directly.
+In other terms, for any cluster member $i \in \textsf{C}$, $i \in \text{Nb} (h_{\textsf{C}}) $ holds.
 
 A cluster head coordinates the activities of cluster members, \ie it notifies all the members to vacate a channel if a primary user's presence is detected by one cluster member. Further it also notifies the members to use a different common control channel for payload communication. (\textcolor{red}{(Not clear what the meaning of payload communication is. Why not omitting payload here?)} \textcolor{brown}{payload communication happens when the clusters are formed, and start to support network functionalities, e.g. routing. Thus I think it is necessary to leave it here.}
 
@@ -531,11 +548,11 @@ A cluster head coordinates the activities of cluster members, \ie it notifies al
 ----------- No modifications from here on ... -------------
 
 
-Cluster is denoted as $C_i$, the subscript $i$ represents the cluster head.
+Cluster is denoted as $C_i$ when its cluster head is $i$.
 %, for the sake of concision, $C_i$ is also named as cluster $i$ in the following part of this paper.
 We denote the set of common control channels for cluster $C$ with set $K_C$.
-$ K_C = \cap_{i\in C_i} V_i$, and $k_C = |K_C|$ is the number of common control channels for cluster $C$.
-Clustering is performed periodicity, as secondary users may move with certain velocity, or the most current clusters can not maintain due to lack of CCCs when primary users' operation is intense.
+$ K_C = \cap_{i\in C} K_i$ is the set of common control channels for cluster $C$.
+Clustering is performed periodicity, as secondary users are mobile and primary users change their working channels or move.%, or the most current clusters can not maintain due to lack of CCCs when primary users' operation is intense.
 
 
 
@@ -565,49 +582,9 @@ Clustering is performed periodicity, as secondary users may move with certain ve
 %When we try to maximize the summation of ICCs, an obvious correlation between cluster size and number of ICCs is encountered, \ie when each node constitutes one cluster, the aforementioned metric will be maximized.
 %The goal of the proposed clustering scheme is to let as more CR nodes as possible to form clusters, meanwhile the clusters have more common channels and preferred cluster size.
 
-\begin{table}[h!]
-\caption{Notations in robust clustering problem}
-\label{tab1}
-\centering
-\begin{tabular}{llr}
-\toprule
-%\multicolumn{2}{c}{Item} \\
-%\cmidrule(r){1-2}
-Symbol & Description \\
-\midrule
-$\mathcal{P}$, $\mathcal{N}$  & collection of primary and secondary users\\
-$\mathcal{F}$ & set of non-overlapping channels in the scenario\\
-$N(n)$ & neighborhood of node $n$    \\
-$C$ & a cluster -- remove ? \\
-$C_i$ & a cluster whose cluster head is $i$ -- remove ? \\
-& (in Section~\ref{centralized_scheme}, $C_i$ is the $i$th cluster \\
-& among the legitimate clusters.) -- remove ?\\
-$V_i$   & set of available channels at CR node $i$ --$V$ is usually a set of vertices \\
-$V_C$   & set of available CCCs of cluster $C$ --$V$ is usually a set of vertices \\
-$V_{C_i}$   & set of available CCCs of cluster $C_i$ --$V$ is usually a set of vertices\\
-%$\phi_i$ & the number of available channels for cluster $i$\\ 
-%		& note it is different than $|V_i|$\\
-%$p_i$   & number of available channels on CR node $i$  \\
-$H_C$ & cluster head of a cluster $C$\\
-$\delta$ & desired cluster size\\
-%$C_i$ & a cluster with CR node $i$ as cluster head \\
-%$V_{C_i}$   & set of common channels within cluster $C_i$  \\
-%$V_{OC_i}$   & set of common channels among cluster $C_i$ and neighbor clusters  \\
-%$CH_i$ & cluster head of node $i$ \\
-%$CHS_i$ & set of cluster heads of node $i$ after phase I\\
-$S_i$ & set of claiming clusters, each of which includes \\
-& debatable node $i$ after phase I\\
-$K_{C_i}$ & set of CCCs within cluster $C_i$\\
-$k_{C_i}$ & num. of CCCs of cluster $C_i$, $k_{C_i} = |K_{C_i}|$\\
-%$m_{ij}$ & number of common channels between CR node \\
-%& $i$ and $j$\\
-\bottomrule
-\end{tabular}
-\end{table}
 
-\textcolor{red}{The notation is not well chosen. Does it make sense to have only one letter for a potential cluster? What happens if we have two clusters? Find some comments next to your proposed notation.}
+%\textcolor{red}{The notation is not well chosen. Does it make sense to have only one letter for a potential cluster? What happens if we have two clusters? Find some comments next to your proposed notation.}
 
-xxxxxx
 
 \begin{table}[h!]
 \caption{Notations in robust clustering problem}
@@ -620,33 +597,25 @@ xxxxxx
 Symbol & Description \\
 \midrule
 $\mathcal{N}$  & collection of secondary users\\
-$N(i)$ & neighborhood of node $i$    \\
-$K(i)$ & a cluster whose cluster head is $i$  \\
-$C(i)$   & set of available channels at CR node $i$  \\
-$C(K)$   & set of available CCCs of cluster $K$ \\
-$C(K(i))$   & set of available CCCs of cluster $K(i)$ \\
-$C_{K_i}$   & set of available CCCs of cluster $K(i)$ \\
-$h(K)$ & cluster head of a cluster $K$\\
-$h_K$ & cluster head of a cluster $K$\\
-$\delta$ & desired cluster size\\
-$S(i)$ & set of claiming clusters, each of which includes \\
-& debatable node $i$ after phase I\\
-
-$\mathcal{N}$  & collection of secondary users\\
-$N_i$ & neighborhood of node $i$    \\
-$C_i$ & a cluster whose cluster head is $i$  \\
+$k(i)$ & working channel of user $i$\\
+$\text{Nb}(i)$ & neighborhood of CR node $i$    \\
+$C(i)$ & a cluster whose cluster head is $i$  \\
+%$K(i)$   & set of available channels at CR node $i$  \\
 $K_i$   & set of available channels at CR node $i$  \\
-$K_C$   & set of available CCCs of cluster $C$ \\
-$K_{C_i}$   & set of available CCCs of cluster $C_i$ \\
+$K_{C(i)}$   & set of available CCCs of cluster $C(i)$ \\
+%$h(C)$ & cluster head of a cluster $C$\\
 $h_C$ & cluster head of a cluster $C$\\
+%$\text{CH}$ & cluster head\\
 $\delta$ & desired cluster size\\
 $S_i$ & set of claiming clusters, each of which includes \\
 & debatable node $i$ after phase I\\
+$D_i$  & Individual connectivity degree \\
+$G_i$  & Social connectivity degree \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-xxxxx
+
 
 
 \section{Distributed Coordination Framework: Clustering Algorithm}
@@ -680,10 +649,10 @@ As to CR node $i$, there are,
 %\end{def1}
 \begin{itemize}
 
-\item \textit{Individual connectivity degree} $D_i$: $D_i=\sum_{j\in \texttt{Nb}_i}\vert V_i\cap V_j\vert$, which denotes the sum of the pairwise common channels of node $i$. 
+\item \textit{Individual connectivity degree} $D_i$: $D_i=\sum_{j\in \text{Nb}(i)}\vert K_i\cap K_j\vert$, which denotes the sum of the pairwise common channels of node $i$. 
 It is an indicator of node $i$'s adhesive property to the CRN. 
 
-\item \textit{Social connectivity degree} $G_i$: $G_i=|\bigcap_{j\in \texttt{Nb}_i\cup i}V_j|$, which is the number of common channels of CR node $i$ and its neighbours.
+\item \textit{Social connectivity degree} $G_i$: $G_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which is the number of common channels of CR node $i$ and its neighbours.
 $G_i$ represents the ability of $i$ to form a robust cluster with its neighborhood.
 \end{itemize}
 Individual connectivity degree $D_i$ and social connectivity degree $G_i$ together form the \textit{connectivity vector}.
@@ -702,9 +671,9 @@ At first, cluster heads are determined, then clusters are formed on the basis of
 
 \subsubsection{Determining Cluster Heads and Form the Initial Clusters}
 In this phase, each CR node decides whether it is cluster head by comparing its connectivity vector with its neighbours.
-When CR node $i$ has bigger individual connectivity degree than any neighbours except for those which have already become cluster heads (the appearance of cluster heads will be explained in next subsubsection), then node $i$ becomes clusters head.
+When CR node $i$ has bigger individual connectivity degree than any neighbours except for those which have already become cluster heads (the appearance of cluster heads will be explained in next subsubsection, they are denoted as $\text{CHs}$), then node $i$ becomes clusters head.
 %In other words, CR node $i$ becomes cluster head if $D_i > D_k, \forall k\in \texttt{Nb}_i\setminus CHs$ ($CHs$ donate the cluster heads existing in $\texttt{Nb}_i$).
-If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree with $i$, \ie $D_j = D_i$ and $D_j > D_{k}, \forall k\in Nb_j\setminus \{CHs\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head, and the other one becomes one member of it. 
+If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree with $i$, \ie $D_j = D_i$ and $D_j > D_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head, and the other one becomes one member of it. 
 If $G_i = G_j$ as well, node ID is used to break the tie, \ie the one with smaller node ID takes precedence and becomes cluster head.
 %
 The node which becomes cluster head broadcasts a message on its eligibility of being cluster head to notify its neighbours, and claims its neighbourhood as its cluster.
@@ -739,7 +708,7 @@ According to Theorem~\ref{clustering:theorem}, we can assign reasonable amount o
 
 %This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
 Let us apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}.
-Node $B$ and $H$ have same individual connectivity degree, $D_B=D_H$, but as $G_H=2>G_B=1$, node $H$ becomes cluster head.
+Node $B$ and $H$ have the same individual connectivity degree, $D_B=D_H$, but as $G_H=2>G_B=1$, node $H$ becomes cluster head.
 Cluster $C_H$ is $\{H, B, A, G\}$.
 	
 
@@ -747,7 +716,7 @@ Cluster $C_H$ is $\{H, B, A, G\}$.
 
 
 \subsubsection{Guarantee Availability of Common Control Channel}
-After deciding itself being cluster head, CR node broadcasts to notify its neighbours on the dedicated control channel, meanwhile, $i$'s initial cluster is formed immediately, which is $i$'s neighborhood except for those nodes which have become cluster heads, \ie $C_i=(\texttt{Nb}_i\setminus CHs)\cup i$.
+After deciding itself being cluster head, CR node broadcasts to notify its neighbours on the dedicated control channel, meanwhile, $i$'s initial cluster is formed immediately, which is $i$'s neighborhood except for those nodes which have become cluster heads, \ie $C_i=(\text{Nb}_i\setminus \text{CHs})\cup i$.
 Note this is the initial cluster, as it is possible for the formed cluster to pose no common control channels.
 This problem can be solved with the following method.
 
@@ -892,7 +861,7 @@ In case there are multiple claiming clusters demonstrating the same on the afore
 IDs of cluster heads will be used to break tie if the previous rule could not decide on the unique cluster to stay.
 
 Algorithm for debatable node $i$ to decide which claiming cluster to stay is described as Algorithm~\ref{alg4}.
-To conduct Algorithm~\ref{alg4}, debatable node $i$ needs to know the necessary information about its claiming clusters, \ie $K_C$ (the set of available channels in $C$), $K_{H_C}$ (the set of available channels on $C$'s cluster head $H_C$) and $|C|, C\in S_i$ (sizes of $i$'s claiming clusters).
+To conduct Algorithm~\ref{alg4}, debatable node $i$ needs to know the necessary information about its claiming clusters, \ie $K_C$ (the set of available channels in $C$), $K_{h_C}$ (the set of available channels on $C$'s cluster head $h_C$) and $|C|, C\in S_i$ (sizes of $i$'s claiming clusters).
 After deciding which cluster to stay based on Algorithm~\ref{alg4}, node $i$ notifies all its claiming clusters, and retrieves the updated information of the necessary information $K_C$, $K_{H_C}$, $|C|$, where $C\in S_i$.
 
 
@@ -946,7 +915,7 @@ The game to be constructed can be represented by a 4-tuple $\Gamma=(\mathcal{P},
 
 \begin{itemize}
 %	\item $\mathcal{D}=\left\{1,\ldots,n\right\}$, the set of players (debatable nodes).
-	\item $\mathcal{P}$, the set of players of the game, which are the debatable nodes after phase I in our clustering problem.
+	\item $\mathcal{P}$, the set of players of the game, which are the debatable nodes after phase I of ROSS.
 %	\item $\mathcal{R}=\left\{1,\ldots,m\right\}$, the set of resources which player can choose, which are all the clusters in our model.
 	\item $\mathcal{R} = \cup S_i, i\in \mathcal{P}$, denotes the set of resources for players to choose, $S_i$ is the set of claiming clusters of node $i$. $\mathcal{R}$ is the set of claiming clusters after phase I in our clustering problem.
 	\item As to the strategy space $\sum_i$ of player $i\in \mathcal{N}$, there is $\sum_i \subseteq 2^{\left[S_i\right]}$. As one debatable node is supposed to choose one claiming cluster in our problem, thus only one resource is allocated for $i$, accordingly this congestion game is a singleton game.
@@ -1286,9 +1255,7 @@ We will present the distribution of CRs residing in the formed clusters, and the
 
 The simulation is conducted with C++. 
 Certain number of CRs and PUs are deployed in a 2-dimensional Euclidean space.
-We adopt the unit disk model~\cite{unitDiskModel}, and both CR users and PU have fixed transmission ranges respectively.
-Complying with the system model, the CR node residing within another CR node's transmission range is seen as neighbour of that CR node.
-If CR node locating within one PU's transmission range, the CR node is not allowed to use the channel which is being used by that PU.
+%Complying with the system model, the CR node residing within another CR node's transmission range is seen as neighbour of that CR node.
 The number of licensed channels is 10, each PU is operating on each channel with probability of 50\%.
 All primary and CR users are assumed to be static during the process of clustering.
 
