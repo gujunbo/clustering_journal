@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.3.14)  17 MAR 2016 22:11
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.3.14)  24 MAR 2016 16:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1726,11 +1726,11 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2012.
  ) 
 Here is how much of TeX's memory you used:
- 27629 strings out of 494985
- 492439 string characters out of 6180356
- 857676 words of memory out of 5000000
- 30003 multiletter control sequences out of 15000+600000
- 250697 words of font info for 366 fonts, out of 8000000 for 9000
+ 27631 strings out of 494985
+ 492473 string characters out of 6180356
+ 858689 words of memory out of 5000000
+ 30005 multiletter control sequences out of 15000+600000
+ 253985 words of font info for 368 fonts, out of 8000000 for 9000
  39 hyphenation exceptions out of 8191
  63i,18n,60p,10458b,668s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
@@ -1756,7 +1756,7 @@ hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive
 fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
 /times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on bare_jrnl_comsoc.pdf (15 pages, 588174 bytes).
+Output written on bare_jrnl_comsoc.pdf (15 pages, 588201 bytes).
 PDF statistics:
  762 PDF objects out of 1000 (max. 8388607)
  661 compressed objects within 7 object streams

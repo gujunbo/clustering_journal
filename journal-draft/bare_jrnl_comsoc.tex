@@ -587,7 +587,7 @@ Clustering is performed periodicity, as secondary users are mobile and primary u
 
 
 \begin{table}[h!]
-\caption{Notations in robust clustering problem}
+\caption{Notations in robust clustering problem (*when sub*)}
 \label{tab1}
 \centering
 \begin{tabular}{llr}
@@ -597,20 +597,20 @@ Clustering is performed periodicity, as secondary users are mobile and primary u
 Symbol & Description \\
 \midrule
 $\mathcal{N}$  & collection of secondary users\\
-$k(i)$ & working channel of user $i$\\
-$\text{Nb}(i)$ & neighborhood of CR node $i$    \\
+$k_i$ & the working channel of user $i$\\
+$\text{Nb}(i)$ & the neighborhood of CR node $i$    \\
 $C(i)$ & a cluster whose cluster head is $i$  \\
-%$K(i)$   & set of available channels at CR node $i$  \\
-$K_i$   & set of available channels at CR node $i$  \\
-$K_{C(i)}$   & set of available CCCs of cluster $C(i)$ \\
+%$k_i$   & set of available channels at CR node $i$  \\
+$K_i$   & the set of available channels at CR node $i$  \\
+$K(C(i))$   & the set of available CCCs of cluster $C(i)$ \\
 %$h(C)$ & cluster head of a cluster $C$\\
-$h_C$ & cluster head of a cluster $C$\\
+$h_C$ & the cluster head of a cluster $C$\\
 %$\text{CH}$ & cluster head\\
 $\delta$ & desired cluster size\\
-$S_i$ & set of claiming clusters, each of which includes \\
+$S_i$ & a set of claiming clusters, each of which includes \\
 & debatable node $i$ after phase I\\
-$D_i$  & Individual connectivity degree \\
-$G_i$  & Social connectivity degree \\
+$d_i$  & individual connectivity degree of CR node $i$\\
+$g_i$  & social connectivity degree of CR node $i$\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -635,33 +635,33 @@ As to CR node $i$, there are,
 %\newtheorem{def1}{Definition}
 %\label{def1}
 %\begin{def1}
-%Connection vector $\left\{D_i,G_i\right\}$ of CR node $i$:
+%Connection vector $\left\{d_i,g_i\right\}$ of CR node $i$:
 %spectrum connectivity degree: 
 %\begin{equation}
-%\label{D_i}
-%D_i=\sum_{j\in N_i}\vert V_i\cap V_j\vert
+%\label{d_i}
+%d_i=\sum_{j\in N_i}\vert V_i\cap V_j\vert
 %\end{equation}
 %Social Connection degree:
 %\begin{equation}
-%\label{G_i}
-%G_i=|\bigcap_{j\in N_i}V_j|
+%\label{g_i}
+%g_i=|\bigcap_{j\in N_i}V_j|
 %\end{equation}
 %\end{def1}
 \begin{itemize}
 
-\item \textit{Individual connectivity degree} $D_i$: $D_i=\sum_{j\in \text{Nb}(i)}\vert K_i\cap K_j\vert$, which denotes the sum of the pairwise common channels of node $i$. 
+\item \textit{Individual connectivity degree} $d_i$: $d_i=\sum_{j\in \text{Nb}(i)}\vert K_i\cap K_j\vert$, which denotes the sum of the pairwise common channels of node $i$. 
 It is an indicator of node $i$'s adhesive property to the CRN. 
 
-\item \textit{Social connectivity degree} $G_i$: $G_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which is the number of common channels of CR node $i$ and its neighbours.
-$G_i$ represents the ability of $i$ to form a robust cluster with its neighborhood.
+\item \textit{Social connectivity degree} $g_i$: $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which is the number of common channels of CR node $i$ and its neighbours.
+$g_i$ represents the ability of $i$ to form a robust cluster with its neighborhood.
 \end{itemize}
-Individual connectivity degree $D_i$ and social connectivity degree $G_i$ together form the \textit{connectivity vector}.
+Individual connectivity degree $d_i$ and social connectivity degree $g_i$ together form the \textit{connectivity vector}.
 Figure~\ref{fig1} illustrates an example CRN where each node's connectivity vector is calculated and shown.	
 \begin{figure}[ht!]
   \centering
 \includegraphics[width=0.7\linewidth]{figure1.pdf}
 % \includegraphics{figure1.pdf}
-	\caption{Connectivity graph and the connectivity vector $(D_i, G_i)$ on each node. The available channels sensed by each CR node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$. Dashed lines indicates two end nodes are within transmission range of each other. Each edge is labelled by the number of common channels between the two ends.}
+	\caption{Connectivity graph and the connectivity vector $(d_i, g_i)$ at each node. The available channels sensed by each CR node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$. Dashed lines indicates two end nodes are within transmission range of each other. Each edge is labelled by the number of common channels between the two ends.}
 	\label{fig1}
 \end{figure}
 
@@ -672,9 +672,9 @@ At first, cluster heads are determined, then clusters are formed on the basis of
 \subsubsection{Determining Cluster Heads and Form the Initial Clusters}
 In this phase, each CR node decides whether it is cluster head by comparing its connectivity vector with its neighbours.
 When CR node $i$ has bigger individual connectivity degree than any neighbours except for those which have already become cluster heads (the appearance of cluster heads will be explained in next subsubsection, they are denoted as $\text{CHs}$), then node $i$ becomes clusters head.
-%In other words, CR node $i$ becomes cluster head if $D_i > D_k, \forall k\in \texttt{Nb}_i\setminus CHs$ ($CHs$ donate the cluster heads existing in $\texttt{Nb}_i$).
-If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree with $i$, \ie $D_j = D_i$ and $D_j > D_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head, and the other one becomes one member of it. 
-If $G_i = G_j$ as well, node ID is used to break the tie, \ie the one with smaller node ID takes precedence and becomes cluster head.
+%In other words, CR node $i$ becomes cluster head if $d_i > d_k, \forall k\in \texttt{Nb}_i\setminus CHs$ ($CHs$ donate the cluster heads existing in $\texttt{Nb}_i$).
+If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree with $i$, \ie $d_j = d_i$ and $d_j > d_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head, and the other one becomes one member of it. 
+If $g_i = g_j$ as well, node ID is used to break the tie, \ie the one with smaller node ID takes precedence and becomes cluster head.
 %
 The node which becomes cluster head broadcasts a message on its eligibility of being cluster head to notify its neighbours, and claims its neighbourhood as its cluster.
 The pseudo code for deciding cluster head and forming initial clusters is in Algorithm~\ref{alg0} in appendix.
@@ -692,10 +692,10 @@ Then node $i$ broadcasts its new individual connectivity degree to all its neigh
 %According to the assumption on the reciprocal communication link, $i$ should have received the notification message from $j$ when $j$ becomes cluster head.
 %Then CR node $i$ will set its individual connectivity degree to zero, and has no possibility to become a cluster head.
 %\end{proof}
-When a CR node $i$ is associated to multiple clusters \ie $i$ receives multiple notifications on cluster head eligibility from different CR nodes, $D_i$ is still set to zero. %Note here that connectivity degree on cluster head will still be the actual value.% The value will expire after some duration and is changed later on back to the original value. 
+When a CR node $i$ is associated to multiple clusters \ie $i$ receives multiple notifications on cluster head eligibility from different CR nodes, $d_i$ is still set to zero. %Note here that connectivity degree on cluster head will still be the actual value.% The value will expire after some duration and is changed later on back to the original value. 
 %
 %
-The purpose of this temporary manipulation on individual connectivity degree is to let the CR nodes out side of the cluster be possible to become cluster heads, so that every CR node either becomes cluster head or a member of at least one cluster.
+We manipulate the individual connectivity degree of the CR nodes, so that those locating outside of the cluster are possible to become cluster heads, then every CR node becomes either cluster head or one member of at least one cluster.
 %In other words, with this manipulation on its individual connectivity degree, every CR node in the network will be involved in the clustering process, the proof will be given later.
 %Every CR user is involved in the clustering process and becomes either cluster head or member is described in theorem~\ref{clustering:theorem}.
 We have the following theorem to show that as long as a secondary user's connectivity the CRN is not zero, the secondary user will always be integrated into a certain cluster.
@@ -708,7 +708,7 @@ According to Theorem~\ref{clustering:theorem}, we can assign reasonable amount o
 
 %This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
 Let us apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}.
-Node $B$ and $H$ have the same individual connectivity degree, $D_B=D_H$, but as $G_H=2>G_B=1$, node $H$ becomes cluster head.
+Node $B$ and $H$ have the same individual connectivity degree, $d_B=d_H$, but as $g_H=2>g_B=1$, node $H$ becomes cluster head.
 Cluster $C_H$ is $\{H, B, A, G\}$.
 	
 
@@ -862,7 +862,7 @@ IDs of cluster heads will be used to break tie if the previous rule could not de
 
 Algorithm for debatable node $i$ to decide which claiming cluster to stay is described as Algorithm~\ref{alg4}.
 To conduct Algorithm~\ref{alg4}, debatable node $i$ needs to know the necessary information about its claiming clusters, \ie $K_C$ (the set of available channels in $C$), $K_{h_C}$ (the set of available channels on $C$'s cluster head $h_C$) and $|C|, C\in S_i$ (sizes of $i$'s claiming clusters).
-After deciding which cluster to stay based on Algorithm~\ref{alg4}, node $i$ notifies all its claiming clusters, and retrieves the updated information of the necessary information $K_C$, $K_{H_C}$, $|C|$, where $C\in S_i$.
+After deciding which cluster to stay based on Algorithm~\ref{alg4}, node $i$ notifies all its claiming clusters, and retrieves the updated information of the necessary information $K_C$, $K_{h_C}$, $|C|$, where $C\in S_i$.
 
 
 
@@ -1650,25 +1650,25 @@ In the other way around, forming big cluster which extends out side of cluster h
 \label{alg0} 
 \DontPrintSemicolon
 \SetAlgoLined
-\KwIn{$D_j, G_j, j\in \texttt{Nb}_i\setminus CHs$. Empty sets $\tau_1,\tau_2$}
-\KwResult{1 means $i$ is cluster head, then $D_j, j\in \texttt{Nb}_i\setminus CHs$ is changed as a big positive value $M$. 0 means $i$ is not.}
+\KwIn{$d_j, g_j, j\in \texttt{Nb}_i\setminus CHs$. Empty sets $\tau_1,\tau_2$}
+\KwResult{1 means $i$ is cluster head, then $d_j, j\in \texttt{Nb}_i\setminus CHs$ is changed as a big positive value $M$. 0 means $i$ is not.}
 
-\If{$\nexists j\in \texttt{Nb}_i\setminus CHs$, such that $D_i \leq D_j$}{
+\If{$\nexists j\in \texttt{Nb}_i\setminus CHs$, such that $d_i \leq d_j$}{
 	return 1;
 	}
-\eIf{$\exists j\in \texttt{Nb}_i\setminus CHs$, such that $D_i < D_j$}{
+\eIf{$\exists j\in \texttt{Nb}_i\setminus CHs$, such that $d_i < d_j$}{
 	return 0;}{
-	\If{$\nexists j\in \texttt{Nb}_i\setminus CHs$, such that $D_j == D_i$}{
+	\If{$\nexists j\in \texttt{Nb}_i\setminus CHs$, such that $d_j == d_i$}{
 	$\tau_1 \leftarrow j$
 	}
 }
-\If{$\nexists j\in \tau_1$, such that $G_i \leq G_j$}{
+\If{$\nexists j\in \tau_1$, such that $g_i \leq g_j$}{
 	return 1;
 	}
-\eIf{$\exists j\in \tau_1$, such that $G_i < G_j$}{
+\eIf{$\exists j\in \tau_1$, such that $g_i < g_j$}{
 	return 0;
 	}
-	{\If{$\nexists j\in \tau_1$, such that $G_j == G_i$}{
+	{\If{$\nexists j\in \tau_1$, such that $g_j == g_i$}{
 		$\tau_2\leftarrow j$
 		}
 	}
@@ -1748,13 +1748,16 @@ In the other way around, forming big cluster which extends out side of cluster h
 \label{proof_clustering:theorem}
 \begin{proof}
 Note the formed cluster can be a singleton cluster, \ie cluster size is 1.
-To simplify the proof, we assume secondary users have unique individual connectivity degrees.
-This is fair as there are other metrics to break the tie according to Algorithm~\ref{alg0}, \ie the social connectivity degrees and node ID.
-Assuming there are some secondary users which are not assigned to any cluster and node $\alpha$ is one of them.
-As node $\alpha$ is not contained in any cluster, there must be at least one node $\beta\in Nb_\alpha$, with $D_{\alpha} < D_{\beta}$.
+To simplify the discussion, we assume the secondary users have unique individual connectivity degrees, and they have identical ID and social connectivity degrees.
+This assumption is fair as the social connectivity degrees and node ID are used to break ties as shown in Algorithm~\ref{alg0}, when the individual connectivity degrees are unique, it is not necessary to use the former two metrics to break ties.
+
+We assume every node has at least one neighbour.
+It is further assumed that there exist some secondary users which are not included into any cluster and node $\alpha$ is of this kind.
+As node $\alpha$ is not contained in any cluster, there must be at least one node $\beta\in \text{Nb}_\alpha$, with $d_{\alpha} < d_{\beta}$.
 Otherwise, node $\alpha$ is eligible to form a cluster.
-Then, as node $\beta$ form a cluster and include node $\alpha$, we can repeat the analysis on node $\alpha$, and deduce that node $\beta$ has at least one neighbouring node $\gamma$ with $D_{\gamma}>D_{\beta}$, and this series of nodes with monotonically increasing $D_i$ might continue to grow and ceases finally because both of the individual connectivity degree 
-and the total number of nodes are limited.
+If node $\beta$ becomes cluster head, node $\alpha$ is included.
+If node node $\beta$ is not cluster head, i.e., $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighbouring node $\gamma$ with $d_{\gamma}>d_{\beta}$.
+When no cluster head appears, this series of nodes with monotonically increasing $d_i$ might continue to grow, and only ceases because both of the individual connectivity degree and the total number of nodes are limited.
 The formed node series is shown as Figure~\ref{lemma1}.
 
 \begin{figure}[ht!]
