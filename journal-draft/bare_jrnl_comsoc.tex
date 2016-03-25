@@ -814,12 +814,11 @@ This procedure is similar with that to guarantee CCCs in cluster, thus the algor
 %\subsubsection*{Problem Description}
 After applying phase I of ROSS to the example in Figure~\ref{fig1}, the resulted clusters are shown in Figure~\ref{fig2}.
 We notice nodes $A, B, D$ are included in more than one cluster. 
-We refer these nodes as \textit{debatable nodes} as their cluster affiliations are not clear, and the clusters which include debatable node $i$ are called \textit{claiming clusters} of node $i$, and are represented as $S_i$.  
+We refer these nodes as \textit{debatable nodes} as their cluster affiliations are not clear, and the clusters which include the debatable node $i$ are called \textit{claiming clusters} of node $i$, and are denoted as $S_i$.  
 Actually, debatable nodes extensively exist in CRN with larger scale.
-Figure~\ref{percentage_overlapping_node} shows the percentage of debatable nodes increases when the CRN network scales up.
-
-Debatable nodes should be exclusively associated with only one cluster and removed from the other claiming clusters, this procedure is called cluster membership clarification.
-We will introduce the solution for cluster membership clarification in the following.
+Figure~\ref{percentage_overlapping_node} shows the percentage of debatable nodes increases when the CRN network becomes denser.
+Debatable nodes should be exclusively associated with only one cluster and be removed from the other claiming clusters, this procedure is called \textit{cluster membership clarification}.
+We will introduce the solution for cluster membership clarification in the following.	
 
 \begin{figure}[ht!]
   \centering
@@ -850,52 +849,38 @@ We will introduce the solution for cluster membership clarification in the follo
 
 \subsubsection{Distributed Greedy Algorithm}
 %Debatable node $i$ is aware of all its claiming clusters in $S_i$. 
-After Phase I, debatable nodes, \eg $i$ needs to decide which cluster $C\in S_i$ to stay, and thereafter leaves the rest others in $S_i$.
-The principle for debatable node $i$ to choose one claiming cluster is to result in the greatest increase of common channels in all its claiming clusters.
+After Phase I, debatable nodes, \eg $i$ needs to decide one cluster $C\in S_i$ to stay, and thereafter leaves the rest others in $S_i$.
+The principle for debatable node $i$ to choose one claiming cluster is that its decision can result in the greatest increase of common channels in all its claiming clusters.
 %The set of available channels of one cluster are known by the debatable nodes which locate in that cluster. %this is finished 
-Node $i$ communicates with all the cluster heads whose clusters of its claiming clusters, and is aware of the vector of common channels of the claiming clusters, then $i$ is able to know how many more common control channels will be in one certain claiming cluster if $i$ leaves that cluster.
-Based on this calculation, $i$ decides on one claiming cluster to stay and leaves the other claiming clusters.
-If there exists one cluster $C\in S_i$, if $i$ leaves this cluster brings the least increased common control channels than leaving any other claiming clusters, then $i$ chooses to stay in cluster $C$.
-When there comes a tie in terms of the increase of common channels among multiple claiming clusters, $i$ chooses to stay in the cluster whose cluster head shares more common channels with $i$.
-In case there are multiple claiming clusters demonstrating the same on the aforementioned metrics, node $i$ chooses to stay in the claiming cluster with smallest size.
-IDs of cluster heads will be used to break tie if the previous rule could not decide on the unique cluster to stay.
+Since node $i$ is a neighbour of all the cluster heads in $S_i$, node $i$ is aware of the channel availability on these claiming cluster heads, and the common control channels in these claiming clusters.
+With these information, node $i$ is able to calculate how how many more CCCs will be produced in one claiming cluster if $i$ leaves that cluster.
+%Based on this calculation, $i$ decides on one claiming cluster to stay and leaves the other claiming clusters.
+If there exists one cluster $C\in S_i$, when $i$ leaves this cluster brings the least increased CCCs than leaving any other claiming clusters, then $i$ chooses to stay in cluster $C$.
+When there comes a tie, among the relevant claiming clusters, $i$ chooses to stay in the cluster whose cluster head shares the most CCCs with $i$.
+In case there are multiple claiming clusters demonstrating the same on the aforementioned criteria, node $i$ chooses to stay in the claiming cluster which has the smallest size.
+Node IDs of cluster heads will be used to break tie if the previous rules could not decide on the unique claiming cluster to stay.
+The pseudo code of this algorithm is described as Algorithm~\ref{alg4}.
+%To conduct Algorithm~\ref{alg4}, debatable node $i$ needs to know the necessary information about its claiming clusters, \ie $K(C)$ (the set of available channels in cluster $C$), $K(h_C)$ (the set of available channels on $C$'s cluster head $h_C$) and $|C|, C\in S_i$ (sizes of $i$'s claiming clusters).
+After deciding its membership, debatable node $i$ notifies all its claiming clusters, and retrieves the updated information of the claiming clusters, \eg $K(C)$, $K_{h_C}$, $|C|$, where $C\in S_i$.
 
-Algorithm for debatable node $i$ to decide which claiming cluster to stay is described as Algorithm~\ref{alg4}.
-To conduct Algorithm~\ref{alg4}, debatable node $i$ needs to know the necessary information about its claiming clusters, \ie $K_C$ (the set of available channels in $C$), $K_{h_C}$ (the set of available channels on $C$'s cluster head $h_C$) and $|C|, C\in S_i$ (sizes of $i$'s claiming clusters).
-After deciding which cluster to stay based on Algorithm~\ref{alg4}, node $i$ notifies all its claiming clusters, and retrieves the updated information of the necessary information $K_C$, $K_{h_C}$, $|C|$, where $C\in S_i$.
 
-
-
-This procedure raises the concern on the infinite chain effect that debatable nodes update their choices based on other debatable nodes' choices, and this process never ceases.
-Consider the following example, where debatable node $i$ locates in cluster $C\in S_i$, and $C$ has more than one debatable node except for $i$.
-Assuming that $i$ makes decision on which cluster to stay, which is followed by the other debatable nodes $j$ to decides its affiliation, and there is $j\in C\in S_i$.
-The choice of $j$ may change $C$'s members, \ie $j$ leaves cluster $C$, which could possibly triggers node $i$ to alter its previous decision.
+This procedure raises a concern that the debatable nodes may never stop changing their affiliations, as debatable nodes' choices seem to be dependent on each other, and the infinite chain effect never ceases.
+%  update their choices based on other debatable nodes' choices, and this process 
+For example, assuming one debatable node $i$ locates in cluster $C\in S_i$, and $C$ has more than one debatable node except for $i$.
+Assuming node $i$ makes decision to stay in the claiming cluster $C$, afterwards one another debatable nodes $j$ decides its affiliation, and there is $j\in C\in S_i$.
+When $j$ leaves cluster $C$, which decrease cluster $C$'s cluster size, and could possibly trigger node $i$ to alter its previous decision to leave $C$, as $C$'s size is smaller now and leaving it may result in more increase of CCCs in $S_i$.
+At this point of time, debatable node $j$ may rejoin cluster $C$ duo to the changes in $S_j$, then both node $i$ and $j$ are facing the \textit{same}\footnote{Actually it is not totally same as before, as there are some new changes within $S_j$.} situation again.
 %To maximize the increase of common channel in clusters in $S_j$, $j$ either stays in $C$, or leaves cluster $C$ and stay another cluster in $S_j$.
 %$j$'s decision changes $C$'s membership, which will affect $i$'s decision.
 %Assume $i$ makes decision before $j$ and chooses to stay in $C$, as which brings the most common channels in $i$' claiming clusters, and then it is $j$' turn to choose cluster.
 %If $j$ leaves $C$, the smaller cluster $C$ will possibly make $i$ to leave it and join another cluster.
 %and the choice of $j$ to stay in $C$ or not possibly changes $C$'s membership and  which potentially further triggers node $i$ to alter its previous decision. 
-Thence, we must answer this question raised when implementing ROSS-DGA.
+Thence, we must answer this concern raised when implementing ROSS-DGA.
 %, and if it converges, how good such a distributed scheme performs. 
-In the following we show that the process of membership clarification can be formulated into a singleton congestion game, and a equilibrium is reached after a finite number of best response updates.
+In the following we show that the process of membership clarification can be formulated into a singleton congestion game, and a equilibrium is reached after a finite number of best response updates made by the debatable nodes.
 
 \subsubsection{Bridging ROSS-DGA with Congestion Game}
 \label{clustering:phaseII:game}
-%In this part, we illustrate that when debatable nodes decide on the exclusive clusters to stay, in particular, the 
-To formulate the problem of membership clarification for the debatable nodes in the context of a game, we observe this process from a different (or opposite) perspective. 
-From the new perspective, the debatable nodes are regarded as isolated and don't belong to any cluster, which means their claiming clusters become their neighbouring clusters. 
-Then for debatable nodes, the previous problem of deciding which clusters to leave becomes a new problem that which cluster to join.
-In this new problem, debatable node $i$ (note now $i\notin S_i$) chooses one cluster $C$ out of $S_i$ to join if the decrement of common channels in cluster $C$ is the smallest in $S_i$, and the decrement of CCCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K_C \vert=\sum_{C\in S_i}({\vert K_{C} \vert-\vert K_{C\cup i} \vert})$.
-The relation between debatable nodes and claiming clusters is shown in Figure~\ref{debatable_nodes_claiming_cluster}.
-The concern on convergence appears again as we have discussed in the previous subsubsection.
-We will give proof on convergence under game theoretic framework.
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[width=0.25\linewidth]{singletongame_png.png}
-  \caption{Debatable nodes and claiming clusters}
-  \label{debatable_nodes_claiming_cluster}
-\end{figure}
-
 Game theory is a powerful mathematical tool for studying, modelling and analysing the interactions among individuals.
 A game consists of three elements: a set of players, a selfish utility for each player, and a set of feasible strategy space for each player. In a game, the players are rational and intelligent decision makers, which are related with one explicit formalized incentive expression (the utility or cost).
 Game theory provides standard procedures to study its equilibriums~\cite{game_for_communication_01}.
@@ -903,40 +888,56 @@ In the past few years, game theory has been extensively applied to problems in c
 Congestion game is an attractive game model which describes the problem where participants compete for limited resources in a non-cooperative manner, it has good property that Nash equilibrium can be achieved after finite steps of best response dynamic, \ie each player choose strategy to maximizes/minimizes its utility/cost with respect to the other players' strategies.
 Congestion game has been used to model certain problems in internet-centric applications or cloud computing, where self-interested clients compete for the centralized resources and meanwhile interact with each other.
 For example, server selection is involved in distributed computing platforms~\cite{Cloud_Computing_2010}, or users downloading files from cloud, etc.
-In the following we will introduce an \textit{server matching}~\cite{kothari:congestion_serverMatching} problem to illustrate congestion game's application in communication systems.
+
+To formulate the debatable nodes' membership clarification into the desired congestion game, we observe this process from a different (or opposite) perspective. 
+From the new perspective, the debatable nodes are regarded to be isolated and don't belong to any cluster, in other words, their claiming clusters become clusters which are beside them. 
+Now for the debatable nodes, the previous problem of deciding which clusters to leave becomes a new problem that which cluster to join.
+In the new problem, debatable node $i$ chooses one cluster $C$ out of $S_i$ to join if the decrease of CCCs in cluster $C$ is the smallest in $S_i$, and the decrease of CCCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K(C) \vert=\sum_{C\in S_i}({\vert K(C) \vert-\vert K(C\cup i) \vert})$.
+The interaction between the debatable nodes and the claiming clusters is shown in Figure~\ref{debatable_nodes_claiming_cluster}.
+%The concern on convergence appears again as we have discussed in the previous subsubsection.
+We give proof on convergence under game theoretic framework.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.25\linewidth]{singletongame_png.png}
+  \caption{Debatable nodes and claiming clusters}
+  \label{debatable_nodes_claiming_cluster}
+\end{figure}
+
+
+%In the following we will introduce an \textit{server matching}~\cite{kothari:congestion_serverMatching} problem to illustrate congestion game's application in communication systems.
 
 
 In the following, we show that the decision of debatable nodes to clarify their membership can be mapped to the behaviour of the players in a \textit{player-specific singleton congestion game} when proper cost function is given.
-
-The game to be constructed can be represented by a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, f)$, and the elements in $\Gamma$ are explained below,
+The game to be constructed is represented with a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, f)$, and the elements in $\Gamma$ are explained below,
 %To make the model of this game more clear, we make some change to our original problem. Previously, the nodes in overlapping areas belong to more than one cluster, and our scheme is to remove them out of some clusters to increase the set of common channels within the cluster form which the mode leave. In the new model, we assume all the nodes in overlapping nodes don't belong any cluster and the problem become into how do these nodes decide which cluster to join.
 
 %The components of the game are listed as follows,
 
 \begin{itemize}
 %	\item $\mathcal{D}=\left\{1,\ldots,n\right\}$, the set of players (debatable nodes).
-	\item $\mathcal{P}$, the set of players of the game, which are the debatable nodes after phase I of ROSS.
+	\item $\mathcal{P}$, the set of players in the game, which are the debatable nodes in our problem.
 %	\item $\mathcal{R}=\left\{1,\ldots,m\right\}$, the set of resources which player can choose, which are all the clusters in our model.
-	\item $\mathcal{R} = \cup S_i, i\in \mathcal{P}$, denotes the set of resources for players to choose, $S_i$ is the set of claiming clusters of node $i$. 
-	$\mathcal{R}$ is the set of claiming clusters after phase I in our clustering problem.
+	\item $\mathcal{R} = \cup S_i, i\in \mathcal{P}$, denotes the set of resources for players to choose, in our problem, $S_i$ is the set of claiming clusters of node $i$, and $\mathcal{R}$ is the set of all claiming clusters.
 	\item Strategy space $\sum_i, i \in \mathcal{P}$ is the set of claiming clusters $S_i$.
-	As debatable node $i$ is supposed to choose one claiming cluster in our problem, only one piece of resource is allocated for $i$.%, accordingly this congestion game is a singleton game.
+	As debatable node $i$ is supposed to choose only one claiming cluster, then only one piece of resource will be allocated to $i$.%, accordingly this congestion game is a singleton game.
 	%when $i$ makes decision, only one resource (one claiming cluster) from the allowed resources is allocated.
 	
 	%\item We denote by $\mathcal{S}=\left(\mathcal{S}_1,\ldots,\mathcal{S}_n\right)\in \sum_1\times \cdots\times\sum_n$ the state of game where player $i$ plays strategy $\mathcal{S}_i\in \Sigma_i$.
 	
-	\item %For the clusters which are possible destination of debatable nodes, the decrement of common channels caused by different debatable node' join can be different because of the heterogeneity of channel availability within itself and on the debatable nodes. %furthermore, the sequence of debatable node's join can also alter the decrement. 
-	The utility (cost) function $f$ as to resource $C\in \mathcal{R}$ is $\Delta\vert K^i_C \vert$, which represents the decrement of CCCs in cluster $C$ when debatable node $i$' joins in it.
-	As to cluster $C\in S_i$, the decrement of CCCs caused by the enrolment of debatable nodes is $\sum_{i:C\in S_i, i\rightarrow C} \Delta\vert K^i_C \vert$. 
-$i\rightarrow C$ means $i$ joins in cluster $C$.
-Obviously this function is non-decreasing with respect to the number of nodes joining in cluster $C$.
+	\item %For the clusters which are possible destination of debatable nodes, the decrease of common channels caused by different debatable node' join can be different because of the heterogeneity of channel availability within itself and on the debatable nodes. %furthermore, the sequence of debatable node's join can also alter the decrease. 
+	The utility (cost) function $f(C)$ as to a resource $C$. 
+	$f(C) = \Delta\vert K^i(C)|, C\in S_i$, which represents the decrease of CCCs in cluster $C$ when debatable node $i$ joins $C$.
+	As to cluster $C\in S_i$, the decrease of CCCs caused by the enrolment of debatable nodes is $\sum_{i:C\in S_i, i\rightarrow C} \Delta\vert K^i(C) \vert$. 
+$i\rightarrow C$ means $i$ joins cluster $C$.
+Obviously this function is non-decreasing with respect to the number of nodes joining cluster $C$.
 	
-The utility function is not purely decided by the number of players (debatable nodes) as that in a canonical congestion game, because in this game the channel availability on debatable nodes is different.
-Given two same sized groups of debatable nodes, when the nodes are not completely the same (neither are the channel availabilities on these nodes), the cost happened on one claiming cluster could be different if the two groups of debatable nodes join in that cluster respectively.
+The utility function $f$ is not purely decided by the number of players accessing the resource (debatable nodes join claiming clusters), which happens in a canonical congestion game.
+The reason is in this game the channel availability on debatable nodes is different.
+Given two same groups of debatable nodes and their sizes are the same, when the nodes are not completely the same (neither are the channel availabilities on these nodes), the cost happened on one claiming cluster could be different if the two groups of debatable nodes join that cluster respectively.
 %In a canonical congestion game, the cost (or pay off) is function of only the number of players occupying the resource, and is mono-
 %In this new game, the cost function 
-Hence, this game is called player specific.
-In this game, every player greedily updates its strategy (choosing one claiming cluster to join) if joining in a different claiming cluster minimizes the decrement of CCCs $\sum_{i:C\in S_i} \Delta\vert K^i_C \vert$, player's strategy in the game is exactly the same with the behaviour of debatable node in membership clarification phase, as described by Algorithm~\ref{alg4}.
+Hence, this congestion game is player specific~\cite{Ackermann06purenash}.
+In this game, every player greedily updates its strategy (choosing one claiming cluster to join) if joining a different claiming cluster minimizes the decrease of CCCs $\sum_{i:C\in S_i} \Delta\vert K^i(C) \vert$, and a player's strategy in the game is exactly the same with the behaviour of a debatable node in the membership clarification phas.
 
 
 %	\item The Rosenthal's potential function \cite{Rosenthal} of this congestion game is given by:
@@ -961,9 +962,9 @@ In this game, every player greedily updates its strategy (choosing one claiming 
 %It is known that player-specific matroid congestion game admit pure equilibrium, 
 
 As to singleton congestion game, there exists pure equilibria which can be reached with best response update, and the upper bound of number of steps before convergence is $n^2*m$~\cite{Ackermann06purenash}, where $n$ is the number of players, and $m$ is the number of resources.
-In our problem, the players are the debatable nodes, and the resources are the claiming clusters (or clusters heads).
+In our problem, the players are the debatable nodes, and the resources are the claiming clusters.
 Thus the upper bound of the number of steps can be expressed as $\mathcal{O}(N^3)$.
-In fact, the actual number of steps is much smaller than $N^3$ as both $n$ and $m$ are considerably smaller than $N$.
+In fact, the number of steps which are actually involved in this process is much smaller than $N^3$, as both $n$ and $m$ are considerably smaller than $N$.
 The amount of debatable nodes is illustrated in Figure~\ref{fig2}, which is between 10\% to 80\% of the total number of CR nodes in the network.
 The number of clusters heads, as discussed in the part of cluster size in Section~\ref{phaseI}, is decided by the network density and the CR node's transmission range.
 Only a small part of the CR nodes become cluster heads, as in the example shown in Figure~\ref{number_clusters_scale}, the number of clusters is only 3.4\% to 20\% of the total number of CR nodes.
@@ -975,7 +976,7 @@ Only a small part of the CR nodes become cluster heads, as in the example shown 
 %%(XXX Just mention after this complexity result the relationship to the system mdeol XX)
 %This is upper-bounded (in the worst case) by $O(\vert I\vert^3)$. 
 %Based on above model and analysis, phase II converges is Algorithm~\ref{alg4} is run by debatable nodes. 
-%Although the game version of DGA can achieve \textit{Nash Equilibrium}, the whole scheme can possibly obtain sub-optimal result.    %, furthermore,this stable state is a local minimum of the global decrement function.
+%Although the game version of DGA can achieve \textit{Nash Equilibrium}, the whole scheme can possibly obtain sub-optimal result.    %, furthermore,this stable state is a local minimum of the global decrease function.
 %\todo[inline]{The number of steps, or the upper bound of steps in convergence needs a formal proof}
 
 \subsubsection{Distributed Fast Algorithm (DFA)}
@@ -1396,7 +1397,7 @@ debatable node informs its claiming clusters by broadcasting its affiliation, an
 The total number of times for all CR nodes to send control messages, \ie the total number of decisions related with clustering functionality, has been analysed in the part of convergence speed in Theorem~\ref{clustering:theorem} and Section~\ref{clustering:phaseII:game} respectively.
 
 Comparison scheme SOC involves three rounds of execution. 
-In the first two rounds, every CR node maintains its own cluster and seek to integrate neighbouring clusters, or join in one of them.
+In the first two rounds, every CR node maintains its own cluster and seek to integrate neighbouring clusters, or joins one of them.
 The final clusters are obtained in the third round. 
 In each round, every CR node is involved in comparisons and cluster mergers.
 %Comparing with the second phase of ROSS, only debatable nodes to communicate with cluster heads to clarify their membership.
@@ -1436,8 +1437,8 @@ Some notations are written as follows,  $h$: number of cluster heads, $m$: numbe
 %\hline
 % Scheme 					&   Number of transmissions 					& Content of message \\ \hline
 % ROSS-DGA, ROSS-x-DGA 		&   $h+2*m^2c$ (upper bound)
-%				& $ID_{H_C}$ and $K_C$ for $h+m^2c$ times, notification to join in one cluster for $m^2c$ times					\\ \hline
-% ROSS-DFA, ROSS-x-DFA 		&   $h+ 2m$	 (upper bound) 						& $ID_{H_C}$ and $K_C$ for $h+m$ times, notification to join in one cluster for $m$ times	 					\\ \hline
+%				& $ID_{H_C}$ and $K_C$ for $h+m^2c$ times, notification to join one cluster for $m^2c$ times					\\ \hline
+% ROSS-DFA, ROSS-x-DFA 		&   $h+ 2m$	 (upper bound) 						& $ID_{H_C}$ and $K_C$ for $h+m$ times, notification to join one cluster for $m$ times	 					\\ \hline
 % SOC 						&   $3*n$					& $\{K_i\}, i\in M\subseteq \texttt{Nb}_i$						\\ \hline
 % Centralized				&	$n$						& $\{C\}$         	\\ 
 % \hline
