@@ -548,11 +548,10 @@ In other terms, for any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds
 ----------- No modifications from here on ... -------------
 
 
-Cluster is denoted as $C_i$ when its cluster head is $i$.
+Cluster is denoted as $C(i)$ when its cluster head is $i$.
 %, for the sake of concision, $C_i$ is also named as cluster $i$ in the following part of this paper.
-We denote the set of common control channels for cluster $C$ with set $K_C$.
-$ K_C = \cap_{i\in C} K_i$ is the set of common control channels for cluster $C$.
-Clustering is performed periodicity, as secondary users are mobile and primary users change their working channels or move.%, or the most current clusters can not maintain due to lack of CCCs when primary users' operation is intense.
+$ K(C) = \cap_{i\in C} K_i$, $K(C)$ denotes the set of common control channels in cluster $C$.
+Clustering is performed periodicity, as secondary users are mobile and the channel availability on secondary users are changing as primary users change their operation state.%, or the most current clusters can not maintain due to lack of CCCs when primary users' operation is intense.
 
 
 
@@ -587,7 +586,7 @@ Clustering is performed periodicity, as secondary users are mobile and primary u
 
 
 \begin{table}[h!]
-\caption{Notations in robust clustering problem (*when sub*)}
+\caption{Notations in robust clustering problem}
 \label{tab1}
 \centering
 \begin{tabular}{llr}
@@ -621,16 +620,16 @@ $g_i$  & social connectivity degree of CR node $i$\\
 \section{Distributed Coordination Framework: Clustering Algorithm}
 \label{ross}
 
-In this section, we present the clustering scheme ROSS.
-ROSS utilizes the proximity of the available spectrum within a local area to form clusters.
-%is based on the spectrum sensing results in its neighbours , then
+In this section, we introduce the distributed clustering scheme ROSS which leads to robust clusters against primary users' influence.
 ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{membership clarification}.
-We will describe them sequentially.
+With ROSS, CR nodes form clusters on the basis of the proximity of the available spectrum in their neighbourhood, and then some CR nodes finalize their cluster membership, i.e., belonging to one certain cluster, by interacting with certain neighbours.
+%is based on the spectrum sensing results in its neighbours , then
+	
 
 \subsection{Phase I - Cluster Formation}
 \label{phaseI}
 After conducting spectrum sensing and communication with neighbours, every CR node is aware of the available channels at itself and all its neighbours.
-For each CR user, two metrics are proposed to characterize the spectrum proximity between the CR user and its neighborhood.
+For each CR user, two metrics are proposed to characterize the spectrum proximity between that CR user and its neighbourhood.
 As to CR node $i$, there are,
 %\newtheorem{def1}{Definition}
 %\label{def1}
@@ -649,11 +648,11 @@ As to CR node $i$, there are,
 %\end{def1}
 \begin{itemize}
 
-\item \textit{Individual connectivity degree} $d_i$: $d_i=\sum_{j\in \text{Nb}(i)}\vert K_i\cap K_j\vert$, which denotes the sum of the pairwise common channels of node $i$. 
+\item \textit{Individual connectivity degree} $d_i$: $d_i=\sum_{j\in \text{Nb}(i)}\vert K_i\cap K_j\vert$, denotes the sum of the numbers of common controls channels between node $i$ and every neighbour.
 It is an indicator of node $i$'s adhesive property to the CRN. 
 
-\item \textit{Social connectivity degree} $g_i$: $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which is the number of common channels of CR node $i$ and its neighbours.
-$g_i$ represents the ability of $i$ to form a robust cluster with its neighborhood.
+\item \textit{Social connectivity degree} $g_i$: $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which is the number of common channels which are available to CR node $i$ and all its neighbours.
+$g_i$ represents the ability of $i$ to form a robust cluster with its neighbours.
 \end{itemize}
 Individual connectivity degree $d_i$ and social connectivity degree $g_i$ together form the \textit{connectivity vector}.
 Figure~\ref{fig1} illustrates an example CRN where each node's connectivity vector is calculated and shown.	
@@ -661,22 +660,22 @@ Figure~\ref{fig1} illustrates an example CRN where each node's connectivity vect
   \centering
 \includegraphics[width=0.7\linewidth]{figure1.pdf}
 % \includegraphics{figure1.pdf}
-	\caption{Connectivity graph and the connectivity vector $(d_i, g_i)$ at each node. The available channels sensed by each CR node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$. Dashed lines indicates two end nodes are within transmission range of each other. Each edge is labelled by the number of common channels between the two ends.}
+	\caption{Connectivity graph and the connectivity vector $(d_i, g_i)$ at each node. The available channels sensed by each CR node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$. Dashed lines indicates two end nodes are within transmission range of each other. The number of common channels between the two nodes is put along with the edge.}
 	\label{fig1}
 \end{figure}
 
-After introducing connectivity vector, we proceed to introduce the first phase of algorithm ROSS.
-At first, cluster heads are determined, then clusters are formed on the basis of the cluster heads' neighbourhoods.
+After introducing the connectivity vector, we proceed to introduce the first phase of algorithm ROSS.
+To put it briefly, in this phase cluster heads are determined at first, then clusters are formed on the basis of the cluster heads' neighbourhoods.
 
 
 \subsubsection{Determining Cluster Heads and Form the Initial Clusters}
 In this phase, each CR node decides whether it is cluster head by comparing its connectivity vector with its neighbours.
-When CR node $i$ has bigger individual connectivity degree than any neighbours except for those which have already become cluster heads (the appearance of cluster heads will be explained in next subsubsection, they are denoted as $\text{CHs}$), then node $i$ becomes clusters head.
+When CR node $i$ has larger individual connectivity degree than any neighbours except for those which have already become cluster heads (the appearance of cluster heads will be explained in next subsubsection), then node $i$ becomes clusters head.
 %In other words, CR node $i$ becomes cluster head if $d_i > d_k, \forall k\in \texttt{Nb}_i\setminus CHs$ ($CHs$ donate the cluster heads existing in $\texttt{Nb}_i$).
-If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree with $i$, \ie $d_j = d_i$ and $d_j > d_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head, and the other one becomes one member of it. 
+If there is another CR node $j$ in its neighbourhood, which has the same individual connectivity degree with $i$, \ie $d_j = d_i$ and $d_j > d_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head, and the other one becomes one member of it. 
 If $g_i = g_j$ as well, node ID is used to break the tie, \ie the one with smaller node ID takes precedence and becomes cluster head.
 %
-The node which becomes cluster head broadcasts a message on its eligibility of being cluster head to notify its neighbours, and claims its neighbourhood as its cluster.
+The node which becomes cluster head broadcasts a message of its eligibility of being cluster head to notify its neighbours, and claims its neighbourhood as its cluster.
 The pseudo code for deciding cluster head and forming initial clusters is in Algorithm~\ref{alg0} in appendix.
 
 After receiving the notification from a cluster head, a CR node, \eg $i$, is aware that it becomes one member of a cluster, then $i$ sets its individual connectivity degree to zero. %, which is smaller than all the possible individual connectivity degrees in the CR network.
@@ -692,43 +691,43 @@ Then node $i$ broadcasts its new individual connectivity degree to all its neigh
 %According to the assumption on the reciprocal communication link, $i$ should have received the notification message from $j$ when $j$ becomes cluster head.
 %Then CR node $i$ will set its individual connectivity degree to zero, and has no possibility to become a cluster head.
 %\end{proof}
-When a CR node $i$ is associated to multiple clusters \ie $i$ receives multiple notifications on cluster head eligibility from different CR nodes, $d_i$ is still set to zero. %Note here that connectivity degree on cluster head will still be the actual value.% The value will expire after some duration and is changed later on back to the original value. 
-%
-%
-We manipulate the individual connectivity degree of the CR nodes, so that those locating outside of the cluster are possible to become cluster heads, then every CR node becomes either cluster head or one member of at least one cluster.
+When a CR node $i$ is associated to multiple clusters, \ie $i$ has received multiple notifications of cluster head eligibility from different CR nodes, $d_i$ is still set to zero.
+We manipulate the individual connectivity degree of the CR nodes, so that the nodes which locate outside of the a formed cluster can possibly become cluster heads, or be included into other clusters.
+%Then every CR node becomes either cluster head or one member of at least one cluster.
 %In other words, with this manipulation on its individual connectivity degree, every CR node in the network will be involved in the clustering process, the proof will be given later.
 %Every CR user is involved in the clustering process and becomes either cluster head or member is described in theorem~\ref{clustering:theorem}.
-We have the following theorem to show that as long as a secondary user's connectivity the CRN is not zero, the secondary user will always be integrated into a certain cluster.
+We have the following theorem to show that as long as a secondary user's individual connectivity degree is not zero, that secondary user will be integrated into a certain cluster, or become a cluster head.
 \begin{theorem}
 \label{clustering:theorem}
 Given a CRN, every secondary user is included into at least one cluster within $N$ steps.
 \end{theorem}
+Here, \textit{Step} means a secondary user conducts Algorithm~\ref{clustering:theorem} once.
 The Proof is in Appendix~\ref{proof_clustering:theorem}.
 According to Theorem~\ref{clustering:theorem}, we can assign reasonable amount of time for phase I to complete.
 
 %This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
 Let us apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}.
-Node $B$ and $H$ have the same individual connectivity degree, $d_B=d_H$, but as $g_H=2>g_B=1$, node $H$ becomes cluster head.
-Cluster $C_H$ is $\{H, B, A, G\}$.
+Node $B$ and $H$ have the same individual connectivity degree, $d_B=d_H$, but as $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C_H$ is $\{H, B, A, G\}$.
 	
 
 
 
 
 \subsubsection{Guarantee Availability of Common Control Channel}
-After deciding itself being cluster head, CR node broadcasts to notify its neighbours on the dedicated control channel, meanwhile, $i$'s initial cluster is formed immediately, which is $i$'s neighborhood except for those nodes which have become cluster heads, \ie $C_i=(\text{Nb}_i\setminus \text{CHs})\cup i$.
-Note this is the initial cluster, as it is possible for the formed cluster to pose no common control channels.
-This problem can be solved with the following method.
+%After deciding itself being cluster head, CR node broadcasts to notify its neighbours on the dedicated control channel, meanwhile, $i$'s initial cluster is formed immediately, which is $i$'s neighbourhood except for those nodes which have become cluster heads, \ie $C_i=(\text{Nb}_i\setminus \text{CHs})\cup i$.
+After executing phase I of ROSS, there are some secondary users which become cluster heads.
+The cluster head and its neighbourhood (except for the CHs) become a cluster.
+It is possible that there is no CCCs for some formed clusters, and we solve this problem with the following method.
 
-As smaller cluster size increases the number of CCCs within the cluster, certain nodes are eliminated until there is at least one common control channel.
-The elimination of nodes is performed according to an ascending list of nodes which are sorted by their number of common channels with the cluster head. 
+As decreasing cluster size increases the number of CCCs within the cluster, to have at least one CCC, certain nodes are eliminated.
+The sequence of elimination is performed according to an ascending list of nodes which are sorted by the number of common channels between the nodes and the cluster head. 
 In other words, the cluster member which has the least number of common channels with the cluster head is excluded first.
-If there are nodes having the same number of common channels with cluster head, the node whose elimination brings in more common channels will be excluded.
-If this criterion meets a tie, the tie will be broken by deleting the node with smaller ID.
-It is possible that the cluster head excludes all its neighbours and resulting into a singleton cluster composed by itself.
+If there are multiple nodes having the same number of common channels with the cluster head, the node whose elimination brings in more common channels will be excluded.
+If this criterion meets a tie, the tie will be broken by deleting the node with smaller node ID.
+It is possible that the cluster head excludes all its neighbours and resulting in a \textit{singleton cluster} which is composed by itself.
 %At the end of this procedure every formed cluster has at least one common channel.
 The pseudo code for cluster head to obtain at least one common channel is shown in Algorithm~\ref{alg_size_control_available_CCC}.
-As to the nodes eliminated in this procedure, they restore their original individual connectivity degrees, and become either cluster heads or get included into other clusters later on according to Theorem~\ref{clustering:theorem}.
+As to the nodes eliminated in this procedure, they restore their original individual connectivity degrees, and become either cluster heads or get included into other clusters afterwards according to Theorem~\ref{clustering:theorem}.
 
 
 
@@ -1650,15 +1649,15 @@ In the other way around, forming big cluster which extends out side of cluster h
 \label{alg0} 
 \DontPrintSemicolon
 \SetAlgoLined
-\KwIn{$d_j, g_j, j\in \texttt{Nb}_i\setminus CHs$. Empty sets $\tau_1,\tau_2$}
-\KwResult{1 means $i$ is cluster head, then $d_j, j\in \texttt{Nb}_i\setminus CHs$ is changed as a big positive value $M$. 0 means $i$ is not.}
+\KwIn{$d_j, g_j, j\in \text{Nb}_i\setminus \text{CHs}$. Empty sets $\tau_1,\tau_2$}
+\KwResult{Returning 1 means $i$ is cluster head, then $d_j$ is set to 0, $j\in \text{Nb}_i\setminus \text{CHs}$. returning 0 means $i$ is not CH.}
 
-\If{$\nexists j\in \texttt{Nb}_i\setminus CHs$, such that $d_i \leq d_j$}{
+\If{$\nexists j\in \text{Nb}_i\setminus \text{CHs}$, such that $d_i \leq d_j$}{
 	return 1;
 	}
-\eIf{$\exists j\in \texttt{Nb}_i\setminus CHs$, such that $d_i < d_j$}{
+\eIf{$\exists j\in \text{Nb}_i\setminus CHs$, such that $d_i < d_j$}{
 	return 0;}{
-	\If{$\nexists j\in \texttt{Nb}_i\setminus CHs$, such that $d_j == d_i$}{
+	\If{$\nexists j\in \text{Nb}_i\setminus CHs$, such that $d_j == d_i$}{
 	$\tau_1 \leftarrow j$
 	}
 }
@@ -1747,7 +1746,7 @@ In the other way around, forming big cluster which extends out side of cluster h
 \section*{Proof of Theorem~\ref{clustering:theorem}}
 \label{proof_clustering:theorem}
 \begin{proof}
-Note the formed cluster can be a singleton cluster, \ie cluster size is 1.
+Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
 To simplify the discussion, we assume the secondary users have unique individual connectivity degrees, and they have identical ID and social connectivity degrees.
 This assumption is fair as the social connectivity degrees and node ID are used to break ties as shown in Algorithm~\ref{alg0}, when the individual connectivity degrees are unique, it is not necessary to use the former two metrics to break ties.
 
