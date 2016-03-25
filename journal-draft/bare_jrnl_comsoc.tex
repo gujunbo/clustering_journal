@@ -738,17 +738,18 @@ As to the nodes eliminated in this procedure, they restore their original indivi
 In the introduction section, we have stated that cluster size should be given consideration to justify the concept of robustness of clusters, \ie without specifying requirement on cluster sizes, small clusters will be generated to obtain more CCCs.
 Except for cooperative sensing, clusters need to conduct some other functionalities.
 When cluster size is large, there will be substantial burden on cluster heads to manage the cluster members, which is a challenge for resource limited cluster heads, thus the cluster size should fall in a desired range~\cite{Chen04clusteringalgorithms, capacity_cluster_06}.
-Here we illustrate the pressing necessity to control cluster size when CRN becomes dense via theoretical analysis and simulation.
 
-Assuming the CR and primary users are evenly distributed and primary users occupy the licensed channels randomly, then both CR nodes density and channel availability in the CRN can be seen as homogeneous.
-Based on Algorithm~\ref{alg0}, cluster heads are the CR nodes which possess the biggest individual connectivity degrees in their neighborhood respectively, and they are surrounded by CR nodes.
+In the following we illustrate the pressing necessity to control the cluster size when CRN becomes dense via both theoretical analysis and simulation.
+Assuming the secondary and primary users are evenly distributed and primary users occupy the licensed channels randomly, then both CR nodes density and channel availability in the CRN can be seen to be spatially homogeneous.
+%Based on Algorithm~\ref{alg0}, cluster heads are the CR nodes which possess the biggest individual connectivity degrees in their neighborhood respectively, and they are surrounded by CR nodes.
 %In contrast, CR nodes residing on edge are unlikely to become cluster heads as their neighbourhoods are only half the nodes locating away from edge.
-The formed clusters are the neighborhood of cluster heads, which is decided by the transmission range and network density.
-
-When the CRN is extremely dense, consider a cluster with cluster head of CR node $i$, based on the rule for cluster head selection Algorithm~\ref{alg0}, the nearest cluster head could locate just outside node $i$'s transmission range.
+The formed clusters are the neighbourhoods of cluster heads, and the neighbourhood is decided by the transmission range and network density.
+%
+We consider a cluster $C(i)$ where $i$ is CH in a dense CRN. 
+When we don't consider the CHs which could appear within $i$'s neighbourhood in the procedure of guaranteeing CCCs, according to Algorithm~\ref{alg0}, the nearest cluster heads could locate just outside node $i$'s transmission range.
 An instance of this situation is shown in Figure~\ref{clusters_denseNetwork}.
 %
-In the figure, black dots represent cluster heads, the circles denotes the transmission ranges of those cluster heads.
+In the figure, black dots represent cluster heads, the circles denotes the transmission ranges of cluster heads.
 Cluster members are not shown in the figure.
 %Circles represent the transmission range of cluster head, within which CR nodes are absorbed in cluster.
 \begin{figure}[h!]
@@ -758,39 +759,39 @@ Cluster members are not shown in the figure.
   \label{clusters_denseNetwork}
 \end{figure}
 Let $l$ be the length of side of simulation plan square, and $r$ be CR's transmission radius.
-Based on the aforementioned analysis and geometry illustration as shown in Figure~\ref{clusters_denseNetwork}, we can give an estimate on the maximum number of generated clusters, which is the product of the number of cluster heads in row and line, $l/r * l/r = l^2/r^2$.
-
-Now we verify the estimation with simulation.
-We distribute CR and primary users randomly on a square plain, $r$=10 and $l$=50.
-Network density is increased by adding more CR users.
+Based on the aforementioned analysis and geometry illustration as shown in Figure~\ref{clusters_denseNetwork}, we give an estimate on the maximum number of generated clusters, which is the product of the number of cluster heads in one row and that number in one line, $l/r * l/r = l^2/r^2$.
+%Now we verify the estimation with simulation.
+%We distribute CR and primary users randomly on a square plain, $r$=10 and $l$=50.
+%Network density is increased by adding more CR users.
 %We now have a look at how does the network density affect the cluster size when the transmission range is constant.
 %This implicates when the cluster size is decided by the density of the network.
 %As to SOC, the membership of one cluster is decided after a complex process, and the cluster size is roughly the same with one neighborhood.xxxx
 %We can see from the example that although two neighbouring clusters can overlap greatly with each other, no cluster head will be covered by other clusters.
-The number of formed clusters is shown in Figure~\ref{number_clusters_scale}.
-With the increase of CR users in the network, network density increases linearly (the Y axis label is the number of neighbours), and the number of formed clusters also increases and approaches to the the upper bound of 25 which complies with the estimation.
-For each network scale, simulation is run for 50 times and the confidence interval is 95\%.
+Given $r$=10 and $l$=50, the number of formed clusters is shown in Figure~\ref{number_clusters_scale}.
+With the increase of CR users in the network, network density increases linearly (the Y axis label is the average number of neighbours), and the number of formed clusters also increases and approaches to the the upper bound of 25 which complies with the estimation.
+
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{number_clusters_upperBound.pdf}
-  \caption{The correlation between the number of formed clusters and network density. Note that the number of neighbours denotes the network density.}
+  \caption{The correlation between the number of formed clusters and network density. Note that the number of neighbours denotes the network density. Simulation is run for 50 times and the confidence interval is 95\%.}
   \label{number_clusters_scale}
 \end{figure}
 
-Both the analysis and simulation show that when applying ROSS, the cluster size increases with the increase of network density.
-As a result, certain measures are needed to prevent the network size from increasing with the increasing network density.
+Both the analysis and simulation show that when applying ROSS, after the number of clusters saturates with the increase of network density, the cluster size increases almost linearly with the network density, thus certain measures are needed to curb this problem.
 This task falls to the cluster heads.
-To control cluster size, cluster heads prune their cluster members.
-The desired size $\delta$ is decided based on the capability of the CR users and the tasks to be conveyed.
-Given desired size as $\delta$, cluster head excludes members sequentially, whose absence leads to the maximum increase of common channels within the cluster.
 
-Note that ROSS generates clusters on based of cluster heads' neighbourhood, thus the $\delta$ is smaller than the average neighbourhood size.
-As there are extensive overlaps between clusters, the threshold that the cluster size satisfies requirement should be larger than $\delta$.
+To control the cluster size, cluster heads prune their cluster members to achieve the desired cluster size.
+The desired size $\delta$ is decided based on the capability of the CR users and the tasks to be conveyed.
+Given the desired size $\delta$, a cluster head excludes members sequentially according to the following principle, the absence of one cluster member leads to the maximum increase of common channels within the cluster.
+This process ends when the size of resultant cluster is $\delta$ and at least one CCC is available.
+This procedure is similar with that to guarantee CCCs in cluster, thus the algorithm can reuse Algorithm~\ref{alg_size_control_available_CCC}.
+
+%Note that ROSS generates clusters on basis of cluster heads' neighbourhood, thus the $\delta$ is smaller than the average neighbourhood size.
+%As there are extensive overlaps between clusters, the threshold that the cluster size satisfies requirement should be larger than $\delta$.
 %In practise, we set this threshold as $5*\delta/2$.
 %This process ends when the size of resultant cluster is at most $5*\delta/2$ and at least one CCC is available.
-This process ends when the size of resultant cluster is at most $\delta$ and at least one CCC is available.
-This procedure is similar with that to guarantee CCCs in cluster, thus the algorithm can reuse Algorithm~\ref{alg_size_control_available_CCC}.
+
 
 
 
