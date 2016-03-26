@@ -817,15 +817,10 @@ After applying phase I of ROSS to the example in Figure~\ref{fig1}, the resulted
 We notice nodes $A, B, D$ are included in more than one cluster. 
 We refer these nodes as \textit{debatable nodes} as their cluster affiliations are not clear, and the clusters which include the debatable node $i$ are called \textit{claiming clusters} of node $i$, and are denoted as $S_i$.  
 Actually, debatable nodes extensively exist in CRN with larger scale.
-Figure~\ref{percentage_overlapping_node} shows the percentage of debatable nodes increases when the CRN network becomes denser.
 Debatable nodes should be exclusively associated with only one cluster and be removed from the other claiming clusters, this procedure is called \textit{cluster membership clarification}.
 We will introduce the solution for cluster membership clarification in the following.	
 
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[width=0.7\linewidth]{percentage_overlapping_node.pdf}
-  \caption{The percentage of debatable nodes after phase I of ROSS.}\label{percentage_overlapping_node}
-\end{figure}
+
 
 
 
@@ -1389,7 +1384,7 @@ In this section we compare the amount of control messages generated in different
 In order to highlight the amount of control signalling only for clustering, we omit the process of neighbourhood discovery, which is premise for all clustering schemes.
 According to~\cite{complexity_aggregation_2011}, the message complexity is defined as the number of messages used by all nodes.
 To have the same criterion to compare the overhead of signalling, we count \textit{the number of transmissions of control messages}, without distinguishing they are sent with broadcast or unicast.
-This metric is Synonymous with \textit{the number of updates} discussed in Section~\ref{ross}.
+This metric is synonymous with \textit{the number of updates} discussed in Section~\ref{ross}.
 
 As to ROSS, the control messages are generated in both phases.
 In the first phase, %every CR node decides whether it is cluster head by comparing its spectrum robustness with its neighbours.
@@ -1419,9 +1414,8 @@ As to information gathering, we assume that every cluster member sends the spect
 The number of transmission for information gathering is $N$.
 %As we adopt a simplified communication model, node's transmission is not influenced by collision or interference, 
 %Our simulation doesn't consider the behaviour in the physical layer, 
-The number of transmission is depicted in Figure~\ref{control_msg}.
-Note that the curve for the centralized scheme is from theoretical analysis, which is $h+m+N$ as discussed beforehand.
-Note the overhead involved to construct the backbone (clusters) is not included.
+
+
 %Assume we use OSPF~\cite{BCJ10} to aggregate and disseminate information, then the best and worst complexity for is $\mathcal{O}(E)$, where $E$ is the number of edges in the graph which corresponds to the network.
 %The minimum number of edges is $n-1$ when the nodes form a line and each node has at more two neighbours, and the maximum number is $N*(N-1)/2$ when the nodes form a complete graph.
 %Thus the best message complexity of the centralized scheme is $\mathcal{O}{(N)}$ and the worst is $\mathcal{O}{(N^2)}$.
@@ -1433,6 +1427,21 @@ Note the overhead involved to construct the backbone (clusters) is not included.
 %The complexity parameters are the number of nodes $n$ in network, number of clusters $h$.
 The message complexity, quantitative analysis of the number of messages, and the size of control messages are shown in Table \ref{tab_overhead}.
 Some notations are written as follows,  $h$: number of cluster heads, $m$: number of debatable nodes, $d$: number of demanding clusters, $D(s)$: the maximum distance between centralized controller and CR users.
+
+Figure~\ref{percentage_overlapping_node} shows the percentage of debatable nodes increases when the CRN network becomes denser, from which we can obtain the value of $m$.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.7\linewidth]{percentage_overlapping_node.pdf}
+  \caption{The percentage of debatable nodes after phase I of ROSS.}\label{percentage_overlapping_node}
+\end{figure}
+
+
+Figure~\ref{control_msg} shows the number of transmissions of SOC, the upper bound of the number of transmissions for ROSS, and the analytical number of transmissions of the centralised scheme. 
+Note that the curve for the centralized scheme is from theoretical analysis, which is $h+m+N$ as discussed beforehand.
+Note the overhead involved to construct the backbone (clusters) is not included.
+
+
+
 
 %\begin{table}[hc]
 %\centering
