@@ -547,8 +547,8 @@ In other terms, for any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds
 
 ----------- No modifications from here on ... -------------
 
-
 Cluster is denoted as $C(i)$ when its cluster head is $i$.
+Cluster size of $C(i)$ is written as $|C(i)|$.
 %, for the sake of concision, $C_i$ is also named as cluster $i$ in the following part of this paper.
 $ K(C) = \cap_{i\in C} K_i$, $K(C)$ denotes the set of common control channels in cluster $C$.
 Clustering is performed periodicity, as secondary users are mobile and the channel availability on secondary users are changing as primary users change their operation state.%, or the most current clusters can not maintain due to lack of CCCs when primary users' operation is intense.
@@ -596,7 +596,7 @@ Clustering is performed periodicity, as secondary users are mobile and the chann
 Symbol & Description \\
 \midrule
 $\mathcal{N}$  & collection of secondary users\\
-$k_i$ & the working channel of user $i$\\
+%$k_i$ & the working channel of user $i$\\
 $\text{Nb}(i)$ & the neighborhood of CR node $i$    \\
 $C(i)$ & a cluster whose cluster head is $i$  \\
 %$k_i$   & set of available channels at CR node $i$  \\
@@ -610,6 +610,7 @@ $S_i$ & a set of claiming clusters, each of which includes \\
 & debatable node $i$ after phase I\\
 $d_i$  & individual connectivity degree of CR node $i$\\
 $g_i$  & social connectivity degree of CR node $i$\\
+$C_i$  & the $i$th legitimate cluster (only adopted in Section~\ref{centralized_opt})\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -847,7 +848,7 @@ We will introduce the solution for cluster membership clarification in the follo
 %An debatable node belongs to multiple clusters, and in the same time, it is possible that several debatable CR nodes locate within one same cluster. %Each debatable node tries to increase the sum of ICC of the clusters which it belong to. More specifically, 
 %For a debatable node $i\in S_i$ after phase I, as to clarify its membership, it will choose one cluster $C\in S_i$ to stay and withdraw from the other clusters in $S_i$ with the consideration of increasing ICCs within $S_i$ by the largest margin. 
 
-\subsubsection{Distributed Greedy Algorithm}
+\subsubsection{Distributed Greedy Algorithm (DGA)}
 %Debatable node $i$ is aware of all its claiming clusters in $S_i$. 
 After Phase I, debatable nodes, \eg $i$ needs to decide one cluster $C\in S_i$ to stay, and thereafter leaves the rest others in $S_i$.
 The principle for debatable node $i$ to choose one claiming cluster is that its decision can result in the greatest increase of common channels in all its claiming clusters.
@@ -981,15 +982,17 @@ Only a small part of the CR nodes become cluster heads, as in the example shown 
 
 \subsubsection{Distributed Fast Algorithm (DFA)}
 %The convergence speed of DGA is large recalling that the number of steps is of $\mathcal{O}(N^3)$.
-We propose a faster version of ROSS, which is ROSS-DFA, which is especially suitable for CRN where channel availability change dynamically and re-clustering is necessary.
-In DFA, debatable nodes regard their claiming clusters includes all their debatable nodes, thus the membership of claiming clusters is static and debatable nodes can make decisions simultaneously without considering the change of membership of their claiming clusters.
+We propose a faster version of ROSS, ROSS-DFA, which differs from ROSS-DGA in the second phase.
+With ROSS-DFA, debatable nodes decide their respective cluster heads once.
+The debatable nodes consider their claiming clusters to include all their debatable nodes, thus the membership of claiming clusters is static and all the debatable nodes can make decision simultaneously without considering the change of membership of their claiming clusters.
+As ROSS-DFA is quicker than ROSS-DGA, the former is especially suitable for the CRN where the channel availability changes dynamically and re-clustering is necessary.
 To run ROSS-DFA, debatable node executes only one loop in Algorithm~\ref{alg4}.
 
-Now we apply the two versions of ROSS to the toy network in Figure \ref{fig2}, which has finished cluster head selection.
+Now we apply both ROSS-DGA and ROSS-DFA to the toy network in Figure~\ref{fig2} which has been applied the phase I of ROSS.
 In the network, node $A$'s claiming clusters are cluster $C(C), C(H)\in S_A$, their members are $\{A,B,C,D\}$ and $\{A,B,H,G\}$ respectively. 
-The two possible strategies of node $A$'s clarification is illustrated in Figure \ref{fig3}.
-In Figure \ref{AinC}, node $A$ staying in $C(C)$ and leaving $C(H)$ brings 2 more CCC into $S_A$, which is more than that brought by another strategy showed in \ref{AinH}.
-After the decisions made similarly by the other debatable nodes $B$ and $D$, the final clusters formed are shown in Figure~\ref{fig4}.
+The two possible strategies of node $A$ is illustrated in Figure \ref{fig3}.
+In Figure \ref{AinC}, node $A$ staying in $C(C)$ and leaving $C(H)$ brings 2 more CCCs to $S_A$, which is more than that brought by another strategy showed in \ref{AinH}.
+After the decisions made similarly by the other debatable nodes $B$ and $D$, the final clusters are formed as shown in Figure~\ref{fig4}.
 
 %Using DFA in phase II, the time complexity is decreased drastically to 1. Thus, the total complexity of ROSS-DFA is $|I|$, while, ROSS-DGA's complexity is $|I|^3$ in the worst case.
 
@@ -1005,7 +1008,7 @@ After the decisions made similarly by the other debatable nodes $B$ and $D$, the
 \includegraphics[width=0.435\linewidth]{figure4AinH.pdf}
 \label{AinH}
 }
-\caption[]{Membership clarification: possible cluster formations decided by node A's different choices} %\subref{node A in $C_C$}, \subref{node A in $C_H$}}
+\caption[]{Membership clarification: possible cluster formations caused by node A's different choices} %\subref{node A in $C_C$}, \subref{node A in $C_H$}}
 \label{fig3}
 \end{figure}
 
@@ -1035,7 +1038,7 @@ As an example, when node A comes to decide which cluster to stay, the membership
 
 %\todo[inline]{check}
 The centralized clustering scheme aims to form clusters with desired sizes, meanwhile the total number of common control channels of all clusters is maximized.
-In the following, we refer this problem as \textit{centralized clustering}, and the problem definition is as follows, 
+In the following, we refer this problem as \textit{centralized clustering}, and give the formal problem definition. 
 
 
 \begin{mydef}
@@ -1047,20 +1050,21 @@ Based on certain correlation, certain secondary users constitute one cluster $C$
 $1\leq |C| \leqslant k$ where $|C|$ is the size of cluster $C$ and $k$ is a positive integer.
 We name the collection of such clusters as $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ (the subscript $i$ is the unique index of cluster in $\mathcal{S}$, not the ID of cluster head of that cluster), $\mathcal{S}$ satisfies the following properties: $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$ and $K_{C_i}\neq \emptyset$ for any $i$ which satisfies $1\leq i \leq |\mathcal{S}|$.
 
-Following condition distinguishes the centralized clustering problem discussed in this paper.
-The number of common control channels is $|K_{C}|$ if $|K_{C}|>1$, and is zero when $|K_{C}|=1$.
-We use $f$ to denoted this new number of CCCs. 
-The question of this problem is to find a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, so that $\bigcup_{C_j\in \mathcal{S}'} C_j = N$, and $C_j'\cap C_j =\emptyset$ for $C_j', C_j\in \mathcal{S}'$, so that $\sum_{C\in \mathcal{S}'} f$ is maximized.
+We give a new definition of the number of CCCs, which distinguishes the centralized clustering problem discussed in this paper.
+In this problem, the number of common control channels is $|K(C)|$ if $|C|>1$, and is zero when $|C|=1$.
+We use $f(C)$ to denote this new definition of the number of CCCs of a cluster $C$.
+The question of centralized clustering problem is to find a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, so that $\bigcup_{C_j\in \mathcal{S}'} C_j = N$, and $C_{j'}\cap C_j =\emptyset$ for $C_{j'}, C_j\in \mathcal{S}'$ and $j'\neq j$, so that $\sum_{C\in \mathcal{S}'} f$ is maximized.
 % when $|C|>1$, and $f(\cdot)=0$ when $|C|=1$.
 %As to $f(\cdot):z\rightarrow z$, under this problem setting, if only number of common channels are given consideration, only singleton clusters will be preferred, which contradicts to our goal of clustering CR nodes together, thus we choose $f(\cdot)= |K_{C}|\cdot |C|$, the product of number of common channels and cluster size.
-The decision version of centralized clustering in CRN is to ask whether exist $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C\in \mathcal{S}'} f \geqslant \lambda$ where $\lambda$ is a real number.% in stead of to maximize $\sum_{C\in \mathcal{S}'} f$.
+The decision version of centralized clustering in CRN is to ask whether there exists no-empty $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C\in \mathcal{S}'} f \geqslant \lambda$ where $\lambda$ is a real number.% in stead of to maximize $\sum_{C\in \mathcal{S}'} f$.
 \end{mydef}
 
 
 %The decision version of \textit{weighted exact cover problem}: 
 %Given an universe $U$, and collection $S=\{s_1, s_2, \ldots, s_m\}$ where each subset $s_i\subseteq U$ and is given a weight $w_i$, whether there exists a collection of subsets $\mathcal{C}$ and constant number $\lambda$, so that the union of $\mathcal{C}$ equals to $U$, $s_j\cap s_{j'} = \emptyset$ for different $j$ and $j'\in \{1,2,\ldots, m\}$, and $\sum_{i\in J} w_i \geq \lambda$.
 \subsection{Complexity of Clustering Problem}
-In the following part of this section, we will discuss the complexity of centralized clustering problem and provide a centralized solution for it.
+In this section we investigate the complexity of centralized clustering problem.
+Theorem~\ref{theorem1} tells centralized clustering problem in CRN is one NP-hard problem.
 
 \begin{theorem}
 \label{theorem1}
@@ -1096,30 +1100,30 @@ As there is no efficient algorithm to solve clustering problem in CRN, we propos
 
 Given a CRN $\mathcal{N}$ and desired cluster size $\delta$, we obtain a collection of clusters $\mathcal{G}$ which contains all the \textit{legitimate} clusters, and the sizes of these clusters are $1,2,\ldots,\delta$.
 Legitimate clusters are the clusters which satisfy the conditions in Section~\ref{def_cluster}. 
-Note that the legitimate clusters include the singleton ones, which guarantees the partition of any network is feasible.
+Note that the legitimate clusters include the singleton ones, so that we can guarantee the partition of any network is always feasible.
 
 With $N=|\mathcal{N}|, G=|\mathcal{G}|$, we construct a constant $G\times N$ matrix $Q_{G\text{x}N}$. 
-The element of matrix $Q$ is $q_{ij}$, where the subscript $i$ denotes a legitimate cluster, and $j$ denotes a CR node, which can be seen as the node ID. 
-Note that $C_i$ means $i$th cluster in the collection $\mathcal{G}$, doesn't denote the cluster where cluster head is $i$, this notation is only valid in this subsection.
+The element of matrix $Q$ is $q_{ij}$, where the subscript $i$ is the index of legitimate cluster, and $j$ is the node ID of one CR node.
+%Note that $C_i$ means $i$th cluster in the collection $\mathcal{G}$, doesn't denote the cluster where cluster head is $i$, this notation is only valid in this subsection.
 There are $i\in \{1,2,\cdots,G-1, G\}$, and $j\in \{1,2,\cdots,N-1, N\}$.
-Element $q_{ij}= k_{C_i}$ if node $j\in C_i$, and $q_{ij}= 0$ if $j\notin C_i$.
+Element $q_{ij}= |K(C_i)|$ if node $j\in C_i$, and $q_{ij}= 0$ if $j\notin C_i$.
 In other words, each non-zero element $q_{ij}$ denotes the number of CCCs of the cluster $i$ where node $j$ resides.
 
 \begin{figure}[ht!]
 \centering
-Q = \bordermatrix{~ 		& 1 	& 2 	& 3 	& \cdots & j & \cdots	& N-1 	& N	\cr
-                  1 	& k_{C_1} 	& k_{C_1} 	& 0 	& \cdots & \cdots &\cdots	& 0 	& 0	\cr
-                  2 	& k_{C_2} 	& 0 	& k_{C_2} 	& \cdots & \cdots & \cdots 	& 0 	& 0	\cr
+\bordermatrix{~ 		& 1 	& 2 	& 3 	& \cdots & j & \cdots	& N-1 	& N	\cr
+                  1 	& |K(C_1)| 	& |K(C_1)| 	& 0 	& \cdots & \cdots &\cdots	& 0 	& 0	\cr
+                  2 	& |K(C_2)| 	& 0 	& |K(C_2)| 	& \cdots & \cdots & \cdots 	& 0 	& 0	\cr
 				\vdots  	&\vdots & 	 	& 		&  \vdots		& 		& \vdots \cr
-				i 	& 0 	& k_{C_i} 	& 0 	& \cdots  & \cdots & \cdots 	& k_{C_i} 	& 0	\cr
+				i 	& 0 	& |K(C_i)| 	& 0 	& \cdots  & \cdots & \cdots 	& |K(C_i)| 	& 0	\cr
 				\vdots  	&\vdots & 	 	& 		&  \vdots & \cdots & \cdots 		& 		& \vdots \cr
-				\vdots 	& \vdots  	& 0 	& 0 	& \cdots & \cdots & \cdots 	& k_{C_i'} 	& 0	\cr
-				G  	& k_{C_G} & \cdots	 	& 		&  \vdots	& \cdots & \cdots& 		& \vdots \cr}	
-\caption{An example of Matrix Q, its rows correspond to all legitimate clusters, and columns correspond to the CR nodes in the CRN.}
+				\vdots 	& \vdots  	& 0 	& 0 	& \cdots & \cdots & \cdots 	& |K(C_i')| 	& 0	\cr
+				G  	& |K(C_G)| & \cdots	 	& 		&  \vdots	& \cdots & \cdots& 		& \vdots \cr}	
+\caption{An example of Matrix $Q$, its rows correspond to all legitimate clusters, and columns correspond to the CR nodes in the CRN.}
 \label{xx}
 \end{figure}
 
-We build a $G\times N$ binary variable matrix $X$, which illustrates the clustering strategy.
+We build a $G\times N$ binary variable matrix $X$, which illustrates the clustering solution.
 The element of matrix $X$ is binary variable $x_{ij}, i=1, \ldots, G, j=1, \ldots, N$.
 $x_{ij}=1$ denotes cluster $i$ is one partition in the clustering solution, $x_{ij}=0$ means this partition is not adopted.
 %Note that matrix $Q$ contains only constant elements, and matrix $X$ contains only binary variables.
@@ -1135,26 +1139,25 @@ Now, we can formulate the optimization problem as follows,
 \notag
 \end{aligned}
 \end{equation}
-The objective is the sum of two parts, the first part is the sum of products of cluster size and the corresponding number of CCCs.
-We notice that the first part is the metric adopted by the scheme SOC~\cite{Lazos09}.
+
+The objective is a sum of two parts, the first part is the sum of products of cluster size and the corresponding number of CCCs.
+The first part is the only metric adopted by the scheme SOC~\cite{Lazos09}.
 The second part is the \textit{punishment} for choosing the clusters whose sizes are not $\delta$.
-In fact, the second part is particularly designed to eliminates the drawbacks of SOC, \ie a large number of singleton clusters, or a few very large clusters which access affluent unlicensed spectrum.
-In practical computation, we minimize the opposite of the sum of the products of cluster size and the corresponding number of CCCs, thus the punishment is positive.
+In fact, the second part is particularly designed to eliminates the drawbacks of SOC, \ie SOC produces a large number of singleton clusters and a few very large clusters which access affluent unlicensed spectrum.
+In practical computation, we minimize the opposite of the first part, then the punishment is a positive value.
 
 The first constraint restricts each node $j$ to reside in exactly one cluster.
-The second constraint regulates that when $i$th legitimate cluster $C_i$ chosen, the number of elements which equal to 1 in the $i$th row is $|C_i|$.
-
-Now we explain how does the mechanism of the punishment in the objective work. 
-$w_i$ is an auxiliary binary variable, which denotes whether cluster $C_i$ is chosen by the solution, in particular, 
+In the second constraint, $w_i$ is an auxiliary binary variable, which denotes whether cluster $C_i$ is chosen by the solution, in particular, 
 $$
 w_i = \left\{ \begin{array}{rl}
 0 &\mbox{if $i$th legitimate cluster $C_i$ is chosen} \\
 1 &\mbox{if $i$th legitimate cluster $C_i$ is not chosen} \\
 \end{array} \right.
 $$
-%$w_i=0$ denotes $i$th legitimate cluster $C_i$ is chosen in the solution, and $w_i=1$ means $i$th legitimate cluster is not chosen.
-and $p$ is defined as follows,
-%$\texttt{cost($\delta$)}$
+The second constraint regulates that when the $i$th legitimate cluster $C_i$ is chosen, then  there are $|C_i|$ elements in $i$th row in matrix $X$, which are 1.
+%
+Now we explain how does the mechanism of the punishment in the objective work. 
+The parameter $p$ is defined as follows,
 $$
 p = \left\{ \begin{array}{rl}
 0 &\mbox{ if $|C_i|=\delta$} \\
@@ -1164,10 +1167,11 @@ p = \left\{ \begin{array}{rl}
 \end{array} \right.
 $$
 where $\alpha_i>0$ and increases when $|C_i|$ diverges from $\delta$.
-Because of $w_i$, any chosen cluster brings certain \textit{punishment}.
-Function $p$ denotes that when the chosen cluster's size is desired size $\delta$, the punishment is zero.
-When the chosen cluster's size diverges from $\delta$, the objective function suffers \textit{loss}.
-%
+Because of $w_i$, any chosen cluster ($w=0$) brings certain \textit{punishment}.
+When the chosen cluster's size is desired size $\delta$, the punishment is zero.
+In contrary, when the chosen cluster's size diverges from $\delta$, the objective function suffers \textit{loss}.
+In particular, when $w_i=0$ and $|C_i|=1$, the punishment is the most severe.
+This design doesn't follow the definition of $f(C)$ in Definition~\ref{def_centralized_clustering} strictly, where $f(C_i)=0$ when $|C_i|=1$, but our design echoes the definition by exerting the most severe punishment on the singleton clusters in the clustering solution.
 Choice of $\alpha_i$ affects the resultant clusters.
 
 
@@ -1188,28 +1192,28 @@ Choice of $\alpha_i$ affects the resultant clusters.
 
 
 
-This is a integer linear optimization problem, which is solved by function $bintprog$ provided in MATLAB.
+The optimization formulation is an integer linear optimization problem, which is solved by the function $bintprog$ provided in MATLAB.
 Note that the proposed centralized solution is heuristic.
-There are two reasons for pursuing the heuristic scheme, first, the problem of centralized clustering is NP hard, and there is no efficient solution to solve it.
+We reiterate the reasons for pursuing the heuristic scheme, first, the problem of centralized clustering is NP hard, and there is no efficient solution to solve it.
 The second reason is, the collection of legitimate clusters is dependant on the network topology and spectrum availability in the network, thus to each specific CRN, the space of solution is different.
 
 
 \subsubsection{Example of the Centralized Optimization}
-We look into how it the centralized scheme perform in the toy example of the CRN in Figure~\ref{fig1}.
-
-We let the cluster size $\delta$ to be 3.
+We look into how does the centralized scheme perform in the toy example of the CRN in Figure~\ref{fig1}.
+%
+We let the desired cluster size $\delta$ be 3.
 A collection of clusters $\mathcal{G}$ is obtained, which contains all the clusters satisfying the conditions of cluster in Section~\ref{def_cluster} and the sizes of clusters are 1, 2 or 3. 
 $\mathcal{G}=\{\{A\}, \{B\},\dots,\{B,C\},\{B,A\},\{B,H\},\cdots,\{B,A,C\},$\\$\{B,H,C\}, \{A,D,C\},\cdots\}$, $G = |\mathcal{G}|=38$.
-$\alpha_1$ and $\alpha_1$ are set as 0.2 and 0.8. 
-The clustering result of centralized programming is shown in Figure~\ref{fig:final_clustering_LP}.
 
-The formed clusters are $\{\{D,E,F\},\{A,C,G\},\{H,G\}\}$, the numbers of CCCs are 2, 3, 3.
-The resulted clustering solutions from ROSS-DGA/DFA and SOC are shown in  Figure~\ref{fig4} and Figure~\ref{fig:final_clustering_soc} respectively.%, clusters are $\{A,B,C,D,G\},\{E,F\},\{H\}$, and the numbers of CCCs are 2, 3, 4.
+When $\alpha_1$ and $\alpha_1$ are set as 0.2 and 0.8, the formed clusters are shown in Figure~\ref{fig:final_clustering_LP}.
+%$\{\{D,E,F\},\{A,C,G\},\{H,G\}\}$, the numbers of CCCs are 2, 3, 3.
+The resulted clustering solutions from ROSS-DGA/DFA and SOC are shown in Figure~\ref{fig4} and Figure~\ref{fig:final_clustering_soc} respectively.%, clusters are $\{A,B,C,D,G\},\{E,F\},\{H\}$, and the numbers of CCCs are 2, 3, 4.
 %The solution resulted from ROSS-DGA is $\{\{B,H,G\},\{C,A\},\{D,E,F\}\}$ (in Figure~\ref{fig4}), the numbers of CCCs are 2, 4, 2.
 %ROSS-DFA generates the same result with ROSS-DGA in this example.	
-As to the average number of CCCs, the results of ROSS, centralized and SOC are 2.66, 2.66, and 3 respectively. 
+
+As to the average number of CCCs, the results of ROSS (including both ROSS-DGA and ROSS-DFA), centralized and SOC are 2.66, 2.66, and 3 respectively. 
 Note there is one singleton cluster $C_H$ generated by SOC, which is not preferred.
-When the singleton cluster $\{E\}$ is excluded, the average number of common channels of SOC drops to 2.5. 
+When we take no account of the singleton clusters, the average number of common channels of SOC drops to 2.5. 
 \begin{figure}[ht]
 \begin{center}
 \subfigure[Resulted from SOC]{\includegraphics[width=0.435\linewidth]{final_clustering_soc}\label{fig:final_clustering_soc}}
