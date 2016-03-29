@@ -597,7 +597,7 @@ Clustering is performed periodicity, as secondary users are mobile and the chann
 Symbol & Description \\
 \midrule
 $\mathcal{N}$  & collection of secondary users\\
-%$k_i$ & the working channel of user $i$\\
+$k(i)$ & the working channel of user $i$\\
 $\text{Nb}(i)$ & the neighborhood of CR node $i$    \\
 $C(i)$ & a cluster whose cluster head is $i$  \\
 %$k_i$   & set of available channels at CR node $i$  \\
@@ -703,7 +703,7 @@ We have the following theorem to show that as long as a secondary user's individ
 \label{clustering:theorem}
 Given a CRN, every secondary user is included into at least one cluster within $N$ steps.
 \end{theorem}
-Here, \textit{Step} means a secondary user conducts Algorithm~\ref{clustering:theorem} once.
+Here, \textit{Step} means one secondary user conducts Algorithm~\ref{clustering:theorem} once.
 The Proof is in Appendix~\ref{proof_clustering:theorem}.
 According to Theorem~\ref{clustering:theorem}, we can assign reasonable amount of time for phase I to complete.
 
@@ -715,7 +715,7 @@ Node $B$ and $H$ have the same individual connectivity degree, $d_B=d_H$, but as
 
 
 
-\subsubsection{Guarantee Availability of Common Control Channel}
+\subsubsection{Guarantee the Availability of Common Control Channel}
 %After deciding itself being cluster head, CR node broadcasts to notify its neighbours on the dedicated control channel, meanwhile, $i$'s initial cluster is formed immediately, which is $i$'s neighbourhood except for those nodes which have become cluster heads, \ie $C_i=(\text{Nb}_i\setminus \text{CHs})\cup i$.
 After executing phase I of ROSS, there are some secondary users which become cluster heads.
 The cluster head and its neighbourhood (except for the CHs) become a cluster.
@@ -1044,15 +1044,16 @@ In the following, we refer this problem as \textit{centralized clustering}, and 
 Given a cognitive radio network $\mathcal{N}$ where nodes are indexed from 1 to $N$ sequentially.
 Based on certain correlation, certain secondary users constitute one cluster $C$.
 $1\leq |C| \leqslant k$ where $|C|$ is the size of cluster $C$ and $k$ is a positive integer.
-We name the collection of such clusters as $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ (the subscript $i$ is the unique index of cluster in $\mathcal{S}$, not the ID of cluster head of that cluster), $\mathcal{S}$ satisfies the following properties: $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$ and $K_{C_i}\neq \emptyset$ for any $i$ which satisfies $1\leq i \leq |\mathcal{S}|$.
+We name the collection of such clusters as $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$, where $\mathcal{S}$ satisfies the following properties: $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$ and $K(C(i))\neq \emptyset$ for any $i$ which satisfies $1\leq i \leq |\mathcal{S}|$.
 
-We give a new definition of the number of CCCs, which distinguishes the centralized clustering problem discussed in this paper.
-In this problem, the number of common control channels is $|K(C)|$ if $|C|>1$, and is zero when $|C|=1$.
-We use $f(C)$ to denote this new definition of the number of CCCs of a cluster $C$.
-The question of centralized clustering problem is to find a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, so that $\bigcup_{C_j\in \mathcal{S}'} C_j = N$, and $C_{j'}\cap C_j =\emptyset$ for $C_{j'}, C_j\in \mathcal{S}'$ and $j'\neq j$, so that $\sum_{C\in \mathcal{S}'} f$ is maximized.
+%, which distinguishes the centralized clustering problem discussed in this paper.
+We give a new definition of the number of CCCs, where the number of common control channels is $|K(C)|$ if $|C|>1$, and is zero when $|C|=1$.
+We use $f(C)$ to denote the number of CCCs of a cluster $C$ in the new definition.
+
+The centralized clustering problem is to find a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, so that $\bigcup_{C_j\in \mathcal{S}'} C_j = N$, and $C_{j'}\cap C_j =\emptyset$ for $C_{j'}, C_j\in \mathcal{S}'$ and $j'\neq j$, so that $\sum_{C\in \mathcal{S}'} f(C)$ is maximized.
 % when $|C|>1$, and $f(\cdot)=0$ when $|C|=1$.
 %As to $f(\cdot):z\rightarrow z$, under this problem setting, if only number of common channels are given consideration, only singleton clusters will be preferred, which contradicts to our goal of clustering CR nodes together, thus we choose $f(\cdot)= |K_{C}|\cdot |C|$, the product of number of common channels and cluster size.
-The decision version of centralized clustering in CRN is to ask whether there exists no-empty $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C\in \mathcal{S}'} f \geqslant \lambda$ where $\lambda$ is a real number.% in stead of to maximize $\sum_{C\in \mathcal{S}'} f$.
+The decision version of centralized clustering in CRN is to ask whether there exists a no-empty $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C\in \mathcal{S}'} f \geqslant \lambda$ where $\lambda$ is a real number.% in stead of to maximize $\sum_{C\in \mathcal{S}'} f$.
 \end{mydef}
 
 
