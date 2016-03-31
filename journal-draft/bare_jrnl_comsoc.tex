@@ -1234,21 +1234,29 @@ When we take no account of the singleton clusters, then the average number of co
 In this section, we evaluate the performances of all the variants of ROSS, \ie ROSS-DGA and ROSS-DFA, and that with cluster size control features.
 The latter is referred as ROSS-x-DGA/ROSS-x-DFA, where x is the desired cluster size.
 We choose SOC as comparison scheme.
-To the best of our knowledge, SOC~\cite{Lazos09} is the only work emphasizing on the robustness of clustering structure from all previous work on clustering in CRN. The authors of~\cite{Lazos09} compared SOC with other schemes based on the average number of common channels within each cluster, on which SOC outperforms other schemes by 50\%-100\%. This is because the schemes except for SOC are designed either for ad hoc network without consideration of channel availability~\cite{Basagni99}, or for CRN  but just considering basic connection among CR nodes~\cite{Zhao07}. Hence, we only compare the two versions of our scheme ROSS-DGA and ROSS-DFA with SOC to show the merits of ROSS, and also compare with the centralized scheme to see the gap with the global optima. 
-In particular, we will investigate the following metrics,
+To the best of our knowledge, SOC~\cite{Lazos09} is the only work emphasizing on the robustness of clustering structure from all previous work on clustering in CRN. 
+The authors of~\cite{Lazos09} compared SOC with other schemes in terms of the average number of CCCs of the formed cluster, on which SOC outperforms other schemes by 50\%-100\%. 
+SOC's comparison schemes are designed either for ad hoc network without consideration of channel availability~\cite{Basagni99}, or for CRN but just considering connection among CR nodes~\cite{Zhao07}.
+Hence, we only compare the our proposed schemes with SOC to show the ROSS's merits, besides, we compare the variants of ROSS with the centralized scheme to examine the gap with the global optima.
+In particular, we investigate the following metrics,
+
 \begin{itemize}
-\item \textit{Average number of common channels per non-singleton cluster.} 
+\item \textit{Average number of CCCs per non-singleton cluster.}
 This metric shows the robustness of the current non-singleton clusters.
-Non-singleton cluster refers the cluster whose cluster size is larger than 1, and can also be seen as unclustered node.
-Note that this metric along is biased and misleading, because the CR nodes with more channels could be formulated as singleton clusters.
-This happens in SOC solution, whose objective is to improve the average number of common channel over \textit{all} clusters, \ie including the singleton clusters, thus many CR nodes with more channels are turned into clusters.
+Non-singleton cluster refers the cluster whose cluster size is larger than 1.
+SOC~\cite{Lazos09} compares the average number of CCCs per cluster without distinguishing singleton clusters, which is biased as singleton clusters don't contribute to the cluster structure.
+%the CR nodes with more channels could be formulated as singleton clusters.
+%This happens in SOC solution, whose objective is to improve the average number of common channel over \textit{all} clusters, \ie including the singleton clusters, thus many CR nodes with more channels are turned into clusters.
 %As we try to look into the robustness of clusters of CRs, we exclude those singleton clusters.
 
 
-\item \textit{Number of unclustered CRs with moderate and vigorous intensity of primary users' activities.}
-This is a straight forward metric which reflects the robustness of clusters, as this metric directly shows how many nodes can make use of the cluster structure.
-With this metric, we investigate the performance of different schemes under different availability of spectrum in the CRN.
-When we vary the intensity of primary users' activity, \eg from low to medium level by increasing the number of primary users, this metric is the antonym of \textit{survival rate}, \ie, how many nodes are still within a certain cluster when some clusters have collapsed due to the newly added primary users.
+\item \textit{Number of singleton clusters.}
+This is a straight forward metric which reflects the effectiveness of clustering scheme.
+The less resulted singleton clusters means more secondary users are benefited from cluster structure.
+%robustness of clusters, as this metric directly shows how many nodes can make use of the cluster structure.
+When we investigate the performance with moderate and vigorous intensity of primary users' activities, this metric is the antonym of \textit{survival rate}, \ie, how many nodes are still within a certain cluster when some clusters have collapsed due to the newly added primary users.
+%When we vary the intensity of primary users' activity, \eg from low to medium level by increasing the number of primary users, 
+
 
 
 \item \textit{Cluster sizes.}
@@ -1256,48 +1264,52 @@ Specific clusters size is pursued in many applications due to energy preservatio
 We will present the distribution of CRs residing in the formed clusters, and the number of generated clusters through multiple simulations.
 
 \item \textit{Amount of control messages involved.}
+We investigate the number of control messages involved in the clustering process.
 
 \end{itemize}
 
 The simulation is conducted with C++. 
-Certain number of CRs and PUs are deployed in a 2-dimensional Euclidean space.
+Certain number of CRs and PUs are deployed on a two-dimensional Euclidean plane.
 %Complying with the system model, the CR node residing within another CR node's transmission range is seen as neighbour of that CR node.
 The number of licensed channels is 10, each PU is operating on each channel with probability of 50\%.
 All primary and CR users are assumed to be static during the process of clustering.
 
 Simulation is divided into two parts, in the first part, we investigate the performance of centralized scheme, and the gap between the distributed schemes with the centralized scheme.
-The simulation of this part is conducted in a small network, as there is no polynomial time solution available to solve the centralized problem.
+This part of simulation is conducted in a small network, as there is no polynomial time solution available to solve the centralized problem.
 In the second part, we investigate the performance of the proposed distributed schemes thoroughly in the networks with different scales and densities.
 
 \subsection{Centralized Schemes vs. Decentralized Schemes}
 10 primary users and 20 CR users are dropped randomly (with uniform distribution) within a square area of size $A^{2}$, where we set the transmission ranges of primary and CR users to $A/3$.
-There are 10 available channels. 
+%There are 10 available channels. 
 With this setting, the average number of neighbours of one CR user is 4.8.
-Each primary user randomly occupies one channel, and CR users are assumed to be able to sense the existence of primary users and identify available channels.
+%Each primary user randomly occupies one channel, and 
+CR users are assumed to be able to sense the existence of primary users and identify available channels.
 When clustering scheme is executed, around 7 channels are available on each CR node.
-The desired cluster size is 3, the parameters used in the \textit{punishment} for choosing the clusters with undesired sizes are set as follows, $\alpha_1 =  0.4$, $\alpha_2 =  0.6$.
-Performance results are averaged over 50 randomly generated topologies with equal parameters.
-The confidence interval shown in figure corresponds to 95\% confidence level.
 
-\subsubsection{Number of Common Control Channels in Non-singleton Clusters}
+The desired cluster size $\delta$ is 3, the parameters used in the \textit{punishment} for choosing the clusters with undesired sizes are set as follows, $\alpha_1 =  0.4$, $\alpha_2 =  0.6$.
+Performance results are averaged over 50 randomly generated topologies, and the confidence interval corresponds to 95\% confidence level.
+
+\subsubsection{Number of CCCs in Non-singleton Clusters}
 \label{ccc_20}
 %We first have a look at the average number of common channels per non-singleton cluster.
-Figure~\ref{ccc_per_nonsingleton} shows the average number of common channel of non-singleton clusters, as the singleton clusters (in other words unclustered nodes) don't execute any functionalities of clusters, which are has be discussed in Section~\ref{intro}.
-From Figure~\ref{ccc_per_nonsingleton}, we can see centralized schemes outperform distributed schemes.
-SOC achieves the most number of CCC than all the variants of ROSS.
+Figure~\ref{ccc_per_nonsingleton} shows the average number of common channel of non-singleton clusters,
+%as the singleton clusters (in other words unclustered nodes) don't execute any functionalities of clusters, which are has be discussed in Section~\ref{intro}.
+from which we can see the centralized schemes outperform distributed counterparts.
+As to the distributed schemes, SOC achieves the largest number of CCCs than all the variants of ROSS.
 The reason is, SOC is liable to group the neighbouring CRs which share the most abundant spectrum together, no matter how many of them are, thus the number of CCC of the formed clusters is higher.
-But this method leaves considerable number of CRs which have less spectrum not in any clusters.
-As to the variants of ROSS, the procedure of debatable nodes greedily looking for better affiliation improves the number of CCC, thus ROSS-DGA with and without size control outperform ROSS-DFA and its size control version respectively.
-We also notice that, the size control feature doesn't affect the number of CCC for both ROSS-DGA and ROSS-DFA.
+But this method leaves considerable number of CRs to form singleton clusters.
+
+
+As to the variants of ROSS, ROSS-DGA with and without size control outperform ROSS-DFA and its size control version respectively, this is due to the procedure that debatable nodes greedily look for better affiliation to improve the number of CCCs.
+We also notice that, the size control feature doesn't affect the number of CCCs for both ROSS-DGA and ROSS-DFA.
 This is because the desired cluster size happens to be the average size of clusters generated by ROSS-DGA and ROSS-DFA, then the size control functionality doesn't play effect to increase the number of CCCs.
 
 
 
-\subsubsection{Survival Rate of Clusters with Increasing Primary Users}
-With the number of PUs in CRN increases, or their operation becomes more intensive, some CCCs will no longer be available.
-If there is no common control channels available any more because of the new added PRs, the cluster is regarded as destroyed and the former cluster member CRs become unclustered CRs or in other words singleton clusters.
-
-We investigate the robustness of the formed clusters when they co-exist with primary users whose intensity of activities are varying.
+\subsubsection{Number of Singleton Clusters}
+When the number of PUs in CRN increases, or their operation becomes more intensive, some clusters don't seize any CCCs any more, so that the cluster members and the cluster heads become unclustered, or singleton clusters.
+%If there is no common control channels available any more because of the new added PRs, the cluster is regarded as destroyed and the former cluster member CRs become unclustered CRs or in other words singleton clusters.
+We investigate the number of singleton clusters with primary users whose intensity of activities are varying.
 After the clusters are formed under the influence of the initial 10 PUs, extra 100 PUs are added sequentially to the network.
 %The transmission range and channel occupancy of the new PU is the same with the previous ones, \ie transmission range is $A/3$, and one channel out of 10 is randomly chosen to operate.
 Figure~\ref{singleton_clusters} shows the number of unclustered CRs with the increasing number of PUs.%, which indicates the vulnerability of clusters under varying availability of licensed spectrum.
