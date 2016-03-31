@@ -526,7 +526,7 @@ As the assumed $0/1$ state of connectivity is solely based on the Euclidean dist
 %%The clustering phase is initialized during which any control message is again conveyed by the control channel.
 %In the rest of this paper, \textit{channel} only refers to the licensed common control channel unless the dedicated control channel is particularly mentioned.
 
-A cognitive radio network (CRN) can be represented as an undirected graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, i'\} \in E$  if, and only if, there exists a channel $k \in \mathcal{K}$ with $k \in K_{i} \cap K_{i'}$. Note that we consider the channel availability only for \textit{one} snapshot of time. For the rest of this paper the word channel is referred to licensed channel, if the control channel is not explicitly mentioned.
+A cognitive radio network can be represented as an undirected graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, i'\} \in E$  if, and only if, there exists a channel $k \in \mathcal{K}$ with $k \in K_{i} \cap K_{i'}$. Note that we consider the channel availability only for \textit{one} snapshot of time. For the rest of this paper the word channel is referred to licensed channel, if the control channel is not explicitly mentioned.
 
 
 
@@ -596,7 +596,8 @@ Clustering is performed periodicity, as secondary users are mobile and the chann
 %\cmidrule(r){1-2}
 Symbol & Description \\
 \midrule
-$\mathcal{N}$  & collection of secondary users\\
+$\mathcal{N}$  & collection of secondary users, $N=|\mathcal{N}|$\\
+$\mathcal{K}$	& set of licensed channels\\
 $k(i)$ & the working channel of user $i$\\
 $\text{Nb}(i)$ & the neighborhood of CR node $i$    \\
 $C(i)$ & a cluster whose cluster head is $i$  \\
@@ -672,15 +673,15 @@ To put it briefly, in this phase cluster heads are determined at first, then clu
 
 \subsubsection{Determining Cluster Heads and Form the Initial Clusters}
 In this phase, each CR node decides whether it is cluster head by comparing its connectivity vector with its neighbours.
-When CR node $i$ has larger individual connectivity degree than any neighbours except for those which have already become cluster heads (the appearance of cluster heads will be explained in next subsubsection), then node $i$ becomes clusters head.
+When CR node $i$ has lower individual connectivity degree than any neighbours except for those which have already become cluster heads (the appearance of cluster heads will be explained in next subsubsection), then node $i$ becomes clusters head.
 %In other words, CR node $i$ becomes cluster head if $d_i > d_k, \forall k\in \texttt{Nb}_i\setminus CHs$ ($CHs$ donate the cluster heads existing in $\texttt{Nb}_i$).
-If there is another CR node $j$ in its neighbourhood, which has the same individual connectivity degree with $i$, \ie $d_j = d_i$ and $d_j > d_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head, and the other one becomes one member of it. 
+If there is another CR node $j$ in its neighbourhood, which has the same individual connectivity degree with $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head, and the other one becomes one member of it. 
 If $g_i = g_j$ as well, node ID is used to break the tie, \ie the one with smaller node ID takes precedence and becomes cluster head.
 %
 The node which becomes cluster head broadcasts a message of its eligibility of being cluster head to notify its neighbours, and claims its neighbourhood as its cluster.
 The pseudo code for deciding cluster head and forming initial clusters is in Algorithm~\ref{alg0} in appendix.
 
-After receiving the notification from a cluster head, a CR node, \eg $i$, is aware that it becomes one member of a cluster, then $i$ sets its individual connectivity degree to zero. %, which is smaller than all the possible individual connectivity degrees in the CR network.
+After receiving the notification from a cluster head, a CR node, \eg $i$, is aware that it becomes one member of a cluster, then $i$ sets its individual connectivity degree to a positive number $M$, where $M > |\mathcal{K}|*N$. %, which is smaller than all the possible individual connectivity degrees in the CR network.
 Then node $i$ broadcasts its new individual connectivity degree to all its neighbours. 
 %wrong:
 %Note that there is no cluster head which receives the notification on cluster head eligibility, and there is a Lemma on this.
@@ -693,8 +694,8 @@ Then node $i$ broadcasts its new individual connectivity degree to all its neigh
 %According to the assumption on the reciprocal communication link, $i$ should have received the notification message from $j$ when $j$ becomes cluster head.
 %Then CR node $i$ will set its individual connectivity degree to zero, and has no possibility to become a cluster head.
 %\end{proof}
-When a CR node $i$ is associated to multiple clusters, \ie $i$ has received multiple notifications of cluster head eligibility from different CR nodes, $d_i$ is still set to zero.
-We manipulate the individual connectivity degree of the CR nodes, so that the nodes which locate outside of the a formed cluster can possibly become cluster heads, or be included into other clusters.
+We manipulate the individual connectivity degree of the CR nodes which are included into certain clusters, so that the nodes which locate outside of the a formed cluster can possibly become cluster heads, or be included into other clusters.
+When a CR node $i$ is associated to multiple clusters, \ie $i$ has received multiple notifications of cluster head eligibility from different CR nodes, $d_i$ is still set to $M$.
 %Then every CR node becomes either cluster head or one member of at least one cluster.
 %In other words, with this manipulation on its individual connectivity degree, every CR node in the network will be involved in the clustering process, the proof will be given later.
 %Every CR user is involved in the clustering process and becomes either cluster head or member is described in theorem~\ref{clustering:theorem}.
@@ -958,13 +959,14 @@ In this game, every player greedily updates its strategy (choosing one claiming 
 %Singleton congestion game is a special type of matroid game~\cite{Milchtaich1996111,}. 
 %It is known that player-specific matroid congestion game admit pure equilibrium, 
 
-As to singleton congestion game, there exists pure equilibria which can be reached with best response update, and the upper bound of number of steps before convergence is $n^2*m$~\cite{Ackermann06purenash}, where $n$ is the number of players, and $m$ is the number of resources.
+As to singleton congestion game, there exists a pure equilibria which can be reached with the best response update, and the upper bound of number of steps before convergence is $n^2*m$~\cite{Ackermann06purenash}, where $n$ is the number of players, and $m$ is the number of resources.
 In our problem, the players are the debatable nodes, and the resources are the claiming clusters.
 Thus the upper bound of the number of steps can be expressed as $\mathcal{O}(N^3)$.
+
 In fact, the number of steps which are actually involved in this process is much smaller than $N^3$, as both $n$ and $m$ are considerably smaller than $N$.
-The amount of debatable nodes is illustrated in Figure~\ref{fig2}, which is between 10\% to 80\% of the total number of CR nodes in the network.
-The number of clusters heads, as discussed in the part of cluster size in Section~\ref{phaseI}, is decided by the network density and the CR node's transmission range.
-Only a small part of the CR nodes become cluster heads, as in the example shown in Figure~\ref{number_clusters_scale}, the number of clusters is only 3.4\% to 20\% of the total number of CR nodes.
+The percentage of debatable nodes in $\mathcal{N}$ is illustrated in Figure~\ref{percentage_overlapping_node}, which is between 10\% to 60\% of the total number of CR nodes in the network.
+The number of clusters heads, as discussed in Section~\ref{phaseI}, is dependent on the network density and the CR node's transmission range.
+As shown in Figure~\ref{number_clusters_scale}, the cluster heads take up only 3.4\% to 20\% of the total number of CR nodes.
 
 
 
@@ -1122,7 +1124,7 @@ In other words, each non-zero element $q_{ij}$ denotes the number of CCCs of the
 
 We build a $G\times N$ binary variable matrix $X$, which illustrates the clustering solution.
 The element of matrix $X$ is binary variable $x_{ij}, i=1, \ldots, G, j=1, \ldots, N$.
-$x_{ij}=1$ denotes cluster $i$ is one partition in the clustering solution, $x_{ij}=0$ means this partition is not adopted.
+%$x_{ij}=1$ denotes node $i$ is in the $j$th legitimate cluster, and the cluster is chosen in the solution, $x_{ij}=0$ means the $j$th legitimate cluster is not adopted by the partition.
 %Note that matrix $Q$ contains only constant elements, and matrix $X$ contains only binary variables.
 Now, we can formulate the optimization problem as follows,
 
@@ -1209,8 +1211,8 @@ The resulted clustering solutions from ROSS-DGA/DFA and SOC are shown in Figure~
 %ROSS-DFA generates the same result with ROSS-DGA in this example.	
 
 As to the average number of CCCs, the results of ROSS (including both ROSS-DGA and ROSS-DFA), centralized and SOC are 2.66, 2.66, and 3 respectively. 
-Note there is one singleton cluster $C_H$ generated by SOC, which is not preferred.
-When we take no account of the singleton clusters, the average number of common channels of SOC drops to 2.5. 
+Note there is one singleton cluster $C(H)$ generated by SOC, which is not preferred.
+When we take no account of the singleton clusters, then the average number of common channels of SOC drops to 2.5. 
 \begin{figure}[ht]
 \begin{center}
 \subfigure[Resulted from SOC]{\includegraphics[width=0.435\linewidth]{final_clustering_soc}\label{fig:final_clustering_soc}}
@@ -1669,10 +1671,10 @@ In the other way around, forming big cluster which extends out side of cluster h
 \KwIn{$d_j, g_j, j\in \text{Nb}_i\setminus \text{CHs}$. Empty sets $\tau_1,\tau_2$}
 \KwResult{Returning 1 means $i$ is cluster head, then $d_j$ is set to 0, $j\in \text{Nb}_i\setminus \text{CHs}$. returning 0 means $i$ is not CH.}
 
-\If{$\nexists j\in \text{Nb}_i\setminus \text{CHs}$, such that $d_i \leq d_j$}{
+\If{$\nexists j\in \text{Nb}_i\setminus \text{CHs}$, such that $d_i \geq d_j$}{
 	return 1;
 	}
-\eIf{$\exists j\in \text{Nb}_i\setminus CHs$, such that $d_i < d_j$}{
+\eIf{$\exists j\in \text{Nb}_i\setminus CHs$, such that $d_i > d_j$}{
 	return 0;}{
 	\If{$\nexists j\in \text{Nb}_i\setminus CHs$, such that $d_j == d_i$}{
 	$\tau_1 \leftarrow j$
@@ -1763,18 +1765,19 @@ In the other way around, forming big cluster which extends out side of cluster h
 \section*{Proof of Theorem~\ref{clustering:theorem}}
 \label{proof_clustering:theorem}
 \begin{proof}
-Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
+%Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
+We consider a CRN which can be represented as a connected graph.
 To simplify the discussion, we assume the secondary users have unique individual connectivity degrees, and they have identical ID and social connectivity degrees.
 This assumption is fair as the social connectivity degrees and node ID are used to break ties as shown in Algorithm~\ref{alg0}, when the individual connectivity degrees are unique, it is not necessary to use the former two metrics to break ties.
 
-We assume every node has at least one neighbour.
-It is further assumed that there exist some secondary users which are not included into any cluster and node $\alpha$ is of this kind.
-As node $\alpha$ is not contained in any cluster, there must be at least one node $\beta\in \text{Nb}_\alpha$, with $d_{\alpha} < d_{\beta}$.
+%we assume every node has at least one neighbour.
+Assuming there exist some secondary users which are not included into any cluster, and node $\alpha$ is of this kind.
+As node $\alpha$ is not contained in any cluster, there must be at least one node $\beta\in \text{Nb}_\alpha$, with $d_{\alpha} > d_{\beta}$.
 Otherwise, node $\alpha$ is eligible to form a cluster.
 If node $\beta$ becomes cluster head, node $\alpha$ is included.
-If node node $\beta$ is not cluster head, i.e., $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighbouring node $\gamma$ with $d_{\gamma}>d_{\beta}$.
-When no cluster head appears, this series of nodes with monotonically increasing $d_i$ might continue to grow, and only ceases because both of the individual connectivity degree and the total number of nodes are limited.
-The formed node series is shown as Figure~\ref{lemma1}.
+If node node $\beta$ is not cluster head, i.e., $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighbouring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
+When no cluster head appears, this series of nodes with monotonically decreasing $d_i$ might continue to grow, and finally ceases when the individual connectivity degree is zero, or all secondary nodes are already in the series of nodes.
+An example of the formed node series is shown as Figure~\ref{lemma1}.
 
 \begin{figure}[ht!]
   \centering
