@@ -625,15 +625,14 @@ $C_i$  & the $i$th legitimate cluster (only appear in Sec.~\ref{centralized_opt}
 
 In this section, we introduce the distributed clustering scheme ROSS which leads to robust clusters against primary users' influence.
 ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{membership clarification}.
-With ROSS, CR nodes form clusters on the basis of the proximity of the available spectrum in their neighbourhood, and then some CR nodes finalize their cluster membership, i.e., belonging to one certain cluster, by interacting with certain neighbours.
+With ROSS, CR nodes form clusters on the basis of the proximity of the available spectrum in their neighbourhood. Afterwards, CR nodes belong to one certain cluster. %by interacting with certain neighbours.
 %is based on the spectrum sensing results in its neighbours , then
 	
 
 \subsection{Phase I - Cluster Formation}
 \label{phaseI}
-After conducting spectrum sensing and communication with neighbours, every CR node is aware of the available channels at itself and all its neighbours.
-For each CR user, two metrics are proposed to characterize the spectrum proximity between that CR user and its neighbourhood.
-As to CR node $i$, there are,
+After conducting spectrum sensing and communication with neighbours, every CR node is aware of the available channels available for themselves as well as for all its neighbors.
+For each CR user $i$, two metrics are proposed to characterize the spectrum proximity between $u$ and its neighborhood:
 %\newtheorem{def1}{Definition}
 %\label{def1}
 %\begin{def1}
@@ -651,10 +650,10 @@ As to CR node $i$, there are,
 %\end{def1}
 \begin{itemize}
 
-\item \textit{Individual connectivity degree} $d_i$: $d_i=\sum_{j\in \text{Nb}(i)}\vert K_i\cap K_j\vert$, denotes the sum of the numbers of common controls channels between node $i$ and every neighbour.
+\item \textit{Individual connectivity degree} $d_i$: $d_i=\sum_{j\in \text{Nb}(i)}\vert K_i\cap K_j\vert$. It denotes the sum of the numbers of common controls channels between node $i$ and every neighbour.
 It is an indicator of node $i$'s adhesive property to the CRN. 
 
-\item \textit{Social connectivity degree} $g_i$: $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which is the number of common channels which are available to CR node $i$ and all its neighbours.
+\item \textit{Social connectivity degree} $g_i$: $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$. It is the number of common channels available to$i$ and all its neighbors.
 $g_i$ represents the ability of $i$ to form a robust cluster with its neighbours.
 \end{itemize}
 Individual connectivity degree $d_i$ and social connectivity degree $g_i$ together form the \textit{connectivity vector}.
@@ -668,21 +667,21 @@ Figure~\ref{fig1} illustrates an example CRN where each node's connectivity vect
 \end{figure}
 
 After introducing the connectivity vector, we proceed to introduce the first phase of algorithm ROSS.
-To put it briefly, in this phase cluster heads are determined at first, then clusters are formed on the basis of the cluster heads' neighbourhoods.
+To put it briefly, in this phase cluster heads are determined in the beginning. Then clusters are formed on the basis of the cluster heads' neighborhoods.
 
 
 \subsubsection{Determining Cluster Heads and Form the Initial Clusters}
-In this phase, each CR node decides whether it is cluster head by comparing its connectivity vector with its neighbours.
-When CR node $i$ has lower individual connectivity degree than any neighbours except for those which have already become cluster heads (the appearance of cluster heads will be explained in next subsubsection), then node $i$ becomes clusters head.
+In this phase, each CR node decides whether it is a cluster head by comparing its connectivity vector with its neighbors.
+When CR node $i$ has lower individual connectivity degree than any neighbors except for those which have already become cluster heads (the appearance of cluster heads will be explained in Section~...), then node $i$ becomes clusters head.
 %In other words, CR node $i$ becomes cluster head if $d_i > d_k, \forall k\in \texttt{Nb}_i\setminus CHs$ ($CHs$ donate the cluster heads existing in $\texttt{Nb}_i$).
-If there is another CR node $j$ in its neighbourhood, which has the same individual connectivity degree with $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head, and the other one becomes one member of it. 
-If $g_i = g_j$ as well, node ID is used to break the tie, \ie the one with smaller node ID takes precedence and becomes cluster head.
+If there is another CR node $j$ in its neighborhood which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node out of $\{i, j\}$ with higher social connectivity degree becomes cluster head. The other nodes become a member of that cluster. 
+If $g_i = g_j$ as well, the node ID is used to break the tie, \ie the one with smaller node ID becomes the cluster's head.
 %
 The node which becomes cluster head broadcasts a message of its eligibility of being cluster head to notify its neighbours, and claims its neighbourhood as its cluster.
-The pseudo code for deciding cluster head and forming initial clusters is in Algorithm~\ref{alg0} in appendix.
+The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in the appendix.
 
-After receiving the notification from a cluster head, a CR node, \eg $i$, is aware that it becomes one member of a cluster, then $i$ sets its individual connectivity degree to a positive number $M$, where $M > |\mathcal{K}|*N$. %, which is smaller than all the possible individual connectivity degrees in the CR network.
-Then node $i$ broadcasts its new individual connectivity degree to all its neighbours. 
+After receiving the notification from a cluster head, a CR node $i$ is aware that it becomes a member of a cluster. Consequently, $i$ sets its individual connectivity degree to a positive number $M > |\mathcal{K}| \cdot N$. %, which is smaller than all the possible individual connectivity degrees in the CR network.
+Then $i$ broadcasts its new individual connectivity degree to all its neighbors. 
 %wrong:
 %Note that there is no cluster head which receives the notification on cluster head eligibility, and there is a Lemma on this.
 %\begin{theorem}{lemma}
@@ -694,12 +693,12 @@ Then node $i$ broadcasts its new individual connectivity degree to all its neigh
 %According to the assumption on the reciprocal communication link, $i$ should have received the notification message from $j$ when $j$ becomes cluster head.
 %Then CR node $i$ will set its individual connectivity degree to zero, and has no possibility to become a cluster head.
 %\end{proof}
-We manipulate the individual connectivity degree of the CR nodes which are included into certain clusters, so that the nodes which locate outside of the a formed cluster can possibly become cluster heads, or be included into other clusters.
+We manipulate the individual connectivity degree of the CR nodes which are included in certain clusters. Hence, nodes located outside of the a formed cluster can possibly become cluster heads or can also be included into other clusters.
 When a CR node $i$ is associated to multiple clusters, \ie $i$ has received multiple notifications of cluster head eligibility from different CR nodes, $d_i$ is still set to $M$.
 %Then every CR node becomes either cluster head or one member of at least one cluster.
 %In other words, with this manipulation on its individual connectivity degree, every CR node in the network will be involved in the clustering process, the proof will be given later.
 %Every CR user is involved in the clustering process and becomes either cluster head or member is described in theorem~\ref{clustering:theorem}.
-We have the following theorem to show that as long as a secondary user's individual connectivity degree is not zero, that secondary user will be integrated into a certain cluster, or become a cluster head.
+We have the following theorem to show that as long as a secondary user's individual connectivity degree is greater than zero, that secondary user will eventually be integrated into a certain cluster, or it eventually becomes a cluster head.
 \begin{theorem}
 \label{clustering:theorem}
 Given a CRN, every secondary user is included into at least one cluster within $N$ steps.
