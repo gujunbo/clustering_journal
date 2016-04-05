@@ -1231,7 +1231,7 @@ When we take no account of the singleton clusters, then the average number of co
 \section{Performance Evaluation}
 \label{performance}
 In this section, we evaluate the performances of all the variants of ROSS, \ie ROSS-DGA and ROSS-DFA, and that with cluster size control features.
-The latter is referred as ROSS-x-DGA/ROSS-x-DFA, where x is the desired cluster size.
+The latter is referred as ROSS-$\delta$-DGA/ROSS-$\delta$-DFA, where x is the desired cluster size.
 We choose SOC as comparison scheme.
 To the best of our knowledge, SOC~\cite{Lazos09} is the only work emphasizing on the robustness of clustering structure from all previous work on clustering in CRN. 
 The authors of~\cite{Lazos09} compared SOC with other schemes in terms of the average number of CCCs of the formed cluster, on which SOC outperforms other schemes by 50\%-100\%. 
@@ -1253,7 +1253,7 @@ SOC~\cite{Lazos09} compares the average number of CCCs per cluster without disti
 This is a straight forward metric which reflects the effectiveness of clustering scheme.
 The less resulted singleton clusters means more secondary users are benefited from cluster structure.
 %robustness of clusters, as this metric directly shows how many nodes can make use of the cluster structure.
-When we investigate the performance with moderate and vigorous intensity of primary users' activities, this metric is the antonym of \textit{survival rate}, \ie, how many nodes are still within a certain cluster when some clusters have collapsed due to the newly added primary users.
+When we investigate the performance with moderate and vigorous intensity of primary users' activities, this metric is the antonym of \textit{survival rate}, \ie, the percentage of nodes which are still within certain clusters.
 %When we vary the intensity of primary users' activity, \eg from low to medium level by increasing the number of primary users, 
 
 
@@ -1306,33 +1306,32 @@ This is because the desired cluster size happens to be the average size of clust
 
 
 \subsubsection{Number of Singleton Clusters}
-When the number of PUs in CRN increases, or their operation becomes more intensive, some clusters don't seize any CCCs any more, so that the cluster members and the cluster heads become unclustered, or singleton clusters.
+%When the number of PUs in CRN increases, or their operation becomes more intensive, some clusters don't seize any CCCs any more, so that the cluster members and the cluster heads become unclustered, or singleton clusters.
 %If there is no common control channels available any more because of the new added PRs, the cluster is regarded as destroyed and the former cluster member CRs become unclustered CRs or in other words singleton clusters.
-We investigate the number of singleton clusters with primary users whose intensity of activities are varying.
-After the clusters are formed under the influence of the initial 10 PUs, extra 100 PUs are added sequentially to the network.
+%We investigate the number of singleton clusters with primary users whose intensity of activities are varying.
+Initially, clusters are formed with the presence of 10 PUs. 
+Afterwards, extra 20 batches of PUs are added to the network sequentially, and each batch includes 5 PUs. 
 %The transmission range and channel occupancy of the new PU is the same with the previous ones, \ie transmission range is $A/3$, and one channel out of 10 is randomly chosen to operate.
-Figure~\ref{singleton_clusters} shows the number of unclustered CRs with the increasing number of PUs.%, which indicates the vulnerability of clusters under varying availability of licensed spectrum.
+Figure~\ref{singleton_clusters} shows the number of unclustered CRs with the increasing number of PUs, from which two conclusions are drawn.
+%, which indicates the vulnerability of clusters under varying availability of licensed spectrum.
 %
-We draw three conclusions corresponding to three comparisons shown in this figure,
+
 \begin{itemize}
-\item Centralized scheme with cluster size of 2 generates the most robust clusters, and SOC results in the most vulnerable clusters.
-When the desired cluster size is 3, the centralized scheme performs similarly with the variants of ROSS.
-The reason that centralized scheme with cluster size of 3 does not completely excel variants of ROSS is due to the favourable achievement of it: the uniformly sized clusters.
-As distributed schemes, variants of ROSS generate considerable amount of smaller clusters which are more likely to survive when PUs' activities become intense.
-The comparison on cluster sizes will be given in details in~\ref{cluster_size}.
+\item The centralized scheme with desired size of 2 generates the most robust clusters, and SOC results in the most vulnerable clusters.
+The centralized scheme with desired size of 3 doesn't surpass the variants of ROSS.
+The reason lies in the the uniformly sized clusters, whereas the variants of ROSS generate considerable amount of smaller clusters which are more likely to survive when PUs' activities become intense.
+%The comparison on cluster sizes will be given in Section~\ref{cluster_size}.
 % when the number of PRs is 10$\sim$30, when number of PUs is 30$\sim$60, same amount of unclustered CRs are generated with variants of ROSS.
 %When there are 75 and more new PRs, centralized scheme with cluster size of 3 results in more unclustered CR nodes than variants of ROSS.
 
+ROSS with size control distinguishes itself as the size control avoid the appearance of the clusters with large size.
 
 \item Greedy algorithm improves survival rate. 
-ROSS-DGA improves the survival rate of ROSS-DFA, so does ROSS-x-DGA against ROSS-x-DFA.
-This complies with the observation in Figure~\ref{ccc_per_nonsingleton}.
-As the debatable CRs greedily update their affiliation with claiming clusters, and the metric for updating is the maximum increase of CCCs of the demanding clusters, the average number of CCCs in non-singleton clusters is improved. 
-%Meanwhile, sizes of more clusters become smaller also contributes more robustness.
+Greedy strategy adopted in the second phase of ROSS improves the robustness of clusters, i.e. ROSS-DGA exceeds ROSS-DFA, and ROSS-$\delta$-DGA surpasses ROSS-$\delta$-DFA.
+When the debatable CRs greedily update their affiliation with the claiming clusters, one of the metrics is the maximum increase of CCCs of the demanding clusters. 
+This observation complies with the result shown in Figure~\ref{ccc_per_nonsingleton}.
 
-\item ROSS with size control is better than the other two distributed schemes.
-Conducting size control improves both ROSS-DGA and ROSS-DFA's performance when the number of new PUs is greater than 50.
-The size control decreases the clusters size and makes the clusters more robust when against PUs' activity.
+%Meanwhile, sizes of more clusters become smaller also contributes more robustness.
 
 \end{itemize}
 
@@ -1366,7 +1365,7 @@ The size control decreases the clusters size and makes the clusters more robust 
 %\end{figure}
 
 
-\begin{figure*}[t]
+\begin{figure*}[th]
 \begin{multicols}{3}
     \includegraphics[width=\linewidth]{ccc_20.pdf}\par\caption{Number of common channels for non-singleton clusters}\label{ccc_per_nonsingleton}
     \includegraphics[width=\linewidth]{survival_rate_20.pdf}\par\caption{Number of CRs which are not included in any clusters}\label{singleton_clusters}
@@ -1377,14 +1376,15 @@ The size control decreases the clusters size and makes the clusters more robust 
 \end{figure*}
 
 
-Figure~\ref{size_control} depicts the empirical cumulative distribution of the CRs residing in certain sized clusters in 50 runs.
-The centralized schemes are able to form clusters which satisfy the requirement on cluster sizes strictly.
-When the desired size is 2, each generated cluster has two members, whereas when the desired size is 3, about 15\% CRs are formed into 2 node clusters.
-Both of ROSS-DFG and ROSS-DFA with size control feature also obtain clusters with homogeneous sizes.
+Figure~\ref{size_control} depicts the empirical cumulative distribution of the CRs residing in certain sized clusters which are generated in 50 runs.
+The centralized schemes form clusters which satisfy the requirement on cluster size strictly.
+%When the desired size is 2, each generated cluster has two members, whereas when the desired size is 3, about 15\% CRs are formed into 2 node clusters.
+As to ROSS-DFG and ROSS-DFA with size control mechanism, CR nodes averagely distributes in clusters whose sizes are 2, 3 and 4.
 %When ROSS-3-DFA is applied, most number of CRs are in 3 node clusters, nevertheless, slightly less nodes are found in 2 node and 4 node clusters, there are also considerable number of singleton clusters.
 %ROSS-3-DGA decreases the clusters sizes and results in more 2 node clusters, the second most CRs are found in 3 node clusters.
-The sizes of clusters generated by ROSS-DGA and ROSS-DFA are disperse, but appear better than SOC, i.e., the 50\% percentiles for ROSS-DGA, ROSS-DFA and SOC is 4.5, 5, and 5.5, and the 90\% percentiles for the three schemes are 8, 8, and 9.
+The sizes of clusters resulted from ROSS-DGA and ROSS-DFA are disperse, but appear to be better than SOC, i.e., the 50\% percentiles for ROSS-DGA, ROSS-DFA and SOC is 4.5, 5, and 5.5, and the 90\% percentiles for the three schemes are 8, 8, and 9.
 %Figure~\ref{size_control} shows distributed clustering schemes are not able to control cluster sizes perfectly, but ROSS-DGA and ROSS-DFA eliminate the clusters whose size diverges largely with the desired one, \ie single node clusters and clusters with size of 13 and 14.
+
 Note ROSS-DGA and ROSS-DFA with size control feature generate 10\%-20\% singleton clusters, which is due to the cluster pruning discussed in section~\ref{cluster_pruning}, whereas, without size control, only 3\% nodes are in singleton clusters.
 When applying SOC, 10\% of nodes are in singleton clusters.
 
@@ -1394,21 +1394,18 @@ When applying SOC, 10\% of nodes are in singleton clusters.
 %Clusters are formed in the first phase, in the second phase, cluster membership is decided so that each node only resides in one cluster.
 %Control message exchanges between CR nodes are involved in both phases.
 
-In this section we compare the amount of control messages generated in different clustering schemes, \eg centralized scheme, ROC, and the variants of ROSS.
-
-In order to highlight the amount of control signalling only for clustering, we omit the process of neighbourhood discovery, which is premise for all clustering schemes.
+In this section we compare the amount of control messages involved in different clustering schemes, \ie centralized scheme, ROC, and the variants of ROSS.
+%In order to highlight the amount of control signalling only for clustering, 
+We omit the control messaged involved in the process of neighbourhood discovery, which is the premise for the clustering schemes.
 According to~\cite{complexity_aggregation_2011}, the message complexity is defined as the number of messages used by all nodes.
 To have the same criterion to compare the overhead of signalling, we count \textit{the number of transmissions of control messages}, without distinguishing they are sent with broadcast or unicast.
 This metric is synonymous with \textit{the number of updates} discussed in Section~\ref{ross}.
 
 As to ROSS, the control messages are generated in both phases.
-In the first phase, %every CR node decides whether it is cluster head by comparing its spectrum robustness with its neighbours.
-When a CR node decides itself to be the cluster head, it forms one cluster with its neighbourhood, 
-each cluster head broadcasts one message containing its ID, cluster members and the set of CCCs in its cluster.
+In the first phase, when a CR node decides itself to be the cluster head, it broadcasts a message containing its ID, cluster members and the set of CCCs in its cluster.
 %As to ROSS with size control feature, there are same amount of cluster heads with ROSS without enabling size control feature, and the cluster head broadcasts the available channels of the pruned cluster.
-In the second phase, %membership clarification of debatable nodes is conducted.
-debatable node informs its claiming clusters by broadcasting its affiliation, and the claiming cluster's cluster head broadcasts message about its new cluster if its cluster's members are changed.
-The total number of times for all CR nodes to send control messages, \ie the total number of decisions related with clustering functionality, has been analysed in the part of convergence speed in Theorem~\ref{clustering:theorem} and Section~\ref{clustering:phaseII:game} respectively.
+In the second phase, a debatable node broadcasts its affiliation to inform its claiming clusters, then the $\text{CH}$s of the claiming clusters  broadcast message about the new cluster members if they are changed due to the debatable node's decision.
+The total number of the decisions involved in cluster formation has been analysed in Theorem~\ref{clustering:theorem} and Section~\ref{clustering:phaseII:game} respectively.
 
 Comparison scheme SOC involves three rounds of execution. 
 In the first two rounds, every CR node maintains its own cluster and seek to integrate neighbouring clusters, or joins one of them.
@@ -1417,16 +1414,25 @@ In each round, every CR node is involved in comparisons and cluster mergers.
 %Comparing with the second phase of ROSS, only debatable nodes to communicate with cluster heads to clarify their membership.
 %The signalling overhead for centralized scheme comes from two processes, the the process of collecting information to the centralized controller, and the process that the controller spreads the clustering result to all the CR nodes.
 
-As to the centralized scheme, except for the calculation in the centralized control device, it also involves two phases of control message transmission.
-The first phase is information aggregation, in which every CR node's channel availability and neighbourhood is sent to the centralized controller.
+The centralized scheme is conducted at the centralized control device, but it involves two phases of control message transmission.
+The first phase is information aggregation, in which every CR node's channel availability and neighborhood is transmitted to the centralized controller.
 The second phase is broadcasting, where the final clustering solution is disseminated over the network to every CR node.
-%As basic communication primitive for wireless networks, 
+
 We adopt the algorithm proposed in~\cite{Efficient_broadcasting_gathering_adhoc} to broadcast and gather information as the algorithm is simple and self-stabilizing.
 This scheme needs building a backbone structure to support the communication, we use our generated cluster heads as the backbone and the debatable nodes as the gateway nodes between the backbone nodes.
-As the backbone is built once and can support transmission for multiple times, the messages involved in the clustering process are not included.
-Every CR node can be informed if the cluster heads broadcast the message sent from the controller or other cluster heads, then the number of transmission is $h+m$.
-As to information gathering, we assume that every cluster member sends the spectrum availability and its ID to its cluster head, which further forwards or the message to the controller.
+As the backbone is built once and can support transmission for multiple times, the messages involved in the clustering process are not counted.
+As to the process of information gathering, we assume that every cluster member sends the spectrum availability and its ID to its cluster head, which further forwards or the message to the controller.
 The number of transmission for information gathering is $N$.
+As to the process of dissemination, in an extreme situation where all the gateway nodes and the backbone nodes broadcast, the number of transmission will be $h + m$, where $h$ is the number of cluster heads, $m$ is number of debatable nodes, $d$ is the average number of demanding clusters for each debatable node.
+
+The number of control messages which are involved in both ROSS and the centralized scheme is related with the number of debatable nodes.
+Figure~\ref{percentage_overlapping_node} shows the percentage of debatable nodes when the CRN network becomes denser, from which we can obtain the value of $m$.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.7\linewidth]{percentage_overlapping_node.pdf}
+  \caption{The percentage of debatable nodes after phase I of ROSS.}\label{percentage_overlapping_node}
+\end{figure}
+
 %As we adopt a simplified communication model, node's transmission is not influenced by collision or interference, 
 %Our simulation doesn't consider the behaviour in the physical layer, 
 
@@ -1440,20 +1446,12 @@ The number of transmission for information gathering is $N$.
 %3. broadcast X3
 
 %The complexity parameters are the number of nodes $n$ in network, number of clusters $h$.
-The message complexity, quantitative analysis of the number of messages, and the size of control messages are shown in Table \ref{tab_overhead}.
-Some notations are written as follows,  $h$: number of cluster heads, $m$: number of debatable nodes, $d$: number of demanding clusters, $D(s)$: the maximum distance between centralized controller and CR users.
-
-Figure~\ref{percentage_overlapping_node} shows the percentage of debatable nodes increases when the CRN network becomes denser, from which we can obtain the value of $m$.
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[width=0.7\linewidth]{percentage_overlapping_node.pdf}
-  \caption{The percentage of debatable nodes after phase I of ROSS.}\label{percentage_overlapping_node}
-\end{figure}
-
-
+The message complexity, quantitative analysis of the number of control messages involved in clustering, and the size of control messages are shown in Table \ref{tab_overhead}.
+%$D(s)$: the maximum distance between centralized controller and CR users.
+%
 Figure~\ref{control_msg} shows the number of transmissions of SOC, the upper bound of the number of transmissions for ROSS, and the analytical number of transmissions of the centralised scheme. 
-Note that the curve for the centralized scheme is from theoretical analysis, which is $h+m+N$ as discussed beforehand.
-Note the overhead involved to construct the backbone (clusters) is not included.
+%Note that the curve for the centralized scheme is from theoretical analysis, which is $h+m+N$ as discussed beforehand.
+%Note the overhead involved to construct the backbone (clusters) is not included.
 
 
 
@@ -1464,9 +1462,9 @@ Note the overhead involved to construct the backbone (clusters) is not included.
 %\begin{tabular}{|p{2.2 cm}|p{1.5 cm}|p{3.7 cm}|}
 %\hline
 % Scheme 					&   Number of transmissions 					& Content of message \\ \hline
-% ROSS-DGA, ROSS-x-DGA 		&   $h+2*m^2c$ (upper bound)
+% ROSS-DGA, ROSS-$\delta$-DGA 		&   $h+2*m^2c$ (upper bound)
 %				& $ID_{H_C}$ and $K_C$ for $h+m^2c$ times, notification to join one cluster for $m^2c$ times					\\ \hline
-% ROSS-DFA, ROSS-x-DFA 		&   $h+ 2m$	 (upper bound) 						& $ID_{H_C}$ and $K_C$ for $h+m$ times, notification to join one cluster for $m$ times	 					\\ \hline
+% ROSS-DFA, ROSS-$\delta$-DFA 		&   $h+ 2m$	 (upper bound) 						& $ID_{H_C}$ and $K_C$ for $h+m$ times, notification to join one cluster for $m$ times	 					\\ \hline
 % SOC 						&   $3*n$					& $\{K_i\}, i\in M\subseteq \texttt{Nb}_i$						\\ \hline
 % Centralized				&	$n$						& $\{C\}$         	\\ 
 % \hline
@@ -1480,10 +1478,10 @@ Note the overhead involved to construct the backbone (clusters) is not included.
 \hfill{}
 \begin{tabular}{|L{2.2 cm}|C{2.8 cm}|C{3.15 cm}|C{6.6 cm}|}
 \hline
- Scheme 				&Message Complexity 	&   Quantitative number of messages 		& Content of message 									\\ \hline
- ROSS-DGA, ROSS-x-DGA 	&$\mathcal{O}(N^3)$ (worst case)		&   $h+2*m^2d$ (upper bound)  				&   \multirow{2}{*}{\parbox{6.4cm}{Phase I: notification from cluster head (1 byte), new individual connectivity degree (1 byte);  Phase II: update of debatable nodes' affiliation (1 byte), claiming clusters' new membership ($|C_i|$ bytes)}}								\\ \cline{1-3}
- ROSS-DFA, ROSS-x-DFA 	&$\mathcal{O}(N)$ (worst case)		&   $h + 2m$	 (upper bound) 					& 	      												\\ \hline
- SOC 					&$\mathcal{O}(N)$		&   $3*N$									& $C_i$ ($|C_i|$ bytes), $K_i$ ($P$ bytes), $i\in \mathcal{N}$						\\ \hline
+ Scheme 				&Message Complexity 	&   Quantitative number of messages 		& Content of message (size of message) 									\\ \hline
+ ROSS-DGA, ROSS-$\delta$-DGA 	&$\mathcal{O}(N^3)$ (worst case)		&   $h+2*m^2d$ (upper bound)  				&   \multirow{2}{*}{\parbox{6.4cm}{Phase I: notification from cluster head (1 byte), new individual connectivity degree (1 byte);  Phase II: update of debatable nodes' affiliation (1 byte), claiming cluster$i$' new membership ($|C(i)|$ bytes)}}								\\ \cline{1-3}
+ ROSS-DFA, ROSS-$\delta$-DFA 	&$\mathcal{O}(N)$ (worst case)		&   $h + 2m$	 (upper bound) 					& 	      												\\ \hline
+ SOC 					&$\mathcal{O}(N)$		&   $3*N$									& $C(i)$ ($|C(i)|$ bytes), $K(C(i))$ ($|\mathcal{P}|$ bytes), $i\in \mathcal{N}$						\\ \hline
  Centralized			&$\mathcal{O}(N)$			&	$h + m + N$ (upper bound)~\cite{Efficient_broadcasting_gathering_adhoc}		& $\{C\}$ ($|C_i|*N$ bytes)        					\\ \hline
 \end{tabular}
 }
@@ -1497,7 +1495,7 @@ Note the overhead involved to construct the backbone (clusters) is not included.
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=0.7\linewidth]{number_controlMsg.pdf}
-  \caption{Number of control messages, note the curves for ROSS-DGA and ROSS-DFA are the upper bounds of the number of messages, the curve of centralized scheme reflects an ideal situation.}
+  \caption{Number of control messages. Note the curves for ROSS-DGA and ROSS-DFA are the upper bounds of the number of messages, the curve of centralized scheme reflects an extreme situation.}
   \label{control_msg}
 \end{figure}
 
@@ -1537,11 +1535,11 @@ Desired size $\delta$ 	& 6	&   12 						& 20      \\ \hline
 \end{figure}
 
 Figure~\ref{ccc_large_scale} illustrates the average number of CCCs of the non-singleton clusters.
-It shows when $N=100$, variants of ROSS have 30\% less CCCs than SOC, but this gap is decreased significantly when $N$ is 200 and 300, \ie when $N=300$, number of CCCs achieved by ROSS variants (except for ROSS-x-DFA) is almost the same with that resulted from SOC.
+It shows when $N=100$, variants of ROSS have 30\% less CCCs than SOC, but this gap is decreased significantly when $N$ is 200 and 300, \ie when $N=300$, number of CCCs achieved by ROSS variants (except for ROSS-$\delta$-DFA) is almost the same with that resulted from SOC.
 
 This means SOC performs better in terms of the average number of CCCs per non-singleton clusters when network is sparse.
 this is also observed in the evaluation in Section \ref{ccc_20} where $N=20$.
-When the network becomes denser, even this metric favours SOC as discussed in the beginning of Section~\ref{performance}, ROSS-DGA achieves even more CCCs than SOC, and ROSS-DFA and ROSS-x-DGA increase the number of CCCs visibly.
+When the network becomes denser, even this metric favours SOC as discussed in the beginning of Section~\ref{performance}, ROSS-DGA achieves even more CCCs than SOC, and ROSS-DFA and ROSS-$\delta$-DGA increase the number of CCCs visibly.
 
 
 
