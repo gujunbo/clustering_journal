@@ -1,4 +1,4 @@
-This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: bare_jrnl_comsoc.aux
 The style file: IEEEtran.bst
@@ -160,49 +160,48 @@ Warning--empty year in cluster_EW10
 Warning--empty year in Gu_distributed_rendezvous_2014
 Warning--empty year in game_for_communication_01
 Warning--missing school in Neel06analysisand
-Warning--empty year in kothari:congestion_serverMatching
 Warning--empty year in Efficient_broadcasting_gathering_adhoc
 
 Done.
-You've used 38 entries,
+You've used 36 entries,
             4087 wiz_defined-function locations,
-            1083 strings with 15131 characters,
-and the built_in function-call counts, 28936 in all, are:
-= -- 2301
-> -- 675
-< -- 264
-+ -- 370
-- -- 108
-* -- 1398
-:= -- 4227
-add.period$ -- 76
-call.type$ -- 38
-change.case$ -- 38
-chr.to.int$ -- 621
-cite$ -- 49
-duplicate$ -- 2084
-empty$ -- 2351
-format.name$ -- 144
-if$ -- 6809
+            1072 strings with 14756 characters,
+and the built_in function-call counts, 27595 in all, are:
+= -- 2196
+> -- 642
+< -- 254
++ -- 352
+- -- 102
+* -- 1334
+:= -- 4026
+add.period$ -- 72
+call.type$ -- 36
+change.case$ -- 36
+chr.to.int$ -- 600
+cite$ -- 46
+duplicate$ -- 1981
+empty$ -- 2237
+format.name$ -- 136
+if$ -- 6494
 int.to.chr$ -- 0
-int.to.str$ -- 38
-missing$ -- 334
-newline$ -- 137
-num.names$ -- 38
-pop$ -- 775
+int.to.str$ -- 36
+missing$ -- 317
+newline$ -- 131
+num.names$ -- 36
+pop$ -- 735
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2240
+skip$ -- 2136
 stack$ -- 0
-substring$ -- 1465
-swap$ -- 1712
-text.length$ -- 57
+substring$ -- 1414
+swap$ -- 1633
+text.length$ -- 54
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 38
-warning$ -- 11
-while$ -- 115
-width$ -- 40
-write$ -- 375
+type$ -- 36
+warning$ -- 10
+while$ -- 110
+width$ -- 38
+write$ -- 357
 (There were 31 error messages)
