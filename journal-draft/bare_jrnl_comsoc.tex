@@ -700,15 +700,15 @@ When a CR node $i$ is associated to multiple clusters, \ie $i$ has received mult
 We have the following theorem to show that as long as a secondary user's individual connectivity degree is greater than zero, that secondary user will eventually be integrated into a certain cluster, or it eventually becomes a cluster head.
 \begin{theorem}
 \label{clustering:theorem}
-Given a CRN, every secondary user is included into at least one cluster within $N$ steps.
+Given a CRN, every secondary user is included into at least one cluster within $N$ steps. (COMMENT: $N$ has to be defined within the theorem!!)
 \end{theorem}
-Here, \textit{Step} means one secondary user conducts Algorithm~\ref{clustering:theorem} once.
+Here, by \textit{step} we mean one application of Algorithm~\ref{clustering:theorem} by a secondary user.
 The Proof is in Appendix~\ref{proof_clustering:theorem}.
-According to Theorem~\ref{clustering:theorem}, we can assign reasonable amount of time for phase I to complete.
+According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
 
 %This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
 Let us apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}.
-Node $B$ and $H$ have the same individual connectivity degree, $d_B=d_H$, but as $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C_H$ is $\{H, B, A, G\}$.
+Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C_H$ is $\{H, B, A, G\}$.
 	
 
 
@@ -1777,17 +1777,17 @@ In the other way around, forming big cluster which extends a cluster head's neig
 \label{proof_clustering:theorem}
 \begin{proof}
 %Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
-We consider a CRN which can be represented as a connected graph.
-To simplify the discussion, we assume the secondary users have unique individual connectivity degrees, and they have identical ID and social connectivity degrees.
-This assumption is fair as the social connectivity degrees and node ID are used to break ties in Algorithm~\ref{alg0}, when the individual connectivity degrees are unique, it is not necessary to use the former two metrics.
+We consider a CRN which can be represented as a connected graph. (COMMENT: Why is it necessarily connected? No special case where the graph has two components?)
+To simplify the discussion, we assume the secondary users have unique individual connectivity degrees. Each user has an identical ID and a social connectivity degree.
+This assumption is fair as the social connectivity degrees and node ID are used to break ties in Algorithm~\ref{alg0}, when the individual connectivity degrees are unique, it is not necessary to use the former two metrics. (COMMENT: What do you mean by breaking ties?? I don't see why your argument holds.)
 
 %we assume every node has at least one neighbour.
-Assuming there exist some secondary users which are not included into any cluster, and node $\alpha$ is of this kind.
-As node $\alpha$ is not contained in any cluster, there must be at least one node $\beta\in \text{Nb}_\alpha$, with $d_{\alpha} > d_{\beta}$.
-Otherwise, node $\alpha$ is eligible to form a cluster.
-If node $\beta$ becomes cluster head, node $\alpha$ is included.
-If node node $\beta$ is not cluster head, i.e., $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighbouring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
-When no cluster head appears, this series of nodes with monotonically decreasing $d_i$ might continue to grow, but finally ceases when either the individual connectivity degree is zero, or every secondary node has already been in the series of nodes.
+For the sake of contradiction, let us assume there exist some secondary user $\alpha$ which is not included into any cluster.
+Then there is at least one node $\beta\in \text{Nb}_\alpha$ such that $d_{\alpha} > d_{\beta}$. Now, we distinguish between two cases: 
+%Otherwise, node $\alpha$ is eligible to form a cluster. COMMENT: unnecessary sentence!
+If $\beta$ becomes cluster head, node $\alpha$ is included.
+If $\beta$ is not a cluster head, i.e., $\beta$ is not in any cluster (COMMENT: $\beta$ not being a cluster head and $\beta$ not belonging to any cluster is not the same statement!!!), we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighbouring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
+When no cluster head appears, this series (COMMENT: what is that? sequence?) of nodes with monotonically decreasing connectivity degrees might continue to grow. Finally, it ceases (COMMENT: not a good/suitable word!!) when either the individual connectivity degree is zero, or every secondary node has already been in the series (COMMENT: sequence?) of nodes.
 An example of the formed node series is shown as Figure~\ref{lemma1}.
 
 \begin{figure}[ht!]
@@ -1799,12 +1799,11 @@ An example of the formed node series is shown as Figure~\ref{lemma1}.
 \end{figure}
 
 
-Now we find the node $\omega$ is in the end of this series.
-As $\omega$ is the end node and does not have neighbouring nodes with lower individual connectivity degree $D$, $\omega$ becomes cluster head and incorporate all its one-hop neighbours, including the node before it in the series (here we assume that every new formed cluster has common channels).
-After that, the node recruited into cluster will set its connection degree $D$ to $M$, which enables the node further down in the list to become a cluster head.
-In this way, all the nodes in the series are in at least one cluster in the inverse sequence.
-This result contradicts the initial assumption and proves the claim stated above.
-Meanwhile, through this proof, we know that within at most $N$ steps, all the nodes belong to certain clusters.
+Now, we can see that the node $\omega$ is the last element of this sequence.
+As $\omega$ does not have neighboring nodes with lower individual connectivity degree $D$, $\omega$ becomes the cluster head and incorporate all its one-hop neighbours, including the node before (COMMENT: you mean $\alpha$?) it in the series (here we assume that every newly formed cluster has common channels).
+After that, the node that joined a cluster will set its connection degree $D$ to $M$, which enables the node further down in the list (WHAT ??? What is further down and which list??? I cannot follow.) to become a cluster head.
+In this way, all the nodes in the series are in at least one cluster in the inverse sequence (? inverse of?), which contradicts the assumption.
+Meanwhile, through this proof, we know that within at most $N$ steps, all the nodes belong to certain clusters. (COMMENT: No, we don't! Where was that shown?)
 \end{proof}
 
 
@@ -1818,29 +1817,32 @@ We put the definition of weighted k-set packing problem here as it to be used in
 \label{def_kset_packing}
 \textit{Weighted k-set packing.} 
 
-Given a set $\mathcal{G}$ which contains finite number of positive integers, and a collection of set $\mathcal{Q}=\{s_1,s_2,\cdots,s_m\}$, where for each element $s_r, 1\leq r \leq m$, there is $s_r\subseteq \mathcal{G}$, $ 1\leq|s_r| \leq k$, and $s_r$ has an associated weight which is positive real number.
-The question is whether exists a collection $\mathcal{S}\subseteq \mathcal{Q}$, where $\mathcal{S}$ contains only disjoint sets and the total weight of sets in $\mathcal{S}$ is greater than $\lambda$.
-Weighted k-set packing is NP-hard when $k\geqslant 3$.~\cite{Computers_a_Intractability}
+Given a finite set $\mathcal{G} = \{ g_1, \ldots , g_N \} \subsetneq \mathbb{N}$ of non-negative integers and a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$ such that $S_i \subseteq \mathcal{G}$ for every $1 \leq i \leq N$.
+Each set $S \in \mathcal{Q}$ is associated with a weight $w(S) \in \mathbb{R}$.
+Further, we are given a threshold value $\lambda \in \mathbb{N}$.\\
+The question is whether there exists a collection $\mathcal{S} \subseteq \mathcal{Q}$ such that $\mathcal{S}$ contains only pairwise disjoint sets, i.e., for all $S, S' \in \mathcal{S}$ with $S \neq S'$ it holds that $S \cap S' = \emptyset$, and the total weight of the sets in $\mathcal{S}$ is greater than $\lambda$, i.e., $\sum_{S \in \mathcal{S}} w(S) > \lambda$.
 \end{mydef}
 
+Weighted k-set packing is NP-hard when $k\geqslant 3$.~\cite{Computers_a_Intractability}
 
-To prove the centralized clustering problem is of NP-hard, we reduce the NP-hard problem \textit{weighted k-set packing} to it to prove the former is as hard as the later.
+To prove that the centralized clustering problem is NP-hard, we reduce the NP-hard problem \textit{weighted k-set packing} to it to prove the former is at least as hard as the latter.
 %, which means centralized clustering in CRN problem is as hard as weighted k-set packing to be solved.
-To complete the reduction, we need to conduct following two steps:
-\begin{itemize}
-\item step 1: Show there exists a polynomial algorithm $\sigma$, by which any instance $\mathcal{S}$ of a weighted k-set packing can be transformed to a clustering solution $\sigma(\mathcal{S})$ which complies with Definition~\ref{def_centralized_clustering}.
-\item step 2: Show that $\mathcal{S}$ is a \textit{yes} instance of weighted k-set packing if and only if $\sigma(\mathcal{S})$ is a \textit{yes} instance for CRN clustering problem.
-\end{itemize}
+%To complete the reduction, we need to conduct following two steps:
+%\begin{itemize}
+%\item Step 1: We show the existence a polynomial algorithm $\sigma$, by which any instance $\mathcal{S}$ of a weighted k-set packing can be transformed to a clustering solution $\sigma(\mathcal{S})$ which complies with Definition~\ref{def_centralized_clustering}.
+%\item Step 2: Show that $\mathcal{S}$ is a \textit{yes} instance of weighted k-set packing if and only if $\sigma(\mathcal{S})$ is a \textit{yes} instance for CRN clustering problem.
+%\end{itemize}
+We show the existence of a polynomial-time algorithm $\sigma$ that transforms any instance $\mathcal{S}$ (COMMENT: be careful - there is an overloading of $\mathcal{S}$ of a weighted $k$-set packing into an instance $\sigma(\mathcal{S})$) of centralized clustering such that ... (to be completed - Erwin can do that) 
 
-We continue to use the notation adopted in the problem definition in Section~\ref{centralized_opt}.
-Let set $\mathcal{G}$ contain $N$ natural numbers which are from 1 to $N$.
-$\mathcal{Q}$ is a collection of sets $\{s_1, s_2,\cdots s_m\}$, each set is composed with certain elements in $\mathcal{G}$.
-Assume $\mathcal{S}\subseteq \mathcal{Q}$ is one instance of weighted k-set packing, and the sets in $\mathcal{S}$ are disjoint.
-$\omega$ indicates the weight for each set $s$, $\omega:\mathcal{S}\rightarrow \mathbb{Z}^{+}$.
+%We continue to use the notation adopted in the problem definition in Section~\ref{centralized_opt}.
+W.l.o.g. let set $\mathcal{G} = \{ 1, \ldots , N \}$.
+%$\mathcal{Q}$ is a collection of sets $\{s_1, s_2,\cdots s_m\}$, each set is composed with certain elements in $\mathcal{G}$. REPEATING THE DEF??
+%Assume $\mathcal{S}\subseteq \mathcal{Q}$ is one instance of weighted k-set packing, and the sets in $\mathcal{S}$ are disjoint.
+%$\omega$ indicates the weight for each set $s$, $\omega:\mathcal{S}\rightarrow \mathbb{Z}^{+}$. COMMENT: again unnecessary. Already contained in the definition!
 %As the number of common channel of clusters is always integer
 %give new weight to them in following way
 
-
+ERWIN FINISHED HERE FOR THE MOMENT ---
 
 The polynomial algorithm $\sigma$ consists of three transformations.
 
