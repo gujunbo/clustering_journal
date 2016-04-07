@@ -1847,29 +1847,31 @@ ERWIN FINISHED HERE FOR THE MOMENT ---
 The polynomial algorithm $\sigma$ consists of three transformations.
 
 \begin{itemize}
-\item Given a collection $\mathcal{Q}$, on basis of which we construct a CRN.
-We prepare $N$ CR nodes who are labelled from 1 to $N$, put them on a 2 dimension space, and deem a pair of them can communicate if they appear in one same set in $\mathcal{Q}$.
-We regard each set in $\mathcal{Q}$ is a cluster, whose number of CCCs equals to the weight of that set.
+\item Given a collection $\mathcal{Q}$, on basis of which we construct a CRN. (I DON'T UNDERSTAND THAT. What do you mean?)
+%We prepare $N$ CR nodes who are labelled from 1 to $N$, put them on a 2 dimension space, and deem a pair of them can communicate if they appear in one same set in $\mathcal{Q}$.
+We define a set of CR nodes $\mathcal{N} = \{ 1, \ldots , N \}$
+We regard each set in $\mathcal{Q}$ as a cluster, whose number of CCCs is equal to the weight of that set.
 
 
 %There is one situation deserving extra explanation in the second transformation, we adopt one example to discuss it.
-Assuming two sets in $\mathcal{Q}$ are $s_1=\{1,2\}$ and $s_2=\{1,2,3\}$, then their weights are 3 and 5 respectively.
+Assuming two sets in $\mathcal{Q}$ are $s_1=\{1,2\}$ and $s_2=\{1,2,3\}$, then their weights are 3 and 5 respectively. (THAT'S TOO HAND-WAVY.)
 %Their dummy sets are $s_1'=\{1,1,2,2\}$ and $s_2'=\{1,1,2,2,3,3,4,4\}$ and their new weights are 3 and 5 as before.
-We find it is impossible to map the sets into clusters in the same time, because the number of CCCs of the cluster which bases on $s_1$ should be no less than the cluster which bases on $s_2$, as the latter has one extra node compared with the former cluster.
+We find it is impossible to map the sets into clusters in the same time (SORRY, which sets?? The sets you mentioned before are already clusters, isn't it?), because the number of CCCs of the cluster which bases on $s_1$ should be no less than the cluster which bases on $s_2$, as the latter has one extra node compared with the former cluster.
 %When $s_1'$ and $s_2'$ are mapped to CRN respectively, there is contradiction between them, because the number of common channels of CR node group $\{1,1,2,2\}$ is smaller than that of $\{1,1,2,2,3,3,4,4\}$.
 But as to any instance of the solution to the weighted k-set packing problem, this contradiction doesn't happen because the instance $\mathcal{S}$ contains only disjoint sets, thus at most only one set of $s_1$ and $s_2$ appears in $\mathcal{S}$.%, then we can safely delete the connections based on the deleted set from the CRN, and the contradiction is eliminated.
+(THIS PARAGRAPH IS TOO DIFFICULT FOR ME TO UNDERSTAND.)
 
 \item In the second step, we transform the instance $\mathcal{S}$ to $\mathcal{S'}$ by adding dummy elements into each set in $\mathcal{S}$.
-For each set $s_i\in \mathcal{S}$, the elements in $s_i$ are duplicated, for instance, given $s_i=\{1, 4, 6\}$, the dummy set $s_i'$ is $\{1,1,4,4,6,6\}$.
+Formally, for each set $s_i\in \mathcal{S}$, we create $s_i' = s_i \times \{ 1,2\}$. %for instance, given $s_i=\{1, 4, 6\}$, the dummy set $s_i'$ is $\{1,1',4,4',6,6' \}$.
 %By doing this, we obtain the dummy sets and constitute the dummy instance $\mathcal{S}'$ based on $\mathcal{S}$.
 The purpose of this transformation is to eliminate the set in $\mathcal{S}$, which has single element.
-The weight of set is unchanged after this transformation, \ie $\omega(s_i)=\omega(s_i')$.
+The weight of these sets remain unchanged, \ie $\omega(s_i)=\omega(s_i')$.
 %After this transmission, there is no set with only one element.
-This transformation requires $\sum_{s_i \in \mathcal{S}} |s_i|$ steps.
+%This transformation requires $\sum_{s_i \in \mathcal{S}} |s_i|$ steps.
 
 \item In this step, we transform the instance $\mathcal{S'}$ to a clustering solution for CRN.
-We prepare a second pool of CR nodes which are identical with the CR nodes prepared in step 1, i.e., identical IDs and channel availabilities on them, we call these CR nodes as dummy nodes.
-We locate these CR nodes besides the CR nodes with the sane IDs in the CRN built in step 1, and there is connection between the CR node and its dummy node (the one CR node and its dummy node can be seen as two transceivers at one node).
+We prepare a second pool of CR nodes which are identical with the CR nodes prepared in step 1, i.e., identical IDs and channel availabilities on them, we call these CR nodes dummy nodes.
+We locate these CR nodes besides the CR nodes with the same IDs (THAT DOESN'T MAKE SENSE. THEN THE ID IS NOT UNIQUE ANYMORE.) in the CRN built in step 1, and there is connection between the CR node and its dummy node (the one CR node and its dummy node can be seen as two transceivers at one node). (YOU DON'T NEED TO GIVE PRACTICAL MOTIVATION IN A HARDNESS-PROOF.)
 Because of the dummy nodes, the clustering solution which corresponds to $\mathcal{S'}$ doesn't have singleton cluster.
 This transformation requires $2\cdot\sum_{s_i \in \mathcal{S}} |s_i|$ steps.
 %
@@ -1886,13 +1888,13 @@ An example is shown in Table~\ref{no_hard_proof_instance}.
      \toprule
       $\mathcal{N}$  & $\{1,2,3,4,5\}$\\ 
     \cmidrule(r){1-1}\cmidrule(lr){2-2}     
-      $\mathcal{Q}$  & $\{(1),(1, 5),(1,2,4),(2,3), (4)\}$\\ 
+      $\mathcal{Q}$  & $\{ \{1\}, \{1, 5\}, \{1,2,4\}, \{2,3\}, \{4\} \}$\\ 
     \cmidrule(r){1-1}\cmidrule(lr){2-2}     
-      Instance for Weighted k-set packing  & $\{(1),(2,3), (4)\}$\\ 
+      Instance for Weighted k-set packing  & $\{ \{1\}, \{2,3\}, \{4\} \}$\\ 
     \cmidrule(r){1-1}\cmidrule(lr){2-2}
       Instance with dummy elements
       & 
-		$\{(1,1),(2,2,3,3), (4,4)\}$
+		$\{ \, \{(1,1),(1,2)\},\{(2,1),(2,2),$ \\ &$(3,1),(3,2) \}, \{ (4,1), (4,2) \} \, \}$
       \\    \cmidrule(r){1-1}\cmidrule(lr){2-2}
 	Instance for clustering solution (dashed circles are dummy nodes)
 	  &
