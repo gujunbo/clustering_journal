@@ -1793,7 +1793,7 @@ Now, we distinguish between two cases:
 If $\beta$ becomes cluster head, node $\alpha$ is included, the assumption is not true.
 If $\beta$ is not a cluster head, then $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighbouring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
 % (COMMENT: $\beta$ not being a cluster head and $\beta$ not belonging to any cluster is not the same statement!!! ANSWER(Di): I add some more words)
-Till now, when there is no cluster head identified, the unclustered nodes, \ie $\alpha$, $\bata$ form a linked list, where their connectivity degrees monotonically decrease.
+Till now, when there is no cluster head identified, the unclustered nodes, \ie $\alpha$, $\beta$ form a linked list, where their connectivity degrees monotonically decrease.
 But this list will not continue to grow, because the minimum individual connectivity degree is zero, and the length of this list is upper bounded by the total number of nodes in the CRN.
 An example of the formed node series is shown as Figure~\ref{lemma1}.
 
