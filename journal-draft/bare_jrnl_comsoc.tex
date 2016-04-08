@@ -1777,17 +1777,24 @@ In the other way around, forming big cluster which extends a cluster head's neig
 \label{proof_clustering:theorem}
 \begin{proof}
 %Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
-We consider a CRN which can be represented as a connected graph. (COMMENT: Why is it necessarily connected? No special case where the graph has two components?)
-To simplify the discussion, we assume the secondary users have unique individual connectivity degrees. Each user has an identical ID and a social connectivity degree.
-This assumption is fair as the social connectivity degrees and node ID are used to break ties in Algorithm~\ref{alg0}, when the individual connectivity degrees are unique, it is not necessary to use the former two metrics. (COMMENT: What do you mean by breaking ties?? I don't see why your argument holds.)
+We consider a CRN which can be represented as a connected graph.
+% (COMMENT: Why is it necessarily connected? No special case where the graph has two components? ANSWER(Di): It is possible for the graph to have two components. My point it, when theorem works in one component, it works in the complete graph.)
+To simplify the discussion, we assume the secondary users have unique individual connectivity degrees. 
+Each user has an identical ID and a social connectivity degree.
+This assumption is fair as the social connectivity degrees and node ID are used to break ties in Algorithm~\ref{alg0}, when the individual connectivity degrees are unique, it is not necessary to use the former two metrics. 
+%(COMMENT: What do you mean by breaking ties?? I don't see why your argument holds. ANSWER(DI): according to Algorithm 1, to decide whether node $i$ is a cluster head, the comparision on $i$'s certain degrees with its neighbors needs to be made. It is possible that $i$ has the same degree with some neighbors, then we need ID to decide whether $i$ is cluster head.)
 
 %we assume every node has at least one neighbour.
 For the sake of contradiction, let us assume there exist some secondary user $\alpha$ which is not included into any cluster.
-Then there is at least one node $\beta\in \text{Nb}_\alpha$ such that $d_{\alpha} > d_{\beta}$. Now, we distinguish between two cases: 
+Then there is at least one node $\beta\in \text{Nb}_\alpha$ such that $d_{\alpha} > d_{\beta}$. 
+According to Algorithm~\ref{alg0}, $\delta$ is not included in any clusters, because otherwise $d_{\beta} = M$, a large positive integer.
+Now, we distinguish between two cases: 
 %Otherwise, node $\alpha$ is eligible to form a cluster. COMMENT: unnecessary sentence!
-If $\beta$ becomes cluster head, node $\alpha$ is included.
-If $\beta$ is not a cluster head, i.e., $\beta$ is not in any cluster (COMMENT: $\beta$ not being a cluster head and $\beta$ not belonging to any cluster is not the same statement!!!), we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighbouring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
-When no cluster head appears, this series (COMMENT: what is that? sequence?) of nodes with monotonically decreasing connectivity degrees might continue to grow. Finally, it ceases (COMMENT: not a good/suitable word!!) when either the individual connectivity degree is zero, or every secondary node has already been in the series (COMMENT: sequence?) of nodes.
+If $\beta$ becomes cluster head, node $\alpha$ is included, the assumption is not true.
+If $\beta$ is not a cluster head, then $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighbouring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
+% (COMMENT: $\beta$ not being a cluster head and $\beta$ not belonging to any cluster is not the same statement!!! ANSWER(Di): I add some more words)
+Till now, when there is no cluster head identified, the unclustered nodes, \ie $\alpha$, $\bata$ form a linked list, where their connectivity degrees monotonically decrease.
+But this list will not continue to grow, because the minimum individual connectivity degree is zero, and the length of this list is upper bounded by the total number of nodes in the CRN.
 An example of the formed node series is shown as Figure~\ref{lemma1}.
 
 \begin{figure}[ht!]
@@ -1799,11 +1806,19 @@ An example of the formed node series is shown as Figure~\ref{lemma1}.
 \end{figure}
 
 
-Now, we can see that the node $\omega$ is the last element of this sequence.
-As $\omega$ does not have neighboring nodes with lower individual connectivity degree $D$, $\omega$ becomes the cluster head and incorporate all its one-hop neighbours, including the node before (COMMENT: you mean $\alpha$?) it in the series (here we assume that every newly formed cluster has common channels).
-After that, the node that joined a cluster will set its connection degree $D$ to $M$, which enables the node further down in the list (WHAT ??? What is further down and which list??? I cannot follow.) to become a cluster head.
-In this way, all the nodes in the series are in at least one cluster in the inverse sequence (? inverse of?), which contradicts the assumption.
-Meanwhile, through this proof, we know that within at most $N$ steps, all the nodes belong to certain clusters. (COMMENT: No, we don't! Where was that shown?)
+In this example, node $\omega$ is at the tail of the list.
+As $\omega$ does not have neighboring nodes with lower individual connectivity degree, $\omega$ becomes a cluster head.
+Then $\omega$ incorporates all its one-hop neighbours (here we assume that every newly formed cluster has common channels), including the nodes which precede $\omega$ in the list.
+The nodes which join a cluster set their individual connection degrees to $M$, which enables the node immediately precede in the listto become a cluster head.
+In this way, cluster heads are generated from the tail of list to the head of the list, and all the nodes in the list are in at least one cluster, which contradicts the assumption that $\alpha$ is not included in any cluster.
+
+(This paragraph should be moved out of the proof.)
+The procedure of this proof also illustrates the time needed to complete phase I. 
+Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, and constitute one list as that in the above example.
+If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming a cluster member} as one step, then there are $N$ steps for this scenario to complete phase I.
+If one step can be finished within certain time, we can give the maximum time needed to conduct the phase I of ROSS.
+In other scenarios, as Algorithm~\ref{alg0} can be executed concurrently by secondary users which locate in different places, the needed time can be considerably reduced.
+%we know that within at most $N$ steps, all the nodes belong to certain clusters. (COMMENT: No, we don't! Where was that shown?)
 \end{proof}
 
 
