@@ -1955,16 +1955,16 @@ We have crossed the hurdle of finding one polynomial algorithm $\sigma$ which tr
 %Now we look into the step 2 in the reduction.
 When $\mathcal{I}$ is not an instance for weighted k-set packing problem due to the existence of joint sets, then the corresponding cluster strategy is not a solution for the centralized clustering problem, as there are overlapped clusters.
 
-When there are only disjoint sets in an instance $\mathcal{I}$ for weighted k-set packing, the sum weights is identical to the sum of CCCs in the CRN mapped from $\mathcal{I'}$, even $\mathcal{I}$ contains set which only has one element.
-Thus, when a instance $\mathcal{I}$ is one solution and its sum weights is greater than $\lambda$, in the CRN which is mapped from $\mathcal{I'}$, the summed number of CCCs of the clusters is greater than $\lambda$.
-When there is no solution out of set $\mathcal{G}$ for weighted k-set packing,
+When there are only disjoint sets in an instance $\mathcal{I}$ for weighted k-set packing, the sum weight is identical to the sum number of CCCs in the CRN mapped from $\mathcal{I'}$, even $\mathcal{I}$ contains sets which only have one element.
+Thus, when a instance $\mathcal{I}$ for k-set packing problem is true, \ie the sum of weights is greater than $\lambda$, then in the CRN which is mapped from $\mathcal{I'}$, the summed number of CCCs of the clusters is greater than $\lambda$.
+In the other way around, when an instance if false for weighted k-set packing problem,
 %let's assume the maximum sum of weights of all instances is $\sum_{s_i\in \mathcal{S}}\omega(s_i)=\delta < \lambda$. 
 %The dummy set of each $s_i\in \mathcal{S}$ is mapped to cluster of CR nodes.
 %Definition of CRN clustering regulates that the number of common channels is 0 when the cluster has only one node.
 %As to $|s_i|=1$, the mapped cluster has two nodes, with one of them is the dummy CR node.
 %Then number of common channels is on longer 0 but equals to the weight of corresponding set $s_i$.
 %%Meanwhile, the number of common channels of all the other single node cluster is 0.
-the summed number of CCCs of the clusters in the mapped CRN is always smaller than $\lambda$.
+the summed number of CCCs of the clusters in the mapped CRN is smaller than $\lambda$, and there is no clustering solution satisfying the centralized clustering problem.
 
 %When an instance $\mathcal{I}$ contains joint sets, there will be overlapped clusters among the mapped clusters, then neither is solution to their corresponding problem.
 
