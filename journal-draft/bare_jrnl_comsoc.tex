@@ -595,7 +595,8 @@ Clustering is performed periodicity, as secondary users are mobile and the chann
 %\cmidrule(r){1-2}
 Symbol & Description \\
 \midrule
-$\mathcal{N}$  & collection of secondary users, $N=|\mathcal{N}|$\\
+$\mathcal{N}$  & collection of CR users in a CRN\\
+$N$ & number of CR users in a CRN, $N=|\mathcal{N}|$\\
 $\mathcal{K}$	& set of licensed channels\\
 $k(i)$ & the working channel of user $i$\\
 $\text{Nb}(i)$ & the neighborhood of CR node $i$    \\
@@ -700,11 +701,17 @@ When a CR node $i$ is associated to multiple clusters, \ie $i$ has received mult
 We have the following theorem to show that as long as a secondary user's individual connectivity degree is greater than zero, that secondary user will eventually be integrated into a certain cluster, or it eventually becomes a cluster head.
 \begin{theorem}
 \label{clustering:theorem}
-Given a CRN, every secondary user is included into at least one cluster within $N$ steps. (COMMENT: $N$ has to be defined within the theorem!!)
+Given a CRN, it takes at most $N$ steps that every secondary user either becomes cluster head, or gets included into at least one cluster.
 \end{theorem}
-Here, by \textit{step} we mean one application of Algorithm~\ref{clustering:theorem} by a secondary user.
+Here, by \textit{step} we mean one secondary user executing Algorithm~\ref{clustering:theorem} for one time.
 The Proof is in Appendix~\ref{proof_clustering:theorem}.
-According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
+
+The procedure of the proof also illustrates the time needed to conduct Algorithm~\ref{clustering:theorem}. 
+Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute one list as discussed in the example in the proof.
+%
+If one step can be finished within certain time $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
+In other scenarios, as Algorithm~\ref{alg0} can be executed concurrently by secondary users which locate in different places, the needed time can be considerably reduced.
+%According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
 
 %This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
 Let us apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}.
@@ -1809,15 +1816,11 @@ An example of the formed node series is shown as Figure~\ref{lemma1}.
 In this example, node $\omega$ is at the tail of the list.
 As $\omega$ does not have neighboring nodes with lower individual connectivity degree, $\omega$ becomes a cluster head.
 Then $\omega$ incorporates all its one-hop neighbours (here we assume that every newly formed cluster has common channels), including the nodes which precede $\omega$ in the list.
-The nodes which join a cluster set their individual connection degrees to $M$, which enables the node immediately precede in the listto become a cluster head.
+The nodes which join a cluster set their individual connection degrees to $M$, which enables the node immediately precede in the list to become a cluster head.
 In this way, cluster heads are generated from the tail of list to the head of the list, and all the nodes in the list are in at least one cluster, which contradicts the assumption that $\alpha$ is not included in any cluster.
 
-(This paragraph should be moved out of the proof.)
-The procedure of this proof also illustrates the time needed to complete phase I. 
-Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, and constitute one list as that in the above example.
-If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming a cluster member} as one step, then there are $N$ steps for this scenario to complete phase I.
-If one step can be finished within certain time, we can give the maximum time needed to conduct the phase I of ROSS.
-In other scenarios, as Algorithm~\ref{alg0} can be executed concurrently by secondary users which locate in different places, the needed time can be considerably reduced.
+If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming a cluster member} as one step, as the length of the list of secondary users is not larger than $N$, there are $N$ steps for this scenario to form the initial clusters.
+
 %we know that within at most $N$ steps, all the nodes belong to certain clusters. (COMMENT: No, we don't! Where was that shown?)
 \end{proof}
 
@@ -1847,7 +1850,7 @@ To prove that the centralized clustering problem is NP-hard, we reduce the NP-ha
 %\item Step 1: We show the existence a polynomial algorithm $\sigma$, by which any instance $\mathcal{S}$ of a weighted k-set packing can be transformed to a clustering solution $\sigma(\mathcal{S})$ which complies with Definition~\ref{def_centralized_clustering}.
 %\item Step 2: Show that $\mathcal{S}$ is a \textit{yes} instance of weighted k-set packing if and only if $\sigma(\mathcal{S})$ is a \textit{yes} instance for CRN clustering problem.
 %\end{itemize}
-We show the existence of a polynomial-time algorithm $\sigma$ that transforms any instance $\mathcal{I}$ of a weighted $k$-set packing into an instance $\sigma(\mathcal{S})$) of centralized clustering problem.
+We show the existence of a polynomial-time algorithm $\sigma$ that transforms any instance $\mathcal{I}$ of a weighted $k$-set packing into an instance $\sigma(\mathcal{I})$) of centralized clustering problem.
 
 %We continue to use the notation adopted in the problem definition in Section~\ref{centralized_opt}.
 W.l.o.g. let set $\mathcal{G} = \{ 1, \ldots , N \}$.
@@ -1870,12 +1873,12 @@ The weight of these sets remain unchanged, \ie $\omega(s_i') = \omega(s_i)$.
 %After this transmission, there is no set with only one element.
 %This transformation requires $\sum_{s_i \in \mathcal{S}} |s_i|$ steps.
 
-\item Mapping the elements in $\mathcal{I'}$ to CR nodes, and mapping the sets in $\mathcal{I'}$ to clusters.
+\item Mapping the elements in $\mathcal{I'}$ to CR nodes on a two-dimensional Euclidean plane, and mapping the sets in $\mathcal{I'}$ to clusters.
 There is a bijection between the union of sets in $\mathcal{I'}$ to the CRN which consists of the CR nodes, in particular, each element one-to-one corresponds to the CR node whose node ID equals to the element.
 %Given a collection $\mathcal{Q}$, on basis of which we construct a CRN. (I DON'T UNDERSTAND THAT. What do you mean?)
 %We prepare $N$ CR nodes who are labelled from 1 to $N$, put them on a 2 dimension space, and deem a pair of them can communicate if they appear in one same set in $\mathcal{Q}$.
 %We define a set of CR nodes $\mathcal{N} = \{ 1, \ldots , N \}$
-We further regulate that, each set in $\mathcal{I}$ as a corresponding cluster, \ie there is a bijection between a set in $\mathcal{I}$ and a set of node IDs in a cluster, besides, the number of CCCs is equal to the weight of the corresponding set.
+We further regulate that, each set in $\mathcal{I'}$ has a corresponding cluster, \ie there is a bijection between a set in $\mathcal{I'}$ and a set of node IDs in a cluster, besides, the number of CCCs is equal to the weight of the corresponding set.
 
 
 %%There is one situation deserving extra explanation in the second transformation, we adopt one example to discuss it.
@@ -1890,13 +1893,15 @@ We further regulate that, each set in $\mathcal{I}$ as a corresponding cluster, 
 
 \item In this step, we transform the instance $\mathcal{I'}$ to a clustering proposal for CRN.
 %We prepare a second pool of CR nodes which are identical with the CR nodes prepared in step 1, i.e., identical IDs and channel availabilities on them, we call these CR nodes dummy nodes.
-We adjust the locations of the CR nodes which are mapped from the dummy elements in the instance $\mathcal{I'}$, to let them beside the CR nodes whose ID is $N$ smaller.
+We adjust the locations of the CR nodes which are mapped from the dummy elements in the instance $\mathcal{I'}$, and let them beside the CR nodes whose ID is exact $N$ smaller.
 % (THAT DOESN'T MAKE SENSE. THEN THE ID IS NOT UNIQUE ANYMORE.) in the CRN built in step 1, and there is connection between the CR node and its dummy node (the one CR node and its dummy node can be seen as two transceivers at one node). (YOU DON'T NEED TO GIVE PRACTICAL MOTIVATION IN A HARDNESS-PROOF.)
-Because of the dummy nodes, the clustering solution which corresponds to $\mathcal{S'}$ doesn't have singleton cluster.
-This transformation requires $2\cdot\sum_{s_i \in \mathcal{S}} |s_i|$ steps.
+Because of the dummy nodes, the clustering solution which corresponds to $\mathcal{I'}$ doesn't have singleton cluster.
+This transformation requires $2\cdot\sum_{s_i \in \mathcal{I'}} |s_i|$ steps.
 %
-Afterwards, the CR node whose ID is smaller than $N$ and doesn't appear in any set in $\mathcal{S}$ becomes single node clusters, according to the definition of clustering problem in CRN, the number of CCCs in these single node clusters is 0.
-These singleton clusters and the clusters in $\mathcal{S}$ constitute a clustering proposal, and finding these singleton clusters requires at most $N$ steps.
+Now we look back to the elements in $\mathcal{G}$, which don't appear in $\mathcal{I'}$. 
+We one-to-one map these elements to CR nodes, and arbitrarily put these CR nodes in the plane, and these CR nodes become single node clusters.
+According to the definition of clustering problem in CRN, the number of CCCs in these single node clusters is 0.
+These singleton clusters and the clusters mapped from $\mathcal{I'}$ constitute a clustering proposal, and finding these singleton clusters requires at most $N$ steps.
 %We deliberately locate them so that at least one CR node can communicate with the rest of them.
 %map every element in $\mathcal{S}$ into one CR node, \ie each integer corresponds to one CR node, in particular, that integer becomes the CR node's ID.
 %As $s'$ is dummy set which has duplicated elements, we also deploy the the same CR node twice.
@@ -1948,8 +1953,10 @@ An example is shown in Table~\ref{no_hard_proof_instance}.
 
 We have crossed the hurdle of finding one polynomial algorithm $\sigma$ which transforms an instance of weighted k-set packing to an instance of the clustering problem in CRN.
 %Now we look into the step 2 in the reduction.
-As to an instance $\mathcal{I}$ for weighted k-set packing, the sum weights is identical to the sum of CCCs in the CRN mapped from $\mathcal{I'}$, even $\mathcal{I}$ contains set which only has one element.
-Thus, when the instance $\mathcal{S}$ is one solution and its sum weights is greater than $\lambda$, in the CRN which is mapped from $\mathcal{S'}$, the summed number of CCCs of the clusters is greater than $\lambda$.
+When $\mathcal{I}$ is not an instance for weighted k-set packing problem due to the existence of joint sets, then the corresponding cluster strategy is not a solution for the centralized clustering problem, as there are overlapped clusters.
+
+When there are only disjoint sets in an instance $\mathcal{I}$ for weighted k-set packing, the sum weights is identical to the sum of CCCs in the CRN mapped from $\mathcal{I'}$, even $\mathcal{I}$ contains set which only has one element.
+Thus, when a instance $\mathcal{I}$ is one solution and its sum weights is greater than $\lambda$, in the CRN which is mapped from $\mathcal{I'}$, the summed number of CCCs of the clusters is greater than $\lambda$.
 When there is no solution out of set $\mathcal{G}$ for weighted k-set packing,
 %let's assume the maximum sum of weights of all instances is $\sum_{s_i\in \mathcal{S}}\omega(s_i)=\delta < \lambda$. 
 %The dummy set of each $s_i\in \mathcal{S}$ is mapped to cluster of CR nodes.
@@ -1957,9 +1964,9 @@ When there is no solution out of set $\mathcal{G}$ for weighted k-set packing,
 %As to $|s_i|=1$, the mapped cluster has two nodes, with one of them is the dummy CR node.
 %Then number of common channels is on longer 0 but equals to the weight of corresponding set $s_i$.
 %%Meanwhile, the number of common channels of all the other single node cluster is 0.
-the summed number of CCCs of the clusters in the mapped CRN is also smaller than $\lambda$.
+the summed number of CCCs of the clusters in the mapped CRN is always smaller than $\lambda$.
 
-When an instance $\mathcal{I}$ contains joint sets, there will be overlapped clusters among the mapped clusters, then neither is solution to their corresponding problem.
+%When an instance $\mathcal{I}$ contains joint sets, there will be overlapped clusters among the mapped clusters, then neither is solution to their corresponding problem.
 
 Thus, weighted k-set packing can be reduced to clustering problem in CRN, then the latter problem is of NP-hard.
 \end{proof}
