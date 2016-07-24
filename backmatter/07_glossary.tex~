@@ -1,0 +1,222 @@
+\newglossaryentry{gsm}
+{
+    name=GSM,
+    description={global system for mobile communications}
+}
+ 
+ 
+ 
+ \newglossaryentry{5G}
+{
+    name=5G,
+    description={5th generation mobile networks}
+}
+ 
+ 
+ 
+ 
+ 
+
+
+\newglossaryentry{FCC}
+{
+    name=FCC,
+    description={Federal Communications Commission in U.S.}
+}
+ 
+ 
+ \newglossaryentry{CR}
+{
+    name=CR,
+    description={cognitive radio}
+}
+ 
+ 
+ 
+\newglossaryentry{CRN}
+{
+    name=CRN,
+    description={cognitive radio network}
+}
+ 
+ 
+\newglossaryentry{QoS}
+{
+    name=QoS,
+    description={quality of service}
+}
+
+
+\newglossaryentry{ISM}
+{
+    name=ISM band,
+    description={industrial, scientific, and medical}
+}
+
+\newglossaryentry{PDA}
+{
+    name=PDA,
+    description={personal digital assistant}
+}
+
+
+\newglossaryentry{CRAHN}
+{
+    name=CRAHN,
+    description={Cognitive radio ad hoc network}
+}
+
+
+\newglossaryentry{WRAN}
+{
+    name=WRAN,
+    description={Wireless Regional Area Network}
+}
+
+
+\newglossaryentry{WBS}
+{
+    name=WBS,
+    description={White Base Station}
+}
+
+
+\newglossaryentry{ECC}
+{
+    name=ECC,
+    description={Electronic Communications Committee in Europe}
+}
+
+
+\newglossaryentry{CCC}
+{
+    name=CCC,
+    description={common control channel}
+}
+
+
+\newglossaryentry{DCF}
+{
+    name=DCF,
+    description={distributed coordination function}
+}
+
+
+\newglossaryentry{CW}
+{
+    name=CW,
+    description={contention window}
+}
+
+
+\newglossaryentry{NE}
+{
+    name=NE,
+    description={Nash equilibrium}
+}
+
+\newglossaryentry{PoA}
+{
+    name=PoA,
+    description={price of anarchy}
+}
+
+
+\newglossaryentry{RSSI}
+{
+    name=RSSI,
+    description={Received Signal Strength Index}
+}
+
+
+\newglossaryentry{DTV}
+{
+    name=DTV,
+    description={digital TV}
+}
+
+\newglossaryentry{SINR}
+{
+    name=SINR,
+    description={signal-to-noise-and-interference ratio}
+}
+
+\newglossaryentry{MAN}
+{
+    name=PE,
+    description={Metropolitan Area Networks}
+}
+
+\newglossaryentry{LP}
+{
+    name=LP,
+    description={linear programming program}
+}
+
+\newglossaryentry{WitheCat}
+{
+    name=WitheCat,
+    description={Distributed White space channel allocation technology}
+}
+
+\newglossaryentry{COS}
+{
+    name=COS,
+    description={Cost of Oscillation}
+}
+
+\newglossaryentry{ICC}
+{
+    name=ICC,
+    description={inner common channels}
+}
+
+\newglossaryentry{ROSS}
+{
+    name=ROSS,
+    description={Robust Spectrum Sharing}
+}
+
+\newglossaryentry{DGA}
+{
+    name=DGA,
+    description={Distributed Greedy Algorithm}
+}
+
+\newglossaryentry{DFA}
+{
+    name=DFA,
+    description={Distributed Fast Algorithm}
+}
+
+\newglossaryentry{TC}
+{
+    name=TC,
+    description={Time Complexity}
+}
+
+\newglossaryentry{DSR}
+{
+    name=DSR,
+    description={Dynamic Source Routing}
+}
+
+\newglossaryentry{2TDMC}
+{
+    name=2TDMC,
+    description={two-state discrete time Markov chain}
+}
+
+\newglossaryentry{VCap}
+{
+    name=VCap,
+    description={virtual coordinate assignment protocol}
+}
+
+%\newglossaryentry{xxxxxxxx}
+%{
+%    name=xxxxxxxx,
+%    description={}
+%}
+
+
