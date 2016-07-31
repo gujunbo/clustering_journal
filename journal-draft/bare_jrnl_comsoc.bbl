@@ -26,19 +26,28 @@ I.~Mitola, J. and J.~Maguire, G.Q., ``Cognitive radio: making software radios
   more personal,'' \emph{Personal Communications, IEEE}, vol.~6, no.~4, pp. 13
   --18, aug. 1999.
 
+<<<<<<< HEAD
 \bibitem{sensing_survey_2009}
 T.~Yucek and H.~Arslan, ``A survey of spectrum sensing algorithms for cognitive
   radio applications,'' \emph{IEEE Communications Surveys Tutorials}, vol.~11,
   no.~1, pp. 116--130, First 2009.
 
+=======
+>>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
 \bibitem{zhao_survey_DSA_2007}
 Q.~Zhao and B.~Sadler, ``A survey of dynamic spectrum access,'' \emph{Signal
   Processing Magazine, IEEE}, vol.~24, no.~3, pp. 79--89, May 2007.
 
 \bibitem{Sahai_FundamentalDesignTradeoffs2006}
 A.~Sahai, R.~Tandra, S.~M. Mishra, and N.~Hoven, ``Fundamental design tradeoffs
+<<<<<<< HEAD
   in cognitive radio systems,'' in \emph{Proc. of the 1st Intl. workshop on
   technology and policy for accessing spectrum}, ser. ACM TAPAS '06.
+=======
+  in cognitive radio systems,'' in \emph{Proc. of the First International
+  Workshop on Technology and Policy for Accessing Spectrum}, ser. ACM TAPAS
+  '06.
+>>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
 
 \bibitem{coorperativeSensing_Akyildiz11}
 I.~F. Akyildiz, B.~F. Lo, and R.~Balakrishnan, ``Cooperative spectrum sensing
@@ -47,7 +56,12 @@ I.~F. Akyildiz, B.~F. Lo, and R.~Balakrishnan, ``Cooperative spectrum sensing
 
 \bibitem{Sun07_clustering_spectrum_secsing}
 C.~Sun, W.~Zhang, and K.~B. Letaief, ``Cluster-based cooperative spectrum
+<<<<<<< HEAD
   sensing in cognitive radio systems,'' in \emph{proc. of IEEE ICC}, 2007.
+=======
+  sensing in cognitive radio systems,'' in \emph{proc. of IEEE ICC}, 2007, pp.
+  2511--2515.
+>>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
 
 \bibitem{Zhao07}
 J.~Zhao, H.~Zheng, and G.-H. Yang, ``Spectrum sharing through distributed
@@ -85,7 +99,11 @@ Q.~Wu, G.~Ding, J.~Wang, X.~Li, and Y.~Huang,
   ``\BIBforeignlanguage{English}{Consensus-based decentralized clustering for
   cooperative spectrum sensing in cognitive radio networks},''
   \emph{\BIBforeignlanguage{English}{Chinese Science Bulletin}}, vol.~57, no.
+<<<<<<< HEAD
   28-29, 2012.
+=======
+  28-29, pp. 3677--3683, 2012.
+>>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
 
 \bibitem{Kawadia03}
 V.~Kawadia and P.~R. Kumar, ``Power control and clustering in ad hoc
@@ -129,10 +147,13 @@ A.~Asterjadhi, N.~Baldo, and M.~Zorzi, ``A cluster formation protocol for
   cognitive radio ad hoc networks,'' in \emph{Proc. of European Wireless
   Conference 2010}, pp. 955--961.
 
+<<<<<<< HEAD
 \bibitem{Ozger_cluster_crsn_13}
 M.~Ozger and O.~B. Akan, ``Event-driven spectrum-aware clustering in cognitive
   radio sensor networks,'' in \emph{Proc. of IEEE INFOCOM 2013}.
 
+=======
+>>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
 \bibitem{Lazos09}
 L.~Lazos, S.~Liu, and M.~Krunz, ``Spectrum opportunity-based control channel
   assignment in cognitive radio networks,'' \emph{Proc. of SECON '09}, pp. 1
@@ -143,11 +164,14 @@ S.~Liu, L.~Lazos, and M.~Krunz, ``Cluster-based control channel allocation in
   opportunistic cognitive radio networks,'' \emph{IEEE Trans. Mob. Comput.},
   vol.~11, no.~10, pp. 1436--1449, 2012.
 
+<<<<<<< HEAD
 \bibitem{mansoor_15_cluster_robust}
 N.~Mansoor, A.~Islam, M.~Zareei, S.~Baharun, and S.~Komaki, ``Construction of a
   robust clustering algorithm for cognitive radio ad-hoc network,'' in
   \emph{Proc. of CROWNCOM 2015}.
 
+=======
+>>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
 \bibitem{unitDiskModel}
 B.~Clark, C.~Colbourn, and D.~Johnson, ``Unit disk graphs,'' \emph{Annals of
   Discrete Mathematics}, vol.~48, no.~C, pp. 165--177, 1991.
@@ -155,7 +179,11 @@ B.~Clark, C.~Colbourn, and D.~Johnson, ``Unit disk graphs,'' \emph{Annals of
 \bibitem{channelHopping_Rendezvous_2014}
 Y.~Zhang, G.~Yu, Q.~Li, H.~Wang, X.~Zhu, and B.~Wang, ``Channel-hopping-based
   communication rendezvous in cognitive radio networks,'' \emph{IEEE/ACM
+<<<<<<< HEAD
   Transactions on Networking}, vol.~22, no.~3, June 2014.
+=======
+  Transactions on Networking}, vol.~22, no.~3, pp. 889--902, June 2014.
+>>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
 
 \bibitem{Gu_distributed_rendezvous_2014}
 Z.~Gu, Q.-S. Hua, and W.~Dai, ``Fully distributed algorithms for blind
@@ -184,12 +212,20 @@ J.~O. Neel, ``Analysis and design of cognitive radio networks and distributed
 
 \bibitem{Wang_gtc_crn_survey_2010}
 B.~Wang, Y.~Wu, and K.~R. Liu, ``Game theory for cognitive radio networks: An
+<<<<<<< HEAD
   overview,'' \emph{Comput. Netw.}, vol.~54, no.~14, Oct. 2010.
+=======
+  overview,'' \emph{Comput. Netw.}, vol.~54, no.~14, pp. 2537--2561, Oct. 2010.
+>>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
 
 \bibitem{Cloud_Computing_2010}
 B.~J.~S. Chee and C.~Franklin, Jr., \emph{Cloud Computing: Technologies and
   Strategies of the Ubiquitous Data Center}, 1st~ed.\hskip 1em plus 0.5em minus
+<<<<<<< HEAD
   0.4em\relax CRC Press, Inc., 2010.
+=======
+  0.4em\relax Boca Raton, FL, USA: CRC Press, Inc., 2010.
+>>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
 
 \bibitem{Ackermann06purenash}
 H.~Ackermann, H.~Röglin, and B.~Vöcking, ``Pure {N}ash equilibria in
