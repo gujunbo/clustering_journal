@@ -1,7 +1,6 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Related Work}{}% 2
 \BOOKMARK [1][-]{section.3}{System Model}{}% 3
-<<<<<<< HEAD
 \BOOKMARK [1][-]{section.4}{Robust Clustering Problem in CRN}{}% 4
 \BOOKMARK [2][-]{subsection.4.1}{Cluster in CRN}{section.4}% 5
 \BOOKMARK [2][-]{subsection.4.2}{Robust Clustering Problem}{section.4}% 6
@@ -21,21 +20,3 @@
 \BOOKMARK [2][-]{IEEEbiography.1}{Di Li}{IEEEbiography.0}% 20
 \BOOKMARK [2][-]{IEEEbiography.2}{Erwin Fang}{IEEEbiography.0}% 21
 \BOOKMARK [2][-]{IEEEbiography.3}{James Gross}{IEEEbiography.0}% 22
-=======
-\BOOKMARK [2][-]{subsection.3.1}{Clustering}{section.3}% 4
-\BOOKMARK [1][-]{section.4}{Clustering Algorithm: ROSS}{}% 5
-\BOOKMARK [2][-]{subsection.4.1}{Phase I - Cluster Formation}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.2}{Phase II - Membership Clarification}{section.4}% 7
-\BOOKMARK [1][-]{section.5}{Centralized Clustering Scheme}{}% 8
-\BOOKMARK [2][-]{subsection.5.1}{Complexity of Clustering Problem}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.2}{Centralized Optimization}{section.5}% 10
-\BOOKMARK [1][-]{section.6}{Performance Evaluation}{}% 11
-\BOOKMARK [2][-]{subsection.6.1}{Centralized Schemes vs. Decentralized Schemes}{section.6}% 12
-\BOOKMARK [2][-]{subsection.6.2}{Comparison between Distributed Schemes}{section.6}% 13
-\BOOKMARK [1][-]{section.7}{Conclusion}{}% 14
-\BOOKMARK [1][-]{section*.7}{References}{}% 15
-\BOOKMARK [1][-]{IEEEbiography.0}{Biographies}{}% 16
-\BOOKMARK [2][-]{IEEEbiography.1}{Di Li}{IEEEbiography.0}% 17
-\BOOKMARK [2][-]{IEEEbiography.2}{Erwin Fang}{IEEEbiography.0}% 18
-\BOOKMARK [2][-]{IEEEbiography.3}{James Gross}{IEEEbiography.0}% 19
->>>>>>> 5c1871cc0a12f6c7bbf575340c638ef822890f51
