@@ -416,7 +416,7 @@ Thus the cluster robustness discussed in terms of number of CCCs carries little 
 Before mentioning our proposed robust clustering scheme, we will look back briefly on the research about clustering in wireless networks.
 %Prior to the emergence of cognitive radio, clustering has been proposed as an important method to manage network ad-hoc networks~\cite{Kawadia03,Lin97adaptiveclustering,Basagni99}, wireless mesh networks\cite{clustering_mesh_globecom2010} and sensor networks~\cite{Abbasi_survey_07}. 
 In ad-hoc and mesh networks, the major goal of clustering is to maximize connectivity or to improve the performance of routes~\cite{Kawadia03, clustering_mesh_globecom2010}.
-The emphasis of clustering in sensor networks is on network lifetime and coverage~\cite{Abbasi_survey_07}..
+The emphasis of clustering in sensor networks is on network lifetime and coverage~\cite{Abbasi_survey_07}.
 %Few works also take the overhead of clustering into account in ad-hoc network~\cite{clusterRoutingOverhead02infocom, clusterRoutingOverhead_wcnc04}.
 Various clustering schemes are proposed to target different aspects in cognitive radio networks.
 %Work~\cite{Consensus_based_clustering12} improves spectrum sensing ability by grouping the CR users with potentially best detection performance into the same cluster.
@@ -492,21 +492,21 @@ Finally, we conclude our work and point out the direction for the future researc
 %%
 %Primary users access the allocated channels in $\mathcal{F}$ according to its need without sending any explicit notification to secondary users.
 
-We consider a set of cognitive radio users $\mathcal{N}$ and a set of primary users distributed on a two-dimensional Euclidean plane.
+We consider a set of cognitive radio users $\mathcal{N}$ and a set of primary users distributed over a given area.
 %We denote the set of these nodes as $V$ which is partitioned into sets of primary users $V_P$ and secondary users $V_N$, i.e., $V~=~V_P~\dot\cup~V_N$. 
-These users share a number of non-overlapping licensed channels according to the spectrum overlay model. 
-The set of these licensed channels is denoted as $\mathcal{K}$. 
-As secondary users, the CR users are allowed to transmit on a channel $k \in \mathcal{K}$ only if no primary user is detected being accessing channel $k$. 
-Further, we consider a \textit{cognitive radio ad-hoc network} which consists of all secondary users and does not contain any primary user.
-
+%These users share a number of non-overlapping licensed channels according to the spectrum overlay model. 
+The CR users opportunistically a set of licensed channels, which is denoted as $\mathcal{K}$. 
+The CR users are allowed to transmit on channel $k \in \mathcal{K}$ only if no primary user is detected on channel $k$. 
 %The available channels sensed on secondary user $i$ is denoted by $V_i$ and there is $\vert V_i \vert \leq F$. % indicating the total number of 
 %%Each secondary user notifies its neighbours of the sensing result about the available channels.
-
-Secondary users conduct spectrum sensing independently and sequentially on all licensed channels.
+CR users conduct spectrum sensing independently and sequentially on all licensed channels.
 %The sensing duration and frequency on one channel is a research topic~\cite{sensing_survey_2009}, and 
 We assume that every node can detect the presence of primary user on each channel with certain accuracy. \footnote{The spectrum availability can be validated with a certain probability of detection. Spectrum sensing/validation is out of the scope of this paper.}
+We adopt the unit disk model~\cite{unitDiskModel} for the transmission of both primary and CR users.
+%Both primary users and CR users have fixed transmission ranges respectively, and all the channels are regarded to be identical in terms of signal propagation.
+If a CR node locates within the transmission range of primary user which is working, that CR node is not allowed to use the channel which is being used by that primary user.
 %In our system model, we assume that a secondary node $n$ is able to detect for each channel $c$ whether any primary user utilizes $c$.
-We denote $K_i \subseteq \mathcal{K}$ as the set of available channels for $i$.
+As the result of spectrum sensing, $K_i \subseteq \mathcal{K}$ denotes the set of licensed channels which can be used by $i$.
 %
 %One dedicated control channel is assumed to be available for all the secondary nodes to exchange control messages with neighbours in the process of cluster formation.
 %Note that the assumption of dedicated control channel is to simplify the discussion so that we can focus on the kernel of this paper, the robustness of clusters.
@@ -514,17 +514,15 @@ We denote $K_i \subseteq \mathcal{K}$ as the set of available channels for $i$.
 %Over the control channel, secondary users exchange their spectrum sensing results $V_{i}$ with one hop neighbours. 
 %Secondary users have the same transmission range on both licensed and control channel, and the communication links are reciprocal.
 %
-We adopt the unit disk model~\cite{unitDiskModel} for the transmission of both primary and CR users.
-Both primary users and CR users have fixed transmission ranges respectively, and all the channels are regarded to be identical in terms of signal propagation.
-If a CR node locates within the transmission range of primary user $p$, that CR node is not allowed to use the channel $k(p)$.
+
+
 
 We assume that in addition to the licensed channels, there is one dedicated control channel.
-This control channel could be in ISM band or other reserved spectrum which is exclusively used for transmitting control messages.
-Actually, the control messages involved in the clustering process can also be transmitted on the available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., two neighbouring nodes establish communication on the same channel.
-Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ to any $i' \in \text{Nb}(i)$.
-It is available for any secondary node $i$ to exchange control messages with any other node in its neighborhood $\text{Nb}(i)$ during the cluster formation phase.
-$\text{Nb}(i)$ is simply defined as the set of nodes located within the transmission range of $i$. 
-
+This control channel could be one of the ISM bands or other reserved spectrum which is exclusively used for transmitting control messages.
+\footnote{Actually, the control messages involved in the clustering process can also be transmitted on the available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., two neighbouring nodes establish communication on the same channel.}
+Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ to all its one hop neighbors $\text{Nb}(i)$, where $\text{Nb}(i)$ is the neighbors of $i$, and is simply defined as the set of CR nodes located within the transmission range of $i$. 
+%It is available for any secondary node $i$ to exchange control messages with any other node in its neighborhood $\text{Nb}(i)$ during the cluster formation phase.
+In the following, we refer to the word \textit{channel} in general as licensed channel, unless we mention the control channel explicitly. 
 
 
 
@@ -534,14 +532,14 @@ $\text{Nb}(i)$ is simply defined as the set of nodes located within the transmis
 %As to a pair of secondary users, when the Euclidean distance between them is smaller than secondary users' transmission range, we assume the pair is able to communicate on both control channel and licensed channel, and the both are considered to be neighbours of each other. DEFINE DISTANCE! \textcolor{brown}{distance, done}
 %
 If a secondary user $i$ is not in the transmission range of a primary user $p$, $i$ can certainly not detect the presence of $p$.
-As the transmission range of primary users is limited and secondary users are located at different locations, different secondary users may have different views of the spectrum availability, i.e., for any $i, i' \in \mathcal{N}$, $K_i = K_{i'}$ does not necessarily hold.	
+As the transmission range of primary users is limited and secondary users are located at different locations, different secondary users may have different views of the spectrum availability, i.e., for any $i, j \in \mathcal{N}$, $K_i = K_{j}$ does not necessarily hold.	
 %
 %Neighbourhood establishment and maintenance with control channel and according to a neighborhood discovery protocol which is out of scope of our work.
 %While primary users are assumed to be fixed, secondary users can be mobile.
 %Validation refers to the process of ensuring that no primary transmission is actually taking place on the respective channel.
 %All $N$ secondary users constitute an ad-hoc network in which data can be transmitted from one certain node to any other node should available c.hannels are available on the source node, destination node and other intermediate nodes.
 %Communication on licensed channels is possible only when nodes $i, j$ are both located in each other's transmission range and both share a validated licensed channel.
-As the assumed $0/1$ state of connectivity is solely based on the Euclidean distance between secondary users,
+%As the assumed $0/1$ state of connectivity is solely based on the Euclidean distance between secondary users,
 %CRN can be represented by a graph $\mathcal{G}(I,\mathcal{E})$, where $\mathcal{E}=\lbrace(i,j,v) \vert i, j \in \mathcal{N} \wedge v\in V_i \wedge v\in V_j \rbrace$ is wireless link between any secondary node $i$ and its neighbour $j$ with licensed channel $v$.
 %Due to relatively low primary user dynamics, time index is omitted here.
 %%In order to perform clustering, CR users first need to establish their neighborhood.
@@ -549,8 +547,9 @@ As the assumed $0/1$ state of connectivity is solely based on the Euclidean dist
 %% and have at least one common channel with node $i$ each, i.e. $ j\in Nb_i \Rightarrow V_i\cap V_j\neq \emptyset$.
 %%The clustering phase is initialized during which any control message is again conveyed by the control channel.
 %In the rest of this paper, \textit{channel} only refers to the licensed common control channel unless the dedicated control channel is particularly mentioned.
-
-A cognitive radio network can be represented as an undirected graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, i'\} \in E$  if, and only if, there exists a channel $k \in \mathcal{K}$ with $k \in K_{i} \cap K_{i'}$. Note that we consider the channel availability only for \textit{one} snapshot of time. For the rest of this paper the word channel is referred to licensed channel, if the control channel is not explicitly mentioned.
+Then, a cognitive radio network can be represented as a graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, j\} \in E$  if, and only if, there exists a channel $k \in \mathcal{K}$ with $k \in K_{i} \cap K_{i'}$. 
+%Note that the channel availability is that when the clustering process is performed. 
+%For the rest of this paper the word channel is referred to licensed channel, if the control channel is not explicitly mentioned.
 
 
 \section{Robust Clustering Problem in CRN}
