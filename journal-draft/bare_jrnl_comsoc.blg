@@ -153,10 +153,6 @@ I was expecting an "="---line 4207 of file ../backmatter/myrefs.bib
  : // 
  :    year = {2006},
 I'm skipping whatever remains of this entry
-Repeated entry---line 4514 of file ../backmatter/myrefs.bib
- : @inproceedings{clusterRoutingOverhead_wcnc04
- :                                             ,
-I'm skipping whatever remains of this entry
 You're missing a field name---line 4612 of file ../backmatter/myrefs.bib
  : 
  : %note= game and utility
@@ -183,45 +179,45 @@ Warning--missing school in Neel06analysisand
 Warning--empty year in Efficient_broadcasting_gathering_adhoc
 
 Done.
-You've used 39 entries,
+You've used 37 entries,
             4087 wiz_defined-function locations,
-            1083 strings with 15208 characters,
-and the built_in function-call counts, 28894 in all, are:
-= -- 2288
-> -- 679
-< -- 254
-+ -- 368
-- -- 111
-* -- 1393
-:= -- 4246
-add.period$ -- 78
-call.type$ -- 39
-change.case$ -- 39
-chr.to.int$ -- 594
-cite$ -- 51
-duplicate$ -- 2099
-empty$ -- 2373
-format.name$ -- 148
-if$ -- 6790
+            1068 strings with 14813 characters,
+and the built_in function-call counts, 26110 in all, are:
+= -- 2064
+> -- 624
+< -- 208
++ -- 338
+- -- 108
+* -- 1259
+:= -- 3892
+add.period$ -- 74
+call.type$ -- 37
+change.case$ -- 37
+chr.to.int$ -- 471
+cite$ -- 49
+duplicate$ -- 1937
+empty$ -- 2175
+format.name$ -- 143
+if$ -- 6121
 int.to.chr$ -- 0
-int.to.str$ -- 39
-missing$ -- 340
-newline$ -- 140
-num.names$ -- 39
-pop$ -- 798
+int.to.str$ -- 37
+missing$ -- 322
+newline$ -- 134
+num.names$ -- 37
+pop$ -- 758
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2239
+skip$ -- 2026
 stack$ -- 0
-substring$ -- 1403
-swap$ -- 1696
-text.length$ -- 56
+substring$ -- 1126
+swap$ -- 1522
+text.length$ -- 51
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 39
+type$ -- 37
 warning$ -- 12
-while$ -- 113
-width$ -- 41
-write$ -- 381
-(There were 35 error messages)
+while$ -- 104
+width$ -- 39
+write$ -- 360
+(There were 34 error messages)

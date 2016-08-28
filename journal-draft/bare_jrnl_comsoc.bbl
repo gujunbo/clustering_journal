@@ -92,38 +92,24 @@ B.~E. Ali~Jorio, Sanaa El~Fkihi and D.~Aboutajdine, ``An energy-efficient
 V.~Kawadia and P.~R. Kumar, ``Power control and clustering in ad hoc
   networks,'' in \emph{Proc. of INFOCOM '03}, 2003, pp. 459--469.
 
-\bibitem{Lin97adaptiveclustering}
-C.~R. Lin and M.~Gerla, ``Adaptive clustering for mobile wireless networks,''
-  \emph{IEEE Journal on Selected Areas in Communications}, vol.~15, pp.
-  1265--1275, 1997.
-
-\bibitem{Basagni99}
-S.~Basagni, ``Distributed clustering for ad hoc networks,'' \emph{Proc. of
-  I-SPAN '99}, pp. 310 --315, 1999.
-
-\bibitem{clusterRoutingOverhead02infocom}
-J.~Sucec and I.~Marsic, ``Clustering overhead for hierarchical routing in
-  mobile ad hoc networks,'' in \emph{Proc. of IEEE INFOCOM 2002}, vol.~3, 2002,
-  pp. 1698 -- 1706 vol.3.
-
-\bibitem{clusterRoutingOverhead_wcnc04}
-H.~Wu and A.~Abouzeid, ``Cluster-based routing overhead in networks with
-  unreliable nodes,'' in \emph{Proceedings of IEEE WCNC 2004}, vol.~4, march
-  2004, pp. 2557 -- 2562 Vol.4.
+\bibitem{clustering_mesh_globecom2010}
+M.~Krebs, A.~Stein, and M.~A. Lora, ``Topology stability-based clustering for
+  wireless mesh networks,'' in \emph{Global Telecommunications Conference
+  (GLOBECOM 2010), 2010 IEEE}, Dec 2010, pp. 1--5.
 
 \bibitem{Chen07}
 T.~Chen, H.~Zhang, G.~Maggio, and I.~Chlamtac, ``Cogmesh: A cluster-based
   cognitive radio network,'' \emph{Proc. of DySPAN '07}.
+
+\bibitem{Affinity_clustering_09icccn}
+K.~Baddour, O.~Ureten, and T.~Willink, ``Efficient clustering of cognitive
+  radio networks using affinity propagation,'' in \emph{Proc. of ICCCN 2009}.
 
 \bibitem{TWC2012_cooperative_communication}
 D.~Wu, Y.~Cai, L.~Zhou, and J.~Wang, ``A cooperative communication scheme based
   on coalition formation game in clustered wireless sensor networks,''
   \emph{IEEE Transactions on Wireless Communications,}, vol.~11, no.~3, pp.
   1190 --1200, march 2012.
-
-\bibitem{Affinity_clustering_09icccn}
-K.~Baddour, O.~Ureten, and T.~Willink, ``Efficient clustering of cognitive
-  radio networks using affinity propagation,'' in \emph{Proc. of ICCCN 2009}.
 
 \bibitem{cluster_EW10}
 A.~Asterjadhi, N.~Baldo, and M.~Zorzi, ``A cluster formation protocol for
@@ -196,6 +182,10 @@ B.~J.~S. Chee and C.~Franklin, Jr., \emph{Cloud Computing: Technologies and
 H.~Ackermann, H.~Röglin, and B.~Vöcking, ``Pure {N}ash equilibria in
   player-specific and weighted congestion games,'' \emph{Theoretical Computer
   Science}, vol. Vol. 410, no.~17, pp. 1552 -- 1563, 2009.
+
+\bibitem{Basagni99}
+S.~Basagni, ``Distributed clustering for ad hoc networks,'' \emph{Proc. of
+  I-SPAN '99}, pp. 310 --315, 1999.
 
 \bibitem{complexity_aggregation_2011}
 X.-Y. Li, Y.~Wang, and Y.~Wang, ``Complexity of data collection, aggregation,
