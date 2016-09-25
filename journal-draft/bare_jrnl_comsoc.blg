@@ -173,6 +173,7 @@ Warning--empty year in Affinity_clustering_09icccn
 Warning--empty year in cluster_EW10
 Warning--empty year in Ozger_cluster_crsn_13
 Warning--empty year in mansoor_15_cluster_robust
+Warning--empty year in Li11_ROSS
 Warning--empty year in Gu_distributed_rendezvous_2014
 Warning--empty year in game_for_communication_01
 Warning--missing school in Neel06analysisand
@@ -181,43 +182,43 @@ Warning--empty year in Efficient_broadcasting_gathering_adhoc
 Done.
 You've used 37 entries,
             4087 wiz_defined-function locations,
-            1068 strings with 14813 characters,
-and the built_in function-call counts, 26110 in all, are:
-= -- 2064
-> -- 624
-< -- 208
-+ -- 338
-- -- 108
-* -- 1259
-:= -- 3892
+            1066 strings with 14801 characters,
+and the built_in function-call counts, 25814 in all, are:
+= -- 2033
+> -- 616
+< -- 203
++ -- 334
+- -- 107
+* -- 1243
+:= -- 3849
 add.period$ -- 74
 call.type$ -- 37
 change.case$ -- 37
-chr.to.int$ -- 471
-cite$ -- 49
-duplicate$ -- 1937
-empty$ -- 2175
-format.name$ -- 143
-if$ -- 6121
+chr.to.int$ -- 459
+cite$ -- 50
+duplicate$ -- 1921
+empty$ -- 2168
+format.name$ -- 142
+if$ -- 6050
 int.to.chr$ -- 0
 int.to.str$ -- 37
-missing$ -- 322
+missing$ -- 320
 newline$ -- 134
 num.names$ -- 37
-pop$ -- 758
+pop$ -- 759
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2026
+skip$ -- 2006
 stack$ -- 0
-substring$ -- 1126
-swap$ -- 1522
-text.length$ -- 51
+substring$ -- 1097
+swap$ -- 1495
+text.length$ -- 50
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 37
-warning$ -- 12
-while$ -- 104
+warning$ -- 13
+while$ -- 101
 width$ -- 39
-write$ -- 360
+write$ -- 358
 (There were 34 error messages)

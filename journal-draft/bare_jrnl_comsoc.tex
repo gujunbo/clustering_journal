@@ -364,10 +364,10 @@ cognitive radio, robust cluster, game theory, congestion game, distributed, cent
 Licensed users access the spectrum allocated to them whenever there is information to be transmitted.
 In contrast, as one way, unlicensed users can access the spectrum via opportunistic spectrum access, \ie they access the licensed spectrum only after validating the channel is unoccupied by licensed users, where spectrum sensing~\cite{sensing_survey_2009} plays an important role in this process.
 %
-In this hierarchical spectrum access model~\cite{zhao_survey_DSA_2007}, the licensed users are also called primary users (PU), while the unlicensed users are referred to as secondary users and constitute the cognitive radio networks (CRN).
+In this hierarchical spectrum access model~\cite{zhao_survey_DSA_2007}, the licensed users are also called primary users (PU), while the unlicensed users are referred to as secondary users and constitute a so called cognitive radio network (CRN).
 %
 %cluster
-Regarding to the operation of CRN, efficient spectrum sensing is identified to be critical for a smooth operation of a cognitive radio network~\cite{Sahai_FundamentalDesignTradeoffs2006}.
+Regarding the operation of CRN, efficient spectrum sensing is identified to be critical for a smooth operation of a cognitive radio network~\cite{Sahai_FundamentalDesignTradeoffs2006}.
 This can be achieved by cooperative spectrum sensing of multiple secondary users, which has been shown to cope effectively with noise uncertainty and channel fading, thus remarkably improving the sensing accuracy~\cite{coorperativeSensing_Akyildiz11}.
 Collaborative sensing relies on the consensus of CR users\footnote{The terms user and node appear interchangeably in this paper. In particular, user is adopted when its networking or cognitive ability are discussed or stressed, while we refer node typicallly in the context of the topology.} within a certain area, in this regard, clustering is regarded as an effective method to realize cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing, Zhao07}.
 % ... decreases considerably the negative probability due to the random channel effects like fading and shadowing.
@@ -404,8 +404,8 @@ In this paper the robustness of a cluster against primary users is synonymous wi
 %It is easy to see that forming clusters with different neighbours leads to different amount of CCCs in the clusters.
 %As a result, how to form the clusters plays an important role on the robustness of clusters in CRN.
 %Furthermore, the clustering algorithm also determines the connectivity between several clusters which ultimately determines the robustness of the entire network on the respect of connectivity. 
-There is a trade-off between CCCs in the formation process and the collaborative sensing performance, as less members in a cluster yield in general a higher number of CCCs while this reduces the sensing accuracy~\cite{Consensus_based_clustering12}. 
-In addition, there are other reasons that motivate clusters with more members.
+In the formation process, there is a trade-off between CCCs and the collaborative sensing performance, as less members in a cluster yield in general a higher number of CCCs while this reduces the sensing accuracy~\cite{Consensus_based_clustering12}. 
+In addition, there are other reasons that motivate clusters to have more members.
 For example, instead of less members, the proper cluster size results in smaller power consumption~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 %
 %To solely pursue cluster robustness against the primary users' activity, \ie to achieve more common channels within clusters, the ultimately best clustering strategy is ironically that every node constitutes one cluster (called as \textit{singleton cluster} in this paper).
@@ -413,7 +413,7 @@ For example, instead of less members, the proper cluster size results in smaller
 %Apparently this contradicts our motivation of proposing cluster in cognitive radio network to enable cooperative decision making.
 Thus the cluster robustness discussed in terms of number of CCCs carries little meaning when the sizes of formed clusters are not given consideration.
 
-Before mentioning our proposed robust clustering scheme, we will look back briefly on the research about clustering in wireless networks.
+There has been a lot of research done for clustering in wireless networks.
 %Prior to the emergence of cognitive radio, clustering has been proposed as an important method to manage network ad-hoc networks~\cite{Kawadia03,Lin97adaptiveclustering,Basagni99}, wireless mesh networks\cite{clustering_mesh_globecom2010} and sensor networks~\cite{Abbasi_survey_07}. 
 In ad-hoc and mesh networks, the major goal of clustering is to maximize connectivity or to improve the performance of routes~\cite{Kawadia03, clustering_mesh_globecom2010}.
 The emphasis of clustering in sensor networks is on network lifetime and coverage~\cite{Abbasi_survey_07}.
@@ -425,8 +425,8 @@ Various clustering schemes are proposed to target different aspects in cognitive
 The clustering schemes proposed in~\cite{Zhao07, Chen07,Affinity_clustering_09icccn} form clusters which meet the basic condition, having CCC in every cluster.
 Clustering scheme~\cite{Consensus_based_clustering12} improves spectrum sensing accuracy.
 %Clustering scheme~\cite{clustering_globecom11} obtains the best cluster size which minimizes power consumption caused by communication within and among clusters.
-\cite{clustering_globecom11, TWC2012_cooperative_communication} target on the QoS poisoning and energy efficiency.
-\cite{cluster_EW10} exploits the multiple CCCs in clusters after forming them.
+\cite{clustering_globecom11, TWC2012_cooperative_communication} target on the QoS provisioning and energy efficiency.
+\cite{cluster_EW10} forms clusters to coordinate the control channel usage within one cluster.
 A event-driven clustering scheme is proposed for cognitive radio sensor network in \cite{Ozger_cluster_crsn_13}.
 % optimize the sizes of the formed clusters to decrease power consumption.
 %the channel available to the largest set of one-hop neighbours is selected as common channel which yields a partition of the CRN into clusters. 
@@ -440,17 +440,17 @@ A event-driven clustering scheme is proposed for cognitive radio sensor network 
 %The node with the maximum number of common channels within its k-hop neighborhood is chosen as cluster head, but how to avoid one node appearing in multiple clusters is not given consideration.
 %A event-driven clustering scheme is proposed for cognitive radio sensor network in \cite{Ozger_cluster_crsn_13}.
 %The cluster heads are selected according to node degree, spectrum availability and the distance to the sink, and the clusters are no longer available after the event ends.
-These schemes do not provide robustness to formed clusters against primary users. 
+No one among the above mentioned schemes provides the robustness to the formed clusters against primary users. 
 
 
 %Forming robust clusters is considered in~\cite{LIU_TMC11_2, mansoor_15_cluster_robust}.
 
-A clustering scheme (denoted by SOC) which is commited to generate robust clusters against primary users is proposed in~\cite{LIU_TMC11_2}.
+A clustering scheme (denoted by SOC) which is designed to generate robust clusters against primary users is proposed in~\cite{LIU_TMC11_2}.
 SOC involves three phases of distributed executions.
-In the first phase, every secondary user forms clusters with some one-hop neighbors, in the second and third phase, each secondary user seeks to either merger other clusters around it, or join one of them.
+In the first phase, every secondary user forms clusters with some one-hop neighbors, in the second and third phase, each secondary user seeks to either merge other clusters around it, or join one of them.
 The metric adopted by every secondary user in the three phases is the product of the the number of CCCs and cluster size (the number of secondary users in the cluster).
-To the best of our knowledge, SOC is the only work emphasizing on the robustness of clustering structure among the related works. 
-But this robust clustering scheme is inherently flawed.
+%To the best of our knowledge, SOC is the only work emphasizing on the robustness of clustering structure among the related works. 
+But this robust clustering scheme has some drawbacks.
 Although the adopted metric covers both cluster size and the number of CCCs, the formation of certain clusters may be easily dominated by only one factor, e.g. a node which is able to use many channels will exclude its neighbor and form a cluster by itself.
 %emphasis on improving the numbers of common channels within clusters, in order to strengthening robustness of clusters, but the perused metric is not examined or proved to be able to maintain cluster structure under vigorous intensity of primary users’ activities.
 %The authors consider the balance between the number of idle common channels within cluster and cluster size and propose an algorithm that increases the number of common channels within clusters. 
@@ -458,17 +458,24 @@ Although the adopted metric covers both cluster size and the number of CCCs, the
 %One drawback of this scheme is, in order to increase the number of common channels within clusters, the scheme excludes certain CR nodes from the formed clusters, so that isolated nodes have to form clusters themselves. 
 In addition, this scheme leads to the high variance of the cluster sizes, which is not desired in certain applications as discussed in~\cite{clustering_globecom11, cluster_EW10}.
 %The first two propose a distributed scheme where the metric is the product of cluster size and the number of common control channels.
-\cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters, although the authors claim robustness is one goal to achieve, they actually uphold the minimum number of formed clusters.
+\cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters, although the authors claim robustness is one goal to achieve, the minimum number of clusters is pursued.
+\cite{Li11_ROSS} proposes a distributed clustering scheme under the game theoretic framework. 
+Compared with the clustering schemes introduced so far, the clusters are formed in shorter time and posses more CCCs within and among clusters.
+But this scheme doesn't consider the the factor of size in the algorithm design.
 
 
-In this paper, a decentralized clustering approach ROSS (RObust Spectrum Sharing) is proposed to cover the issues of robustness and size control of clusters in CRN.
-ROSS is able to form clusters with desired sizes, and when compared with previous works, ROSS involves smaller signalling overhead, and the generated clusters are significantly more robust against the primary users which appear after the clusters are formed.
+In this paper we will give a comprehensive analysis of the robust clustering problem and propose solutions. 
+We stick to the motivation of forming robust clusters in CRN \ie let more CR users benefited from the cooperative decision making which is due to the clusters. 
+We propose both centralized and distributed clustering schemes, which result in more CR users in the clusters composed with multiple CR users, not only when the clusters are just formed, but also afterwards when the primary users' activity changes.
+Besides, both centralized and distributed schemes take the cluster size into consideration, and both can control the sizes of the formed clusters to certain extent.
+In particular, the decentralized clustering approach ROSS (RObust Spectrum Sharing) is able to form clusters with desired sizes.
+When compared with other distributed works, ROSS involves smaller signaling overhead and the generated clusters are significantly more robust against the primary users which appear after the clusters are formed.
 %thesis
 %and the generated clusters are more robust than the other clustering scheme which has claims on cluster robustness, \ie more secondary users residing in clusters against increasing influence from primary users.
 %
 %ROSS selects cluster head through coordination within its neighborhood, and then cluster membership is decided locally and its fast convergence is proved under game theoretic framework. 
 %For our scheme we can prove convergence in cluster formation phase and resolve ambiguities with respect to cluster membership in a game-theoretic setting. 
-We also propose the light weighted versions of ROSS, which involve less overheads and thus are more suitable for fast deployment.
+We also propose the light weighted versions of ROSS, which involve less overheads and thus are more suitable for the scenario where fast deployment is desired.
 Throughout this paper, we refer the clustering schemes on the basis of ROSS as \textit{variants of ROSS}, \ie the fast versions, or that with size control feature.
 
 The rest of paper is organized as follows. 
@@ -477,7 +484,7 @@ Then the formal description of robust clustering problem in CRN and the properti
 The centralized and distributed solutions are introduced in Section~\ref{centralized_opt} and \ref{ross} respectively.
 %The clustering problem is given through analysis and a centralized scheme is proposed in section~\ref{centralized_scheme}.
 Extensive performance evaluation is presented in Section~\ref{performance}.
-Finally, we conclude our work and point out the direction for the future research in Section~\ref{conclusion}.
+Finally, we conclude our work and point out the direction for future research in Section~\ref{conclusion}.
 
 
 
@@ -495,16 +502,16 @@ Finally, we conclude our work and point out the direction for the future researc
 We consider a set of cognitive radio users $\mathcal{N}$ and a set of primary users distributed over a given area.
 %We denote the set of these nodes as $V$ which is partitioned into sets of primary users $V_P$ and secondary users $V_N$, i.e., $V~=~V_P~\dot\cup~V_N$. 
 %These users share a number of non-overlapping licensed channels according to the spectrum overlay model. 
-The CR users opportunistically a set of licensed channels, which is denoted as $\mathcal{K}$. 
+The CR users use a set of licensed channels opportunistically, which is denoted as $\mathcal{K}$. 
 The CR users are allowed to transmit on channel $k \in \mathcal{K}$ only if no primary user is detected on channel $k$. 
 %The available channels sensed on secondary user $i$ is denoted by $V_i$ and there is $\vert V_i \vert \leq F$. % indicating the total number of 
 %%Each secondary user notifies its neighbours of the sensing result about the available channels.
 CR users conduct spectrum sensing independently and sequentially on all licensed channels.
 %The sensing duration and frequency on one channel is a research topic~\cite{sensing_survey_2009}, and 
-We assume that every node can detect the presence of primary user on each channel with certain accuracy. \footnote{The spectrum availability can be validated with a certain probability of detection. Spectrum sensing/validation is out of the scope of this paper.}
+We assume that every node can detect the presence of a primary user on each channel with certain accuracy. \footnote{The spectrum availability can be validated with a certain probability of detection. Spectrum sensing/validation is out of the scope of this paper.}
 We adopt the unit disk model~\cite{unitDiskModel} for the transmission of both primary and CR users.
 %Both primary users and CR users have fixed transmission ranges respectively, and all the channels are regarded to be identical in terms of signal propagation.
-If a CR node locates within the transmission range of primary user which is working, that CR node is not allowed to use the channel which is being used by that primary user.
+If a CR node locates within the transmission range of an active primary user, that CR node is not allowed to use the channel which is being used by that primary user.
 %In our system model, we assume that a secondary node $n$ is able to detect for each channel $c$ whether any primary user utilizes $c$.
 As the result of spectrum sensing, $K_i \subseteq \mathcal{K}$ denotes the set of licensed channels which can be used by $i$.
 %
@@ -531,8 +538,8 @@ In the following, we refer to the word \textit{channel} in general as licensed c
 
 %As to a pair of secondary users, when the Euclidean distance between them is smaller than secondary users' transmission range, we assume the pair is able to communicate on both control channel and licensed channel, and the both are considered to be neighbours of each other. DEFINE DISTANCE! \textcolor{brown}{distance, done}
 %
-If a secondary user $i$ is not in the transmission range of a primary user $p$, $i$ can certainly not detect the presence of $p$.
-As the transmission range of primary users is limited and secondary users are located at different locations, different secondary users may have different views of the spectrum availability, i.e., for any $i, j \in \mathcal{N}$, $K_i = K_{j}$ does not necessarily hold.	
+If a secondary user $i$ is not in the transmission range of an active primary user $p$, $i$ can certainly not detect the presence of $p$.
+As the transmission range of primary users is limited and secondary users have different locations, different secondary users may have different views of the spectrum availability, i.e., for any $i, j \in \mathcal{N}$, $K_i = K_{j}$ does not necessarily hold.	
 %
 %Neighbourhood establishment and maintenance with control channel and according to a neighborhood discovery protocol which is out of scope of our work.
 %While primary users are assumed to be fixed, secondary users can be mobile.
@@ -564,18 +571,18 @@ In this section, we present the definition of cluster in the context of CRNs, de
 %\item Cluster head $H_C$ is able to communicate with any cluster member \textit{directly}, \ie for any cluster member $i\in C$, there is $i\in \texttt{Nb}_{H_C}$.
 %\item There exists as least one common control channel in the cluster, \ie $\cap_{i\in C} V_i \neq \emptyset$.
 %\end{itemize}
-A cluster $C \subseteq \mathcal{N}$ is a set of secondary nodes consisting of a cluster head $h_C$ and a number of cluster members.
+A cluster $C$ is a set of secondary nodes consisting of a cluster head $h_C$ and a number of cluster members.
 The cluster head is able to communicate with any cluster member directly.
 In other terms, for any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds.
 
 %A cluster head coordinates the activities of cluster members, \ie it notifies all the members to vacate a channel if a primary user's presence is detected by one cluster member. Further it also notifies the members to use a different common control channel for payload communication. %(\textcolor{red}{(Not clear what the meaning of payload communication is. Why not omitting payload here?)} \textcolor{brown}{payload communication happens when the clusters are formed, and start to support network functionalities, e.g. routing. Thus I think it is necessary to leave it here.}
 
 
-Cluster is denoted as $C(i)$ when its cluster head is $i$.
+In this paper, sometimes we need to mention a cluster with the information of its cluster head \ie a cluster is denoted as $C(i)$ where $i$ is its cluster head.
 Cluster size of $C(i)$ is written as $|C(i)|$.
 %, for the sake of concision, $C_i$ is also named as cluster $i$ in the following part of this paper.
 $ K(C) = \cap_{i\in C} K_i$, $K(C)$ denotes the set of common control channels in cluster $C$.
-Clustering is performed periodicity, as secondary users are mobile and the channel availability on secondary users are changing as primary users change their operation state.%, or the most current clusters can not maintain due to lack of CCCs when primary users' operation is intense.
+Clustering is performed periodically, as secondary users are mobile and the channel availability on secondary users are changing as primary users change their operation state.%, or the most current clusters can not maintain due to lack of CCCs when primary users' operation is intense.
 
 
 
@@ -1040,11 +1047,11 @@ The pseudo code of this algorithm is given as Algorithm~\ref{alg4}.
 %To conduct Algorithm~\ref{alg4}, debatable node $i$ needs to know the necessary information about its claiming clusters, \ie $K(C)$ (the set of available channels in cluster $C$), $K(h_C)$ (the set of available channels on $C$'s cluster head $h_C$) and $|C|, C\in S_i$ (sizes of $i$'s claiming clusters).
 After deciding its membership, debatable node $i$ notifies all its claiming clusters of its choice, and the claiming clusters from which node $i$ leaves also broadcast their new cluster composition and the spectrum availability on all their cluster members.
 
-The autonomous decisions of the debatable CR nodes' raise the concern on the endless chain effect.
-For instance, 
+The autonomous decisions made by the debatable CR nodes raise the concern on the endless chain effect in the membership clarification phase.
+A debatable node's choice is dependent on the compositions of its claiming clusters, which can be changed by other debatable nodes' decisions.
+As a result, the debatable node which makes decision first may change its original choice, and this process may go on forever.
+To erase this concern, we formulate the process of membership clarification into a game, where a equilibrium is reached after a finite number of best response updates made by the debatable nodes.
 
-debatable nodes may never stop changing their affiliations, because a debatable nodes' choice is based on the members of its claiming clusters, and the members are changed by other debatable nodes' choices.
-%In a word, debatable nodes' choices on cluster affiliation are dependent on each other, thus there could be an infinite chain effect in the process of membership clarification.
 %%  update their choices based on other debatable nodes' choices, and this process 
 %%%thesis needs1
 %For example, assuming one debatable node $i$ locates in cluster $C\in S_i$, and $C$ has more than one debatable node except for $i$.
@@ -1060,7 +1067,6 @@ debatable nodes may never stop changing their affiliations, because a debatable 
 %Thence, we need to answer this concern before implementing ROSS-DGA.
 %%, and if it converges, how good such a distributed scheme performs. 
 
-In the following we show that the process of membership clarification can be formulated into a game, and a equilibrium is reached after a finite number of best response updates made by the debatable nodes.
 
 \subsubsection{Bridging ROSS-DGA with Congestion Game}
 \label{clustering:phaseII:game}
@@ -1165,7 +1171,7 @@ As shown in Figure~\ref{number_clusters_scale}, the cluster heads take up only 3
 
 \subsubsection{Distributed Fast Algorithm (DFA)}
 %The convergence speed of DGA is large recalling that the number of steps is of $\mathcal{O}(N^3)$.
-We propose a faster version of ROSS, ROSS-DFA, which differs from ROSS-DGA in the second phase.
+On the basis of ROSS-DGA, we propose a faster version ROSS-DFA which differs from ROSS-DGA in the second phase.
 With ROSS-DFA, debatable nodes decide their respective cluster heads once.
 The debatable nodes consider their claiming clusters to include all their debatable nodes, thus the membership of claiming clusters is static and all the debatable nodes can make decision simultaneously without considering the change of membership of their claiming clusters.
 As ROSS-DFA is quicker than ROSS-DGA, the former is especially suitable for the CRN where the channel availability changes dynamically and re-clustering is necessary.
@@ -1253,7 +1259,7 @@ The schemes involved in the simulation are listed as follows,
 \begin{itemize}
 \item ROSS without size control, \ie ROSS-DGA and ROSS-DFA.
 \item ROSS-$\delta$-DGA and ROSS-$\delta$-DFA, which are the variants of ROSS with the size control feature.
-$\delta$ is the desired cluster size.
+$\delta$ is the preferred cluster size.
 \item SOC~\cite{LIU_TMC11_2}, a distributed clustering scheme pursuing cluster robustness.
 \item Centralized robust clustering scheme. 
 The formulated optimization is an integer linear optimization problem, which is solved by the function $bintprog$ provided in MATLAB.
@@ -1363,7 +1369,7 @@ As to the variants of ROSS, we notice that the greedy mechanism increases CCCs i
 Figure~\ref{size_control} depicts the empirical cumulative distribution of the CRs residing in certain sized clusters, from which we have two conclusions.
 The first, SOC generates more unclustered CR nodes than other schemes.
 The centralized schemes produce no unclustered CR nodes, ROSS-DGA/DFA generate 3\% unclustered nodes, as comparison, 10\% of nodes are unclustered when applying SOC.
-ROSS-DGA and ROSS-DFA with size control feature generate 5\%-8\% unclustered CR nodes, which is due to the cluster pruning procedure (discussed in section~\ref{cluster_pruning}).
+ROSS-DGA and ROSS-DFA with size control feature generate 5\%-8\% unclustered CR nodes, which is due to the cluster pruning procedure (discussed in section~\ref{ross_p1_guarantee_ccc} and section~\ref{ross_p2_cluster_pruning}).
 Second, the centralized schemes and cluster size control mechanism of RPSS generate clusters which satisfy the requirement on cluster size strictly.
 %When the desired size is 2, each generated cluster has two members, whereas when the desired size is 3, about 15\% CRs are formed into 2 node clusters.
 As to ROSS-DFG and ROSS-DFA with size control feature, CR nodes reside averagely in clusters whose sizes are 2, 3 and 4.
@@ -1428,7 +1434,7 @@ In this section we compare the overhead of signalling involved in different clus
 %In order to highlight the amount of control signalling only for clustering, 
 We omit the control messaged involved in neighbourhood discovery, which is the premise for any clustering scheme.
 According to~\cite{complexity_aggregation_2011}, the message complexity is defined as the number of messages used by all nodes.
-To have the same criterion to compare, we count \textit{the number of transmissions of control messages}, without distinguishing they are sent with broadcast or unicast.
+To have the same metric to compare, we count \textit{the number of transmissions of control messages}, without distinguishing they are sent with broadcast or unicast.
 This metric is synonymous with \textit{the number of updates} discussed in Section~\ref{ross}.
 
 As to ROSS, the control messages are generated in both phases.
@@ -1510,7 +1516,7 @@ Figure~\ref{control_msg} shows the number of transmissions of SOC, the upper bou
  Scheme 				&Message Complexity 	&   Quantitative number of messages 		& Content of message (size of message) 									\\ \hline
  ROSS-DGA, ROSS-$\delta$-DGA 	&$\mathcal{O}(N^3)$ (worst case)		&   $h+2*m^2d$ (upper bound)  				&   \multirow{2}{*}{\parbox{6.4cm}{Cluster head broadcasts cluster composition ($|C(i)|* |\mathcal{K}|$ bytes). Cluster members broadcast the manipulated new individual connectivity degree (1 byte)}}								\\ \cline{1-3}
  ROSS-DFA, ROSS-$\delta$-DFA 	&$\mathcal{O}(N)$ (worst case)		&   $h + 2m$	 (upper bound) 					& 	      												\\ \hline
- SOC 					&$\mathcal{O}(N)$		&   $3*N$									& $C(i)$ ($|C(i)|$ bytes), $K(C(i))$ ($|\mathcal{P}|$ bytes), $i\in \mathcal{N}$						\\ \hline
+ SOC 					&$\mathcal{O}(N)$		&   $3*N$									& $C(i)$ ($|C(i)|$ bytes) and $K(C(i))$ ($|\mathcal{P}|$ bytes), $i\in \mathcal{N}$						\\ \hline
  Centralized			&$\mathcal{O}(N)$			&	$h + m + N$ (upper bound)~\cite{Efficient_broadcasting_gathering_adhoc}		& $\{C\}$ ($|C_i|*N$ bytes)        					\\ \hline
 \end{tabular}
 }
@@ -1532,7 +1538,7 @@ Figure~\ref{control_msg} shows the number of transmissions of SOC, the upper bou
 
 
 
-\subsection{Comparison between Distributed Schemes}
+\subsection{Comparison among the Distributed Schemes}
 \label{largeScaleCRN}
 In this section we investigate the performances of distributed clustering schemes in CRN with different network scales and densities.
 The transmission range of CR is $A/5$, PR's transmission range is $2A/5$.
@@ -1630,7 +1636,7 @@ Besides, the greedy mechanism moderately strengthens the robustness of the clust
 
 \subsubsection{Cluster Size Control}
 Figure~\ref{nClusters_largeNetwork} shows when the network density scales up, the number of formed clusters by ROSS increases by smaller margin, and that generated by SOC increases linearly.
-This result coincides with the analysis in Section~\ref{cluster_pruning}.
+This result coincides with the analysis in Section~\ref{ross_p2_cluster_pruning}.
 %When the network becomes denser, more clusters are generated by SOC compared with ROSS variants.
 To better understand the distribution of the sizes of formed clusters, we depict the empirical cumulative distribution of CR nodes which reside in clusters with certain sizes in CRNs in Figures~\ref{cdf_clusterSize_100}~\ref{cdf_clusterSize_200}~\ref{cdf_clusterSize_300}.
 
@@ -1691,11 +1697,14 @@ We also notice that the metric that the number of CCCs per non-singleton cluster
 
 \section{Conclusion}
 \label{conclusion}
-In this paper we investigate the robust clustering problem in CRN extensively, in order to generate robust clusters against primary users' influence, so that more CR users can benefit from operative decision making provided by the clusters.
-We provide the mathematical description of the problem, and propose both centralized and distributed schemes.
-We prove the NP hardness of this problem, and the congestion game model in game theory is used to design the distributed scheme.
-A Light weighted clustering scheme ROSS is also proposed.
-Through simulation and theoretical analysis, we find that distributed schemes achieve similar performance with centralized optimization in terms of cluster robustness, signalling overhead and cluster sizes, and outperform the comparison distributed scheme on the above mentioned metrics.
+In this paper we investigate the robust clustering problem in CRN extensively.
+The proposed scheme results in a cluster structure in CRN, which has longer time expectancy against the primary users' activity.
+Besides, the clusters generated have similar sizes compared with other distributed schemes.
+%generate robust clusters against primary users' influence, so that more CR users can benefit from operative decision making provided by the clusters.
+We provide the mathematical description of the problem and prove the NP hardness of it.
+We propose both centralized and distributed schemes, where the congestion game model in game theory is used to design the distributed schemes.
+%A Light weighted clustering scheme ROSS is also proposed.
+Through simulation and theoretical analysis, we find that distributed schemes achieve similar performance with centralized optimization in terms of cluster robustness, signaling overhead and cluster sizes, and outperform the comparison distributed scheme on the above mentioned metrics.
 %, which is important to form clusters which maintains unbroken to the greatest extent possible under primary users' activity.
 %These schemes outperform other distributed clustering scheme in terms of both cluster survival ratio and control overhead.
 
@@ -1703,9 +1712,9 @@ Through simulation and theoretical analysis, we find that distributed schemes ac
 %An light weighted cluster size control mechanism is contained in both ROSS-DGA and ROSS-DFA, which is advantageous for cooperative sensing and network operation with clusters.
 %Furthermore, considerable less control messages are generated when compared with other clustering schemes.
 
-The shortage of ROSS scheme is it doesn't generate big clusters whose sizes exceed the cluster head's neighbourhood.
-This problem is attributed to fact that ROSS forms clusters on the basis of cluster head's neighbourhood, and doesn't involve interaction with the nodes outside its neighbourhood.
-In the other way around, forming big cluster which extends a cluster head's neighbourhood has limited applications, as multiple hop communication and coordination are required within such clusters.
+The shortage of ROSS scheme is it doesn't generate big clusters whose sizes exceed the cluster head's neighborhood.
+This problem is attributed to fact that ROSS forms clusters on the basis of cluster head's neighborhood, and doesn't involve interaction with the nodes outside its neighborhood.
+In the other way around, forming big cluster which extends a cluster head's neighborhood has limited applications, as multiple hop communication and coordination are required within such clusters.
 
 
 

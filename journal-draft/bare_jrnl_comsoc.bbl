@@ -120,11 +120,6 @@ A.~Asterjadhi, N.~Baldo, and M.~Zorzi, ``A cluster formation protocol for
 M.~Ozger and O.~B. Akan, ``Event-driven spectrum-aware clustering in cognitive
   radio sensor networks,'' in \emph{Proc. of IEEE INFOCOM 2013}.
 
-\bibitem{Lazos09}
-L.~Lazos, S.~Liu, and M.~Krunz, ``Spectrum opportunity-based control channel
-  assignment in cognitive radio networks,'' \emph{Proc. of SECON '09}, pp. 1
-  --9, jun. 2009.
-
 \bibitem{LIU_TMC11_2}
 S.~Liu, L.~Lazos, and M.~Krunz, ``Cluster-based control channel allocation in
   opportunistic cognitive radio networks,'' \emph{IEEE Trans. Mob. Comput.},
@@ -134,6 +129,10 @@ S.~Liu, L.~Lazos, and M.~Krunz, ``Cluster-based control channel allocation in
 N.~Mansoor, A.~Islam, M.~Zareei, S.~Baharun, and S.~Komaki, ``Construction of a
   robust clustering algorithm for cognitive radio ad-hoc network,'' in
   \emph{Proc. of CROWNCOM 2015}.
+
+\bibitem{Li11_ROSS}
+D.~Li and J.~Gross, ``Robust clustering of ad-hoc cognitive radio networks
+  under opportunistic spectrum access,'' in \emph{Proc. of IEEE ICC '11}.
 
 \bibitem{unitDiskModel}
 B.~Clark, C.~Colbourn, and D.~Johnson, ``Unit disk graphs,'' \emph{Annals of
