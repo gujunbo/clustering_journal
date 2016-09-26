@@ -1,21 +1,18 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{System Model}{}% 2
-\BOOKMARK [1][-]{section.3}{Robust Clustering Problem in CRN}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{Cluster in CRN}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{Robust Clustering Problem}{section.3}% 5
-\BOOKMARK [2][-]{subsection.3.3}{Complexity of the Robust Clustering Problem}{section.3}% 6
-\BOOKMARK [1][-]{section.4}{Centralized Solution for Robust Clustering}{}% 7
-\BOOKMARK [1][-]{section.5}{Distributed Clustering Algorithm: ROSS}{}% 8
-\BOOKMARK [2][-]{subsection.5.1}{Phase I - Cluster Formation}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.2}{Phase II - Membership Clarification}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.3}{Apply the Centralized and Comparison Distributed Schemes in the Example CRN}{section.5}% 11
-\BOOKMARK [1][-]{section.6}{Performance Evaluation}{}% 12
-\BOOKMARK [2][-]{subsection.6.1}{Centralized Schemes vs. Decentralized Schemes}{section.6}% 13
-\BOOKMARK [2][-]{subsection.6.2}{Comparison among the Distributed Schemes}{section.6}% 14
-\BOOKMARK [2][-]{subsection.6.3}{Insights from the Simulation}{section.6}% 15
-\BOOKMARK [1][-]{section.7}{Conclusion}{}% 16
-\BOOKMARK [1][-]{section*.31}{References}{}% 17
-\BOOKMARK [1][-]{IEEEbiography.0}{Biographies}{}% 18
-\BOOKMARK [2][-]{IEEEbiography.1}{Di Li}{IEEEbiography.0}% 19
-\BOOKMARK [2][-]{IEEEbiography.2}{Erwin Fang}{IEEEbiography.0}% 20
-\BOOKMARK [2][-]{IEEEbiography.3}{James Gross}{IEEEbiography.0}% 21
+\BOOKMARK [1][-]{section.2}{System Model and Problem Formulation}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Robust Clustering Problem in CRN}{section.2}% 3
+\BOOKMARK [1][-]{section.3}{Centralized Solution for Robust Clustering}{}% 4
+\BOOKMARK [1][-]{section.4}{Distributed Clustering Algorithm: ROSS}{}% 5
+\BOOKMARK [2][-]{subsection.4.1}{Phase I - Cluster Formation}{section.4}% 6
+\BOOKMARK [2][-]{subsection.4.2}{Phase II - Membership Clarification}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.3}{Apply the Centralized and Comparison Distributed Schemes in the Example CRN}{section.4}% 8
+\BOOKMARK [1][-]{section.5}{Performance Evaluation}{}% 9
+\BOOKMARK [2][-]{subsection.5.1}{Centralized Schemes vs. Decentralized Schemes}{section.5}% 10
+\BOOKMARK [2][-]{subsection.5.2}{Comparison among the Distributed Schemes}{section.5}% 11
+\BOOKMARK [2][-]{subsection.5.3}{Insights from the Simulation}{section.5}% 12
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 13
+\BOOKMARK [1][-]{section*.31}{References}{}% 14
+\BOOKMARK [1][-]{IEEEbiography.0}{Biographies}{}% 15
+\BOOKMARK [2][-]{IEEEbiography.1}{Di Li}{IEEEbiography.0}% 16
+\BOOKMARK [2][-]{IEEEbiography.2}{Erwin Fang}{IEEEbiography.0}% 17
+\BOOKMARK [2][-]{IEEEbiography.3}{James Gross}{IEEEbiography.0}% 18
