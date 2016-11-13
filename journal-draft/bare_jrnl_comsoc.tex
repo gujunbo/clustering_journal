@@ -693,7 +693,7 @@ $$
 %The size of cluster $C$ is not bigger than a positive integer $k$.
 %Then the sum of the number of CCs of the formed clusters is $\sum_{C\in \mathcal{S}'} f(C)$
 
-Then the robust clustering problem is to find a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, so that the sum of the numbers of CCs of the formed clusters $\sum_{C\in \mathcal{S}'} (f(C)\cdot|C|)$ is maximized.
+Then the robust clustering problem is to find a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, so that the sum of the numbers of CCs of the formed clusters $\sum_{C\in \mathcal{S}'} f(C)$ is maximized.
 Besides, the formed clusters should satisfy the requirements on cluster sizes, for example, all the formed clusters should have the same desired size $\delta$, or the sizes should be within a scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, and $\delta_1 < \delta_2$.
 According to the new definition of the number of CCs in a cluster, the singleton clusters in $\mathcal{S'}$ don't contribute to the value to be maximized.
 
@@ -1922,66 +1922,43 @@ If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming
 \section*{Proof of Theorem~\ref{theorem1}}
 \label{proof_theorem1}
 \begin{proof}
-To prove the robust clustering problem is NP-hard, we reduce the NP-hard problem \textit{weighted k-set packing} to it to show the robust clustering problem is at least as hard as the weighted $k$-set packing problem.
-The definition of weighted $k$-set packing problem is given as bellow.
+To prove the robust clustering problem is NP-hard, we reduce the \textit{maximum weighted k-set packing problem}, which is NP-hard when $k\geqslant 3$~\cite{Computers_a_Intractability}, to the the robust clustering problem to show the latter is at least as hard as the former.
+Given a collection of sets of cardinality at most $k$ with weights for each set, the maximum weighted packing problem is that of finding a collection of disjoint sets of maximum total weight.
+The decision version of weighted $k$-set packing problem is,
 \begin{mydef}
 \label{def_kset_packing}
-\textit{Weighted k-set packing.} 
-
-Given a finite set $\mathcal{G}$ of non-negative integers where $\mathcal{G} \subsetneq \mathbb{N}$, and a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$ where $S_i \subseteq \mathcal{G}$ for $1 \leq i \leq m$, besides, every set $S$ in $\mathcal{Q}$ has a weight $\omega(S) \in \mathbb{R}$.
-%Further, we are given a threshold value $\lambda \in \mathbb{N}$.\\
-The weighted $k$-set packing problem is to find a collection $\mathcal{S} \subseteq \mathcal{Q}$ such that $\mathcal{S}$ contains only pairwise disjoint sets and the total weight of the sets in $\mathcal{S}$ is greater than a given positive number $\lambda$, i.e., $\sum_{S \in \mathcal{S}} \omega(S) > \lambda$.
+Given a finite set $\mathcal{G}$ of non-negative integers where $\mathcal{G} \subsetneq \mathbb{N}$, and a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$ where $S_i \subseteq \mathcal{G}$ for $1 \leq i \leq m$, every set $S$ in $\mathcal{Q}$ has a weight $\omega(S) \in \mathbb{R}$.
+%
+The problem is to find a collection $\mathcal{S} \subseteq \mathcal{Q}$ such that $\mathcal{S}$ contains only pairwise disjoint sets and the total weight of the sets in $\mathcal{S}$ is greater than a given positive number $\lambda$, i.e., $\sum_{S \in \mathcal{S}} \omega(S) > \lambda$.
 \end{mydef}
 
-Weighted $k$-set packing is known to be NP-hard when $k\geqslant 3$~\cite{Computers_a_Intractability}.
-In the proof, we will show the existence of a polynomial-time algorithm $\sigma$ which transforms any instance $\mathcal{I}$ of a weighted $k$-set packing problem, \ie a collection of sets, into a formation of clusters for the robust clustering problem.
+We assume the weights of sets are positive integers.
+Then we will show the existence of a polynomial-time algorithm $\sigma$ which transforms any instance $\mathcal{I}$ of a weighted $k$-set packing problem, \ie a collection of sets, into a formation of clusters for a CRN.
 W.l.o.g. let set $\mathcal{G} = \{ 1, \ldots , N \}$.
-The polynomial algorithm $\sigma$ consists of four steps.
+The polynomial algorithm $\sigma$ consists of three steps.
 
 \begin{itemize}
 
 \item In the first step, we transform the instance $\mathcal{I}$ to $\mathcal{I'}$ by duplicating the elements of the sets in $\mathcal{I}$.
-In particular, as to each set $S\in \mathcal{I}$, we duplicate every element and assign a new value to the new element, which is N bigger than the original element.
-%Formally, for each set $s_i\in \mathcal{I}$, we create $s_i' = s_i \times \{ 1,2\}$.
-%Then we change the dummy elements by adding $N$ on them.
-The purpose of this transformation is to eliminate the set in $\mathcal{I}$, which has only one element.
+In particular, as to each element in set $S\in \mathcal{I}$, we duplicate the element and assign a new index which is N bigger than the original index.
 The weight of these sets remain unchanged.
+The purpose of this transformation is to eliminate the set in $\mathcal{I}$, which has only one element.
 
-\item In the second step, all the elements in $\mathcal{I'}$ are mapped to CR nodes on a two-dimensional Euclidean plane.
-In particular, there is a bijection between every element in $\mathcal{I'}$ to one CR node whose ID is identical with the element value.
-%Given a collection $\mathcal{Q}$, on basis of which we construct a CRN. (I DON'T UNDERSTAND THAT. What do you mean?)
-%We prepare $N$ CR nodes who are labelled from 1 to $N$, put them on a 2 dimension space, and deem a pair of them can communicate if they appear in one same set in $\mathcal{Q}$.
-%We define a set of CR nodes $\mathcal{N} = \{ 1, \ldots , N \}$
-Accordingly, there is also a bijection between a set in $\mathcal{I'}$ and a cluster in the CRN.
-We regulate the number of CCs is equal to the weight of the corresponding set.
-
-
-%%There is one situation deserving extra explanation in the second transformation, we adopt one example to discuss it.
-%Assuming two sets in $\mathcal{Q}$ are $s_1=\{1,2\}$ and $s_2=\{1,2,3\}$, then their weights are 3 and 5 respectively. (THAT'S TOO HAND-WAVY.)
-%%Their dummy sets are $s_1'=\{1,1,2,2\}$ and $s_2'=\{1,1,2,2,3,3,4,4\}$ and their new weights are 3 and 5 as before.
-%We find it is impossible to map the sets into clusters in the same time (SORRY, which sets?? The sets you mentioned before are already clusters, isn't it?), because the number of CCs of the cluster which bases on $s_1$ should be no less than the cluster which bases on $s_2$, as the latter has one extra node compared with the former cluster.
-%%When $s_1'$ and $s_2'$ are mapped to CRN respectively, there is contradiction between them, because the number of common channels of CR node group $\{1,1,2,2\}$ is smaller than that of $\{1,1,2,2,3,3,4,4\}$.
-%But as to any instance of the solution to the weighted $k$-set packing problem, this contradiction doesn't happen because the instance $\mathcal{S}$ contains only disjoint sets, thus at most only one set of $s_1$ and $s_2$ appears in $\mathcal{S}$.%, then we can safely delete the connections based on the deleted set from the CRN, and the contradiction is eliminated.
-%(THIS PARAGRAPH IS TOO DIFFICULT FOR ME TO UNDERSTAND.)
-
-
-
-\item In this step, we transform the instance $\mathcal{I}$ to a formation of clusters for CRN.
-%We prepare a second pool of CR nodes which are identical with the CR nodes prepared in step 1, i.e., identical IDs and channel availabilities on them, we call these CR nodes dummy nodes.
-We adjust the locations of the CR nodes so that one pair of CR nodes whose IDs are exact $N$ apart are neighbors to each other.
-% (THAT DOESN'T MAKE SENSE. THEN THE ID IS NOT UNIQUE ANYMORE.) in the CRN built in step 1, and there is connection between the CR node and its dummy node (the one CR node and its dummy node can be seen as two transceivers at one node). (YOU DON'T NEED TO GIVE PRACTICAL MOTIVATION IN A HARDNESS-PROOF.)
-Because of the CR nodes which are mapped from the duplicated elements in $\mathcal{I'}$, there is no singleton cluster.
-This transformation requires $2\cdot\sum_{S_i \in \mathcal{I'}} |S_i|$ steps.
+\item In the second step, all the elements in $\mathcal{I'}$ are mapped to CR nodes on a two-dimensional Euclidean plane, where the CR user ID is identical with the corresponding element's index.
+In particular, as to each set $S\in \mathcal{I'}$, we set up a cluster $C$ which consists of the CR users mapped from the elements in $S$, and we assign the available channels for each cluster member so that $|K(C)|$ equals to the $\omega(S)$.
+The channel availability on the CR nodes whose IDs are $N$ apart is the same.
+%Besides, there is a bijection between every set in $\mathcal{I'}$ and one cluster in the CRN.
+%In this process, we decide the channel availability on each CR node so that the number of CCs in each cluster is equal to the weight of the corresponding set.
 %
-\item Now we map the elements in $\mathcal{Q}\setminus \mathcal{I}$ to CR nodes. 
-We arbitrarily put these CR nodes in the plane, and these CR nodes form single node clusters by themselves.
-According to the definition of robust clustering problem in CRN, the number of CCs in these single node clusters is 0.
-These singleton clusters and the clusters mapped from $\mathcal{I'}$ constitute a clustering solution, and finding these singleton clusters requires at most $N$ steps.
-%We deliberately locate them so that at least one CR node can communicate with the rest of them.
-%map every element in $\mathcal{S}$ into one CR node, \ie each integer corresponds to one CR node, in particular, that integer becomes the CR node's ID.
-%As $s'$ is dummy set which has duplicated elements, we also deploy the the same CR node twice.
-%
+When there are two sets in $\mathcal{I'}$ and one is a subset of the other one, \ie  $S_1\subset S_2$, and $\omega(S_1) < \omega(S_2)$, then we should swap the weights of the sets before mapping them into clusters. 
 
+
+\item In this step, we map the elements in $\mathcal{Q}\setminus \mathcal{I}$ to CR nodes. 
+We arbitrarily put these CR nodes in the CRN, then these CR nodes form singleton clusters by themselves.
+According to the definition of robust clustering problem in CRN, the number of CCs of these singleton clusters is 0.
+These singleton clusters and the clusters mapped from $\mathcal{I'}$ constitute a clustering solution.
+
+% finding these singleton clusters requires at most $N$ steps.
 
 %As to duplicated elements, we also map them into a CR node, thus there exist CR nodes with identical ID.
 %As a result, these CR nodes constitute a collection of CR nodes, and they can not be called as a CRN yet as there are not communication links drawn between them.
@@ -1990,8 +1967,6 @@ These singleton clusters and the clusters mapped from $\mathcal{I'}$ constitute 
 %\item Mere isolated nodes don't constitute network, thus we add connections in CRN based on the sets in $\mathcal{S}'$ sequentially.
 %For each set $s'\in \mathcal{S}'$, we add connection between two CR nodes if their IDs can be found in $s'$.
 %No connection exists between two CR nodes if their IDs don't appear in the same set in $\mathcal{S}$.
-
-
 
 %We complete the polynomial algorithm $\sigma$ for the the transformation so far.
 %The number of common channels of cluster $f$ is non-increasing function of cluster size, while, the weight of set in weighted $k$-set packing problem doesn't have this property.
@@ -2002,11 +1977,11 @@ These singleton clusters and the clusters mapped from $\mathcal{I'}$ constitute 
 
 We have crossed the hurdle of finding one polynomial algorithm $\sigma$ which transforms an instance of weighted $k$-set packing to an instance of the clustering problem in CRN.
 %Now we look into the step 2 in the reduction.
-When $\mathcal{I}$ is not an instance for weighted $k$-set packing problem due to the existence of joint sets, the corresponding cluster strategy is not a solution for the centralized clustering problem, as there are overlapped clusters.
-
-When there are only disjoint sets in an instance $\mathcal{I}$ for weighted $k$-set packing, the sum of weights is identical to the sum of the numbers of CCs in the CRN which are mapped from $\mathcal{I'}$, even $\mathcal{I}$ contains sets which only have one element.
-Thus, when a instance $\mathcal{I}$ for $k$-set packing problem is true, \ie the sum of weights is greater than $\lambda$, then in the CRN which is mapped from $\mathcal{I'}$, the sum of the numbers of CCs of the clusters is greater than $\lambda$.
-In the other way around, when an instance is false for weighted $k$-set packing problem, the sum of the numbers of CCs of the clusters in the mapped CRN is smaller than $\lambda$, then the formation of the clusters is not a solution for the robust clustering problem.
+When $\mathcal{I}$ is not an instance for weighted $k$-set packing problem due to the existence of joint sets, the corresponding clustering instance is not a successful cluster partition for the robust clustering problem, as there are overlapped clusters.
+%
+When the sets in an instance $\mathcal{I}$ for weighted $k$-set packing are disjoint, the sum of weights is identical to the total number of the CCs in the CRN which are mapped from $\mathcal{I'}$.
+Thus, when a instance $\mathcal{I}$ for $k$-set packing problem is true (or false), \ie the sum of weights is greater than $\lambda$, then in the CRN which is mapped from $\mathcal{I'}$, the sum of the numbers of CCs of the clusters is greater (or smaller) than $\lambda$.
+%In the other hand, when an instance is false for weighted $k$-set packing problem, the sum of the numbers of CCs of the clusters in the mapped CRN is smaller than $\lambda$, then the formation of the clusters is not a solution for the robust clustering problem.
 
 Hence, the weighted $k$-set packing can be reduced to the robust clustering problem in CRN, then the latter problem is of NP-hard.
 An example of the reduction is shown in Table~\ref{no_hard_proof_instance}.
@@ -2018,19 +1993,19 @@ An example of the reduction is shown in Table~\ref{no_hard_proof_instance}.
     \cmidrule(r){1-1}\cmidrule(lr){2-2}     
       $\mathcal{Q}$  & $\{ \{1\}, \{1, 5\}, \{1,2,4\}, \{2,3\}, \{4\} \}$\\ 
     \cmidrule(r){1-1}\cmidrule(lr){2-2}     
-      Instance for Weighted $k$-set packing  & $\{ \{1\}, \{2,3\}, \{4\} \}$\\ 
+      Instance for Weighted $k$-set packing  & $\{ \{1\}, \{2,3\}, \{4\} \}$, weights are 2, 3, 4\\ 
     \cmidrule(r){1-1}\cmidrule(lr){2-2}
       Instance with dummy elements (step 1)
       & 
 		$\{ \, \{1,11\},\{2,12, 3, 13\}, \{ 4,14\} \, \}$
       \\    \cmidrule(r){1-1}\cmidrule(lr){2-2}
-	clusters mapped from $\mathcal{I}$  (step 2 \& 3)
+	clusters mapped from $\mathcal{I}$  (step 2)
 	  &
 	  \begin{minipage}{.3\textwidth}	
       \includegraphics[width=0.6\linewidth]{np_hard_proof_step_2_3.pdf}
     \end{minipage}
           \\    \cmidrule(r){1-1}\cmidrule(lr){2-2}
-	formation of clusters (step 4)
+	formation of clusters (step 3)
 	  &
 	  \begin{minipage}{.3\textwidth}	
       \includegraphics[width=0.6\linewidth]{np_hard_proof_step4.pdf}
