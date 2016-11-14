@@ -501,88 +501,33 @@ Finally, we conclude our work and point out the direction for future research in
 
 \section{System Model and Problem Formulation}
 \label{sec:model}
-%Let us consider a two dimensional area where primary and secondary users coexist together.
-%They share the licensed channels according to the spectrum overlay model, where secondary transmitters are only allowed to transmit when the prifcan exchange its spectrum sensing resulmary users are detected as being idle, and they should vacate the working channel when the presence of primary user is detected.
-%The set of primary users and secondary users are presented by $\mathcal{P}$ and $\mathcal{N}$ separately, there are $|\mathcal{P}| = P$ and $|\mathcal{N}| = N$.
-%Cognitive radio ad hoc network is constituted by all the secondary users in $\mathcal{N}$.
-%The collection of non-overlapping licensed frequency bands is denoted as $\mathcal{F}$ with $|\mathcal{F}| =F$, which is shared by the the primary and secondary users.
-%We assume that primary users have a relatively low variation in activity (periods of activity and inactivity in the range of seconds or minutes).
-%%
-%Primary users access the allocated channels in $\mathcal{F}$ according to its need without sending any explicit notification to secondary users.
 
 We consider a set of cognitive radio users $\mathcal{N}$ and a set of primary users distributed over a given area.
-%We denote the set of these nodes as $V$ which is partitioned into sets of primary users $V_P$ and secondary users $V_N$, i.e., $V~=~V_P~\dot\cup~V_N$. 
-%These users share a number of non-overlapping licensed channels according to the spectrum overlay model. 
-The CR users use a set of licensed channels opportunistically, which is denoted as $\mathcal{K}$. 
-The CR users are allowed to transmit on channel $k \in \mathcal{K}$ only if no primary user is detected on channel $k$. 
-%The available channels sensed on secondary user $i$ is denoted by $V_i$ and there is $\vert V_i \vert \leq F$. % indicating the total number of 
-%%Each secondary user notifies its neighbours of the sensing result about the available channels.
+The CR users use a set of licensed channels $\mathcal{K}$ opportunistically. 
+The CR users are allowed to transmit on any channel $k \in \mathcal{K}$ only if no primary user is detected on channel $k$. 
 CR users conduct spectrum sensing independently and sequentially on all licensed channels.
-%The sensing duration and frequency on one channel is a research topic~\cite{sensing_survey_2009}, and 
 We assume that every node can detect the presence of an active primary user on each channel with certain accuracy. \footnote{The spectrum availability can be validated with a certain probability of detection. Spectrum sensing/validation is out of the scope of this paper.}
 We adopt the unit disk model~\cite{unitDiskModel} for the transmission of both primary and CR users.
-%Both primary users and CR users have fixed transmission ranges respectively, and all the channels are regarded to be identical in terms of signal propagation.
-If a CR node locates within the transmission range of an active primary user, that CR node is not allowed to use the channel which is being used by that primary user.
-%In our system model, we assume that a secondary node $n$ is able to detect for each channel $c$ whether any primary user utilizes $c$.
+As to the relation between the primary and secondary users, If a CR node $i$ locates within the transmission range of an active primary user $p$, then $i$ is not allowed to use the channel which is being used by $p$.
+On the other hand, If $i$ is not in the transmission range of primary user $p$, $i$ can certainly not detect the presence of $p$.
 As the result of spectrum sensing, $K_i \subseteq \mathcal{K}$ denotes the set of licensed channels which can be used by $i$.
-%
-%One dedicated control channel is assumed to be available for all the secondary nodes to exchange control messages with neighbours in the process of cluster formation.
-%Note that the assumption of dedicated control channel is to simplify the discussion so that we can focus on the kernel of this paper, the robustness of clusters.
-%Actually, the control messages involved in the clustering process can be conveyed on available licensed channels through rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}. 
-%Over the control channel, secondary users exchange their spectrum sensing results $V_{i}$ with one hop neighbours. 
-%Secondary users have the same transmission range on both licensed and control channel, and the communication links are reciprocal.
-%
-
+As the transmission range of primary users is limited and secondary users have different locations, different secondary users may have different views of the spectrum availability, i.e., for any $i, j \in \mathcal{N}$, $K_i = K_{j}$ does not necessarily hold.	
+Among the secondary users, we denote $\text{Nb}(i)$ as user $i$'s neighborhood, which consists of the CR nodes located within the transmission range of $i$. 
 
 We assume there is one dedicated control channel which is used to exchange signaling messages during clustering process.
 This control channel could be one of the ISM bands or other reserved spectrum which is exclusively used for transmitting control messages.
-\footnote{Actually, the control messages involved in the clustering process can also be transmitted on the available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., two neighbouring nodes establish communication on the same channel.}
-Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ to all its one hop neighbors $\text{Nb}(i)$, where $\text{Nb}(i)$ is the neighbors of $i$, and is simply defined as the set of CR nodes located within the transmission range of $i$. 
-%It is available for any secondary node $i$ to exchange control messages with any other node in its neighborhood $\text{Nb}(i)$ during the cluster formation phase.
-In the following, we refer to the word \textit{channel} in general as licensed channel, unless we mention the control channel explicitly. 
-%
-%
-If a secondary user $i$ is not in the transmission range of an active primary user $p$, $i$ can certainly not detect the presence of $p$.
-As the transmission range of primary users is limited and secondary users have different locations, different secondary users may have different views of the spectrum availability, i.e., for any $i, j \in \mathcal{N}$, $K_i = K_{j}$ does not necessarily hold.	
-%
-%Neighbourhood establishment and maintenance with control channel and according to a neighborhood discovery protocol which is out of scope of our work.
-%While primary users are assumed to be fixed, secondary users can be mobile.
-%Validation refers to the process of ensuring that no primary transmission is actually taking place on the respective channel.
-%All $N$ secondary users constitute an ad-hoc network in which data can be transmitted from one certain node to any other node should available c.hannels are available on the source node, destination node and other intermediate nodes.
-%Communication on licensed channels is possible only when nodes $i, j$ are both located in each other's transmission range and both share a validated licensed channel.
-%As the assumed $0/1$ state of connectivity is solely based on the Euclidean distance between secondary users,
-%CRN can be represented by a graph $\mathcal{G}(I,\mathcal{E})$, where $\mathcal{E}=\lbrace(i,j,v) \vert i, j \in \mathcal{N} \wedge v\in V_i \wedge v\in V_j \rbrace$ is wireless link between any secondary node $i$ and its neighbour $j$ with licensed channel $v$.
-%Due to relatively low primary user dynamics, time index is omitted here.
-%%In order to perform clustering, CR users first need to establish their neighborhood.
-%For secondary node $i$, its neighborhood $Nb_i$ consists of all the secondary users locating within its transmission range, regardless whether common licensed channels exist or not. 
-%% and have at least one common channel with node $i$ each, i.e. $ j\in Nb_i \Rightarrow V_i\cap V_j\neq \emptyset$.
-%%The clustering phase is initialized during which any control message is again conveyed by the control channel.
-%In the rest of this paper, \textit{channel} only refers to the licensed common channel unless the dedicated control channel is particularly mentioned.
-Then, a cognitive radio network can be represented as a graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, j\} \in E$  if, and only if, there exists a channel $k \in \mathcal{K}$ with $k \in K_{i} \cap K_{i'}$. 
-%Note that the channel availability is that when the clustering process is performed. 
-%For the rest of this paper the word channel is referred to licensed channel, if the control channel is not explicitly mentioned.
+\footnote{Actually, the control messages involved in the clustering process can also be transmitted on the available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., two neighboring nodes establish communication on the same channel.}
+Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ to all its one hop neighbors $\text{Nb}(i)$.
+In the following, we refer to the licensed channel as \textit{channel} in general, unless we mention the control channel explicitly. 
+Then, a cognitive radio network can be represented as a graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, j\} \in E$  if, and only if,$K_{i} \cap K_{j}\neq \emptyset$ and $d_{i,j} < r$ where $d_{i,j}$ is the distance between $i, j$ and $r$ is the radius of the secondary user's transmission range. 
 
-
-%In this subsection, we present the definition of cluster in the context of CRNs, define the clustering problem and discuss its complexity.
-%We give the description of cluster in the context of CRN, all the clusters discussed in this paper comply with it.
-%A cluster $C$ is composed with one cluster head and cluster members, which satisfies the following conditions:
-%\begin{itemize}
-%\item Cluster head $H_C$ is able to communicate with any cluster member \textit{directly}, \ie for any cluster member $i\in C$, there is $i\in \texttt{Nb}_{H_C}$.
-%\item There exists as least one common channel in the cluster, \ie $\cap_{i\in C} V_i \neq \emptyset$.
-%\end{itemize}
 A cluster $C$ is a set of secondary nodes, which consists a cluster head $h_C$ and a number of cluster members.
 The cluster head is able to communicate with any cluster member directly.
 In other terms, for any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds.
-%
-%A cluster head coordinates the activities of cluster members, \ie it notifies all the members to vacate a channel if a primary user's presence is detected by one cluster member. Further it also notifies the members to use a different common channel for payload communication. %(\textcolor{red}{(Not clear what the meaning of payload communication is. Why not omitting payload here?)} \textcolor{brown}{payload communication happens when the clusters are formed, and start to support network functionalities, e.g. routing. Thus I think it is necessary to leave it here.}
-%
-%
-In this paper, sometimes we need to mention a cluster with the information of its cluster head \ie a cluster is denoted as $C(i)$ where $i$ is its cluster head.
+In this paper, we denote a cluster as $C$, or $C(i)$ when we want to point out the cluster head is $i$.
 Cluster size of $C(i)$ is written as $|C(i)|$.
 $ K(C) = \cap_{i\in C} K_i$, $K(C)$ denotes the set of common licensed channels in cluster $C$.
-Clustering is performed periodically, as secondary users are mobile and the channel availability on secondary users are changing as primary users change their operation state.%, or the most current clusters can not maintain due to lack of CCs when primary users' operation is intense.
-
-
+Clustering is performed periodically, because the secondary users are mobile and the primary users change their operation channels, thus the channel availability on secondary users changes accordingly.
 The notations used in the system model and the following problem description are listed in the Table~\ref{tab1}.
 \begin{table}[h!]
 \caption{Notations}
@@ -622,50 +567,16 @@ $C_i$  & the $i$th potential cluster in a collection of clusters \\
 \end{table}
 
 
-%We propose distributed scheme ROSS to form clusters to generate robust clusters, and in the same time clusters have preferred sizes, \ie fewer number of singleton clusters (the cluster which consist with only one CR node) compared with state of art.
-
-%Besides, cluster size is also considered in to clustering solution.
-%Size preference can be met after minor modifications on ROSS.
-
-
-%The metric is summation of the number of channels available to be used for each node when they reside in a certain cluster, together with a cost for not following the desired cluster size, \ie when the desired cluster size is $\delta$ and the other cluster sizes are denoted as $\delta'$, the metric is, 
-%\begin{equation}
-%\label{metric}
-%\sum_{i=1}^{N}(ICC_i)
-%\end{equation}
-%$N$ is the number of CR nodes in the network.
-
-
-%Also, we refer to the common channels between neighbouring clusters by the term \textit{outward common channels} (OCC). We define the set of OCCs of cluster $C$ to be the set of available common channels between any member of $C$ and any other CR user of a neighbouring cluster:
-%\begin{equation}
-%\label{numocc}
-%R_{C}=\bigcup_{j\in C, k\in N_j, k\notin C}(V_{j}\cap V_{k})
-%\end{equation}
-
-%In the process of clustering, when there is no restriction on cluster size, the metric will only be the summation of the number of channels for each node when they reside in a certain cluster.
-%When we try to maximize the summation of ICCs, an obvious correlation between cluster size and number of ICCs is encountered, \ie when each node constitutes one cluster, the aforementioned metric will be maximized.
-%The goal of the proposed clustering scheme is to let as more CR nodes as possible to form clusters, meanwhile the clusters have more common channels and preferred cluster size.
-
-
-%\textcolor{red}{The notation is not well chosen. Does it make sense to have only one letter for a potential cluster? What happens if we have two clusters? Find some comments next to your proposed notation.}
-
-
 
 \subsection{Robust Clustering Problem in CRN}
 \label{problem}
-%paper given by james is useful which provides a survey from the perspective of wsn!
-As introduced in the section of introduction, in order to be robust against primary users' activity, the formed clusters should have more CCs to expect longer time expectancy.
-Meanwhile, the sizes of the formed clusters should not diverge from the desired size too much, and there are two reasons.
-First, the generation of the \textit{singleton clusters}, \ie the cluster which has only one CR node, should be avoided, because it contradicts the motivation of forming clusters thus the benefits brought in by the collective of the cluster members are compromised.
-Second, large clusters are not preferred in some scenarios neither, \eg for the CRN composed with resource limited users, managing the cluster members is a substantial burden. 
-Hence, the cluster size should fall in a desired range according to different application scenarios~\cite{Chen04clusteringalgorithms, capacity_cluster_06}.
-Considering the above mentioned requirements on the formed clusters, we present the definition of robust clustering problem as follows.
-%The clustering scheme we propose in the paper aims to form clusters with preferred sizes, meanwhile maximize the average number of CCs per cluster.
-%We have mentioned that the sizes of the formed clusters should be given consideration, which is import for the discussion on cluster robustness, \ie 
-%When perusing the cluster robustness without specifying the requirement on cluster sizes, a clustering method will be inclined to form small clusters.
-%In that case, although more CCs are obtained per cluster, the benefits brought in by the collective of the cluster members are compromised.
-%Except for cooperative sensing, clusters need to conduct some other functionalities.
 
+As introduced in Section I, in order to be robust against primary users' activity, the formed clusters should have more CCs to expect longer time expectancy.
+Meanwhile, the sizes of the formed clusters should not diverge from the desired size greatly.
+The formation of small clusters or the \textit{singleton clusters}, \ie the cluster which has only one CR node, contradicts the motivation of forming clusters, as the benefits brought in by the collective of the cluster members are compromised.
+On the other hand, large clusters are not preferred in some scenarios neither, \eg for the CRN composed with resource limited users, managing the cluster members in a large cluster is a substantial burden. 
+Hence, the cluster size should fall in a desired range according to different application scenarios~\cite{Chen04clusteringalgorithms, capacity_cluster_06}.
+Considering the above mentioned requirements, we present the definition of robust clustering problem as follows.
 
 
 
@@ -675,12 +586,11 @@ Considering the above mentioned requirements on the formed clusters, we present 
 
 Given a cognitive radio network $\mathcal{N}$ where $|\mathcal{N}|=N$,  the secondary users are indexed from 1 to $N$.
 A cluster $C$ is formed when first, it is composed with one or multiple secondary users and there are CCs in $C$ \ie $|K(C)|>0$, second, any two cluster members can communicate either directly, or through other members which belong to the same cluster.
-The collection of all the possible clusters in $\mathcal{N}$ is denoted as $\mathcal{S}$, there is $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ where $C_i$ is the $i$ th cluster in $\mathcal{S}$\footnote{The sequence of the clusters can be decided in any convenient way \ie the sequence of identifying them.}.
-%the clustering solution will be composed by the elements of $\mathcal{S}$. 
+The collection of all the possible clusters in $\mathcal{N}$ is denoted as $\mathcal{S}$, there is $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ where $C_i$ is the $i$ th cluster in $\mathcal{S}$.\footnote{The sequence of the clusters can be decided in any convenient way \ie the sequence of identifying them.}
 As to $\mathcal{S}$, there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$.
 
 To formulate the problem, we propose a new definition for the number of CCs in a cluster.
-We use $f(C_i)$ to denote the number of CCs of a cluster $C_i\in \mathcal{S}$, which is as follows,
+We use $f(C_i)$ to denote the number of CCs of a cluster $C_i\in \mathcal{S}$, which is,
 %and the number of common licensed channels is $f(C_i) = |K(C_i)|$ if $|C_i|>1$, and $f(C_i)=0$ when $|C_i|=1$.
 $$
 f(C_i) = \left\{ \begin{array}{rl}
@@ -689,18 +599,10 @@ f(C_i) = \left\{ \begin{array}{rl}
 \end{array} \right.
 $$
 
-
-%The size of cluster $C$ is not bigger than a positive integer $k$.
-%Then the sum of the number of CCs of the formed clusters is $\sum_{C\in \mathcal{S}'} f(C)$
-
-Then the robust clustering problem is to find a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, so that the sum of the numbers of CCs of the formed clusters $\sum_{C\in \mathcal{S}'} f(C)$ is maximized.
-Besides, the formed clusters should satisfy the requirements on cluster sizes, for example, all the formed clusters should have the same desired size $\delta$, or the sizes should be within a scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, and $\delta_1 < \delta_2$.
+A clustering solution is a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, which satisfies $\bigcup_{C_i\in \mathcal{S}'} C_i = \mathcal{N}$ and $C_{i'}\cap C_i =\emptyset$ when $C_{i'}, C_i\in \mathcal{S}'$ and $i'\neq i$, so that the sum of the numbers of CCs of the formed clusters $\sum_{C\in \mathcal{S}'} f(C)$ is maximized.
+Besides, the formed clusters should satisfy the requirements on cluster size, for example, the sizes should be within a scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, and $\delta_1 < \delta_2$.
 According to the new definition of the number of CCs in a cluster, the singleton clusters in $\mathcal{S'}$ don't contribute to the value to be maximized.
 
-A clustering solution is a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, which satisfies the following conditions, $\bigcup_{C_i\in \mathcal{S}'} C_i = \mathcal{N}$ and $C_{i'}\cap C_i =\emptyset$ when $C_{i'}, C_i\in \mathcal{S}'$ and $i'\neq i$.
-
-% when $|C|>1$, and $f(\cdot)=0$ when $|C|=1$.
-%As to $f(\cdot):z\rightarrow z$, under this problem setting, if only number of common channels are given consideration, only singleton clusters will be preferred, which contradicts to our goal of clustering CR nodes together, thus we choose $f(\cdot)= |K_{C}|\cdot |C|$, the product of number of common channels and cluster size.
 \end{mydef}
 
 
@@ -766,15 +668,13 @@ The result will be used as a comparison with the proposed distributed schemes. %
 
 
 The objective is to maximize the sum of the products of the size and the corresponding number of CCs of all the clusters.
-%The second component is designed to help generate the clusters whose sizes are the desired cluster size $\delta$.
 We minimize the opposite of the real objective to make this problem solvable.
-The constraints guarantee to obtain the clusters which together include all the CR users and don't overlap.
-
+%
 The variables of this problem are $x_{ij}$ where $i\in \{1,2,\cdots,G-1, G\}$ and $j\in \{1,2,\cdots,N-1, N\}$.
 $N$ is the total number of CR users in network $\mathcal{N}$.
 $G = |\mathcal{G}|$ and $\mathcal{G}$ is a collective of clusters in a CRN $\mathcal{N}$.
 There is $\mathcal{G} \subseteq \mathcal{S}$, where $\mathcal{S}$ is the collection of all the possible clusters as described in Definition~\ref{def_centralized_clustering}.
-In practice, we can solve the problem with $\mathcal{G} = \mathcal{S}$ when $|\mathcal{S}|$ is not large. 
+%In practice, we can solve the problem with $\mathcal{G} = \mathcal{S}$ when $|\mathcal{S}|$ is not large. 
 The subscript $i$ indicates the $i$th cluster in $\mathcal{G}$, and $j$ corresponds to the node ID of a CR node. 
 $x_{ij}$ indicates whether the CR node $j$ resides in the $i$th potential cluster, \ie $x_{ij}=1$ means node $j$ resides in the cluster $C_i$. 
 %
@@ -836,7 +736,8 @@ In particular, $\alpha$ increases with the divergence between $|C_i|$ and $\delt
 %doesn't follow the definition of $f(C)$ in Definition~\ref{def_centralized_clustering} strictly, where $f(C_i)=0$ when $|C_i|=1$, but our design echoes the definition by exerting the most severe punishment on the singleton clusters in the clustering solution.
 %Choice of $\alpha_i$ affects the resultant clusters.
 
-As to the constraints, the first constraint regulates that each CR node should reside in exactly one cluster.
+The constraints guarantee to obtain the clusters which together include all the CR users and don't overlap.
+The first constraint regulates that each CR node should reside in exactly one cluster.
 The second constraint regulates that when the $i$th possible cluster $C_i$ is chosen, there will be exactly $|C_i|$ CR nodes residing in the cluster $C_i$.
 
 
@@ -1270,7 +1171,7 @@ The schemes involved in the simulation are listed as follows,
 \begin{itemize}
 \item ROSS without size control, \ie ROSS-DGA and ROSS-DFA.
 \item ROSS with size control. \ie ROSS-$\delta$-DGA and ROSS-$\delta$-DFA where $\delta$ is the desired cluster size.
-In the following, when we mention the variants of ROSS, we refer the above mentioned four schemes.
+In the following, we refer to the above mentioned four schemes as the variants of ROSS.
 \item SOC~\cite{LIU_TMC11_2}, a distributed clustering scheme pursuing cluster robustness.
 \item Centralized robust clustering scheme. 
 The formulated optimization is an integer linear optimization problem, which is solved by MATLAB with the function $bintprog$.
@@ -1292,7 +1193,7 @@ The resulted clustering solutions from SOC is shown in Fig.~\ref{fig:final_clust
 %
 We compare the average number of CCs achieved by different schemes, the results of ROSS\footnote{In this example network, both ROSS-DGA and ROSS-DFA and their size control variants form the same clusters)}, centralized and SOC are 2.66, 2.66, and 3 respectively. 
 Note there is one singleton cluster $C(H)$ generated by SOC, which is not preferred.
-When we only consider the clusters which are not singleton, the average number of common channels of SOC drops to 2.5. 
+When we only consider the clusters which are not singleton, the average number of CCs of SOC drops to 2.5. 
 \begin{figure}[ht]
 \begin{center}
 \subfigure[Generated by SOC]{\includegraphics[width=0.435\linewidth]{final_clustering_soc}\label{fig:final_clustering_soc}}
@@ -1305,7 +1206,7 @@ When we only consider the clusters which are not singleton, the average number o
 
 
 
-In the simulation, we investigate the schemes with four metrics.
+We investigate the schemes with four metrics.
 
 \begin{itemize}
 \item \textbf{The average number of CCs per non-singleton cluster.}
@@ -1552,7 +1453,7 @@ Figure~\ref{control_msg} shows the analytical result of the amount of transmissi
  Centralized			&$\mathcal{O}(N)$			&	$h + m + N$ (upper bound)~\cite{Efficient_broadcasting_gathering_adhoc}		& clustering result (2$N$ bytes) \tnotex{tnote:robots-r1} 					\\ \hline
 \end{tabular}
     \begin{tablenotes}
-      \item\label{tnote:robots-r1}Assuming the data structure of the clustering result is given as \{ Node ID $i$, cluster head ID h($C$) where $i\in C$, $i\in \mathcal{N}$ \}.
+      \item\label{tnote:robots-r1}Assuming the data structure of the clustering result is in the form of \{ Node ID $i$, cluster head ID h($C$) where $i\in C$, for every $i\in \mathcal{N}$ \}.
     \end{tablenotes}
     \end{threeparttable}
 }
@@ -1620,32 +1521,13 @@ We notice that SOC achieves the most CCs per non-singleton cluster, although the
 
 \subsubsection{Robustness of the clusters against newly added PUs}
 We add extra 20 batches of PUs sequentially in the CRN, where each batch includes 10 PUs. 
-%In this part of simulation, we investigate the robustness of clusters by increasing the PUs working on certain channels.
 Figure~\ref{singleton_clusters_100} and \ref{singleton_clusters_200} show that when $N=100$ and 200, more unclustered CR nodes appear in the CRN where SOC is applied.
-When the network becomes denser, ROSS-DGA/DFA generate slightly more unclustered CR nodes than SOC when new PUs are not many, but SOC's performance deteriorates quickly when the number of PUs becomes larger.
+When the network becomes denser, as shown in Figure~\ref{singleton_clusters_300}, ROSS-DGA/DFA generate slightly more unclustered CR nodes than SOC when new PUs are not many, but SOC's performance deteriorates quickly when the number of PUs becomes larger.
 We only show the average values of the variants of ROSS as their confidence intervals overlap.
 %
 When applying ROSS with size control mechanism, significantly less unclustered CR nodes are generated.
 Besides, the greedy mechanism moderately strengthens the robustness of the clusters.
-%It can be seen that greedy algorithms result in slightly less singleton clusters than their counterparts.
-%
-%Figure ~\ref{singleton_clusters_300} depicts a denser CRN where $N=300$.
-%SOC noticeably causes more singleton clusters than ROSS variants, except that ROSS-20-DFA results in more singleton clusters when PUs are few.
-%The reason is ROSS-20-DFA conducts cluster membership clarification for only once, which causes large number of singleton clusters.
-%ROSS-20-DGA increases the size of smaller clusters through debatable nodes' repeated updates thus drastically decreases the number of singleton clusters.
-%\begin{figure}[!h]
-%  \centering
-%  \includegraphics[width=0.7\linewidth]{survival_rate_100_edge50.pdf}
-%  \caption{Percentage of CRs which are not included in any clusters with the increasing number of primary users, $N=100$}
-%  \label{singleton_clusters_100}
-%\end{figure}
-%  
-%  \begin{figure}[!h]
-%    \centering
-%   \includegraphics[width=0.7\linewidth]{survival_rate_300_edge50.pdf}
-%  \caption{Percentage of CRs which are not included in any clusters with the increasing number of primary users, $N=300$}
-%  \label{singleton_clusters_300}
-%\end{figure}
+
 
 
 \begin{figure*}[t]
@@ -1686,27 +1568,12 @@ To better understand the distribution of the sizes of formed clusters, we depict
 
 
 
-
-%\begin{figure}[ht]
-%\begin{center}
-%%\centering
-%\subfigure[100 CRs, 30 PRs]{\label{result1:1}\includegraphics[width=0.48\linewidth]{cdf_clusterSize_100.pdf}}
-%\subfigure[300 CRns, 30 PRns]{\label{result1:2}\includegraphics[width=0.48\linewidth]{cdf_clusterSize_300.pdf}}
-%\end{center} 
-%\caption[Cluster sizes]{Distribution of CRs in clusters with different sizes} %{\subref{a}, \subref{b}, \subref{c}, \subref{d}}
-%\label{result1}
-%\end{figure}
-
 The sizes of clusters generated by ROSS-DGA and ROSS-DFA span a wider range than ROSS with size control feature.
 Most of the generated clusters are smaller than the average number of neighbours, which is roughly equal with the 95\% percentile of the ROSS-DGA curve.
 The 50\% percentile of the ROSS-DGA curve is roughly the desired size $\delta$.
-%
-%The desired cluster sizes are 5, 8 and 13, which are around 45\% of the average number of neighbours in respective CRNs. 
 When the variants of ROSS with size control feature are applied, the sizes of the most generated clusters are smaller than $\delta$.
-%This means the size control feature effectively restricts the size of clusters, which is able to prevent the clusters from ungovernable growing with the increase of network density.
-%But the range where most of the CRs (80\% which exclude the CR nodes residing in small and big clusters) resides centres a value, which is roughly the half of the average number of neighbours.
 As to the curves of SOC, the 95\% percentiles are 36, 30, and 40 in respective networks.
-
+%
 From Figure~\ref{cdf_100_200_300}, we conclude that the sizes of the clusters generated by ROSS are limited by the network density, the sizes of the clusters formed by ROSS with size control feature are restricted by the desired size.
 In contrary, the clusters generated from SOC demonstrate strong divergence on cluster sizes.
 
@@ -1714,7 +1581,7 @@ In contrary, the clusters generated from SOC demonstrate strong divergence on cl
 \subsection{Insights Obtained from the Simulation}
 The centralized clustering scheme is able to form the clusters which satisfy the requirement on cluster size strictly, and the clusters are robust against the PUs' activity, besides, it generates the smallest control overhead in the process of clustering.
 
-As distributed schemes, the variants of ROSS outperform SOC considerately on three metrics.
+As distributed schemes, the variants of ROSS outperform SOC considerably on three metrics.
 The variants of ROSS generate much less singleton clusters than SOC, and the resulted clusters are robuster than SOC when facing the newly added PUs.
 The signaling overhead involved in ROSS is about half of that needed for SOC, and the signaling messages are much shorter that the latter.
 The sizes of the clusters generated by ROSS demonstrate smaller discrepancy than that of SOC.
