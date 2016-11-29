@@ -408,7 +408,6 @@ The availability of CCs within a cluster defines the existence of that cluster, 
 In the context of CRN, the activity of primary users is usually unknown to the secondary users, thus when the primary users' activity is deemed as random, the cluster which secures more CCs will anticipate a longer time span.
 It is obvious that fewer members in a cluster yield more CCs, but obtaining more CCs by decreasing the cluster size contradicts to the motivation of clustering, \ie benefit the cluster members with cooperative decision making.
 For example, spectrum sensing accuracy coralates with the cluster size~\cite{Consensus_based_clustering12}, and power consumption doesn't favor small clusters~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
-%
 In this paper the robustness of clusters means the ability of the clusters to sustain the increasing activity of primary users.
 %is synonymous with the affluence of CCs which are possessed by that cluster, to ....
 
@@ -418,74 +417,53 @@ In this paper the robustness of clusters means the ability of the clusters to su
 %Thus the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not given consideration.
 
 There has been a lot of research done for clustering in wireless networks.
-%Prior to the emergence of cognitive radio, clustering has been proposed as an important method to manage network ad-hoc networks~\cite{Kawadia03,Lin97adaptiveclustering,Basagni99}, wireless mesh networks\cite{clustering_mesh_globecom2010} and sensor networks~\cite{Abbasi_survey_07}. 
 In ad-hoc and mesh networks, the major goal of clustering is to maximize connectivity or to improve the performance of routes~\cite{Kawadia03, clustering_mesh_globecom2010}.
 The emphasis of clustering in sensor networks is on network lifetime and coverage~\cite{Abbasi_survey_07}.
-%Few works also take the overhead of clustering into account in ad-hoc network~\cite{clusterRoutingOverhead02infocom, clusterRoutingOverhead_wcnc04}.
-Various clustering schemes are proposed to target different aspects in cognitive radio networks.
+%Various clustering schemes are proposed to target different aspects in cognitive radio networks.
 %Work~\cite{Consensus_based_clustering12} improves spectrum sensing ability by grouping the CR users with potentially best detection performance into the same cluster.
 %Clustering scheme~\cite{clustering_globecom11} obtains the best cluster size which minimizes power consumption caused by communication within and among clusters.
 %\cite{clustering_globecom11} proposes clustering strategy in cognitive radio network, which looks into the relationship between cluster size and power consumption and accordingly controlling the cluster size to decrease power consumption.
-The clustering schemes proposed in~\cite{Zhao07, Chen07,Affinity_clustering_09icccn} form clusters which meet the basic condition, having CC in every cluster.
-Clustering scheme~\cite{Consensus_based_clustering12} improves spectrum sensing accuracy.
+In respect of CRN, \cite{Zhao07, Chen07,Affinity_clustering_09icccn} propose the clustering schemes to form clusters, where securing CCs is the only goal.
+Clustering scheme~\cite{Consensus_based_clustering12} improves spectrum sensing accuracy with cluster structure.
 %Clustering scheme~\cite{clustering_globecom11} obtains the best cluster size which minimizes power consumption caused by communication within and among clusters.
-\cite{clustering_globecom11, TWC2012_cooperative_communication} target on the QoS provisioning and energy efficiency.
+\cite{clustering_globecom11, TWC2012_cooperative_communication} target on the QoS provisioning and energy efficiency with cluster structure.
 \cite{cluster_EW10} forms clusters to coordinate the control channel usage within one cluster.
-A event-driven clustering scheme is proposed for cognitive radio sensor network in \cite{Ozger_cluster_crsn_13}.
-% optimize the sizes of the formed clusters to decrease power consumption.
-%the channel available to the largest set of one-hop neighbours is selected as common channel which yields a partition of the CRN into clusters. 
-%This approach minimizes the set of distinct frequency bands (and hence, the set of clusters) used as common channels within the CRN.
-%However, bigger cluster sizes generally lead to less options within one cluster to switch to if the common channel is reclaimed by a primary node. 
-%This method pays attention to the communication among the formed clusters, but cluster robustness is not considered.
-%\cite{TWC2012_cooperative_communication} targets on the QoS poisoning and energy efficiency. 
-%This approach first decides on the relay nodes which minimize transmission power consumption, then the chosen nodes become cluster heads and clusters are formed in a dynamic coalition process.
-%This work emphasis on power efficiency and doesn't take into account the channel availability and the issue of robustness of the formed clusters.
-%\cite{cluster_EW10} deploys cluster structure in order to implement common channel control, medium access  with multiple channel and channel allocation. 
-%The node with the maximum number of common channels within its k-hop neighborhood is chosen as cluster head, but how to avoid one node appearing in multiple clusters is not given consideration.
-%A event-driven clustering scheme is proposed for cognitive radio sensor network in \cite{Ozger_cluster_crsn_13}.
-%The cluster heads are selected according to node degree, spectrum availability and the distance to the sink, and the clusters are no longer available after the event ends.
+An event-driven clustering scheme is proposed for cognitive radio sensor network in \cite{Ozger_cluster_crsn_13}.
 No one among the above mentioned schemes provides the robustness to the formed clusters against primary users. 
-
-
-%Forming robust clusters is considered in~\cite{LIU_TMC11_2, mansoor_15_cluster_robust}.
-
-A clustering scheme (denoted by SOC) which is designed to generate robust clusters against primary users is proposed in~\cite{LIU_TMC11_2}.
+%
+A clustering scheme (denoted as SOC) which is designed to generate robust clusters against primary users is proposed in~\cite{LIU_TMC11_2}.
 SOC involves three phases of distributed executions.
-In the first phase, every secondary user forms clusters with some one-hop neighbors, in the second and third phase, each secondary user seeks to either merge other clusters around it, or join one of them.
-The metric adopted by every secondary user in the three phases is the product of the the number of CCs and cluster size (the number of secondary users in the cluster).
-%To the best of our knowledge, SOC is the only work emphasizing on the robustness of clustering structure among the related works. 
-But this robust clustering scheme has some drawbacks.
-Although the adopted metric covers both cluster size and the number of CCs, the formation of certain clusters may be easily dominated by only one factor, e.g. a node which is able to use many channels will exclude its neighbor and form a cluster by itself.
-%emphasis on improving the numbers of common channels within clusters, in order to strengthening robustness of clusters, but the perused metric is not examined or proved to be able to maintain cluster structure under vigorous intensity of primary users’ activities.
-%The authors consider the balance between the number of idle common channels within cluster and cluster size and propose an algorithm that increases the number of common channels within clusters. 
-%However, this work neglects the issue of connectivity between clusters. 
-%One drawback of this scheme is, in order to increase the number of common channels within clusters, the scheme excludes certain CR nodes from the formed clusters, so that isolated nodes have to form clusters themselves. 
+In the first phase, every secondary user forms clusters with some one-hop neighbors, in the second and third phase, each secondary user seeks to either merge other clusters or join one of them.
+The metric adopted by every secondary user in the three phases is the product of the number of CCs and cluster size.
+The drawbacks are as follows, although the adopted metric considers both cluster size and the number of CCs, cluster formation can be easily dominated by only one factor, e.g. a node which can access many channels may exclude its neighbor and form a cluster by itself.
 In addition, this scheme leads to the high variance of the cluster sizes, which is not desired in certain applications as discussed in~\cite{clustering_globecom11, cluster_EW10}.
-%The first two propose a distributed scheme where the metric is the product of cluster size and the number of common channels.
-\cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters, although the authors claim robustness is one goal to achieve, the minimum number of clusters is pursued.
-\cite{Li11_ROSS} proposes a distributed clustering scheme under the game theoretic framework. 
-Compared with the clustering schemes introduced so far, the clusters are formed in shorter time and posses more CCs within and among clusters.
-But this scheme doesn't consider the the factor of size in the algorithm design.
+\cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters, although the authors claim robustness is one goal to achieve, the minimum number of clusters is finally pursued.
 
-
-In this paper we will give a comprehensive analysis of the robust clustering problem and propose solutions. 
-We stick to the motivation of forming robust clusters in CRN \ie let more CR users benefited from the cooperative decision making which is due to the clusters. 
-We propose both centralized and distributed clustering schemes, which result in more CR users in the clusters composed with multiple CR users, not only when the clusters are just formed, but also afterwards when the primary users' activity changes.
-Besides, both centralized and distributed schemes take the cluster size into consideration, and both can control the sizes of the formed clusters to certain extent.
-In particular, the decentralized clustering approach ROSS (RObust Spectrum Sharing) is able to form clusters with desired sizes.
-When compared with other distributed works, ROSS involves smaller signaling overhead and the generated clusters are significantly more robust against the primary users which appear after the clusters are formed.
+A distributed clustering scheme ROSS is proposed in~\cite{Li11_ROSS} under the game theoretic framework . 
+Compared with the clustering schemes introduced above, the clusters are formed faster and the clusters possess more CCs within and among clusters than SOC.
+But this work doesn't intervene the outcome of singleton clusters, although the cluster sizes are not as divergent as SOC.
+Furthermore, this work doesn't consider the robustness of clusters against the increasing activity of primary users, which leaves their claim of robustness unverified.
+%
+This paper is on the basis of the work in~\cite{Li11_ROSS}, but extends in two directions.
+First, this paper sticks to a new metric of robustness, and considers the clusters when primary users' activity becomes more dynamic.
+Second, this paper proposes size control mechanism, which solves the problem of devergence of clusters sizes in ~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
+Besides, this paper provides a comprehensive analysis of the robust clustering problem and proposes the centralized solution. 
+%We stick to the motivation of forming robust clusters in CRN \ie let more CR users benefited from the cooperative decision making which is due to the clusters. 
+%We propose both centralized and distributed clustering schemes, which result in more CR users in the clusters composed with multiple CR users, not only when the clusters are just formed, but also afterwards when the primary users' activity changes.
+%Besides, both centralized and distributed schemes take the cluster size into consideration, and both can control the sizes of the formed clusters to certain extent.
+%In particular, the decentralized clustering approach ROSS (RObust Spectrum Sharing) is able to form clusters with desired sizes.
+%When compared with other distributed works, ROSS involves smaller signaling overhead and the generated clusters are significantly more robust against the primary users which appear after the clusters are formed.
 %thesis
 %and the generated clusters are more robust than the other clustering scheme which has claims on cluster robustness, \ie more secondary users residing in clusters against increasing influence from primary users.
 %
 %ROSS selects cluster head through coordination within its neighborhood, and then cluster membership is decided locally and its fast convergence is proved under game theoretic framework. 
 %For our scheme we can prove convergence in cluster formation phase and resolve ambiguities with respect to cluster membership in a game-theoretic setting. 
-We also propose the light weighted versions of ROSS, which involve less overheads and thus are more suitable for the scenario where fast deployment is desired.
-Throughout this paper, we refer the clustering schemes on the basis of ROSS as \textit{variants of ROSS}, \ie the fast versions, or that with size control feature.
+The new extensions are made on basis of ROSS and its light weighted version, the latter involves less overheads thus are more suitable for the scenario where fast deployment is desired.
+Throughout this paper, we refer to the clustering schemes on the basis of ROSS as \textit{variants of ROSS}, which include the fast versions and that with size control function.
 
 The rest of paper is organized as follows. 
-We present the system model in Section~\ref{sec:model}. 
-Then the formal description of robust clustering problem in CRN and the properties of the problem are given in Section~\ref{problem}.
-The centralized and distributed solutions are introduced in Section~\ref{centralized_opt} and \ref{ross} respectively.
+We present the system model and the robust clustering problem in Section~\ref{sec:model}. 
+The centralized and distributed solutions are introduced in Section~\ref{centralized_solution} and~\ref{ross} respectively.
 %The clustering problem is given through analysis and a centralized scheme is proposed in section~\ref{centralized_scheme}.
 Extensive performance evaluation is presented in Section~\ref{performance}.
 Finally, we conclude our work and point out the direction for future research in Section~\ref{conclusion}.
@@ -607,7 +585,7 @@ According to the new definition of the number of CCs in a cluster, the singleton
 
 
 \section{Centralized Solution for Robust Clustering}
-\label{centralized_opt}
+\label{centralized_solution}
 
 Based on Definition~\ref{def_centralized_clustering}, the decision version of this problem is to determine whether there exists a non-empty $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C\in \mathcal{S}'} f(C) \geqslant \lambda$ where $\lambda$ is a real number and $C$ is a cluster.
 We have the following theorem on the complexity of this problem.

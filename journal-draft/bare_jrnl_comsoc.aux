@@ -40,14 +40,17 @@
 \citation{TWC2012_cooperative_communication}
 \citation{cluster_EW10}
 \citation{Ozger_cluster_crsn_13}
-\providecommand \oddpage@label [2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
-\newlabel{intro}{{1}{1}{Introduction}{section.1}{}}
 \citation{LIU_TMC11_2}
 \citation{clustering_globecom11}
 \citation{cluster_EW10}
 \citation{mansoor_15_cluster_robust}
+\providecommand \oddpage@label [2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
+\newlabel{intro}{{1}{1}{Introduction}{section.1}{}}
 \citation{Li11_ROSS}
+\citation{Li11_ROSS}
+\citation{Li11_ROSS}
+\citation{LIU_TMC11_2}
 \citation{unitDiskModel}
 \citation{channelHopping_Rendezvous_2014}
 \citation{Gu_distributed_rendezvous_2014}
@@ -62,7 +65,7 @@
 \newlabel{tab1}{{1}{3}{Notations\relax }{table.caption.1}{}}
 \newlabel{def_centralized_clustering}{{1}{3}{}{mydef.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Centralized Solution for Robust Clustering}{3}{section.3}}
-\newlabel{centralized_opt}{{3}{3}{Centralized Solution for Robust Clustering}{section.3}{}}
+\newlabel{centralized_solution}{{3}{3}{Centralized Solution for Robust Clustering}{section.3}{}}
 \newlabel{theorem1}{{3.1}{3}{}{theorem.3.1}{}}
 \newlabel{centralized_opt}{{1}{3}{Centralized Solution for Robust Clustering}{equation.3.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces An example of Matrix $Q$, its rows correspond to all possible clusters, and columns correspond to the CR nodes in the CRN. \relax }}{3}{figure.caption.2}}
@@ -104,6 +107,8 @@
 \citation{Basagni99}
 \citation{Zhao07}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Distributed Fast Algorithm (DFA)}{7}{subsubsection.4.2.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Performance Evaluation}{7}{section.5}}
+\newlabel{performance}{{5}{7}{Performance Evaluation}{section.5}{}}
 \newlabel{AinC}{{7(a)}{7}{Subfigure 7(a)}{subfigure.7.1}{}}
 \newlabel{sub@AinC}{{(a)}{7}{Subfigure 7(a)\relax }{subfigure.7.1}{}}
 \newlabel{AinH}{{7(b)}{7}{Subfigure 7(b)}{subfigure.7.2}{}}
@@ -113,8 +118,6 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Node A stays in cluster $C(H)$, quits $C(C)$, $\Delta \delimiter "026A30C K(C(C))\delimiter "026A30C +\Delta \delimiter "026A30C K(C(H))\delimiter "026A30C =1$}}}{7}{figure.caption.8}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Final formation of clusters. Common channels are shown beside corresponding clusters.\relax }}{7}{figure.caption.9}}
 \newlabel{final_clustering_ross}{{8}{7}{Final formation of clusters. Common channels are shown beside corresponding clusters.\relax }{figure.caption.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Performance Evaluation}{7}{section.5}}
-\newlabel{performance}{{5}{7}{Performance Evaluation}{section.5}{}}
 \citation{LIU_TMC11_2}
 \citation{complexity_aggregation_2011}
 \newlabel{fig:final_clustering_soc}{{9(a)}{8}{Subfigure 9(a)}{subfigure.9.1}{}}
@@ -131,6 +134,7 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Cluster Size}{8}{subsubsection.5.1.2}}
 \newlabel{cluster_size}{{5.1.2}{8}{Cluster Size}{subsubsection.5.1.2}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Robustness of the clusters against newly added PUs}{8}{subsubsection.5.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}Control Signaling Overhead}{8}{subsubsection.5.1.4}}
 \citation{Efficient_broadcasting_gathering_adhoc}
 \citation{Efficient_broadcasting_gathering_adhoc}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Number of common channels of non-singleton clusters\relax }}{9}{figure.caption.11}}
@@ -141,19 +145,18 @@
 \newlabel{singleton_clusters}{{12}{9}{Number of unclustered CRs with decreasing spectrum availability\relax }{figure.caption.11}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Comparison between the distributed and centralized clustering schemes ($N$ = 20)\relax }}{9}{figure.caption.11}}
 \newlabel{compare_dis_centralized}{{13}{9}{Comparison between the distributed and centralized clustering schemes ($N$ = 20)\relax }{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.4}Control Signaling Overhead}{9}{subsubsection.5.1.4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces The percentage of debatable nodes after phase I of ROSS.\relax }}{9}{figure.caption.12}}
 \newlabel{percentage_overlapping_node}{{14}{9}{The percentage of debatable nodes after phase I of ROSS.\relax }{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Quantitative amount of control messages.\relax }}{9}{figure.caption.15}}
+\newlabel{control_msg}{{15}{9}{Quantitative amount of control messages.\relax }{figure.caption.15}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Comparison among the Distributed Schemes}{9}{subsection.5.2}}
 \newlabel{largeScaleCRN}{{5.2}{9}{Comparison among the Distributed Schemes}{subsection.5.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Number of CCs per Non-singleton Clusters}{9}{subsubsection.5.2.1}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Signalling overhead\relax }}{10}{table.caption.13}}
 \newlabel{tab_overhead}{{2}{10}{Signalling overhead\relax }{table.caption.13}{}}
 \newlabel{tnote:robots-r1}{{{a}}{10}{Signalling overhead\relax }{Item.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Quantitative amount of control messages.\relax }}{10}{figure.caption.15}}
-\newlabel{control_msg}{{15}{10}{Quantitative amount of control messages.\relax }{figure.caption.15}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces \relax }}{10}{table.caption.16}}
 \newlabel{Simulation_para}{{3}{10}{\relax }{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Number of CCs per Non-singleton Clusters}{10}{subsubsection.5.2.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Number of common channels of non-singleton clusters.\relax }}{10}{figure.caption.17}}
 \newlabel{ccc_large_scale}{{16}{10}{Number of common channels of non-singleton clusters.\relax }{figure.caption.17}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Robustness of the clusters against newly added PUs}{10}{subsubsection.5.2.2}}
@@ -201,12 +204,12 @@
 \bibcite{willkomm08}{8}
 \bibcite{centralizedSharing80222}{9}
 \bibcite{Abbasi_survey_07}{10}
+\bibcite{Consensus_based_clustering12}{11}
 \newlabel{proof_theorem1}{{19}{13}{Proof of Theorem~\ref {theorem1}}{section*.29}{}}
 \newlabel{def_kset_packing}{{2}{13}{}{mydef.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \relax }}{13}{table.caption.30}}
 \newlabel{no_hard_proof_instance}{{4}{13}{\relax }{table.caption.30}{}}
 \@writefile{toc}{\contentsline {section}{References}{13}{section*.32}}
-\bibcite{Consensus_based_clustering12}{11}
 \bibcite{clustering_globecom11}{12}
 \bibcite{EnergyEfficientClusteringRouting_2015}{13}
 \bibcite{Kawadia03}{14}
