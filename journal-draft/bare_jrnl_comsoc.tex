@@ -396,33 +396,26 @@ Clustering algorithm has also been proposed to support routing in cognitive radi
 %The similarity of available spectrum on a group of neighbouring CR nodes, along with the benefit of collaborative decision among multiple nodes, leads to clustering as an effective approach for many applications.
 %[robustness issue for clustering]
 
-Forming clusters is conducted in the very beginning or periodically according to the dynamics of the CRN.
-To form a cluster which is composed by the CR users, there should be channels available for communication within the cluster.
-Usually there are multiple unlicensed channels available for all the CR nodes in the cluster, which are referred to in the following of this paper as \textit{common licensed channels} (or common channels for short, which is abbreviated as CC).
-Out of the available CCs, there are always one or multiple channels which are used for the payload communication.
-%The communication within a cluster is conducted in the spectrum which is available for every member in that cluster.
-When one or several cluster members can not use one certain CC for example because primary user activity has been detected on that channel, it will be excluded from the set of CCs.
-If the channel is being used for payload communication, all the cluster members will switch to another channel in the set of available CCs to achieve seamless transmission.
-As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
-In the context of CRN, as the activity of primary users is unknown to the secondary users, the availability of CCs of the formed clusters is totally dependent on primary users' activity.
-Thus, the clusters with more CCs are in general better as this anticipates a longer time span that payload can be exchanged.
-In this paper the robustness of a cluster against primary users is synonymous with the affluence of CCs which are possessed by that cluster. 
-%In other words, the availability of CCs of the formed clusters is passive and can not be guaranteed.
-%Thus, the number of CCs in one formed cluster indicates the robustness of it when facing the unpredictable influence from primary users.
-%In CRN, one cluster survives the influence of primary users when at least one CC is available in that cluster.
-%As the primary users' operation is assumed to be unknown to the CR users, a cluster formed with more CCs will survive with higher probability.
-
-%It is easy to see that forming clusters with different neighbours results in different number of CCs in the clusters.
-%As a result, how to form the clusters plays an important role on the robustness of clusters in CRN.
-%Furthermore, the clustering algorithm also determines the connectivity between several clusters which ultimately determines the robustness of the entire network on the respect of connectivity. 
-In the formation process, there is a trade-off between CCs and the collaborative sensing performance, as less members in a cluster yield in general a higher number of CCs while this reduces the sensing accuracy~\cite{Consensus_based_clustering12}. 
-In addition, there are other reasons that motivate clusters to have more members.
-For example, instead of less members, the proper cluster size results in smaller power consumption~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
+Clusters are formed in the very beginning of the network operation, and re-formed periodically according to the dynamics of the CRN.
+Each formed cluster has one or multiple unlicensed channels which are available for every CR node in the cluster.
+The available unlicensed channels are referred to in the following of this paper as \textit{common licensed channels} (or common channels for short, which is abbreviated as CC).
+Both payload and control overheads can be transmitted on the CCs.
+%Out of the available CCs, there are always one or multiple channels which are used for the payload communication.
+When one or several cluster members can not access one certain CC on which primary user activity is detected, the channel will be excluded from the set of CCs.
+In particular, if that channel is being used for payload communication, the communication pair will stop and resume the transmission on another available channel from CCs.
+The availability of CCs within a cluster defines the existence of that cluster, \ie no CCs are available means the corresponding cluster doesn't exist.
+%As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
+In the context of CRN, the activity of primary users is usually unknown to the secondary users, thus when the primary users' activity is deemed as random, the cluster which secures more CCs will anticipate a longer time span.
+It is obvious that fewer members in a cluster yield more CCs, but obtaining more CCs by decreasing the cluster size contradicts to the motivation of clustering, \ie benefit the cluster members with cooperative decision making.
+For example, spectrum sensing accuracy coralates with the cluster size~\cite{Consensus_based_clustering12}, and power consumption doesn't favor small clusters~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 %
+In this paper the robustness of clusters means the ability of the clusters to sustain the increasing activity of primary users.
+%is synonymous with the affluence of CCs which are possessed by that cluster, to ....
+
 %To solely pursue cluster robustness against the primary users' activity, \ie to achieve more common channels within clusters, the ultimately best clustering strategy is ironically that every node constitutes one cluster (called as \textit{singleton cluster} in this paper).
 %%In that case, the common channels within cluster are the available channels available at that node's place.
 %Apparently this contradicts our motivation of proposing cluster in cognitive radio network to enable cooperative decision making.
-Thus the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not given consideration.
+%Thus the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not given consideration.
 
 There has been a lot of research done for clustering in wireless networks.
 %Prior to the emergence of cognitive radio, clustering has been proposed as an important method to manage network ad-hoc networks~\cite{Kawadia03,Lin97adaptiveclustering,Basagni99}, wireless mesh networks\cite{clustering_mesh_globecom2010} and sensor networks~\cite{Abbasi_survey_07}. 
