@@ -492,13 +492,14 @@ This control channel could be one of the ISM bands or other reserved spectrum wh
 Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ with all its one hop neighbors $\text{Nb}(i)$.
 In the following, we refer to the licensed channel as \textit{channel} in general, and will explicitly mention the dedicated control channel if necessary. 
 
-A cluster $C$ is a set of secondary nodes, which consists of a cluster head $h(C)$ and a number of cluster members.
-The cluster head is able to communicate with any cluster member directly.
+A cluster $C$ is a set of secondary nodes which possess the same set of CCs.
+In particular, one cluster consists of a cluster head $h(C)$ and a number of cluster members, and the cluster head is able to communicate with any cluster member directly.
+A cluster can be composed only by the cluster head.
 $\text{Nb}(i)$ denotes node $i$'s neighborhood which consists of all its one hop neighbors.
 %For any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds.
 Cluster size of $C$ is written as $|C|$.
 Cluster $C(i)$ means the cluster head of this cluster is $i$.
-$ K(C) = \cap_{i\in C} K_i$, $K(C)$, which denotes the set of CCs in cluster $C$.
+$K(C)$ denotes the set of CCs in cluster $C$, $ K(C) = \cap_{i\in C} K_i$.
 %Clustering is performed periodically, because the secondary users are mobile and the primary users change their operation channels, thus the channel availability on secondary users changes accordingly.
 The notations used in the system model and the following problem description are listed in Table~\ref{tab1}.
 \begin{table}[h!]
@@ -556,24 +557,23 @@ Considering the above mentioned requirements, we present the definition of robus
 \label{def_centralized_clustering}
 \textit{Robust clustering problem in CRN.}
 
-Given a cognitive radio network $\mathcal{N}$ where $|\mathcal{N}|=N$,  the secondary users are indexed from 1 to $N$.
-A cluster $C$ is formed when first, it is composed with one or multiple secondary users and there are CCs in $C$ \ie $|K(C)|>0$, second, any two cluster members can communicate either directly, or through other members which belong to the same cluster.
-The collection of all the possible clusters in $\mathcal{N}$ is denoted as $\mathcal{S}$, there is $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ where $C_i$ is the $i$ th cluster in $\mathcal{S}$.\footnote{The sequence of the clusters can be decided in any convenient way \ie the sequence of identifying them.}
-As to $\mathcal{S}$, there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$.
+Given a cognitive radio network $\mathcal{N}$ where $|\mathcal{N}|=N$, the collection of all the possible clusters\footnote{Possible cluster means the collection of CR nodes, which complies with the definition in~\ref{sec:model}} in $\mathcal{N}$ is denoted as $\mathcal{S}$ where $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ \footnote{The subscripts of the clusters can be decided in any convenient way \ie the sequence of identifying them.} and there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$.
 
-To formulate the problem, we propose a new definition for the number of CCs in a cluster.
-We use $f(C_i)$ to denote the number of CCs of a cluster $C_i\in \mathcal{S}$, which is,
-%and the number of common licensed channels is $f(C_i) = |K(C_i)|$ if $|C_i|>1$, and $f(C_i)=0$ when $|C_i|=1$.
-$$
-f(C_i) = \left\{ \begin{array}{rl}
-|K(C_i)| 	&\mbox{$|C_i|>1$} \\
-0 				&\mbox{$|C_i|=1$} \\
-\end{array} \right.
-$$
+Then the requirements on the cluster size are enforced, \ie the desired size is $\delta$ and the cluster sizes should fall in the scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, and $\delta_1 \leq \delta\leq \delta_2$.
+Then a feasible clustering solution is a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, which satisfies 
+$\delta_1\leq|C_i|\leq \delta_2, \bigcup_{C_i\in \mathcal{S}'} C_i = \mathcal{N}$ and $C_{i'}\cap C_i =\emptyset$ where $C_{i'}, C_i\in \mathcal{S}'$ and $i'\neq i$.
+The optimal clustering solution is the feasible clustering solution whose sum of the numbers of CCs of clusters $\sum_{C\in \mathcal{S}'} f(C)$ is the maximal.
 
-A clustering solution is a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, which satisfies $\bigcup_{C_i\in \mathcal{S}'} C_i = \mathcal{N}$ and $C_{i'}\cap C_i =\emptyset$ when $C_{i'}, C_i\in \mathcal{S}'$ and $i'\neq i$, so that the sum of the numbers of CCs of the formed clusters $\sum_{C\in \mathcal{S}'} f(C)$ is maximized.
-Besides, the formed clusters should satisfy the requirements on cluster size, for example, the sizes should be within a scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, and $\delta_1 < \delta_2$.
-According to the new definition of the number of CCs in a cluster, the singleton clusters in $\mathcal{S'}$ don't contribute to the value to be maximized.
+%To formulate the problem, we propose a new definition for the number of CCs in a cluster.
+%We use $f(C_i)$ to denote the number of CCs of a cluster $C_i\in \mathcal{S}$, which is,
+%%and the number of common licensed channels is $f(C_i) = |K(C_i)|$ if $|C_i|>1$, and $f(C_i)=0$ when $|C_i|=1$.
+%$$
+%f(C_i) = \left\{ \begin{array}{rl}
+%|K(C_i)| 	&\mbox{$|C_i|>1$} \\
+%0 				&\mbox{$|C_i|=1$} \\
+%\end{array} \right.
+%$$
+%According to the new definition of the number of CCs in a cluster, the singleton clusters in $\mathcal{S'}$ don't contribute to the value to be maximized.
 
 \end{mydef}
 
@@ -1814,16 +1814,22 @@ These singleton clusters and the clusters mapped from $\mathcal{I'}$ constitute 
 
 \end{itemize}
 
-We have crossed the hurdle of finding one polynomial algorithm $\sigma$ which transforms an instance of weighted $k$-set packing to an instance of the clustering problem in CRN.
-%Now we look into the step 2 in the reduction.
-When $\mathcal{I}$ is not an instance for weighted $k$-set packing problem due to the existence of joint sets, the corresponding clustering instance is not a successful cluster partition for the robust clustering problem, as there are overlapped clusters.
-%
-When the sets in an instance $\mathcal{I}$ for weighted $k$-set packing are disjoint, the sum of weights is identical to the total number of the CCs in the CRN which are mapped from $\mathcal{I'}$.
-Thus, when a instance $\mathcal{I}$ for $k$-set packing problem is true (or false), \ie the sum of weights is greater than $\lambda$, then in the CRN which is mapped from $\mathcal{I'}$, the sum of the numbers of CCs of the clusters is greater (or smaller) than $\lambda$.
-%In the other hand, when an instance is false for weighted $k$-set packing problem, the sum of the numbers of CCs of the clusters in the mapped CRN is smaller than $\lambda$, then the formation of the clusters is not a solution for the robust clustering problem.
+We have found the polynomial algorithm $\sigma$ which transforms an instance of weighted $k$-set packing to an instance of the robust clustering problem in CRN.
+Assume we have a robust clustering black box which can check whether the clustering instance meets the requirement, \ie the total sum of CCs exceed $\lamda$ or not.
+If \textit{yes} is said, then the total weight of the corresponding instance of the maximum weighted k-set packing problem is greater than $\lamda$.
+If the black box said \textit{no}, 
+
+ The direction is wrong!!
+%When $\mathcal{I}$ is not an instance for weighted $k$-set packing problem due to the existence of joint sets, the corresponding clustering instance is not a successful cluster partition for the robust clustering problem, as there are overlapped clusters.
+%%
+%When the sets in an instance $\mathcal{I}$ for weighted $k$-set packing are disjoint, the sum of weights is identical to the total number of the CCs in the CRN which are mapped from $\mathcal{I'}$.
+%Thus, when a instance $\mathcal{I}$ for $k$-set packing problem is true (or false), \ie the sum of weights is greater than $\lambda$, then in the CRN which is mapped from $\mathcal{I'}$, the sum of the numbers of CCs of the clusters is greater (or smaller) than $\lambda$.
 
 Hence, the weighted $k$-set packing can be reduced to the robust clustering problem in CRN, then the latter problem is of NP-hard.
 An example of the reduction is shown in Table~\ref{no_hard_proof_instance}.
+
+XXXXXXXXXXXXx
+
 \begin{table}[h!]
      \begin{center}
      \begin{tabular}{ C{3cm}  C{4.5cm} }
