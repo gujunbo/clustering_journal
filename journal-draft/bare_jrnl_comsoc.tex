@@ -439,7 +439,7 @@ The drawbacks are as follows, although the adopted metric considers both cluster
 In addition, this scheme leads to the high variance of the cluster sizes, which is not desired in certain applications as discussed in~\cite{clustering_globecom11, cluster_EW10}.
 \cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters, although the authors claim robustness is one goal to achieve, the minimum number of clusters is finally pursued.
 
-A distributed clustering scheme ROSS is proposed in~\cite{Li11_ROSS} under the game theoretic framework . 
+A distributed clustering scheme ROSS is proposed in~\cite{Li11_ROSS} under the game theoretic framework. 
 Compared with the clustering schemes introduced above, the clusters are formed faster and the clusters possess more CCs within and among clusters than SOC.
 But this work doesn't intervene the outcome of singleton clusters, although the cluster sizes are not as divergent as SOC.
 Furthermore, this work doesn't consider the robustness of clusters against the increasing activity of primary users, which leaves their claim of robustness unverified.
@@ -492,7 +492,7 @@ This control channel could be one of the ISM bands or other reserved spectrum wh
 Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ with all its one hop neighbors $\text{Nb}(i)$.
 In the following, we refer to the licensed channel as \textit{channel} in general, and will explicitly mention the dedicated control channel if necessary. 
 
-A cluster $C$ is a set of secondary nodes, which consists of a cluster head $h_C$ and a number of cluster members.
+A cluster $C$ is a set of secondary nodes, which consists of a cluster head $h(C)$ and a number of cluster members.
 The cluster head is able to communicate with any cluster member directly.
 $\text{Nb}(i)$ denotes node $i$'s neighborhood which consists of all its one hop neighbors.
 %For any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds.
@@ -521,7 +521,7 @@ $C(i)$ & a cluster whose cluster head is $i$  \\
 $K_i$   & the set of available channels at CR node $i$  \\
 $K(C(i))$   & the set of available CCs of cluster $C(i)$ \\
 %$h(C)$ & cluster head of a cluster $C$\\
-$h_C$ & the cluster head of a cluster C\\
+$h(C)$ & the cluster head of a cluster C\\
 $\text{CH}$ & cluster head\\
 %$\text{CH}$ & cluster head\\
 $\delta$ & the cluster size which is preferred\\
@@ -543,8 +543,8 @@ $C_i$  & the $i$th potential cluster in a collection of clusters \\
 \subsection{Robust Clustering Problem in CRN}
 \label{problem}
 
-As introduced in Section~\ref{intro}, in order to be robust against primary users' activity, the formed clusters should have more CCs to expect longer time expectancy.
-Meanwhile, the sizes of the formed clusters should not diverge from the desired size greatly.
+As introduced in Section~\ref{intro}, in order to be robust against primary users' activity, the formed clusters should have more CCs to expect longer life expectancy.
+On the other hand, the sizes of the formed clusters should not diverge from the desired size greatly.
 The formation of small clusters or the \textit{singleton clusters}, \ie the cluster which has only one CR node, contradicts the motivation of forming clusters, as the benefits brought in by the collective of the cluster members are compromised.
 On the other hand, large clusters are not preferred in some scenarios neither, \eg for the CRN composed with resource limited users, managing the cluster members in a large cluster is a substantial burden. 
 Hence, the cluster size should fall in a desired range according to different application scenarios~\cite{Chen04clusteringalgorithms, capacity_cluster_06}.
@@ -829,7 +829,7 @@ In other scenarios, as Algorithm~\ref{alg0} can be executed concurrently by seco
 %
 %This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
 Let us apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}.
-Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C_H$ is $\{H, B, A, G\}$.
+Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C(H)$ is $\{H, B, A, G\}$.
 	
 
 
