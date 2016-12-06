@@ -601,9 +601,9 @@ The proof is in Appendix~\ref{proof_theorem1}.
 
 We propose a centralized solution which solves an optimization with standard solvers. 
 To formulate the optimization, we need to do some preparation beforehand.
-All the possible clusters complying with the Description in the system model are found and constitute a set $\mathcal{S}$.
-Besides, we assign a weight to each cluster, which correlates with the difference between the cluster size and the desired cluster size. 
-In particular, considering $|\mathcal{S}|=M$ and $C_i\in \mathcal{S}$ means the $i$ th cluster in $\mathcal{S}$, and $\delta$ is the desired size, then the weight for each cluster is given as follows,
+First, all the possible clusters complying with the description in the system model are found and constitute a set $\mathcal{S}$.
+Second, we assign a weight about size to each cluster, which correlates with the difference between the cluster size and the desired cluster size. 
+In particular, considering $|\mathcal{S}|=M$, $C_i\in \mathcal{S}$ means the $i$ th cluster in $\mathcal{S}$, and $\delta$ is the desired size, the weight about size for each cluster is given as follows,
 $$
 p_i(C_i) = \left\{ \begin{array}{rl}
 0 &\mbox{ if $|C_i|=\delta$} \\
@@ -613,7 +613,7 @@ p_i(C_i) = \left\{ \begin{array}{rl}
 \end{array} \right.
 $$
 where $\alpha_1, \alpha_2, \cdots$ are positive values.
-In particular, $\alpha$ increases with the divergence between $|C_i|$ and $\delta$ \ie these is $\alpha_2> \alpha_1>0$.
+In particular, $\alpha$ increases with the divergence between $|C_i|$ and $\delta$, \ie these is $\alpha_2> \alpha_1>0$.
 
  
 The optimization searches the set $\mathcal{S}$ and decides on certain clusters which constitute the whole CRN without overlapping between any two of them, besides, the sum of CCs of the chosen clusters is maximized.
@@ -623,17 +623,12 @@ Then, a central node (or controller) with the knowledge of all CR nodes (also th
 %To make the formulation possible, we adopt heuristics in both the objective function and the constraints, besides, the objective is not totally aligned with the object in the Definition~\ref{def_centralized_clustering}.
 %The problem by the Definition~\ref{def_centralized_clustering} is formulate 
 
-%This example indicates the chose of $\mathcal{C}$ plays an important role on the resultant clustering strategy.
 %Meanwhile, it provide a chance to constrain the cluster size by putting groups with desired sizes into $\mathcal{C}$.
 
 %the maximum size of $S$ is the \textit{Bell number} of $N$, and $S$ contains the conditions cluster .
-%In this case, the resultant $\mathcal{C}$ is composed with all the singleton clusters, \ie, the cluster which contains one node, and the objective is -38.
 
-%it is possible that there doesn't exist combination of clusters with the same cluster size.
 %We thus list all possible clusters whose sizes are from 2 to one certain number \footnote{this number of decided by the density of CR network, along with the occupation of PUs. We set this number as cluster size of the biggest cluster ever appears when conducting distributed schemes.}, and check each combination of clusters to find the best covering of network on the aspect of number of ICCs per cluster.
 %The complexity of computation is thus \bigO$(N^\delta)$, $\delta$ is the preferred cluster size.
-
-%The global optimal clustering scheme with respect to the number of common channels is investigated to show the gap with the distributed schemes.
 
 %We apply this centralized scheme on a network with network size $N$ and cluster size $\delta$.
 %There is $N\mod \delta=0$, and the expected number of clusters is $C = N/\delta$.
@@ -723,9 +718,7 @@ Thus the second item discourages the appearance the clusters whose sizes are dif
 
 The constraints guarantee to obtain the clusters which together include all the CR users and don't overlap.
 The first constraint regulates that each CR node should reside in exactly one cluster.
-The second constraint regulates that when the $i$th possible cluster $C_i$ is chosen, there will be exactly $|C_i|$ CR nodes residing in the cluster $C_i$.
-
-
+The second constraint regulates that when the $i$th possible cluster $C_i$ is chosen, there will be exactly $|C_i|$ CR nodes residing in $C_i$.
 
 %\begin{figure}[ht!]
 %\centering
@@ -745,6 +738,14 @@ The second constraint regulates that when the $i$th possible cluster $C_i$ is ch
 %We reiterate the reasons for pursuing the heuristic scheme, 
 %Note the collection of potential clusters is dependant on the network topology and spectrum availability in the network, thus to each specific CRN, the space of solution is different.
 
+This problem is a binary linear programming problem.
+The difficulty of using this method lies in the preparation of the set $\mathcal{S}$.
+In the worst case \ie the CRN forms a full connected graph, the size of $S$ is $\Sigma_{r=1}^{N}\ {N \choose r} = 2^N-1$.
+To levitate this problem, a smaller set \ie $\mathcal{G} \subset \mathcal{S}$ can be used.
+$\mathcal{G}$ can be prepared based on the cluster size, and it is recommended to include all the singleton clusters to make sure the availability of feasible solutions.
+
+%We thus list all possible clusters whose sizes are from 2 to one certain number \footnote{this number of decided by the density of CR network, along with the occupation of PUs. We set this number as cluster size of the biggest cluster ever appears when conducting distributed schemes.}, and check each combination of clusters to find the best covering of network on the aspect of number of ICCs per cluster.
+%The complexity of computation is thus \bigO$(N^\delta)$, $\delta$ is the preferred cluster size.
 
 \section{Distributed Clustering Algorithm: ROSS}
 \label{ross}
