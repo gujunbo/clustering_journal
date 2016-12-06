@@ -558,9 +558,8 @@ Considering the above mentioned requirements, we present the definition of robus
 \textit{Robust clustering problem in CRN.}
 
 Given a cognitive radio network $\mathcal{N}$ where $|\mathcal{N}|=N$, the collection of all the possible clusters\footnote{Possible cluster means the collection of CR nodes, which complies with the definition in~\ref{sec:model}} in $\mathcal{N}$ is denoted as $\mathcal{S}$ where $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ \footnote{The subscripts of the clusters can be decided in any convenient way \ie the sequence of identifying them.} and there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$.
-
-Then the requirements on the cluster size are enforced, \ie the desired size is $\delta$ and the cluster sizes should fall in the scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, and $\delta_1 \leq \delta\leq \delta_2$.
-Then a feasible clustering solution is a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, which satisfies 
+%
+With the requirements on the cluster size are enforced, \ie the desired size is $\delta$ and the cluster sizes should fall in the scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, and $\delta_1 \leq \delta\leq \delta_2$, a feasible clustering solution is a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, which satisfies 
 $\delta_1\leq|C_i|\leq \delta_2, \bigcup_{C_i\in \mathcal{S}'} C_i = \mathcal{N}$ and $C_{i'}\cap C_i =\emptyset$ where $C_{i'}, C_i\in \mathcal{S}'$ and $i'\neq i$.
 The optimal clustering solution is the feasible clustering solution whose sum of the numbers of CCs of clusters $\sum_{C\in \mathcal{S}'} f(C)$ is the maximal.
 
