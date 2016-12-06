@@ -587,7 +587,7 @@ The optimal clustering solution is the feasible clustering solution whose sum of
 \section{Centralized Solution for Robust Clustering}
 \label{centralized_solution}
 
-Based on Definition~\ref{def_centralized_clustering}, the decision version of this problem is to determine whether there exists a non-empty $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C\in \mathcal{S}'} f(C) \geqslant \lambda$ where $\lambda$ is a real number and $C$ is a cluster.
+Based on Definition~\ref{def_centralized_clustering}, the decision version of this problem is to determine whether there is a non-empty $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C\in \mathcal{S}'} f(C) \geqslant \lambda$ where $\lambda$ is a real number.
 We have the following theorem on the complexity of this problem.
 
 \begin{theorem}
@@ -598,8 +598,12 @@ Robust clustering problem in CRN is NP-hard, when the maximum size of clusters i
 The proof is in Appendix~\ref{proof_theorem1}.
 %This theorem actually indicates that the robust clustering problem in CRN is NP-hard. 
 
-With the definition of the robust clustering problem, we need to present this problem in the form of optimization to solve in the centralized manner.
-The optimization is a binary linear programming problem as shown in~\ref{centralized_opt}.
+Although the robust clustering problem is NP-hard, it can be solved by standard solvers. 
+Thus, a central node with all knowledge of all clusters could solve the problem based on your formulation. 
+%we need to present this problem in the form of optimization to solve in the centralized manner.
+
+
+
 %Binary linear programming problem is NP complement, but with the 
 %The result will be used as a comparison with the proposed distributed schemes. %looks for the solution which approaches to the global optimum, and the latter is the solution which is more suitable for the practical implementation.
 %
@@ -637,7 +641,7 @@ The optimization is a binary linear programming problem as shown in~\ref{central
 \label{centralized_opt}
 \end{equation}
 
-
+The optimization is a binary linear programming problem as shown in~\ref{centralized_opt}.
 The objective is to maximize the sum of CCs of all the clusters.
 We minimize the opposite of the real objective to make this problem solvable.
 %
