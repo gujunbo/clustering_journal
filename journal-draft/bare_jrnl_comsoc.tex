@@ -593,7 +593,7 @@ We have the following theorem on the complexity of this problem.
 
 \begin{theorem}
 \label{theorem1}
-Robust clustering problem in CRN is NP-hard, when the maximum size of clusters is larger than 3.
+Robust clustering problem in CRN is NP-hard, when the maximum size of clusters is larger than 3, and $\delta_1=1$ and $\delta_2 = N$ .
 %Assume a CRN can be represented by a connected graph, and there is at least one common channel between any pair of neighbours, then forming at least two CR nodes into one cluster is NP-complete.
 \end{theorem}
 The proof is in Appendix~\ref{proof_theorem1}.
@@ -602,7 +602,7 @@ The proof is in Appendix~\ref{proof_theorem1}.
 With the definition of the robust clustering problem, we need to present this problem in the form of optimization to solve in the centralized manner.
 The optimization is a binary linear programming problem as shown in~\ref{centralized_opt}.
 %Binary linear programming problem is NP complement, but with the 
-The result will be used as a comparison with the proposed distributed schemes. %looks for the solution which approaches to the global optimum, and the latter is the solution which is more suitable for the practical implementation.
+%The result will be used as a comparison with the proposed distributed schemes. %looks for the solution which approaches to the global optimum, and the latter is the solution which is more suitable for the practical implementation.
 %
 %Exact cover problem can be solved with Knuth's Algorithm X~\cite{dancingLinks_Knuth} as it finds out all the instances of exact cover, then we can choose the one with the biggest sum of weights. 
 %To make the formulation possible, we adopt heuristics in both the objective function and the constraints, besides, the objective is not totally aligned with the object in the Definition~\ref{def_centralized_clustering}.
@@ -639,7 +639,7 @@ The result will be used as a comparison with the proposed distributed schemes. %
 \end{equation}
 
 
-The objective is to maximize the sum of the products of the size and the corresponding number of CCs of all the clusters.
+The objective is to maximize the sum of CCs of all the clusters.
 We minimize the opposite of the real objective to make this problem solvable.
 %
 The variables of this problem are $x_{ij}$ where $i\in \{1,2,\cdots,G-1, G\}$ and $j\in \{1,2,\cdots,N-1, N\}$.
@@ -1766,7 +1766,8 @@ Given a collection of sets of cardinality at most $k$ with weights for each set,
 The decision version of weighted $k$-set packing problem is,
 \begin{mydef}
 \label{def_kset_packing}
-Given a finite set $\mathcal{G}$ of non-negative integers where $\mathcal{G} \subsetneq \mathbb{N}$, and a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$ where $S_i \subseteq \mathcal{G}$ for $1 \leq i \leq m$, every set $S$ in $\mathcal{Q}$ has a weight $\omega(S) \in \mathbb{R}$.
+Given a finite set $\mathcal{G}$ of non-negative integers where $\mathcal{G} \subsetneq \mathbb{N}$, and a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$ where $S_i \subseteq \mathcal{G}$ and $\max(S_i)\geq 3$ for $1 \leq i \leq m$.
+Every set $S$ in $\mathcal{Q}$ has a weight $\omega(S) \in \mathbb{R}$. 
 %
 The problem is to find a collection $\mathcal{S} \subseteq \mathcal{Q}$ such that $\mathcal{S}$ contains only pairwise disjoint sets and the total weight of the sets in $\mathcal{S}$ is greater than a given positive number $\lambda$, i.e., $\sum_{S \in \mathcal{S}} \omega(S) > \lambda$.
 \end{mydef}
