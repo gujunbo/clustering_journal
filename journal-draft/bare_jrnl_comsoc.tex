@@ -492,6 +492,7 @@ This control channel could be one of the ISM bands or other reserved spectrum wh
 Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ with all its one hop neighbors $\text{Nb}(i)$.
 In the following, we refer to the licensed channel as \textit{channel} in general, and will explicitly mention the dedicated control channel if necessary. 
 
+We give the definition of cluster in CRN as follows. 
 A cluster $C$ is a set of secondary nodes which possess the same set of CCs.
 In particular, one cluster consists of a cluster head $h(C)$ and a number of cluster members, and the cluster head is able to communicate with any cluster member directly.
 A cluster can be composed only by the cluster head.
@@ -532,9 +533,9 @@ $d_i$  & individual connectivity degree of CR node $i$\\
 $g_i$  & neighborhood connectivity degree of CR node $i$\\
 $f(C)$ & the number of CCs of a cluster $C$, which is used \\
 & in the problem description\\
-$C_i$  & the $i$th potential cluster in a collection of clusters \\
- $\mathcal{G}$ & a collection of some possible clusters in $\mathcal{N}$\\
+% $\mathcal{G}$ & a collection of some possible clusters in $\mathcal{N}$\\
  $\mathcal{S}$ & the collection of all the possible clusters in $\mathcal{N}$\\
+ $C_i$  & the $i$th cluster in $\mathcal{S}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -592,25 +593,35 @@ We have the following theorem on the complexity of this problem.
 
 \begin{theorem}
 \label{theorem1}
-Robust clustering problem in CRN is NP-hard, when the maximum size of clusters is larger than 3, and $\delta_1=1$ and $\delta_2 = N$ .
+Robust clustering problem in CRN is NP-hard, when the maximum size of clusters is larger than 3, and $\delta_1=1$ and $\delta_2 = N$.
 %Assume a CRN can be represented by a connected graph, and there is at least one common channel between any pair of neighbours, then forming at least two CR nodes into one cluster is NP-complete.
 \end{theorem}
 The proof is in Appendix~\ref{proof_theorem1}.
 %This theorem actually indicates that the robust clustering problem in CRN is NP-hard. 
 
-Although the robust clustering problem is NP-hard, it can be solved by standard solvers. 
-Thus, a central node with all knowledge of all clusters could solve the problem based on your formulation. 
-%we need to present this problem in the form of optimization to solve in the centralized manner.
+We propose a centralized solution which solves an optimization with standard solvers. 
+To formulate the optimization, we need to do some preparation beforehand.
+All the possible clusters complying with the Description in the system model are found and constitute a set $\mathcal{S}$.
+Besides, we assign a weight to each cluster, which correlates with the difference between the cluster size and the desired cluster size. 
+In particular, considering $|\mathcal{S}|=M$ and $C_i\in \mathcal{S}$ means the $i$ th cluster in $\mathcal{S}$, and $\delta$ is the desired size, then the weight for each cluster is given as follows,
+$$
+p_i(C_i) = \left\{ \begin{array}{rl}
+0 &\mbox{ if $|C_i|=\delta$} \\
+\alpha_1 &\mbox{if $|C_i|=\delta-1$ or $|C_i|=\delta+1$} \\
+\alpha_2 &\mbox{if $|C_i|=\delta-2$ or $|C_i|=\delta+2$} \\
+\vdots
+\end{array} \right.
+$$
+where $\alpha_1, \alpha_2, \cdots$ are positive values.
+In particular, $\alpha$ increases with the divergence between $|C_i|$ and $\delta$ \ie these is $\alpha_2> \alpha_1>0$.
 
+ 
+The optimization searches the set $\mathcal{S}$ and decides on certain clusters which constitute the whole CRN without overlapping between any two of them, besides, the sum of CCs of the chosen clusters is maximized.
+Then, a central node (or controller) with the knowledge of all CR nodes (also the possible clusters) will solve the problem based on the following formulation. 
 
-
-%Binary linear programming problem is NP complement, but with the 
-%The result will be used as a comparison with the proposed distributed schemes. %looks for the solution which approaches to the global optimum, and the latter is the solution which is more suitable for the practical implementation.
-%
 %Exact cover problem can be solved with Knuth's Algorithm X~\cite{dancingLinks_Knuth} as it finds out all the instances of exact cover, then we can choose the one with the biggest sum of weights. 
 %To make the formulation possible, we adopt heuristics in both the objective function and the constraints, besides, the objective is not totally aligned with the object in the Definition~\ref{def_centralized_clustering}.
 %The problem by the Definition~\ref{def_centralized_clustering} is formulate 
-
 
 %This example indicates the chose of $\mathcal{C}$ plays an important role on the resultant clustering strategy.
 %Meanwhile, it provide a chance to constrain the cluster size by putting groups with desired sizes into $\mathcal{C}$.
@@ -624,85 +635,84 @@ Thus, a central node with all knowledge of all clusters could solve the problem 
 
 %The global optimal clustering scheme with respect to the number of common channels is investigated to show the gap with the distributed schemes.
 
-
 %We apply this centralized scheme on a network with network size $N$ and cluster size $\delta$.
 %There is $N\mod \delta=0$, and the expected number of clusters is $C = N/\delta$.
 %These tailored parameters don't harm the validity of the performance gap between the two schemes.
 
 \begin{equation}
 \begin{aligned}
-     &\min\limits_{x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^G (-x_{ij}q_{ij} + (1-w_i)*p) \\
+     &\min\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (w_i*t_{ij}) \\
      &\text{subject to}   && \Sigma_{i=1}^G x_{ij} = 1, for \forall j=1, \ldots, N \\
-   &&& \Sigma_{j=1}^N x_{ij} = |C_i|*(1-w_i), for \forall i=1, \ldots, G \\
+   &&& \Sigma_{j=1}^N x_{ij} = |C_i|*w_i, for \forall i=1, \ldots, M \\
    &&& \text{$x_{ij}$ and $w_i$ are binary variables.}\\
-   &&& i\in \{1,2, \cdots G\}, \hspace{0.3cm} j\in \{1,2,\cdots N\}
+   &&& i\in \{1,2, \cdots M\}, \hspace{0.3cm} j\in \{1,2,\cdots N\}
 %\notag
 \end{aligned}
 \label{centralized_opt}
 \end{equation}
 
-The optimization is a binary linear programming problem as shown in~\ref{centralized_opt}.
+%The optimization is a binary linear programming problem.
 The objective is to maximize the sum of CCs of all the clusters.
-We minimize the opposite of the real objective to make this problem solvable.
-%
-The variables of this problem are $x_{ij}$ where $i\in \{1,2,\cdots,G-1, G\}$ and $j\in \{1,2,\cdots,N-1, N\}$.
-$N$ is the total number of CR users in network $\mathcal{N}$.
-$G = |\mathcal{G}|$ and $\mathcal{G}$ is a collective of clusters in a CRN $\mathcal{N}$.
-There is $\mathcal{G} \subseteq \mathcal{S}$, where $\mathcal{S}$ is the collection of all the possible clusters as described in Definition~\ref{def_centralized_clustering}.
-%In practice, we can solve the problem with $\mathcal{G} = \mathcal{S}$ when $|\mathcal{S}|$ is not large. 
-The subscript $i$ indicates the $i$th cluster in $\mathcal{G}$, and $j$ corresponds to the node ID of a CR node. 
+%We minimize the opposite of the real objective to make this problem solvable.
+$w_i$ and $x_{ij}$ are the two binary variables in this problem.
+% where $j\in \{1,2,\cdots,N-1, N\}$ and $i\in \{1,2,\cdots,M-1, M\}$.
+$N$ is the total number of CR users in network $\mathcal{N}$, $M = |\mathcal{S}|$.
+%$G = |\mathcal{G}|$ and there is $\mathcal{G} \subseteq \mathcal{S}$.
+Being either 1 or 0, $w_i$ denotes whether the $i$th cluster $C_i$ in $\mathcal{S}$ is chosen to be in the solution or not.
 $x_{ij}$ indicates whether the CR node $j$ resides in the $i$th potential cluster, \ie $x_{ij}=1$ means node $j$ resides in the cluster $C_i$. 
+Node index $j$ is identical to the node ID.
+%In practice, we can solve the problem with $\mathcal{G} = \mathcal{S}$ when $|\mathcal{S}|$ is not large. 
+%
 %
 %Given a CRN $\mathcal{N}$ and desired cluster size $\delta$, we obtain a collection of clusters $\mathcal{G}$ which contains all the \textit{potential} clusters, and the sizes of these clusters are $1,2,\ldots,\delta$.
 %Potential clusters are the clusters which satisfy the conditions introduced in Section~\ref{sec:model}. 
 %Note that the potential clusters include the singleton ones.
 %By permitting the existence of the singleton clusters, we can ensure that the $\mathcal{S}'$ in Definition~\ref{def_centralized_clustering} is always be feasible.
-Based on the knowledge on $\mathcal{G}$, we construct a $G\times N$ matrix $Q_{G\text{x}N}$ which is shown in Figure~\ref{costant_matrix_Q}. 
-Constant $q_{ij}$ is the element of $Q_{G\text{x}N}$, and its subscripts correspond to the $i$th cluster and CR node $j$ respectively.
+$t_{ij}$ is a constant which is $p_i(C_i) - \frac{q_{ij}}{|C_i|}$.
 $q_{ij}= |K(C_i)|$ when there is $j\in C_i$, and $q_{ij}= 0$ when there is $j\notin C_i$.
-In other words, each non-zero element $q_{ij}$ means the number of CCs of the cluster $i$ where node $j$ resides.
+$|K(C_i)|$ is the number of CCs of cluster $C_i$, and $|C_i|$ is the size of cluster $C_i$.
+%%Based on the knowledge on $\mathcal{S}$, we construct a $M\times N$ matrix $Q_{M\text{x}N}$ which is shown in Figure~\ref{costant_matrix_Q}. 
+%%Constant $q_{ij}$ is the element of $Q_{M\text{x}N}$, and its subscripts correspond to the $i$th cluster and CR node $j$ respectively.
+%$q_{ij}= |K(C_i)|/|C_i|$ when there is $j\in C_i$, and $q_{ij}= 0$ when there is $j\notin C_i$.
+%In other words, each non-zero element $q_{ij}$ means the number of CCs of the cluster $i$ where node $j$ resides.
+
+%\begin{figure}[ht!]
+%\centering
+%\bordermatrix{~ 		& 1 	& 2 	& 3 	& \cdots & j & \cdots	& N-1 	& N	\cr
+%                  1 	& |K(C_1)| 	& |K(C_1)| 	& 0 	& \cdots & \cdots &\cdots	& 0 	& 0	\cr
+%                  2 	& |K(C_2)| 	& 0 	& |K(C_2)| 	& \cdots & \cdots & \cdots 	& 0 	& 0	\cr
+%				\vdots  	&\vdots & 	 	& 		&  \vdots		& 		& \vdots \cr
+%				i 	& 0 	& |K(C_i)| 	& 0 	& \cdots  & \cdots & \cdots 	& |K(C_i)| 	& 0	\cr
+%				\vdots  	&\vdots & 	 	& 		&  \vdots & \cdots & \vdots 		& 		& \vdots \cr
+%				\vdots 	& 0  	& 0 	& 0 	& \cdots & \cdots & \cdots 	& |K(C_i')| 	& 0	\cr
+%				G  	& |K(C_G)| & \cdots	 	& 		&  \vdots	& \cdots & \vdots& 		& \vdots \cr}	
+%\caption{An example of Matrix $Q$, its rows correspond to all possible clusters, and columns correspond to the CR nodes in the CRN. }
+%\label{costant_matrix_Q}
+%\end{figure}
+
+Now we examine the objective function to see whether it in line with the goal to maximize the total number of CCs meanwhile consider the restriction on cluster size.
+The objective function can be written as,
+\begin{equation}
+\begin{aligned}
+     &\min\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (-w_i* \frac{q_{ij}}{|C_i|} + w_i*p_i(C_i)) \\
+\notag
+\end{aligned}
+\label{centralized_opt}
+\end{equation}
+The sum of the first items is the sum of CCs of all the chosen clusters.
+The minus sign in front of the first item explains the reason why we minimize instead to maximize the objective function.
+As to the second item, when $w_i$ is zero ($C_i$ is chosen), if $|C_i|\neq\delta$, the second component will be positive which contradicts the direction of the optimization.
+Thus the second item discourages the appearance the clusters whose sizes are different from $\delta$, especially those whose sizes diverge far from $\delta$.
+
+%$$
+%w_i = \left\{ \begin{array}{rl}
+%0 &\mbox{if $i$th possible cluster $C_i$ is chosen} \\
+%1 &\mbox{if $i$th possible cluster $C_i$ is not chosen} \\
+%\end{array} \right.
+%$$
+%When $w_i$ is zero, it means $C_i$ is chosen by the optimization algorithm, in this case, the second item in the objective function becomes $p$, which is defined as follows,
 
 
-
-
-\begin{figure}[ht!]
-\centering
-\bordermatrix{~ 		& 1 	& 2 	& 3 	& \cdots & j & \cdots	& N-1 	& N	\cr
-                  1 	& |K(C_1)| 	& |K(C_1)| 	& 0 	& \cdots & \cdots &\cdots	& 0 	& 0	\cr
-                  2 	& |K(C_2)| 	& 0 	& |K(C_2)| 	& \cdots & \cdots & \cdots 	& 0 	& 0	\cr
-				\vdots  	&\vdots & 	 	& 		&  \vdots		& 		& \vdots \cr
-				i 	& 0 	& |K(C_i)| 	& 0 	& \cdots  & \cdots & \cdots 	& |K(C_i)| 	& 0	\cr
-				\vdots  	&\vdots & 	 	& 		&  \vdots & \cdots & \vdots 		& 		& \vdots \cr
-				\vdots 	& 0  	& 0 	& 0 	& \cdots & \cdots & \cdots 	& |K(C_i')| 	& 0	\cr
-				G  	& |K(C_G)| & \cdots	 	& 		&  \vdots	& \cdots & \vdots& 		& \vdots \cr}	
-\caption{An example of Matrix $Q$, its rows correspond to all possible clusters, and columns correspond to the CR nodes in the CRN. }
-\label{costant_matrix_Q}
-\end{figure}
-
-Now let us have a look at the second component in the objective function.
-%Although the related work SOC~\cite{LIU_TMC11_2} adopts the product of cluster size and number of CCs as its sole metric, SOC still generates a large number of singleton clusters and a few large clusters.
-To discourage the optimization algorithm from generating the clusters which don't have the preferred size, the second item compromises the first component in the objective function when those clusters are generated.
-$w_i$ is the auxiliary binary variable which denotes whether the $i$th  cluster $C_i$ is chosen by the optimization algorithm or not.
-
-
-$$
-w_i = \left\{ \begin{array}{rl}
-0 &\mbox{if $i$th possible cluster $C_i$ is chosen} \\
-1 &\mbox{if $i$th possible cluster $C_i$ is not chosen} \\
-\end{array} \right.
-$$
-When $w_i$ is zero, it means $C_i$ is chosen by the optimization algorithm, in this case, the second item in the objective function becomes $p$, which is defined as follows,
-
-$$
-p = \left\{ \begin{array}{rl}
-0 &\mbox{ if $|C_i|=\delta$} \\
-\alpha_1 &\mbox{if $|C_i|=\delta-1$ or $|C_i|=\delta+1$} \\
-\alpha_2 &\mbox{if $|C_i|=\delta-2$ or $|C_i|=\delta+2$} \\
-\dots
-\end{array} \right.
-$$
-where $\alpha_1, \alpha_2, \cdots$ are positive values, then when $w_i$ is zero ($C_i$ is chosen by the optimization algorithm) and its size is not the desired size $\delta$, the second component will be greater than zero, which will compromise the first component.
-In particular, $\alpha$ increases with the divergence between $|C_i|$ and $\delta$ \ie these is $\alpha_2> \alpha_1>0$.
 %Because of $w_i$, any cluster which appears in the clustering solution ($w=0$) will compromise the first component.
 %Only when that cluster's size is exactly the preferred size $\delta$, the punishment is zero.
 %In contrary, when the chosen cluster's size diverges from $\delta$, the objective function suffers \textit{loss}.
