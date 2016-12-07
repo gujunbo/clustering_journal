@@ -384,7 +384,7 @@ Collaborative sensing relies on the consensus of CR users\footnote{The terms use
 % ... decreases considerably the negative probability due to the random channel effects like fading and shadowing.
 Clustering is a process of grouping certain users in a proximity into a collective.
 Clustering is also efficient to coordinate the channel switch operation when primary users are detected by at least one CR node residing in the cluster.
-The cluster head (CH) can enable all the CR devices within the same cluster to stop payload transmission swiftly on the operating channel and to vacate the channel ~\cite{willkomm08}.
+The cluster head can enable all the CR devices within the same cluster to stop payload transmission swiftly on the operating channel and to vacate the channel ~\cite{willkomm08}.
 %
 %As to the coexistence of CR users, they can be notified by cluster head (CH) or other cluster members about the possible collision, the possibility for them to interfere neighbouring clusters is reduced~\cite{centralizedSharing80222}. 
 In addition to the collaborate sensing advantage, the use of clusters is beneficial as it reduces the interference between cognitive clusters~\cite{centralizedSharing80222}.
@@ -524,7 +524,7 @@ $K_i$   & the set of available channels at CR node $i$  \\
 $K(C(i))$   & the set of available CCs of cluster $C(i)$ \\
 %$h(C)$ & cluster head of a cluster $C$\\
 $h(C)$ & the cluster head of a cluster C\\
-$\text{CH}$ & cluster head\\
+%$\text{CH}$ & cluster head\\
 %$\text{CH}$ & cluster head\\
 $\delta$ & the cluster size which is preferred\\
 $S_i$ & a set of claiming clusters, each of which includes \\
@@ -805,7 +805,7 @@ The procedure of determining the cluster heads is as follows.
 Each CR node decides whether it is a cluster head by comparing its connectivity vector with its neighbors.
 When CR node $i$ has lower individual connectivity degree than all its neighbors except for those which have already identified to be cluster heads, node $i$ becomes a cluster head.
 %In other words, CR node $i$ becomes cluster head if $d_i > d_k, \forall k\in \texttt{Nb}_i\setminus CHs$ ($CHs$ donate the cluster heads existing in $\texttt{Nb}_i$).
-If there is another CR node $j$ in its neighborhood which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\text{CHs}\cup i\}$, then the node between $i$ and $j$, which has higher neighborhood connectivity degree will become the cluster head, and the other node become one member of the newly identified cluster head. 
+If there is another CR node $j$ in its neighborhood which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes the cluster heads, then the node between $i$ and $j$, which has higher neighborhood connectivity degree will become the cluster head, and the other node become one member of the newly identified cluster head. 
 If $g_i = g_j$ as well, the node ID is used to break the tie, \ie the one with smaller node ID becomes a cluster head.
 %
 The node which is identified as a cluster head broadcasts a message to notify its neighbors of this change, and its neighbors which are not cluster heads become cluster members
@@ -876,8 +876,8 @@ During Phase I, when ever a CR node is decided to be a cluster head and accordin
 In this subsection, we illustrate the pressing necessity to control the cluster size when CRN becomes denser.
 
 
-We consider a cluster $C(i)$ where $i$ is CH in a dense CRN. 
-To make the analysis easier, we assume there is no CHs which are generated within $i$'s neighborhood during the procedure of guaranteeing CCs.
+We consider a cluster $C(i)$ where $i$ is the cluster head in a dense CRN. 
+To make the analysis easier, we assume there is no cluster heads which are generated within $i$'s neighborhood during the procedure of guaranteeing CCs.
 Assuming the CR users and PUs are evenly distributed and PUs occupy the licensed channels randomly, then both CR nodes density and channel availability in the CRN can be seen to be spatially homogeneous.
 In this case the formed clusters are decided by the transmission range and network density.
 According to Algorithm~\ref{alg0}, the nearest cluster heads could locate just outside node $i$'s transmission range.
@@ -1357,7 +1357,7 @@ This metric is synonymous with \textit{the number of updates} discussed in Secti
 
 As to ROSS, the control messages are generated in both phases.
 In the first phase, when a CR node decides itself to be the cluster head, it broadcasts a message containing its ID, cluster members and the set of CCs in its cluster.
-In the second phase, a debatable node broadcasts its affiliation to inform its claiming clusters, then the $\text{CH}$s of the claiming clusters  broadcast message about the new cluster members if they are changed due to the debatable node's decision.
+In the second phase, a debatable node broadcasts its affiliation to inform its claiming clusters, then the cluster heads of the claiming clusters broadcast message about the new cluster members if they are changed due to the debatable node's decision.
 The upper bound of the total number of the control messages involved in cluster formation is analyzed in Theorem~\ref{clustering:theorem} and Section~\ref{clustering:phaseII:game}.
 
 The comparison scheme SOC involves three rounds of execution. 
@@ -1630,15 +1630,15 @@ In the other way around, forming big cluster which extends a cluster head's neig
 \label{alg0} 
 \DontPrintSemicolon
 \SetAlgoLined
-\KwIn{$d_j, g_j, j\in \text{Nb}_i\setminus \text{CHs}$. Empty sets $\tau_1,\tau_2$}
-\KwResult{Returning 1 means $i$ is cluster head, then $d_j$ is set to 0, $j\in \text{Nb}_i\setminus \text{CHs}$. returning 0 means $i$ is not CH.}
+\KwIn{$d_j, g_j, j\in \text{Nb}_i\setminus \Lambda$, $\Lambda$ means cluster heads. Empty sets $\tau_1,\tau_2$}
+\KwResult{Returning 1 means $i$ is cluster head, then $d_j$ is set to 0, $j\in \text{Nb}_i\setminus \Lambda$. returning 0 means $i$ is not cluster head.}
 
-\If{$\nexists j\in \text{Nb}_i\setminus \text{CHs}$, such that $d_i \geq d_j$}{
+\If{$\nexists j\in \text{Nb}_i\setminus \Lambda$, such that $d_i \geq d_j$}{
 	return 1;
 	}
-\eIf{$\exists j\in \text{Nb}_i\setminus CHs$, such that $d_i > d_j$}{
+\eIf{$\exists j\in \text{Nb}_i\setminus \Lambda$, such that $d_i > d_j$}{
 	return 0;}{
-	\If{$\nexists j\in \text{Nb}_i\setminus CHs$, such that $d_j == d_i$}{
+	\If{$\nexists j\in \text{Nb}_i\setminus \Lambda$, such that $d_j == d_i$}{
 	$\tau_1 \leftarrow j$
 	}
 }
