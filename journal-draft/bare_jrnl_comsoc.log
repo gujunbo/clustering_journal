@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  7 DEC 2016 20:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  7 DEC 2016 21:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1848,15 +1848,15 @@ ering/survival_rate_200_edge50.pdf> <../figures/04_clutering/survival_rate_300_
 edge50.pdf> <../figures/04_clutering/cdf_clusterSize_100.pdf> <../figures/04_cl
 utering/cdf_clusterSize_200.pdf> <../figures/04_clutering/cdf_clusterSize_300.p
 df> <../figures/04_clutering/nClusters_largeNetwork.pdf>]
-<../figures/04_clutering/lemma1.pdf, id=578, 563.8709pt x 112.73901pt>
+<../figures/04_clutering/lemma1.pdf, id=578, 563.87807pt x 108.10442pt>
 File: ../figures/04_clutering/lemma1.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/lemma1.pdf>
 Package pdftex.def Info: ../figures/04_clutering/lemma1.pdf used on input line 
 1754.
-(pdftex.def)             Requested size: 151.76852pt x 30.3436pt.
+(pdftex.def)             Requested size: 151.76852pt x 29.09619pt.
 
-Underfull \vbox (badness 7851) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12 <../figures/04_clutering/lemma1.pdf>] (./bare_jrnl_comsoc.bbl
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
@@ -1939,10 +1939,10 @@ ive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/201
 s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/zapfdin
 g/uzdr.pfb>
-Output written on bare_jrnl_comsoc.pdf (14 pages, 576042 bytes).
+Output written on bare_jrnl_comsoc.pdf (14 pages, 582711 bytes).
 PDF statistics:
- 782 PDF objects out of 1000 (max. 8388607)
- 665 compressed objects within 7 object streams
+ 788 PDF objects out of 1000 (max. 8388607)
+ 669 compressed objects within 7 object streams
  194 named destinations out of 1000 (max. 500000)
  269 words of extra memory for PDF output out of 10000 (max. 10000000)
 
