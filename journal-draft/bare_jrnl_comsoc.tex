@@ -607,13 +607,13 @@ In particular, considering $|\mathcal{S}|=M$, $C_i\in \mathcal{S}$ means the $i$
 $$
 p_i(C_i) = \left\{ \begin{array}{rl}
 0 &\mbox{ if $|C_i|=\delta$} \\
-\alpha_1 &\mbox{if $|C_i|=\delta-1$ or $|C_i|=\delta+1$} \\
-\alpha_2 &\mbox{if $|C_i|=\delta-2$ or $|C_i|=\delta+2$} \\
+\rho_1 &\mbox{if $|C_i|=\delta-1$ or $|C_i|=\delta+1$} \\
+\rho_2 &\mbox{if $|C_i|=\delta-2$ or $|C_i|=\delta+2$} \\
 \vdots
 \end{array} \right.
 $$
-where $\alpha_1, \alpha_2, \cdots$ are positive values.
-In particular, $\alpha$ increases with the divergence between $|C_i|$ and $\delta$, \ie these is $\alpha_2> \alpha_1>0$.
+where $\rho_1, \rho_2, \cdots$ are positive values.
+In particular, $\rho$ increases with the divergence between $|C_i|$ and $\delta$, \ie these is $\rho_2> \rho_1>0$.
 
  
 The optimization searches the set $\mathcal{S}$ and decides on certain clusters which constitute the whole CRN without overlapping between any two of them, besides, the sum of CCs of the chosen clusters is maximized.
@@ -714,7 +714,7 @@ Thus the second item discourages the appearance the clusters whose sizes are dif
 %Then it is easy to notice that when the optimization algorithm adopts singleton clusters, the first xx.
 %With such design, the solution is encouraged not to generate singleton clusters.
 %doesn't follow the definition of $f(C)$ in Definition~\ref{def_centralized_clustering} strictly, where $f(C_i)=0$ when $|C_i|=1$, but our design echoes the definition by exerting the most severe punishment on the singleton clusters in the clustering solution.
-%Choice of $\alpha_i$ affects the resultant clusters.
+%Choice of $\rho_i$ affects the resultant clusters.
 
 The constraints guarantee to obtain the clusters which together include all the CR users and don't overlap.
 The first constraint regulates that each CR node should reside in exactly one cluster.
@@ -944,9 +944,6 @@ The clusters which include the debatable node $i$ are called \textit{claiming cl
 %Actually, debatable nodes extensively exist in CRN with larger scale.
 The debatable nodes which are generated from the first phase of ROSS should be exclusively associated with only one cluster and be removed from the other claiming clusters, this procedure is called \textit{cluster membership clarification}.
 
-
-
-
 %In particular, the un-affiliation of one debatable nodes from a cluster increasing the set $K_C$ of ICCs of cluster $C$ (at the cost of potentially decreasing $R_C$, the set of OCCs).
 
 %\newtheorem{observation}{Observation}
@@ -1174,7 +1171,7 @@ Thus SOC is chosen to be the only distributed scheme as comparison, besides, we 
 Before we investigating the performance of the clustering schemes with simulation, we apply the two comparison clustering schemes in the example CRN in Figure~\ref{fig1}, and make an initial comparison in terms of the amount of CCs. 
 As to the centralized robust clustering scheme, we set the desired cluster size $\delta$ as 3, as a result, according to the network topology, the collection of all the possible clusters
 $\mathcal{S}=\{\{A\}, \{B\},\dots,\{B,C\},\{B,A\},\{B,H\},\cdots,\{B,A,C\},$\\$\{B,H,C\}, \{A,D,C\},\cdots\}$, and $|\mathcal{S}|=38$.
-We set $\alpha_1$ and $\alpha_1$ as 0.2 and 0.8 respectively.
+We set $\rho_1$ and $\rho_1$ as 0.2 and 0.8 respectively.
 The formed clusters by the centralized clustering scheme are shown in Fig.~\ref{fig:final_clustering_LP}.
 %$\{\{D,E,F\},\{A,C,G\},\{H,G\}\}$, the numbers of CCs are 2, 3, 3.
 The resulted clustering solutions from SOC is shown in Fig.~\ref{fig:final_clustering_soc}.
@@ -1245,7 +1242,7 @@ There are 10 primary users and 20 CR users dropped randomly (with uniform distri
 %Each primary user randomly occupies one channel, and 
 When clustering scheme is executed, around 7 channels are available on each CR node.
 The desired cluster size $\delta$ is 3.
-As to the centralized scheme, the parameters used in the \textit{punishment} for choosing the clusters with undesired sizes are set as follows, $\alpha_1 =  0.4$, $\alpha_2 =  0.6$.
+As to the centralized scheme, the parameters used in the \textit{punishment} for choosing the clusters with undesired sizes are set as follows, $\rho_1 =  0.4$, $\rho_2 =  0.6$.
 
 
 \subsubsection{Average number of CCs in Non-singleton Clusters}
