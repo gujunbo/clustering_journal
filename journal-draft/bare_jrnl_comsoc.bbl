@@ -158,6 +158,10 @@ E.~Perevalov, R.~S. Blum, and D.~Safi, ``Capacity of clustered ad hoc networks:
   how large is "large"?'' \emph{IEEE Transactions on Communications}, vol.~54,
   no.~9, pp. 1672--1681, Sept 2006.
 
+\bibitem{robust_clustering_arxiv}
+D.~Li, E.~Fang, and J.~Gross, ``{Robust Clustering in Cognitive Radio Network
+  with Cluster Size Control},'' 20xx.
+
 \bibitem{game_for_communication_01}
 A.~MacKenzie and S.~Wicker, ``Game theory in communications: motivation,
   explanation, and application to power control,'' in \emph{Proc. of IEEE

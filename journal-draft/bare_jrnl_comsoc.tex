@@ -558,7 +558,7 @@ Considering the above mentioned requirements, we present the definition of robus
 \label{def_centralized_clustering}
 \textit{Robust clustering problem in CRN.}
 
-Given a cognitive radio network $\mathcal{N}$ where $|\mathcal{N}|=N$, the collection of all the possible clusters\footnote{Possible cluster means the collection of CR nodes, which complies with the definition in~\ref{sec:model}} in $\mathcal{N}$ is denoted as $\mathcal{S}$ where $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ \footnote{The subscripts of the clusters can be decided in any convenient way \ie the sequence of identifying them.} and there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$.
+Given a cognitive radio network $\mathcal{N}$ where $|\mathcal{N}|=N$, the collection of all the possible clusters\footnote{Possible cluster means the collection of CR nodes, which complies with the definition in~\ref{sec:model}} in $\mathcal{N}$ is denoted as $\mathcal{S}$ where $\mathcal{S}=\{C_1, C_2,\ldots,C_{|\mathcal{S}|}\}$ \footnote{The subscripts of the clusters can be decided in any convenient way, \ie the sequence of identifying them.} and there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = N$.
 %
 With the requirements on the cluster size are enforced, \ie the desired size is $\delta$ and the cluster sizes should fall in the scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, and $\delta_1 \leq \delta\leq \delta_2$, a feasible clustering solution is a subcollection $\mathcal{S}' \subseteq \mathcal{S}$, which satisfies 
 $\delta_1\leq|C_i|\leq \delta_2, \bigcup_{C_i\in \mathcal{S}'} C_i = \mathcal{N}$ and $C_{i'}\cap C_i =\emptyset$ where $C_{i'}, C_i\in \mathcal{S}'$ and $i'\neq i$.
@@ -593,7 +593,7 @@ We have the following theorem on the complexity of this problem.
 
 \begin{theorem}
 \label{theorem1}
-Robust clustering problem in CRN is NP-hard, when the maximum size of clusters is larger than 3, and $\delta_1=1$ and $\delta_2 = N$.
+Robust clustering problem in CRN is NP-hard, when the maximum size of clusters is larger than 3, $\delta_1=1$ and $\delta_2 = N$.
 %Assume a CRN can be represented by a connected graph, and there is at least one common channel between any pair of neighbours, then forming at least two CR nodes into one cluster is NP-complete.
 \end{theorem}
 The proof is in Appendix~\ref{proof_theorem1}.
@@ -602,13 +602,13 @@ The proof is in Appendix~\ref{proof_theorem1}.
 We propose a centralized solution which solves an optimization with standard solvers. 
 To formulate the optimization, we need to do some preparation beforehand.
 First, all the possible clusters complying with the description in the system model are found and constitute a set $\mathcal{S}$.
-Second, we assign a weight about size to each cluster, which correlates with the difference between the cluster size and the desired cluster size. 
-In particular, considering $|\mathcal{S}|=M$, $C_i\in \mathcal{S}$ means the $i$ th cluster in $\mathcal{S}$, and $\delta$ is the desired size, the weight about size for each cluster is given as follows,
+Second, we assign a cluster size related weight to each cluster, which is positively correlated with the difference between the cluster size and the desired cluster size. 
+In particular, considering $|\mathcal{S}|=M$, $C_i\in \mathcal{S}$ means the $i$ th cluster in $\mathcal{S}$, and $\delta$ is the desired size, the size related weight for each cluster is given as follows,
 $$
 p_i(C_i) = \left\{ \begin{array}{rl}
 0 &\mbox{ if $|C_i|=\delta$} \\
-\rho_1 &\mbox{if $|C_i|=\delta-1$ or $|C_i|=\delta+1$} \\
-\rho_2 &\mbox{if $|C_i|=\delta-2$ or $|C_i|=\delta+2$} \\
+\rho_1 &\mbox{if $||C_i|-1|=\delta$} \\
+\rho_2 &\mbox{if $||C_i|-2|=\delta$} \\
 \vdots
 \end{array} \right.
 $$
@@ -617,7 +617,7 @@ In particular, $\rho$ increases with the divergence between $|C_i|$ and $\delta$
 
  
 The optimization searches the set $\mathcal{S}$ and decides on certain clusters which constitute the whole CRN without overlapping between any two of them, besides, the sum of CCs of the chosen clusters is maximized.
-Then, a central node (or controller) with the knowledge of all CR nodes (also the possible clusters) will solve the problem based on the following formulation. 
+Then, a central node (or controller) with the knowledge of all CR nodes (and also the possible clusters) will solve the problem based on the following formulation. 
 
 %Exact cover problem can be solved with Knuth's Algorithm X~\cite{dancingLinks_Knuth} as it finds out all the instances of exact cover, then we can choose the one with the biggest sum of weights. 
 %To make the formulation possible, we adopt heuristics in both the objective function and the constraints, besides, the objective is not totally aligned with the object in the Definition~\ref{def_centralized_clustering}.
@@ -637,9 +637,9 @@ Then, a central node (or controller) with the knowledge of all CR nodes (also th
 \begin{equation}
 \begin{aligned}
      &\min\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (w_i*t_{ij}) \\
-     &\text{subject to}   && \Sigma_{i=1}^G x_{ij} = 1, for \forall j=1, \ldots, N \\
-   &&& \Sigma_{j=1}^N x_{ij} = |C_i|*w_i, for \forall i=1, \ldots, M \\
-   &&& \text{$x_{ij}$ and $w_i$ are binary variables.}\\
+     &\text{subject to}   && \Sigma_{i=1}^M x_{ij} = 1, for\,\,\forall j=1, \ldots, N \\
+   &&& \Sigma_{j=1}^N x_{ij} = |C_i|*w_i,\, for\,\,\forall i=1, \ldots, M \\
+  % &&& \text{$x_{ij}$ and $w_i$ are binary variables.}\\
    &&& i\in \{1,2, \cdots M\}, \hspace{0.3cm} j\in \{1,2,\cdots N\}
 %\notag
 \end{aligned}
@@ -651,9 +651,9 @@ The objective is to maximize the sum of CCs of all the clusters.
 %We minimize the opposite of the real objective to make this problem solvable.
 $w_i$ and $x_{ij}$ are the two binary variables in this problem.
 % where $j\in \{1,2,\cdots,N-1, N\}$ and $i\in \{1,2,\cdots,M-1, M\}$.
-$N$ is the total number of CR users in network $\mathcal{N}$, $M = |\mathcal{S}|$.
+$N$ is the total number of CR users in network $\mathcal{N}$, $M$ is the number of possible clusters in $\mathcal{S}$.
 %$G = |\mathcal{G}|$ and there is $\mathcal{G} \subseteq \mathcal{S}$.
-Being either 1 or 0, $w_i$ denotes whether the $i$th cluster $C_i$ in $\mathcal{S}$ is chosen to be in the solution or not.
+Being either 1 or 0, $w_i$ denotes whether the $i$th cluster $C_i$ in $\mathcal{S}$ is chosen by the solution or not.
 $x_{ij}$ indicates whether the CR node $j$ resides in the $i$th potential cluster, \ie $x_{ij}=1$ means node $j$ resides in the cluster $C_i$. 
 Node index $j$ is identical to the node ID.
 %In practice, we can solve the problem with $\mathcal{G} = \mathcal{S}$ when $|\mathcal{S}|$ is not large. 
@@ -666,6 +666,7 @@ Node index $j$ is identical to the node ID.
 $t_{ij}$ is a constant which is $p_i(C_i) - \frac{q_{ij}}{|C_i|}$.
 $q_{ij}= |K(C_i)|$ when there is $j\in C_i$, and $q_{ij}= 0$ when there is $j\notin C_i$.
 $|K(C_i)|$ is the number of CCs of cluster $C_i$, and $|C_i|$ is the size of cluster $C_i$.
+$p_i(C_i)$ is the size related weight which has been introduced.
 %%Based on the knowledge on $\mathcal{S}$, we construct a $M\times N$ matrix $Q_{M\text{x}N}$ which is shown in Figure~\ref{costant_matrix_Q}. 
 %%Constant $q_{ij}$ is the element of $Q_{M\text{x}N}$, and its subscripts correspond to the $i$th cluster and CR node $j$ respectively.
 %$q_{ij}= |K(C_i)|/|C_i|$ when there is $j\in C_i$, and $q_{ij}= 0$ when there is $j\notin C_i$.
@@ -685,8 +686,8 @@ $|K(C_i)|$ is the number of CCs of cluster $C_i$, and $|C_i|$ is the size of clu
 %\label{costant_matrix_Q}
 %\end{figure}
 
-Now we examine the objective function to see whether it in line with the goal to maximize the total number of CCs meanwhile consider the restriction on cluster size.
-The objective function can be written as,
+Now we examine the objective function to see whether it in line with the goal to maximize the total number of CCs meanwhile consider the restriction on the cluster size.
+Replacing $t_{ij}$ with $p_i(C_i) - \frac{q_{ij}}{|C_i|}$, the objective function becomes,
 \begin{equation}
 \begin{aligned}
      &\min\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (-w_i* \frac{q_{ij}}{|C_i|} + w_i*p_i(C_i)) \\
@@ -739,15 +740,15 @@ The second constraint regulates that when the $i$th possible cluster $C_i$ is ch
 %Note the collection of potential clusters is dependant on the network topology and spectrum availability in the network, thus to each specific CRN, the space of solution is different.
 
 This problem is a binary linear programming problem, which can be solved by many available solvers.
-The difficulty of using this method lies in the preparation of the set $\mathcal{S}$.
-In the worst case \ie the CRN forms a full connected graph, the size of $S$ is $\Sigma_{r=1}^{N}\ {N \choose r} = 2^N-1$.
-To levitate this problem, a smaller set \ie $\mathcal{G} \subset \mathcal{S}$ can be used.
+The difficulty of using this method lies in obtaining the set $\mathcal{S}$.
+In the worst case, \ie the CRN forms a full connected graph, the size of $S$ is $\Sigma_{r=1}^{N}\ {N \choose r} = 2^N-1$.
+To levitate this problem, a smaller set, \ie $\mathcal{G} \subset \mathcal{S}$ can be used.
 $\mathcal{G}$ can be prepared based on the cluster size, and it is recommended to include all the singleton clusters to make sure the availability of feasible solutions.
 
 Another obstacle to apply this centralized scheme is, the centralized entity firstly needs to collect the information from all the CR nodes, then computes the clustering solution and distributes it across the whole network.
 This process involves a large number of communication overheads.
 In CRN, it is necessary to do clustering again on some occasions.
-For example, when a certain amount of CR users move away from their clusters, \ie they loose the direction connection with any member in their previous clusters, or a certain amount of clusters can not be maintained as the CC in these clusters don't exist any longer due to primary users' activity. 
+For example, when a certain amount of CR users move away from their clusters, \ie they loose the direction connection with any member in their previous clusters, or a certain amount of clusters can not be maintained as the CCs in these clusters don't exist any longer due to primary users' activity. 
 Hence, when the spectrum availability and the CR users' location change frequently, the centralized robust clustering scheme is not suitable for CRN.
 
 %We thus list all possible clusters whose sizes are from 2 to one certain number \footnote{this number of decided by the density of CR network, along with the occupation of PUs. We set this number as cluster size of the biggest cluster ever appears when conducting distributed schemes.}, and check each combination of clusters to find the best covering of network on the aspect of number of ICCs per cluster.
@@ -873,47 +874,46 @@ During Phase I, when ever a CR node is decided to be a cluster head and accordin
 \subsubsection{Cluster Size Control in Dense CRN}
 \label{ross_p2_cluster_pruning}
 
-In this subsection, we illustrate the pressing necessity to control the cluster size when CRN becomes denser.
-
-
-We consider a cluster $C(i)$ where $i$ is the cluster head in a dense CRN. 
-To make the analysis easier, we assume there is no cluster heads which are generated within $i$'s neighborhood during the procedure of guaranteeing CCs.
-Assuming the CR users and PUs are evenly distributed and PUs occupy the licensed channels randomly, then both CR nodes density and channel availability in the CRN can be seen to be spatially homogeneous.
-In this case the formed clusters are decided by the transmission range and network density.
-According to Algorithm~\ref{alg0}, the nearest cluster heads could locate just outside node $i$'s transmission range.
+%In this subsection, we illustrate the pressing necessity to control the cluster size when CRN becomes denser.
 %
-An instance of this situation is shown in Figure~\ref{clusters_denseNetwork}.
-In the figure, black dots represent cluster heads, the circles denote the transmission ranges of cluster heads.
-Cluster members are not shown in the figure.
-%Circles represent the transmission range of cluster head, within which CR nodes are absorbed in cluster.
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.3\linewidth]{clusters_denseNetwork_2.pdf}
-  \caption{Clusters formation in extremely dense CRN. Black dots are cluster heads, cluster members are not drawn.}
-  \label{clusters_denseNetwork}
-\end{figure}
-Let $l$ be the length of side of simulation plan square, and $r$ be CR's transmission radius.
-Based on the aforementioned analysis and geometry illustration as shown in Figure~\ref{clusters_denseNetwork}, we give an estimate on the maximum number of generated clusters, which is the product of the number of cluster heads in one row and that number in one line, $l/r * l/r = l^2/r^2$.
-%Now we verify the estimation with simulation.
-%We distribute CR and primary users randomly on a square plain, $r$=10 and $l$=50.
-%Network density is increased by adding more CR users.
-%We now have a look at how does the network density affect the cluster size when the transmission range is constant.
-%This implicates when the cluster size is decided by the density of the network.
-%As to SOC, the membership of one cluster is decided after a complex process, and the cluster size is roughly the same with one neighborhood.xxxx
-%We can see from the example that although two neighbouring clusters can overlap greatly with each other, no cluster head will be covered by other clusters.
-Given $r$=10 and $l$=50, the maximum number of clusters is 25.
-The number of clusters in the simulation is shown in Figure~\ref{number_clusters_scale}.
-Simulation is run for 50 times and the confidence interval is 95\%.
-With the increase of CR users, network density (the average number of neighbours) increases linearly, and the number of clusters approaches to 25 which complies with the estimation.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.7\linewidth]{number_clusters_upperBound.pdf}
-  \caption{The correlation between the number of formed clusters and network density.}
-  \label{number_clusters_scale}
-\end{figure}
-
-Both analysis and simulation show that when applying ROSS, after the clusters are saturated with the increase of network density, the cluster size increases linearly with the network density, thus certain measures are needed to curb this problem.
+%We consider a cluster $C(i)$ where $i$ is the cluster head in a dense CRN. 
+%To make the analysis easier, we assume there is no cluster heads which are generated within $i$'s neighborhood during the procedure of guaranteeing CCs.
+%Assuming the CR users and PUs are evenly distributed and PUs occupy the licensed channels randomly, then both CR nodes density and channel availability in the CRN can be seen to be spatially homogeneous.
+%In this case the formed clusters are decided by the transmission range and network density.
+%According to Algorithm~\ref{alg0}, the nearest cluster heads could locate just outside node $i$'s transmission range.
+%%
+%An instance of this situation is shown in Figure~\ref{clusters_denseNetwork}.
+%In the figure, black dots represent cluster heads, the circles denote the transmission ranges of cluster heads.
+%Cluster members are not shown in the figure.
+%%Circles represent the transmission range of cluster head, within which CR nodes are absorbed in cluster.
+%\begin{figure}[h!]
+%  \centering
+%  \includegraphics[width=0.3\linewidth]{clusters_denseNetwork_2.pdf}
+%  \caption{Clusters formation in extremely dense CRN. Black dots are cluster heads, cluster members are not drawn.}
+%  \label{clusters_denseNetwork}
+%\end{figure}
+%Let $l$ be the length of side of simulation plan square, and $r$ be CR's transmission radius.
+%Based on the aforementioned analysis and geometry illustration as shown in Figure~\ref{clusters_denseNetwork}, we give an estimate on the maximum number of generated clusters, which is the product of the number of cluster heads in one row and that number in one line, $l/r * l/r = l^2/r^2$.
+%%Now we verify the estimation with simulation.
+%%We distribute CR and primary users randomly on a square plain, $r$=10 and $l$=50.
+%%Network density is increased by adding more CR users.
+%%We now have a look at how does the network density affect the cluster size when the transmission range is constant.
+%%This implicates when the cluster size is decided by the density of the network.
+%%As to SOC, the membership of one cluster is decided after a complex process, and the cluster size is roughly the same with one neighborhood.xxxx
+%%We can see from the example that although two neighbouring clusters can overlap greatly with each other, no cluster head will be covered by other clusters.
+%Given $r$=10 and $l$=50, the maximum number of clusters is 25.
+%The number of clusters in the simulation is shown in Figure~\ref{number_clusters_scale}.
+%Simulation is run for 50 times and the confidence interval is 95\%.
+%With the increase of CR users, network density (the average number of neighbours) increases linearly, and the number of clusters approaches to 25 which complies with the estimation.
+%
+%\begin{figure}[h]
+%  \centering
+%  \includegraphics[width=0.7\linewidth]{number_clusters_upperBound.pdf}
+%  \caption{The correlation between the number of formed clusters and network density.}
+%  \label{number_clusters_scale}
+%\end{figure}
+It is necessary to control the cluster size when CRN becomes denser.
+Both analysis and simulation~\cite{robust_clustering_arxiv} show that when applying ROSS, after the clusters are saturated with the increase of network density, the cluster size increases linearly with the network density, thus certain measures are needed to curb this problem.
 This task falls to the cluster heads.
 To control the cluster size, cluster heads prune their cluster members to reach the desired cluster size.
 The desired size $\delta$ is decided based on the capability of the CR users and the tasks to be conveyed.
@@ -921,7 +921,6 @@ As there are overlaps between neighboring clusters, the sizes of the clusters fo
 Hence, a cluster head excludes some cluster members when the cluster size exceeds $t\cdot \delta$, where constant parameter $t$ is dependent on the network density and CR nodes' transmission range and $t>1$.
 In particular, the cluster head removes the cluster members sequentially according to the following principle, the absence of one cluster member leads to the maximum increase of common channels within the cluster.
 This process ends when each cluster's size is smaller or equal to $t \cdot\delta$.
- %delta needs to be changed, f(delta) XXXXXXX
 This procedure is similar with guaranteeing the existence of CCs in cluster, thus can reuse Algorithm~\ref{alg_size_control_available_CCC}.
 The $t$ is set to 1.3. 	
 
@@ -1155,7 +1154,7 @@ As an example, when node A comes to decide which cluster to stay, the membership
 The schemes involved in the simulation are listed as follows,
 \begin{itemize}
 \item ROSS without size control, \ie ROSS-DGA and ROSS-DFA.
-\item ROSS with size control. \ie ROSS-$\delta$-DGA and ROSS-$\delta$-DFA where $\delta$ is the desired cluster size.
+\item ROSS with size control, \ie ROSS-$\delta$-DGA and ROSS-$\delta$-DFA where $\delta$ is the desired cluster size.
 In the following, we refer to the above mentioned four schemes as the variants of ROSS.
 \item SOC~\cite{LIU_TMC11_2}, a distributed clustering scheme pursuing cluster robustness.
 \item Centralized robust clustering scheme. 
