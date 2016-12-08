@@ -636,9 +636,9 @@ Then, a central node (or controller) with the knowledge of all CR nodes (and als
 
 \begin{equation}
 \begin{aligned}
-     &\min\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (w_i*t_{ij}) \\
+     &\min\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (w_i\cdot t_{ij}) \\
      &\text{subject to}   && \Sigma_{i=1}^M x_{ij} = 1, for\,\,\forall j=1, \ldots, N \\
-   &&& \Sigma_{j=1}^N x_{ij} = |C_i|*w_i,\, for\,\,\forall i=1, \ldots, M \\
+   &&& \Sigma_{j=1}^N x_{ij} = |C_i|\cdot w_i,\, for\,\,\forall i=1, \ldots, M \\
   % &&& \text{$x_{ij}$ and $w_i$ are binary variables.}\\
    &&& i\in \{1,2, \cdots M\}, \hspace{0.3cm} j\in \{1,2,\cdots N\}
 %\notag
@@ -690,7 +690,7 @@ Now we examine the objective function to see whether it in line with the goal to
 Replacing $t_{ij}$ with $p_i(C_i) - \frac{q_{ij}}{|C_i|}$, the objective function becomes,
 \begin{equation}
 \begin{aligned}
-     &\min\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (-w_i* \frac{q_{ij}}{|C_i|} + w_i*p_i(C_i)) \\
+     &\min\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (-w_i\cdot \frac{q_{ij}}{|C_i|} + w_i\cdot p_i(C_i)) \\
 \notag
 \end{aligned}
 \label{centralized_opt}
@@ -1085,7 +1085,7 @@ Thus the upper bound of the number of steps can be expressed as $\mathcal{O}(N^3
 In fact, the number of steps which are actually involved in this process is much smaller than $N^3$, as both $n$ and $m$ are considerably smaller than $N$.
 The percentage of debatable nodes in $\mathcal{N}$ is illustrated in Figure~\ref{percentage_overlapping_node}, which is between 10\% to 60\% of the total number of CR nodes in the network.
 The number of clusters heads, as discussed in Section~\ref{phaseI}, is dependent on the network density and the CR node's transmission range.
-As shown in Figure~\ref{number_clusters_scale}, the cluster heads take up only 3.4\% to 20\% of the total number of CR nodes.
+The simulation in \cite{robust_clustering_arxiv} shows that the cluster heads are only 3.4\% to 20\% of the total CR nodes.
 
 
 
@@ -1629,15 +1629,15 @@ In the other way around, forming big cluster which extends a cluster head's neig
 \label{alg0} 
 \DontPrintSemicolon
 \SetAlgoLined
-\KwIn{$d_j, g_j, j\in \text{Nb}_i\setminus \Lambda$, $\Lambda$ means cluster heads. Empty sets $\tau_1,\tau_2$}
-\KwResult{Returning 1 means $i$ is cluster head, then $d_j$ is set to 0, $j\in \text{Nb}_i\setminus \Lambda$. returning 0 means $i$ is not cluster head.}
+\KwIn{$d_j, g_j, j\in \text{Nb}(i)\setminus \Lambda$, $\Lambda$ means cluster heads. Empty sets $\tau_1,\tau_2$}
+\KwResult{Returning 1 means $i$ is cluster head, then $d_j$ is set to 0, $j\in \text{Nb}(i)\setminus \Lambda$. returning 0 means $i$ is not cluster head.}
 
-\If{$\nexists j\in \text{Nb}_i\setminus \Lambda$, such that $d_i \geq d_j$}{
+\If{$\nexists j\in \text{Nb}(i)\setminus \Lambda$, such that $d_i \geq d_j$}{
 	return 1;
 	}
-\eIf{$\exists j\in \text{Nb}_i\setminus \Lambda$, such that $d_i > d_j$}{
+\eIf{$\exists j\in \text{Nb}(i)\setminus \Lambda$, such that $d_i > d_j$}{
 	return 0;}{
-	\If{$\nexists j\in \text{Nb}_i\setminus \Lambda$, such that $d_j == d_i$}{
+	\If{$\nexists j\in \text{Nb}(i)\setminus \Lambda$, such that $d_j == d_i$}{
 	$\tau_1 \leftarrow j$
 	}
 }
@@ -1673,10 +1673,10 @@ In the other way around, forming big cluster which extends a cluster head's neig
 \While {$K_C =\emptyset$} {
 \While{$|C|> t\cdot \delta$}{
 	%calculate $\lambda = \min_{i\in C, i\neq H_C}(|K_{H_C}\cap K_i|)$;\\
-	\eIf{$\exists$ only one $i\in C\setminus H_C$, $i = \argmin(|K_{H_C}\cap K_i|)$}{
+	\eIf{$\exists$ only one $i\in C\setminus h(C)$, $i = \argmin(|K_{h(C)}\cap K_i|)$}{
 			$C=C\setminus i$;
 		}{
-				$\exists$ multiple $i$ which satisfies $i = \argmin(|K_{H_C}\cap K_i|)$;\\ $\tau_1\leftarrow i$;		
+				$\exists$ multiple $i$ which satisfies $i = \argmin(|K_{h(C)}\cap K_i|)$;\\ $\tau_1\leftarrow i$;		
 		}
 		
 	\eIf{$\exists$ only one $i\in \tau_1$, $i = \argmax(|\cap_{j\in C\setminus i} K_j|-|\cap_{j\in C} K_j|)$}{
@@ -1685,8 +1685,8 @@ In the other way around, forming big cluster which extends a cluster head's neig
 			%$\exists$ multiple $i$ which satisfies $i = \argmax(|\cap_{j\in C\setminus i} K_j|-|\cap_{j\in C} K_j|)$;\\
 			$C=C\setminus i$, where $i = \argmin_{i\in \tau_1} \texttt{ID}_i $
 			%$\texttt{ID}_i$ is smaller than any $\texttt{ID}_j$, $j\in \tau_2\setminus i$;
+		}
 	}
-}
 }
 \end{algorithm}
 
@@ -1708,16 +1708,16 @@ In the other way around, forming big cluster which extends a cluster head's neig
 				$\exists$ multiple $C\in S_i$ which satisfies $C = \argmin(|K(C\setminus i)| - |K(C)|)$;\\ 
 				$\tau_1\leftarrow C$;		
 		}
-	\eIf{$\exists$ only one $C\in \tau_1$, $C = \argmax(K_{h_C}\cap K_i)$}{
+	\eIf{$\exists$ only one $C\in \tau_1$, $C = \argmax(K_{h(C)}\cap K_i)$}{
 			return $C$;
 		}{
-				$\exists$ multiple $C\in S_i$ which satisfies $C = \argmax(K_{h_C}\cap K_i)$;\\ 
+				$\exists$ multiple $C\in S_i$ which satisfies $C = \argmax(K_{h(C)}\cap K_i)$;\\ 
 				$\tau_2\leftarrow C$;		
 		}
 	\eIf{$\exists$ only one $C\in \tau_2$, $C = \argmin|C|)$}{
 			return $C$;
 		}{
-				return $\argmin_{C\in \tau_2}h_C$;\\
+				return $\argmin_{C\in \tau_2}h(C)$;\\
 		}
 		}
 \end{algorithm}
