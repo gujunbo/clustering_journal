@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  10 DEC 2016 22:43
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  8 DEC 2016 23:24
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1615,7 +1619,11 @@ Package pdftex.def Info: ../figures/04_clutering/singletongame_png.png used on
 input line 1020.
 (pdftex.def)             Requested size: 63.23624pt x 64.24962pt.
 
+<<<<<<< HEAD
 <../figures/04_clutering/figure4AinC.pdf, id=298, 177.66376pt x 109.40875pt>
+=======
+<../figures/04_clutering/figure4AinC.pdf, id=299, 177.66376pt x 109.40875pt>
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 File: ../figures/04_clutering/figure4AinC.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure4AinC.pdf>
@@ -1628,7 +1636,7 @@ Underfull \hbox (badness 6625) in paragraph at lines 1124--1124
 []\T1/txr/m/n/8.03 (a) Node A stays in clus-ter
  []
 
-<../figures/04_clutering/figure4AinH.pdf, id=299, 177.66376pt x 107.40125pt>
+<../figures/04_clutering/figure4AinH.pdf, id=300, 177.66376pt x 107.40125pt>
 File: ../figures/04_clutering/figure4AinH.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure4AinH.pdf>
@@ -1644,7 +1652,7 @@ Underfull \hbox (badness 6300) in paragraph at lines 1129--1129
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Excluding 'comment' comment.
-<../figures/04_clutering/final_clustering_ross.pdf, id=300, 284.06125pt x 181.6
+<../figures/04_clutering/final_clustering_ross.pdf, id=301, 284.06125pt x 181.6
 7876pt>
 File: ../figures/04_clutering/final_clustering_ross.pdf Graphic file (type pdf)
 
@@ -1734,7 +1742,13 @@ Package pdftex.def Info: ../figures/04_clutering/number_controlMsg.pdf used on
 input line 1453.
 (pdftex.def)             Requested size: 151.76852pt x 115.52684pt.
 
+<<<<<<< HEAD
 Underfull \vbox (badness 8075) has occurred while \output is active []
+=======
+<../figures/04_clutering/ccc_large_scale_color.pdf, id=410, 449.68pt x 338.2637
+5pt>
+File: ../figures/04_clutering/ccc_large_scale_color.pdf Graphic file (type pdf)
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 
  [8]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1751,8 +1765,13 @@ Package pdftex.def Info: ../figures/04_clutering/ccc_large_scale_color.pdf used
  [9 <../figures/04_clutering/ccc_20.pdf> <../figures/04_clutering/cdf_clusterSi
 ze_20.pdf> <../figures/04_clutering/survival_rate_20.pdf> <../figures/04_cluter
 ing/percentage_overlapping_node.pdf> <../figures/04_clutering/number_controlMsg
+<<<<<<< HEAD
 .pdf>]
 <../figures/04_clutering/survival_rate_100_edge50.pdf, id=469, 397.485pt x 311.
+=======
+.pdf> <../figures/04_clutering/ccc_large_scale_color.pdf>]
+<../figures/04_clutering/survival_rate_100_edge50.pdf, id=472, 397.485pt x 311.
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 1625pt>
 File: ../figures/04_clutering/survival_rate_100_edge50.pdf Graphic file (type p
 df)
@@ -1761,7 +1780,11 @@ Package pdftex.def Info: ../figures/04_clutering/survival_rate_100_edge50.pdf u
 sed on input line 1521.
 (pdftex.def)             Requested size: 164.61499pt x 128.8689pt.
 
+<<<<<<< HEAD
 <../figures/04_clutering/survival_rate_200_edge50.pdf, id=470, 400.49625pt x 31
+=======
+<../figures/04_clutering/survival_rate_200_edge50.pdf, id=473, 400.49625pt x 31
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 0.15875pt>
 File: ../figures/04_clutering/survival_rate_200_edge50.pdf Graphic file (type p
 df)
@@ -1770,7 +1793,11 @@ Package pdftex.def Info: ../figures/04_clutering/survival_rate_200_edge50.pdf u
 sed on input line 1522.
 (pdftex.def)             Requested size: 164.61499pt x 127.48299pt.
 
+<<<<<<< HEAD
 <../figures/04_clutering/survival_rate_300_edge50.pdf, id=471, 407.5225pt x 311
+=======
+<../figures/04_clutering/survival_rate_300_edge50.pdf, id=474, 407.5225pt x 311
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 .1625pt>
 File: ../figures/04_clutering/survival_rate_300_edge50.pdf Graphic file (type p
 df)
@@ -1779,7 +1806,11 @@ Package pdftex.def Info: ../figures/04_clutering/survival_rate_300_edge50.pdf u
 sed on input line 1523.
 (pdftex.def)             Requested size: 164.61499pt x 125.6925pt.
 
+<<<<<<< HEAD
 <../figures/04_clutering/cdf_clusterSize_100.pdf, id=472, 397.485pt x 311.1625p
+=======
+<../figures/04_clutering/cdf_clusterSize_100.pdf, id=475, 397.485pt x 311.1625p
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 t>
 File: ../figures/04_clutering/cdf_clusterSize_100.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_100.pdf>
@@ -1787,7 +1818,11 @@ Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_100.pdf used o
 n input line 1532.
 (pdftex.def)             Requested size: 164.61499pt x 128.8689pt.
 
+<<<<<<< HEAD
 <../figures/04_clutering/cdf_clusterSize_200.pdf, id=473, 397.485pt x 311.1625p
+=======
+<../figures/04_clutering/cdf_clusterSize_200.pdf, id=476, 397.485pt x 311.1625p
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 t>
 File: ../figures/04_clutering/cdf_clusterSize_200.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_200.pdf>
@@ -1795,7 +1830,11 @@ Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_200.pdf used o
 n input line 1533.
 (pdftex.def)             Requested size: 164.61499pt x 128.8689pt.
 
+<<<<<<< HEAD
 <../figures/04_clutering/cdf_clusterSize_300.pdf, id=474, 396.48125pt x 311.162
+=======
+<../figures/04_clutering/cdf_clusterSize_300.pdf, id=477, 396.48125pt x 311.162
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 5pt>
 File: ../figures/04_clutering/cdf_clusterSize_300.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_300.pdf>
@@ -1803,7 +1842,11 @@ Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_300.pdf used o
 n input line 1534.
 (pdftex.def)             Requested size: 164.61499pt x 129.19176pt.
 
+<<<<<<< HEAD
 <../figures/04_clutering/nClusters_largeNetwork.pdf, id=480, 449.68pt x 338.263
+=======
+<../figures/04_clutering/nClusters_largeNetwork.pdf, id=483, 449.68pt x 338.263
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 75pt>
 File: ../figures/04_clutering/nClusters_largeNetwork.pdf Graphic file (type pdf
 )
@@ -1821,10 +1864,21 @@ LaTeX Font Info:    Try loading font information for T1+txtt on input line 1659
 File: t1txtt.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `T1/txtt/m/it' in size <9.53561> not available
+<<<<<<< HEAD
 (Font)              Font shape `T1/txtt/m/sl' tried instead on input line 1659.
 
 
 <../figures/04_clutering/lemma1.pdf, id=488, 563.87807pt x 108.10442pt>
+=======
+(Font)              Font shape `T1/txtt/m/sl' tried instead on input line 1657.
+
+ [10] [11 <../figures/04_clutering/survival_rate_100_edge50.pdf> <../figures/04
+_clutering/survival_rate_200_edge50.pdf> <../figures/04_clutering/survival_rate
+_300_edge50.pdf> <../figures/04_clutering/cdf_clusterSize_100.pdf> <../figures/
+04_clutering/cdf_clusterSize_200.pdf> <../figures/04_clutering/cdf_clusterSize_
+300.pdf> <../figures/04_clutering/nClusters_largeNetwork.pdf>]
+<../figures/04_clutering/lemma1.pdf, id=609, 563.87807pt x 108.10442pt>
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
 File: ../figures/04_clutering/lemma1.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/lemma1.pdf>
@@ -1867,9 +1921,15 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1983.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  31842 strings out of 493013
  592427 string characters out of 6133342
  954158 words of memory out of 5000000
+=======
+ 31841 strings out of 493013
+ 592420 string characters out of 6133342
+ 952157 words of memory out of 5000000
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
  34560 multiletter control sequences out of 15000+600000
  234375 words of font info for 330 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -1914,10 +1974,18 @@ ive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/201
 s/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/zapfdin
 g/uzdr.pfb>
+<<<<<<< HEAD
 Output written on bare_jrnl_comsoc.pdf (14 pages, 565160 bytes).
 PDF statistics:
  775 PDF objects out of 1000 (max. 8388607)
  659 compressed objects within 7 object streams
  193 named destinations out of 1000 (max. 500000)
+=======
+Output written on bare_jrnl_comsoc.pdf (13 pages, 565082 bytes).
+PDF statistics:
+ 770 PDF objects out of 1000 (max. 8388607)
+ 655 compressed objects within 7 object streams
+ 192 named destinations out of 1000 (max. 500000)
+>>>>>>> 785a27d519805875363e355b07f6f5102c23d89e
  259 words of extra memory for PDF output out of 10000 (max. 10000000)
 
