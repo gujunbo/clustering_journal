@@ -402,12 +402,12 @@ The available unlicensed channels are referred to in the following of this paper
 Both payload and control overheads can be transmitted on the CCs.
 %Out of the available CCs, there are always one or multiple channels which are used for the payload communication.
 When one or several cluster members can not access one certain CC on which primary user activity is detected, the channel will be excluded from the set of CCs.
-In particular, if that channel is being used for payload communication, the communication pair will stop and resume the transmission on another available channel from CCs.
+In particular, if that channel is being used for payload communication, the communication pair will stop and resume the transmission on another available CC.
 The availability of CCs within a cluster defines the existence of that cluster, \ie no CCs are available means the corresponding cluster doesn't exist.
 %As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
 In the context of CRN, the activity of primary users is usually unknown to the secondary users, thus when the primary users' activity is deemed as random, the cluster which secures more CCs will anticipate a longer life expectancy.
 It is obvious that fewer members in a cluster yield more CCs, but obtaining more CCs by decreasing the cluster size contradicts to the motivation of clustering, \ie benefit the cluster members with cooperative decision making.
-For example, spectrum sensing accuracy coralates with the cluster size~\cite{Consensus_based_clustering12}, and power consumption doesn't favor small clusters~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
+For example, spectrum sensing accuracy correlates with the cluster size~\cite{Consensus_based_clustering12}, and power consumption doesn't favor small clusters~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 In this paper the robustness of clusters means the ability of the clusters to sustain the increasing activity of primary users.
 %is synonymous with the affluence of CCs which are possessed by that cluster, to ....
 
@@ -416,7 +416,7 @@ In this paper the robustness of clusters means the ability of the clusters to su
 %Apparently this contradicts our motivation of proposing cluster in cognitive radio network to enable cooperative decision making.
 %Thus the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not given consideration.
 
-There has been a lot of research done for clustering in wireless networks.
+There has been a lot of research done on clustering in wireless networks.
 In ad-hoc and mesh networks, the major goal of clustering is to maximize connectivity or to improve the performance of routes~\cite{Kawadia03, clustering_mesh_globecom2010}.
 The emphasis of clustering in sensor networks is on network lifetime and coverage~\cite{Abbasi_survey_07}.
 %Various clustering schemes are proposed to target different aspects in cognitive radio networks.
