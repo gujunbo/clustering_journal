@@ -442,13 +442,13 @@ In addition, this scheme leads to the high variance of the cluster sizes, which 
 
 A distributed clustering scheme ROSS is proposed in~\cite{Li11_ROSS} under the game theoretic framework. 
 Compared with the clustering schemes introduced above, the clusters are formed faster and the clusters possess more CCs than SOC.
-But as all the other clustering schemes, this work doesn't intervene the outcome of the very small or very large clusters which are not desirable.
+But as all the other clustering schemes, this scheme doesn't have control over the formation of the very small or very large clusters which are not desirable.
 Furthermore, this work doesn't consider the robustness of clusters against the increasing activity of primary users, which leaves their claim of robustness unverified.
 %
 This paper is on the basis of the work in~\cite{Li11_ROSS}, but extends in two dimensions.
 First, this paper renews the definition of robustness of clusters in a CRN, which is no longer the average number of CCs of clusters, but the ability of the clusters to sustain when the primary users' activity becomes more dynamic.
 Second, this paper proposes size control mechanism, which solves the problem of devergence of clusters sizes in ~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
-Besides, this paper provides a comprehensive analysis of the robust clustering problem and proposes the centralized solution. 
+Besides, this paper provides a comprehensive analysis of the robust clustering problem and proposes a centralized solution. 
 %We stick to the motivation of forming robust clusters in CRN \ie let more CR users benefited from the cooperative decision making which is due to the clusters. 
 %We propose both centralized and distributed clustering schemes, which result in more CR users in the clusters composed with multiple CR users, not only when the clusters are just formed, but also afterwards when the primary users' activity changes.
 %Besides, both centralized and distributed schemes take the cluster size into consideration, and both can control the sizes of the formed clusters to certain extent.
@@ -482,28 +482,28 @@ We adopt the unit disk model~\cite{unitDiskModel} for both primary and CR users'
 %As to the relation between the primary and secondary users,
 If a CR node $i$ locates within the transmission range of an active primary user $p$, $i$ is not allowed to use the channel which is being used by $p$.
 %On the other hand, if $i$ is not in the transmission range of primary user $p$, $i$ can certainly not detect the presence of $p$.
-We assume the primary users change their operation channels slowly, then we omit the time index for the spectrum availability, \ie as the result of spectrum sensing, $K_i \subseteq \mathcal{K}$ denotes the set of available licensed channels for CR user $i$ at a time point.
-As the transmission range of primary users is limited and secondary users have different locations, different secondary users may have different views of the spectrum availability, i.e., for any $i, j \in \mathcal{N}$, $K_i = K_{j}$ does not necessarily hold.
-A cognitive radio network can be represented as a graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, j\} \in E$ if and only if $K_{i} \cap K_{j}\neq \emptyset$ and $d_{i,j} < r$, where $d_{i,j}$ is the distance between $i, j$, $r$ is the radius of secondary user's transmission range. 
+We assume the primary users change their operation channels slowly thus we omit the time index for the spectrum availability. As the result of spectrum sensing, $K_i \subseteq \mathcal{K}$ denotes the set of available licensed channels for CR user $i$.
+As the transmission range of primary users is limited and secondary users have different locations, different secondary users have different views of the spectrum availability, i.e., for any $i, j \in \mathcal{N}$, $K_i = K_{j}$ does not necessarily hold.
+We therefore represent the network of CR nodes by a graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, j\} \in E$ if and only if $K_{i} \cap K_{j}\neq \emptyset$ and $d_{i,j} < r$, where $d_{i,j}$ is the distance between $i, j$ and $r$ is the radius of secondary user's transmission range. 
 %
-Among the secondary users, we denote $\text{Nb}(i)$ as user $i$'s neighborhood, which consists of the CR nodes located within the transmission range of $i$. 
+Among the secondary users, we denote by $\text{Nb}(i)$ user $i$'s neighborhood, which consists of the CR nodes located within the transmission range of $i$. 
 
-We assume there is one dedicated control channel which is used to exchange signaling messages during clustering process.
+We assume there is one dedicated control channel which is used to exchange signaling messages during the clustering process.
 This control channel could be one of the ISM bands or other reserved spectrum which is exclusively used for transmitting control messages.\footnote{Actually, the control messages involved in the clustering process can also be transmitted on the available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., two neighboring nodes establish communication on the same channel.}
 Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ with all its one hop neighbors $\text{Nb}(i)$.
-In the following, we refer to the licensed channel as \textit{channel} in general, and will explicitly mention the dedicated control channel if necessary. 
+In the following, we refer to the licensed channel as channels in general, and will explicitly mention the dedicated control channel if necessary. 
 
 We give the definition of cluster in CRN as follows. 
-A cluster $C$ is a set of secondary nodes which possess the same set of CCs.
-In particular, one cluster consists of a cluster head $h(C)$ and a number of cluster members, and the cluster head is able to communicate with any cluster member directly.
+A cluster $C$ is a set of secondary nodes which possess the same set of common channels.
+In particular, a cluster consists of a cluster head $h(C)$ and a number of cluster members, and the cluster head is able to communicate with any cluster member directly.
 A cluster can be formed only by the cluster head.
 %$\text{Nb}(i)$ denotes node $i$'s neighborhood which consists of all its one hop neighbors.
 %For any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds.
-Cluster size of $C$ is written as $|C|$.
-Cluster $C(i)$ means the cluster head of this cluster is $i$.
-$K(C)$ denotes the set of CCs in cluster $C$, $ K(C) = \cap_{i\in C} K_i$.
+The size of $C$ is denoted by $|C|$.
+When the cluster head of a cluster is $i$, we denote that cluster by $C(i)$.
+$K(C)$ denotes the set of CCs in cluster $C$, $ K(C) = \Cap_{i\in C} K_i$.
 %Clustering is performed periodically, because the secondary users are mobile and the primary users change their operation channels, thus the channel availability on secondary users changes accordingly.
-The notations used in the system model and the following problem description are listed in Table~\ref{tab1}.
+The notations used in the system model are listed in Table~\ref{tab1}.
 \begin{table}[h!]
 \caption{Notations}
 \label{tab1}
