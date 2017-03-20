@@ -403,21 +403,25 @@ When one or several cluster members can not access one certain CC on which prima
 In particular, if that channel is being used for payload communication, the communication pair will stop and resume the transmission on another available CC.
 The availability of CCs within a cluster defines the existence of that cluster, \ie no CCs are available means the corresponding cluster doesn't exist.
 %As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
-In the context of CRN, the activity of primary users is usually unknown to the secondary users, thus when the primary users' activity is deemed as random, the cluster which secures more CCs will anticipate a longer life expectancy.
-It is obvious that fewer secondary in one cluster yield more CCs, but this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where more users result in more accurate sensing result~\cite{Consensus_based_clustering12}.
+In the context of CRN, the activity of primary users is usually unknown to the secondary users, then the primary users' activity is deemed as random.
+In this case, the cluster which secures more CCs will anticipate a longer life expectancy, in other words, is more robust.
+It is obvious that fewer secondary users in one cluster yield more CCs, but this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where more users result in more accurate sensing result~\cite{Consensus_based_clustering12}.
+Thus the number of small clusters, especially the \textit{singleton clusters}, \ie the cluster which has only one CR node, should be minimized.
+As to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels, which undermines the robustness of the cluster.
+Thus the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not given consideration.
+Cluster size also plays a part in transmission power consumption~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
+In this paper we focus on the efficient formation of the clusters and the evaluation of the robustness of the formed clusters, but our scheme is also able to generate the clusters with the desired size, which gives the network designers more freedom when the power consumption is involved in the design of network applications.
+%In this paper we will introduce a robust cluster structure for CRN, where the robustness means the ability of the clusters to sustain under the influence of the increasing activity of primary users, and the direct metric is the number of CCs in the clusters.
 
-Note that the purpose of this paper is to introduce a robust cluster structure for CRN, and the robustness here means the ability of the clusters to sustain under the influence of the increasing activity of primary users.
-We focus on the efficient formation of the clusters and the evaluation of the robustness of the formed clusters, 
+
+%On the other hand, large clusters are not preferred in some scenarios neither, \eg for the CRN composed with resource limited users, managing the cluster members in a large cluster is a substantial burden. 
+%Hence, the cluster size should fall in a desired range according to different application scenarios~\cite{Chen04clusteringalgorithms, capacity_cluster_06}.
+
 %with the intention to provide a robust infrastructure for the applications which may be conducted above that in CRN.
-that being said, when we design this clustering scheme in CRN, we do consider the services to be delivered by the network.
-Cluster sizes affect the power consumption directly in wirelss sensor networks~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
-When the cluster size is not deliberately discussed, it is also decided alongside the optimization of the network, \eg the opimal selection of the aggregation points in a wireless sensor network results in the clusters~\cite{data_aggr_algorithm_04}.
-Our scheme is able to generate the clusters with the desired size, which gives the network designers more freedom when the power consumption is involved in the design of network applications.
+%that being said, when we design this clustering scheme in CRN, we do consider the services to be delivered by the network.
+%Cluster sizes affect the power consumption directly in wirelss sensor networks~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
+%When the cluster size is not deliberately discussed, it is also decided alongside the optimization of the network, \eg the opimal selection of the aggregation points in a wireless sensor network results in the clusters~\cite{data_aggr_algorithm_04}.
 
-%To solely pursue cluster robustness against the primary users' activity, \ie to achieve more common channels within clusters, the ultimately best clustering strategy is ironically that every node constitutes one cluster (called as \textit{singleton cluster} in this paper).
-%%In that case, the common channels within cluster are the available channels available at that node's place.
-%Apparently this contradicts our motivation of proposing cluster in cognitive radio network to enable cooperative decision making.
-%Thus the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not given consideration.
 
 There has been a lot of research done on clustering in wireless networks.
 As there is no restriction on the nodes to access the spectrum in wireless ad-hoc, mesh networks and sensor networks, the objective of clustering is to decrease the transmission power consumption~\cite{Kawadia03}, to improve the routing performance~\cite{clustering_mesh_globecom2010}, or to imrove the network lifetime and coverage~\cite{Abbasi_survey_07}.
@@ -486,7 +490,8 @@ We adopt the unit disk model~\cite{unitDiskModel} for both primary and CR users'
 %As to the relation between the primary and secondary users,
 If a CR node $i$ locates within the transmission range of an active primary user $p$, $i$ is not allowed to use the channel which is being used by $p$.
 %On the other hand, if $i$ is not in the transmission range of primary user $p$, $i$ can certainly not detect the presence of $p$.
-We assume the primary users change their operation channels slowly thus we omit the time index for the spectrum availability. As the result of spectrum sensing, $K_i \subseteq \mathcal{K}$ denotes the set of available licensed channels for CR user $i$.
+We assume the primary users change their operation channels slowly thus we omit the time index for the spectrum availability. 
+As the result of spectrum sensing, $K_i \subseteq \mathcal{K}$ denotes the set of available licensed channels for CR user $i$.
 As the transmission range of primary users is limited and secondary users have different locations, different secondary users have different views of the spectrum availability, i.e., for any $i, j \in \mathcal{N}$, $K_i = K_{j}$ does not necessarily hold.
 We therefore represent the network of CR nodes by a graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, j\} \in E$ if and only if $K_{i} \cap K_{j}\neq \emptyset$ and $d_{i,j} < r$, where $d_{i,j}$ is the distance between $i, j$ and $r$ is the radius of secondary user's transmission range. 
 %
@@ -495,7 +500,7 @@ Among the secondary users, we denote by $\text{Nb}(i)$ user $i$'s neighborhood, 
 We assume there is one dedicated control channel which is used to exchange signaling messages during the clustering process.
 This control channel could be one of the ISM bands or other reserved spectrum which is exclusively used for transmitting control messages.\footnote{Actually, the control messages involved in the clustering process can also be transmitted on the available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., two neighboring nodes establish communication on the same channel.}
 Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ with all its one hop neighbors $\text{Nb}(i)$.
-In the following, we refer to the licensed channel as channels in general, and will explicitly mention the dedicated control channel if necessary. 
+In the following, we refer to the licensed channels as channels in general, and will explicitly mention the dedicated control channel if necessary. 
 
 We give the definition of cluster in CRN as follows. 
 A cluster $C$ is a set of secondary nodes which possess the same set of common channels.
@@ -551,11 +556,8 @@ $f(C)$ & the number of CCs of a cluster $C$, which is used \\
 \label{problem}
 
 As introduced in Section~\ref{intro}, in order to be robust against primary users' activity, the formed clusters should have more CCs.
-On the other hand, the sizes of the formed clusters should not diverge from the desired size greatly.
-The formation of small clusters or the \textit{singleton clusters}, \ie the cluster which has only one CR node, contradicts the motivation of forming clusters, as the benefits brought in by the collective of the cluster members are compromised.
-On the other hand, large clusters are not preferred in some scenarios neither, \eg for the CRN composed with resource limited users, managing the cluster members in a large cluster is a substantial burden. 
-Hence, the cluster size should fall in a desired range according to different application scenarios~\cite{Chen04clusteringalgorithms, capacity_cluster_06}.
-Considering the above mentioned requirements, we present the definition of robust clustering problem as follows.
+On the other hand, the sizes of the formed clusters should be regulated, \ie they don't diverge from a given value greatly.
+%Considering the above mentioned requirements, we present the definition of robust clustering problem as follows.
 
 
 
