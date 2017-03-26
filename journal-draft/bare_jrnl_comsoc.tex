@@ -1024,14 +1024,16 @@ Game theory is a powerful mathematical tool for studying, modelling and analysin
 A game consists of three elements: a set of players, a selfish utility for each player, and a feasible strategy space for each player. In a game, the players are rational and intelligent decision makers, which are related with one explicit formalized incentive expression (the utility or cost).
 Game theory provides standard procedures to study its equilibriums~\cite{game_for_communication_01}.
 In the past few years, game theory has been extensively applied to problems in communication and networking~\cite{Neel06analysisand, Wang_gtc_crn_survey_2010}.
-Congestion game is an attractive game model which describes the problem where participants compete for limited resources in a non-cooperative manner, it has good property that Nash equilibrium can be achieved after finite steps of best response dynamic, \ie each player choose strategy to maximizes/minimizes its utility/cost with respect to the other players' strategies.
-Congestion game has been used to model certain problems in internet-centric applications or cloud computing, where self-interested clients compete for the centralized resources and meanwhile interact with each other.
+Congestion game is an attractive game model which describes the problem where participants compete for limited resources in a non-cooperative manner, it has the good property that Nash equilibrium can be achieved after finite steps of best response dynamic, \ie each player chooses the strategy to maximize/minimize its utility/cost with respect to the other players' strategies.
+The framework of the congestion game has been used to model certain problems in internet-centric applications or cloud computing, where self-interested clients compete for the centralized resources and meanwhile interact with each other.
 For example, server selection is involved in distributed computing platforms~\cite{Cloud_Computing_2010}, or users downloading files from cloud, etc.
 
-To formulate the debatable nodes' membership clarification into the desired congestion game, we observe this process from a different (or opposite) perspective. 
-From the new perspective, the debatable nodes are regarded as isolated and don't belong to any cluster, in other words, their claiming clusters become clusters which are beside them. 
-Now for the debatable nodes, the previous problem of deciding which clusters to leave becomes a new problem that which cluster to join.
-In the new problem, debatable node $i$ chooses one cluster $C$ out of $S_i$ to join if the decrease of CCs in cluster $C$ is the smallest in $S_i$, and the decrease of CCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K(C) \vert=\sum_{C\in S_i}({\vert K(C) \vert-\vert K(C\cup i) \vert})$.
+To formulate the debatable nodes' membership clarification into the desired congestion game, we reexamine this process from a different (or opposite) perspective. 
+From the new perspective, the debatable nodes are not included in any cluster, and they are looking for the proper cluster to join.
+% in other words, their claiming clusters become clusters which are beside them. 
+%Now for the debatable nodes, the previous problem of deciding which clusters to leave becomes a new problem that which cluster to join.
+A debatable node $i$ chooses one cluster $C$ out of $S_i$ to join if the decrease of CCs in cluster $C$ is the smaller than any other cluster in $S_i$.
+The decrease of CCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K(C) \vert=\sum_{C\in S_i}({\vert K(C) \vert-\vert K(C\cup i) \vert})$.
 The interaction between the debatable nodes and the claiming clusters is shown in Figure~\ref{debatable_nodes_claiming_cluster}.
 %The concern on convergence appears again as we have discussed in the previous subsubsection.
 %We give proof on convergence under game theoretic framework.
@@ -1047,7 +1049,7 @@ The interaction between the debatable nodes and the claiming clusters is shown i
 
 
 In the following, we show that the decision of debatable nodes to clarify their membership can be mapped to the behaviour of the players in a \textit{player-specific singleton congestion game} when proper cost function is given.
-The game to be constructed is represented with a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, f)$, and the elements in $\Gamma$ are explained below,
+The game to be constructed is represented with a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, f)$ with the following elements:
 %To make the model of this game more clear, we make some change to our original problem. Previously, the nodes in overlapping areas belong to more than one cluster, and our scheme is to remove them out of some clusters to increase the set of common channels within the cluster form which the mode leave. In the new model, we assume all the nodes in overlapping nodes don't belong any cluster and the problem become into how do these nodes decide which cluster to join.
 
 %The components of the game are listed as follows,
@@ -1123,14 +1125,14 @@ The simulation in \cite{robust_clustering_arxiv} shows that the cluster heads ar
 %The convergence speed of DGA is large recalling that the number of steps is of $\mathcal{O}(N^3)$.
 On the basis of ROSS-DGA, we propose a faster version ROSS-DFA which differs from ROSS-DGA in the second phase.
 With ROSS-DFA, debatable nodes decide their respective cluster heads only once.
-The debatable nodes consider their claiming clusters to include all their debatable nodes, thus the membership of claiming clusters is static and all the debatable nodes can make decision simultaneously without considering the change of membership of their claiming clusters.
+The debatable nodes consider their claiming clusters to include all their debatable nodes, thus the membership of claiming clusters is static and all the debatable nodes can make decisions simultaneously without considering the change of membership of their claiming clusters.
 As ROSS-DFA is quicker than ROSS-DGA, the former is especially suitable for the CRN where the channel availability changes dynamically and re-clustering is necessary.
-To run ROSS-DFA, debatable node executes only one loop in Algorithm~\ref{alg4}.
+To run ROSS-DFA, debatable nodes execute only one loop in Algorithm~\ref{alg4}.
 
 Now we apply both ROSS-DGA and ROSS-DFA to the toy network in Figure~\ref{fig2} which has been applied the phase I of ROSS.
 In the network, node $A$'s claiming clusters are cluster $C(C), C(H)\in S_A$, their members are $\{A,B,C,D\}$ and $\{A,B,H,G\}$ respectively. 
 The two possible strategies of node $A$ is illustrated in Figure \ref{fig3}.
-In Figure \ref{AinC}, node $A$ staying in $C(C)$ and leaving $C(H)$ brings 2 more CCs to $S_A$, which is more than that brought by another strategy showed in \ref{AinH}.
+In Figure \ref{AinC}, node $A$ staying in $C(C)$ and leaving $C(H)$ brings 2 more CCs to $S_A$, which is more than that brought by another strategy shown in \ref{AinH}.
 After the decisions made similarly by the other debatable nodes $B$ and $D$, the final clusters are formed as shown in Figure~\ref{final_clustering_ross}.
 
 %Using DFA in phase II, the time complexity is decreased drastically to 1. Thus, the total complexity of ROSS-DFA is $|I|$, while, ROSS-DGA's complexity is $|I|^3$ in the worst case.
@@ -1180,14 +1182,14 @@ The schemes involved in the simulation are listed as follows,
 In the following, we refer to the above mentioned four schemes as the variants of ROSS.
 \item SOC~\cite{LIU_TMC11_2}, a distributed clustering scheme pursuing cluster robustness.
 \item Centralized robust clustering scheme. 
-The formulated optimization is an integer linear optimization problem, which is solved by MATLAB with the function $bintprog$.
+As shown in Section~\ref{centralized_solution}, the centralized robust clustering scheme is formulated as an integer linear optimization problem and is solved by MATLAB with the function $bintprog$.
 \end{itemize}
 
 The ROSS without size control mechanism is similar with the schemes proposed in \cite{Li11_ROSS}.
 The authors of~\cite{LIU_TMC11_2} compared SOC with other schemes in terms of the average number of CCs of the formed cluster, on which SOC outperforms other schemes by 50\%-100\%. 
 SOC's comparison schemes are designed either for ad hoc network without consideration of channel availability~\cite{Basagni99}, or for CRN but just considering connection among CR nodes~\cite{Zhao07}. 
 Thus SOC is the only distributed scheme as comparison.
-As to the CRN shown in Figure~\ref{fig1}, the resulted clusters by the centralized scheme and SOC are shown in Figure~\ref{fig:final_clustering}.
+As to the CRN shown in Figure~\ref{fig1}, the resulting clusters by the centralized scheme and SOC are shown in Figure~\ref{fig:final_clustering}.
 
 %Before we investigating the performance of the clustering schemes with simulation, we apply the two comparison clustering schemes in the example CRN in Figure~\ref{fig1}, and make an initial comparison in terms of the amount of CCs. 
 %As to the centralized robust clustering scheme, we set the desired cluster size $\delta$ as 3, as a result, according to the network topology, the collection of all the possible clusters
@@ -1212,16 +1214,16 @@ As to the CRN shown in Figure~\ref{fig1}, the resulted clusters by the centraliz
 
 
 
-We investigate the schemes with four metrics.
+We investigate the schemes with respect to four metrics.
 
 \begin{itemize}
 \item \textbf{The average number of CCs per non-singleton cluster.}
 Non-singleton cluster refers to the cluster whose cluster size is larger than 1.
 Previous work \cite{LIU_TMC11_2} and \cite{Li11_ROSS} claim that the larger average number of CCs over all the clusters indicates longer life expectancy when the primary users' operation becomes more intense.
 We see two flaws in this claim.
-First, the unclustered CR nodes (synonym of singleton clusters) should not be considered when obtaining the average number of CCs, as singleton clusters doesn't contribute to the collaborative computing.
-Second, the average number of CCs doesn't necessarily indicate the robustness of individual clusters, because the ability for a cluster to sustain also depends on the cluster size and the locations of the cluster members, and these information is not illustrated in the average number of CCs.
-In the performance evaluation, We will examine the metric of average number of CCs per non-singleton cluster, which excludes the bias brought in by the unclustered CR nodes.
+First, the unclustered CR nodes (synonym of singleton clusters) should not be considered when obtaining the average number of CCs, as singleton clusters don't contribute to the collaborative computing.
+Second, the average number of CCs doesn't necessarily indicate the robustness of individual clusters, because the ability for a cluster to sustain also depends on the cluster size and the locations of the cluster members, and this information is not illustrated in the average number of CCs.
+In the performance evaluation, we will examine the metric of average number of CCs per non-singleton cluster, which excludes the bias brought in by the unclustered CR nodes.
 More importantly, we will examine whether this metric reflects the robustness of the clusters against increasingly active primary users.
 
 
@@ -1249,7 +1251,7 @@ We investigate the number of control messages involved in the clustering process
 
 Simulation consists of two parts, first we investigate the performance of centralized scheme and the distributed schemes in a small network, as there is no polynomial time solution available to solve the centralized problem.
 In the second part, we investigate the performance of the proposed distributed schemes in the CRN with different scales and densities.
-The following simulation settings is the same for both simulation parts.
+The following simulation setting is the same for both simulation parts.
 CRs and PUs are deployed on a two-dimensional Euclidean plane.
 %Complying with the system model, the CR node residing within another CR node's transmission range is seen as neighbour of that CR node.
 The number of licensed channels is 10, each PU is operating on each channel with probability of 50\%.
@@ -1265,8 +1267,8 @@ There are 10 primary users and 20 CR users dropped randomly (with uniform distri
 %Each primary user randomly occupies one channel, and 
 When clustering scheme is executed, around 7 channels are available on each CR node.
 The desired cluster size $\delta$ is 3.
-The constant for size control is 1.3.
-As to the centralized scheme, the parameters used in the \textit{punishment} for choosing the clusters with undesired sizes are set as follows, $\rho_1 =  0.4$, $\rho_2 =  0.6$.
+The constant $t$ (discussed in Section~\ref{ross_p2_cluster_pruning}) for size control is 1.3.
+As for the centralized scheme, the parameters used in the \textit{punishment} for choosing the clusters with undesired sizes are set as follows, $\rho_1 =  0.4$, $\rho_2 =  0.6$.
 
 
 \subsubsection{Average number of CCs in Non-singleton Clusters}
@@ -1278,7 +1280,7 @@ From Figure~\ref{ccc_per_nonsingleton}, we can see the centralized schemes outpe
 Among the distributed schemes, SOC achieves the most CCs.
 The reason is, SOC is liable to group the neighboring CRs which share the most abundant spectrum together, no matter how many of them are there, thus the number of CC of the formed clusters is higher.
 %We have discussed the flaw of this metric as it doesn't convey the number of unclustered CR nodes, in fact, 
-In the other hand, SOC generates the most unclustered CRs.
+On the other hand, SOC generates the most unclustered CRs.
 As to the variants of ROSS, we notice that the greedy mechanism increases CCs in non-singleton clusters significantly.
 %, this is due to the procedure that debatable nodes greedily look for better affiliation to improve the number of CCs.
 %We also notice that the size control feature doesn't affect the number of CCs for both ROSS-DGA and ROSS-DFA.
@@ -1358,7 +1360,7 @@ In the first phase, when a CR node decides itself to be the cluster head, it bro
 In the second phase, a debatable node broadcasts its affiliation to inform its claiming clusters, then the cluster heads of the claiming clusters broadcast message about the new cluster members if they are changed due to the debatable node's decision.
 The upper bound of the total number of the control messages involved in cluster formation is analyzed in Theorem~\ref{clustering:theorem} and Section~\ref{clustering:phaseII:game}.
 
-The comparison scheme SOC involves three rounds of execution. 
+The comparison scheme SOC consists of three rounds of execution. 
 In the first two rounds, every CR node maintains its own cluster and seeks either to integrate neighboring clusters or to join one neighboring cluster.
 The final clusters are obtained in the third round. 
 In each round, every CR node is involved in comparisons and cluster mergers.
