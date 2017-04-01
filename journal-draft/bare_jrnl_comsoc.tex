@@ -611,7 +611,7 @@ The proof is in Appendix~\ref{proof_theorem1}.
 \section{Centralized Solution for Robust Clustering}
 \label{centralized_solution}
 When the global knowledge of the CRN is available to us, we can propose a centralized scheme as comparison.
-The proposed centralized solution formulates the problem in Definition~\ref{def_centralized_clustering} as an optimization problem, then the latter is solved with standard software packages.
+The proposed centralized solution formulates the problem in Definition~\ref{def_centralized_clustering} as an optimization problem which is solved with standard software packages.
 The optimization searches the set $\mathcal{S}$ and decides on the clusters according to the following optimization formulation,
 %
 %which constitute the whole CRN without overlapping between any two of them, besides, the sum of CCs of the chosen clusters is maximized.
@@ -640,9 +640,9 @@ The optimization searches the set $\mathcal{S}$ and decides on the clusters acco
 
 \begin{equation}
 \begin{aligned}
-     &\max\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (w_i\cdot t_{ij}) \\
+     &\max\limits_{y_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (y_i\cdot t_{ij}) \\
      &\text{subject to}   && \Sigma_{i=1}^M x_{ij} = 1, for\,\,\forall j=1, \ldots, N \\
-   &&& \Sigma_{j=1}^N x_{ij} = |C_i|\cdot w_i,\, for\,\,\forall i=1, \ldots, M \\
+   &&& \Sigma_{j=1}^N x_{ij} = |C_i|\cdot y_i,\, for\,\,\forall i=1, \ldots, M \\
   % &&& \text{$x_{ij}$ and $w_i$ are binary variables.}\\
    &&& i\in \{1,2, \cdots M\}, \hspace{0.3cm} j\in \{1,2,\cdots N\}
 %\notag
@@ -650,13 +650,13 @@ The optimization searches the set $\mathcal{S}$ and decides on the clusters acco
 \label{centralized_opt}
 \end{equation}
 This problem is a binary linear programming problem, which can be solved by many available solvers.
-$w_i$ and $x_{ij}$ are two binary variables.
+$y_i$ and $x_{ij}$ are two binary variables.
 % where $j\in \{1,2,\cdots,N-1, N\}$ and $i\in \{1,2,\cdots,M-1, M\}$.
 %$G = |\mathcal{G}|$ and there is $\mathcal{G} \subseteq \mathcal{S}$.
-Being either 1 or 0, $w_i$ denotes whether the $i$-th cluster $C_i$ in $\mathcal{S}$ is chosen or not.
+Being either 1 or 0, $y_i$ denotes whether the $i$-th cluster $C_i$ in $\mathcal{S}$ is chosen or not.
 $x_{ij}$ indicates whether the CR node $j$ resides in the cluster $C_i$, \ie $x_{ij}=1$ means node $j$ resides in the cluster $C_i$. 
 %Node index $j$ is identical to the node ID.
-$N$ is the total number of CR users in network $\mathcal{N}$, $M$ is the number of possible clusters in $\mathcal{S}$.
+$N$ is the total number of CR users in network $\mathcal{N}$, $M$ is the number of clusters in $\mathcal{S}$.
 
 
 
@@ -665,8 +665,8 @@ The first constraint regulates that a CR node should reside in exactly one clust
 The second constraint regulates that when the $i$-th cluster $C_i$ is chosen, there will be exactly $|C_i|$ CR nodes residing in $C_i$.
 
 %The optimization is a binary linear programming problem.
-The objective is to maximize the sum of the numbers of CCs in the clusters which constitute the whole CRN.
-$t_{ij}$ is a constant and there is,
+The objective is to maximize the sum of the numbers of CCs in the clusters which constitute the CRN.
+$t_{ij}$ is a constant and there is
 %In practice, we can solve the problem with $\mathcal{G} = \mathcal{S}$ when $|\mathcal{S}|$ is not large. 
 %
 %
@@ -678,10 +678,10 @@ $t_{ij}$ is a constant and there is,
 \begin{equation}
 t_{ij} = \frac{q_{ij}}{|C_i|} - p_i(C_i)
 \end{equation}
-where $q_{ij}= |K(C_i)|$ when node $j\in C_i$, and $q_{ij}= 0$ when node $j\notin C_i$.
+where constant $q_{ij}= |K(C_i)|$ when node $j\in C_i$, and $q_{ij}= 0$ when node $j\notin C_i$.
 %$|K(C_i)|$ is the number of CCs of cluster $C_i$, and $|C_i|$ is the size of cluster $C_i$.
-$p_i(C_i)$ is the size-related weight, which reflects the deviation between the size of $C_i$ and the desired size.
-Assuming $\delta$ is the desired size, then
+$p_i(C_i)$ is the size-related weight, which reflects the deviation of $C_i$'s size from the desired size.
+Assuming $\delta$ is the desired size, then there is
 $$
 p_i(C_i) = \left\{ \begin{array}{rl}
 0 &\mbox{ if $|C_i|=\delta$} \\
@@ -711,11 +711,11 @@ where $\rho_1, \rho_2, \cdots$ are positive values and these is $\rho_2> \rho_1>
 %\label{costant_matrix_Q}
 %\end{figure}
 
-Now we examine the objective function to see whether it in line with the goal to maximize the total number of CCs meanwhile consider the restriction on the cluster size.
-Replacing $t_{ij}$ with $\frac{q_{ij}}{|C_i|} - p_i(C_i)$, the objective function becomes,
+%Now we examine the objective function to see whether it in line with the goal to maximize the total number of CCs meanwhile consider the restriction on the cluster size.
+When $t_{ij}$ is replaced with $\frac{q_{ij}}{|C_i|} - p_i(C_i)$, the objective function becomes,
 \begin{equation}
 \begin{aligned}
-     &\max\limits_{w_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (w_i\cdot \frac{q_{ij}}{|C_i|} - w_i\cdot p_i(C_i)) \\
+     &\max\limits_{y_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (y_i\cdot \frac{q_{ij}}{|C_i|} - y_i\cdot p_i(C_i)) \\
 \notag
 \end{aligned}
 \label{centralized_opt}
@@ -766,14 +766,13 @@ In the worst case, \ie the CRN forms a full connected graph, the size of $\mathc
 %To levitate this problem, a smaller set, \ie $\mathcal{G} \subset \mathcal{S}$ can be used.
 %In this case, the global optimal may not be found.
 %$\mathcal{G}$ can be prepared based on the cluster size, and it is recommended to include all the singleton clusters to make sure the availability of feasible solutions.
+Another obstacle comes from the fact that the centralized controller needs to be reliable at anytime, which is a challenge for CRN as the spectrum on the controller can not be guaranteed.
+%In order to apply this scheme in practice, a large over head needs to be factored in in collecting the channel usage as seen by the R nodes, as well as the connectivity between the CR nodes.
+%After computing the clustering solution, the centralized node needs to distribute it across the whole network.
 
-Another obstacle to apply this centralized scheme comes from the characteristics of CRN.
-In order to apply this scheme in practice, a large over head needs to be factored in in collecting the channel usage as seen by the R nodes, as well as the connectivity between the CR nodes.
-After computing the clustering solution, the centralized node needs to distribute it across the whole network.
-
-In CRN, it is necessary to do clustering again on some occasions.
-For example, when a certain amount of CR users move away from their clusters, \ie they loose the direction connection with any member in their previous clusters, or a certain amount of clusters can not be maintained as the CCs in these clusters don't exist any longer due to primary users' activity. 
-Hence, when the spectrum availability and the CR users' location change frequently, the centralized robust clustering scheme is not suitable for CRN.
+%In CRN, it is necessary to do clustering again on some occasions.
+%For example, when a certain amount of CR users move away from their clusters, \ie they loose the direction connection with any member in their previous clusters, or a certain amount of clusters can not be maintained as the CCs in these clusters don't exist any longer due to primary users' activity. 
+%Hence, when the spectrum availability and the CR users' location change frequently, the centralized robust clustering scheme is not suitable for CRN.
 
 %We thus list all possible clusters whose sizes are from 2 to one certain number \footnote{this number of decided by the density of CR network, along with the occupation of PUs. We set this number as cluster size of the biggest cluster ever appears when conducting distributed schemes.}, and check each combination of clusters to find the best covering of network on the aspect of number of ICCs per cluster.
 %The complexity of computation is thus \bigO$(N^\delta)$, $\delta$ is the preferred cluster size.
@@ -1441,7 +1440,7 @@ Figure~\ref{control_msg} shows the analytical result of the amount of transmissi
  ROSS-DFA, ROSS-$\delta$-DFA 	&$\mathcal{O}(N)$ (worst case)		&   $N + n$	 (upper bound) 					& 	      												\\ \hline
  SOC 					&$\mathcal{O}(N)$		&   $3N$									& Every CR node $i$ broadcasts channel availability on all cluster members, which is $|C(i)| |\mathcal{K}|$ bytes
  \\ \hline
- Centralized			&$\mathcal{O}(N)$			&	$N + n + m$ (upper bound) \cite{Efficient_broadcasting_gathering_adhoc}		& clustering result, which is 2$N$ bytes \tnotex{tnote:robots-r1} 					\\ \hline
+ Centralized			&$\mathcal{O}(N)$			&	$N + n + m$ (upper bound) 		& clustering result, which is 2$N$ bytes \tnotex{tnote:robots-r1} 					\\ \hline
 \end{tabular}
     \begin{tablenotes}
       \item\label{tnote:robots-r1}Assuming the data structure of the clustering result is in the form of $\{i, C\}, i\in C, i\in \mathcal{N}$.
