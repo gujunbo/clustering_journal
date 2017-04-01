@@ -331,16 +331,15 @@
 % in the abstract or keywords.
 \begin{abstract}
 Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionalities.
-The unlicensed channels, which are available for every member of a group of cognitive radio users, consolidate the group into a cluster, and the availability of unlicensed channels decides the robustness of that cluster against the licensed users' influence.
-%Thus there should be more unlicensed channels in the clusters.
-This paper analyses the problem that how to form robust clusters in cognitive radio network, so that more cognitive radio users can get benefits from cluster structure even when the primary users' operation are intense.
+The unlicensed channels which are available for a group of cognitive radio users, consolidate the group into a cluster and the number of the available unlicensed channels decides that cluster's robustness against the licensed users' influence.
+This paper analyses the problem of how to form robust clusters in cognitive radio network, so that more cognitive radio users can get the benefits from cluster structure when the primary users' operation becomes more intense.
 %In the process of forming clusters, every secondary user decides with whom to form a cluster, or which cluster to join.
-We provide a formal description of robust clustering problem, prove it to be NP-hard and propose a centralized solution, besides, a distributed solution is proposed to suit the dynamics in the ad hoc cognitive radio network.
-Congestion game model is adopted to analyse the process of cluster formation, which not only contributes designing the distributed clustering scheme directly, but also provides the guarantee of convergence into Nash Equilibrium and convergence speed.
-Our proposed clustering solution is versatile to fulfill some other requirements such as faster convergence and cluster size control.
-The proposed distributed clustering scheme outperforms the related work in terms of cluster robustness, convergence speed and overhead.
+We give a formal description of the robust clustering problem, prove it to be NP-hard and propose both centralized and distributed solutions.
+The congestion game model is adopted to analyse the process of cluster formation, which not only contributes the design of the distributed clustering scheme, but also provides the guarantee on the convergence into Nash Equilibrium and the convergence speed.
+%Our proposed clustering solution is versatile to fulfill some other requirements such as faster convergence and cluster size control.
+The proposed distributed clustering scheme outperforms the related works in terms of cluster robustness, convergence speed and overhead.
 %Besides, we prove the clustering problem is NP-hard, and also propose the centralized solution.
-The extensive simulation supports our claims.
+The extensive simulation is conducted, which clearly supports our claims.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -1255,6 +1254,7 @@ The following simulation setting is the same for both simulation parts.
 CRs and PUs are deployed on a two-dimensional Euclidean plane.
 %Complying with the system model, the CR node residing within another CR node's transmission range is seen as neighbour of that CR node.
 The number of licensed channels is 10, each PU is operating on each channel with probability of 50\%.
+The constant $t$ which is used to control cluster size for ROSS (discussed in Section~\ref{ross_p2_cluster_pruning}) is 1.3.
 CR users are assumed to be able to sense the existence of primary users and identify available channels.
 All primary and CR users are assumed to be static during the process of clustering.
 The simulation is written in C++, and the performance results are averaged over 50 randomly generated topologies, and the confidence interval corresponds to 95\% confidence level.
@@ -1267,7 +1267,6 @@ There are 10 primary users and 20 CR users dropped randomly (with uniform distri
 %Each primary user randomly occupies one channel, and 
 When clustering scheme is executed, around 7 channels are available on each CR node.
 The desired cluster size $\delta$ is 3.
-The constant $t$ (discussed in Section~\ref{ross_p2_cluster_pruning}) for size control is 1.3.
 As for the centralized scheme, the parameters used in the \textit{punishment} for choosing the clusters with undesired sizes are set as follows, $\rho_1 =  0.4$, $\rho_2 =  0.6$.
 
 
@@ -1465,7 +1464,7 @@ The transmission range of CR is $A/5$, PU's transmission range is $2A/5$.
 The initial number of PU is 30.
 %The number of CR is 100, 200 and 300, and the average number of neighbours of each CR is 9.5, 20, and 31.
 The desired sizes adopted are listed in the Table~\ref{Simulation_para}, which is about 60\% of the average number of neighbours.
-When run ROSS, the parameter $t$ which is used to control cluster size in phase I is 1.3.
+%When run ROSS, the parameter $t$ which is used to control cluster size in phase I is 1.3.
 
 
 \begin{table}[ht]
@@ -1578,7 +1577,7 @@ We also notice that  as a metric, the number of CCs per non-singleton cluster do
 
 \section{Conclusion}
 \label{conclusion}
-In this paper we investigate the robust clustering problem in CRN extensively.
+In this paper we investigate the robust clustering problem in CRN extensively and propose an efficient distributed clustering solution.
 %generate robust clusters against primary users' influence, so that more CR users can benefit from operative decision making provided by the clusters.
 We provide the mathematical description of the problem and prove the NP hardness of it.
 We propose both centralized and distributed schemes ROSS, the cluster structure generated by them has longer time expectancy against the primary users' activity.
