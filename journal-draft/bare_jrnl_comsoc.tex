@@ -1439,7 +1439,7 @@ Figure~\ref{control_msg} shows the analytical result of the amount of transmissi
  Scheme 				&Message Complexity 	&   Quantitative number of messages 		& Content and size of the message 									\\ \hline
  ROSS-DGA, ROSS-$\delta$-DGA 	&$\mathcal{O}(N^3)$ (worst case)		&   $N+n^2m$ (upper bound)  				&   \multirow{2}{*}{\parbox{7.7cm}{PhaseI: ID, $d_i$,$g_i$, which are 3 bytes;\\ PhaseII: Cluster head $i$ broadcasts channel availability on all cluster members, where are $|C(i)| |\mathcal{K}|$ bytes}}								\\ \cline{1-3}
  ROSS-DFA, ROSS-$\delta$-DFA 	&$\mathcal{O}(N)$ (worst case)		&   $N + n$	 (upper bound) 					& 	      												\\ \hline
- SOC 					&$\mathcal{O}(N)$		&   $3N$									& Every CR node $i$ broadcasts channel availability on all cluster members ($|C(i)| |\mathcal{K}|$ bytes)
+ SOC 					&$\mathcal{O}(N)$		&   $3N$									& Every CR node $i$ broadcasts channel availability on all cluster members, which is $|C(i)| |\mathcal{K}|$ bytes
  \\ \hline
  Centralized			&$\mathcal{O}(N)$			&	$N + n + m$ (upper bound) \cite{Efficient_broadcasting_gathering_adhoc}		& clustering result, which is 2$N$ bytes \tnotex{tnote:robots-r1} 					\\ \hline
 \end{tabular}
