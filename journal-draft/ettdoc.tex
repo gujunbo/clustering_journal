@@ -1,53 +1,60 @@
-% to do : add more notations
-% the new notation t.
-\documentclass[11pt,journal,compsoc]{IEEEtran}
+% ettdoc.tex V2.10, 19 June 2012
 
-%
-% If IEEEtran.cls has not been installed into the LaTeX system files,
-% manually specify the path to it like:
-% \documentclass[journal,comsoc]{../sty/IEEEtran}
+\documentclass[times]{ettauth}
+\usepackage[toc,page]{appendix}
+\usepackage{moreverb}
+
+\usepackage[colorlinks,bookmarksopen,bookmarksnumbered,citecolor=red,urlcolor=red]{hyperref}
+
+\newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\def\volumeyear{2012}
+
+\newcommand{\eg}{e.g., }
+\newcommand{\ie}{i.e., }
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+%\usepackage{algorithmic}
+\usepackage{times}
+%\usepackage{mathptmx}
+\usepackage{mathtools}
+\usepackage[draft,nomargin,marginclue,footnote,silent]{fixme}
+\setcounter{tocdepth}{2} %table of contents
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% copied from thesis
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Packages für Formeln %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[colorlinks,
-            linkcolor=red,
-            anchorcolor=blue,
-            citecolor=green
-            ]{hyperref}
-%\usepackage[superscript,biblabel]{cite}
+\theoremstyle{mytheoremstyle}
+\newtheorem{theorem}{Theorem}[section]
 
-\usepackage{amsmath}
-\usepackage{amsthm}
-%\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{booktabs}
-\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\theoremstyle{mytheoremstyle}
+\newtheorem{corollary}{Corollary}[section]
 
-%% Packages
-%\usepackage{tikz}
-%\usetikzlibrary{shapes,arrows}
-%\usetikzlibrary{positioning}
+\theoremstyle{mytheoremstyle}
+\newtheorem{lemma}{Lemma}[section]
+
+\newtheorem{mydef}{Definition}
+
+\DeclareMathOperator*{\Max}{Max}
+\DeclareMathOperator*{\Min}{Min}
+
+\newcommand{\bigO}{\ensuremath{\mathcal{O}}}% big-O notation/symbol
+\usepackage{subfigure}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{lipsum}
+\setlist[itemize]{leftmargin=*}
+\usepackage[referable]{threeparttablex}
+\renewlist{tablenotes}{enumerate}{1}
+\makeatletter
+\setlist[tablenotes]{label=\tnote{\alph*},ref=\alph*,itemsep=\z@,topsep=\z@skip,partopsep=\z@skip,parsep=\z@,itemindent=\z@,labelindent=\tabcolsep,labelsep=.2em,leftmargin=*,align=left,before={\footnotesize}}
+\makeatother
+
 \usepackage{graphicx}
 \usepackage{sidecap}
 \usepackage{kantlipsum} %<- For dummy text
 \usepackage{mwe} %<- For dummy images
 \usepackage{multirow}
 \usepackage{multicol}
-%\usepackage{colortbl}
-%\usepackage{todonotes}	
-\newcounter{todocounter}
-\newcommand{\todonum}[2][]
-{\stepcounter{todocounter}\todo[inline,backgroundcolor=blue!10!white, #1]{\thetodocounter: #2}}
-
-%% Zeilenabstand %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{setspace}
-%\singlespacing        %% 1-zeilig (Standard)
-%\onehalfspacing       %% 1,5-zeilig
-%\doublespacing        %% 2-zeilig
-
 
 %% Andere Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{a4wide} %%Kleinere Seitenränder = mehr Text pro Zeile.
@@ -67,11 +74,10 @@
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
-
-
 % Table spacings
 \newcommand\T{\rule{0pt}{2.5ex}\rule[-1.0ex]{0pt}{0pt}}
 \newcommand\B{\rule[-1.0ex]{0pt}{0pt}}
+
 
 \definecolor{slightgray}{gray}{.90} 
 \usepackage{rotating}
@@ -81,257 +87,23 @@
 \captionsetup[table]{format=plain,labelformat=simple,labelsep=period}%
 
 
-
-\newtheoremstyle{mytheoremstyle} % name
-        {\topsep}                    % Space above
-        {\topsep}                    % Space below
-        {\itshape\fontfamily{ptm}\selectfont}                   % Body font, ptm is times new roma
-        {}                           % Indent amount
-        {\fontfamily{ptm}\selectfont\scshape\color{black}\bfseries}                   % Theorem head font
-        {:}                          % Punctuation after theorem head
-        {.5em}                       % Space after theorem head
-        {}  % Theorem head spec (can be left empty, meaning ‘normal’)
-
-  
-          
-\theoremstyle{mytheoremstyle}
-\newtheorem{theorem}{Theorem}[section]
-
-\theoremstyle{mytheoremstyle}
-\newtheorem{corollary}{Corollary}[section]
-
-\theoremstyle{mytheoremstyle}
-\newtheorem{lemma}{Lemma}[section]
-
-%\theoremstyle{mytheoremstyle}
-%\let\definition\relax
-\newtheorem{mydef}{Definition}%[section]
-
-%%%%%%
-%%%%%% Proof
-    \makeatletter
-    \renewenvironment{proof}[1][\proofname]{%
-      \par\pushQED{\qed}\fontfamily{ptm}\selectfont%
-      \topsep6\p@\@plus6\p@\relax
-      \trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]%
-      \ignorespaces
-    }{%
-      \popQED\endtrivlist\@endpefalse
-    }
-    \makeatother 
-%%%%%%%%%%%%%%%%%
-
-\newcommand{\eg}{e.g., }
-\newcommand{\ie}{i.e., }
-\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
-%\usepackage{algorithmic}
-\usepackage{times}
-%\usepackage{mathptmx}
-\usepackage{mathtools}
-\usepackage[draft,nomargin,marginclue,footnote,silent]{fixme}
-\setcounter{tocdepth}{2} %table of contents
-
-\makeatother
-\usepackage{comment}
-\newcommand{\Tau}{\mathrm{T}}
-\usepackage[colorinlistoftodos]{todonotes}
-\DeclareMathOperator*{\Max}{Max}
-\DeclareMathOperator*{\Min}{Min}
-
-\newcommand{\bigO}{\ensuremath{\mathcal{O}}}% big-O notation/symbol
-\usepackage{subfigure}
-\usepackage{adjustbox}
-\usepackage{multirow}
-\usepackage{enumitem}
-\usepackage{lipsum}
-\setlist[itemize]{leftmargin=*}
-\usepackage[referable]{threeparttablex}
-\renewlist{tablenotes}{enumerate}{1}
-\makeatletter
-\setlist[tablenotes]{label=\tnote{\alph*},ref=\alph*,itemsep=\z@,topsep=\z@skip,partopsep=\z@skip,parsep=\z@,itemindent=\z@,labelindent=\tabcolsep,labelsep=.2em,leftmargin=*,align=left,before={\footnotesize}}
-\makeatother
-%%%%%%%%%%%%%%%%%%%%%%%%%% copied from thesis
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\usepackage[T1]{fontenc}% optional T1 font encoding
-
-
-
-% *** GRAPHICS RELATED PACKAGES ***
-%
-\ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  % \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
-\fi
-% graphicx was written by David Carlisle and Sebastian Rahtz. It is
-% required if you want graphics, photos, etc. graphicx.sty is already
-% installed on most LaTeX systems. The latest version and documentation
-% can be obtained at: 
-% http://www.ctan.org/pkg/graphicx
-% Another good source of documentation is "Using Imported Graphics in
-% LaTeX2e" by Keith Reckdahl which can be found at:
-% http://www.ctan.org/pkg/epslatex
-%
-% latex, and pdflatex in dvi mode, support graphics in encapsulated
-% postscript (.eps) format. pdflatex in pdf mode supports graphics
-% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
-% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
-% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
-% which can result in "jaggedy"/blurry rendering of lines and letters as
-% well as large increases in file sizes.
-%
-% You can find documentation about the pdfTeX application at:
-% http://www.tug.org/applications/pdftex
-
-
-
-
-
-% *** MATH PACKAGES ***
-%
-\usepackage{amsmath}
-% A popular package from the American Mathematical Society that provides
-% many useful and powerful commands for dealing with mathematics.
-% Do NOT use the amsbsy package under comsoc mode as that feature is
-% already built into the Times Math font (newtxmath, mathtime, etc.).
-% 
-% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
-% thus preventing page breaks from occurring within multiline equations. Use:
-\interdisplaylinepenalty=2500
-% after loading amsmath to restore such page breaks as IEEEtran.cls normally
-% does. amsmath.sty is already installed on most LaTeX systems. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/pkg/amsmath
-
-
-% Select a Times math font under comsoc mode or else one will automatically
-% be selected for you at the document start. This is required as Communications
-% Society journals use a Times, not Computer Modern, math font.
-%\usepackage[cmintegrals]{newtxmath}
-\usepackage{txfonts}
-% The freely available newtxmath package was written by Michael Sharpe and
-% provides a feature rich Times math font. The cmintegrals option, which is
-% the default under IEEEtran, is needed to get the correct style integral
-% symbols used in Communications Society journals. Version 1.451, July 28,
-% 2015 or later is recommended. Also, do *not* load the newtxtext.sty package
-% as doing so would alter the main text font.
-% http://www.ctan.org/pkg/newtx
-%
-% Alternatively, you can use the MathTime commercial fonts if you have them
-% installed on your system:
-%\usepackage{mtpro2}
-%\usepackage{mt11p}
-%\usepackage{mathtime}
-
-
-%\usepackage{bm}
-% The bm.sty package was written by David Carlisle and Frank Mittelbach.
-% This package provides a \bm{} to produce bold math symbols.
-% http://www.ctan.org/pkg/bm
-
-
-% correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator*{\argmax}{arg\,max}
-
-
 \begin{document}
-%
-% paper title
-% Titles are generally capitalized except for words such as a, an, and, as,
-% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
-% not capitalized unless they are the first or last word of the title.
-% Linebreaks \\ can be used within to get better formatting as desired.
-% Do not put math or special symbols in the title.
+
+\runningheads{A.~N.~Other}{A demonstration of the \journalabb\
+class file}
+
+\articletype{RESEARCH ARTICLE}
+
 \title{Robust Clustering for Ad Hoc Cognitive Radio Network}
-%
-%
-% author names and IEEE memberships
-% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
-% a structure at a ~ so this keeps an author's name from being broken across
-% two lines.
-% use \thanks{} to gain access to the first footnote area
-% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
-% was not built to handle multiple paragraphs
-%
 
-\author{Di~Li,~\IEEEmembership{Member,~IEEE,}
-        Erwin~Fang,
-        and James~Gross,~\IEEEmembership{Member,~IEEE}% <-this % stops a space
-\thanks{Di Li was with RWTH Aachen university, Germany.}% <-this % stops a space
-\thanks{Erwin Fang is with ETH, Switzerland.}% <-this % stops a space
-\thanks{James Gross is with KTH Royal Institute of Technology, Sweden.}% <-this % stops a space
-\thanks{Manuscript received xxxx xx, 20xx; revised xxxx xx, 20xx.}}
+\author{Di Li, Erwin Fang, James Gross\corrauth}
 
-% note the % following the last \IEEEmembership and also \thanks - 
-% these prevent an unwanted space from occurring between the last author name
-% and the end of the author line. i.e., if you had this:
-% 
-% \author{....lastname \thanks{...} \thanks{...} }
-%                     ^------------^------------^----Do not want these spaces!
-%
-% a space would be appended to the last name and could cause every name on that
-% line to be shifted left slightly. This is one of those "LaTeX things". For
-% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
-% "AB" then you have to do: "\textbf{A}\textbf{B}"
-% \thanks is no different in this regard, so shield the last } of each \thanks
-% that ends a line with a % and do not let a space in before the next \thanks.
-% Spaces after \IEEEmembership other than the last one are OK (and needed) as
-% you are supposed to have spaces between the names. For what it is worth,
-% this is a minor point as most people would not even notice if the said evil
-% space somehow managed to creep in.
+\address{John Wiley \& Sons, Ltd, The Atrium, Southern Gate, Chichester,
+West Sussex, PO19~8SQ, UK}
 
+\corraddr{Journals Production Department, John Wiley \& Sons, Ltd,
+The Atrium, Southern Gate, Chichester, West Sussex, PO19~8SQ, UK.}
 
-
-% The paper headers
-\markboth{Journal of xxxxx,~Vol.~xx, No.~x, xxxx~20xx}%
-{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Communications Society Journals}
-% The only time the second header will appear is for the odd numbered pages
-% after the title page when using the twoside option.
-% 
-% *** Note that you probably will NOT want to include the author's ***
-% *** name in the headers of peer review papers.                   ***
-% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
-% you desire.
-
-
-
-
-% If you want to put a publisher's ID mark on the page you can do it like
-% this:
-%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
-% Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark.
-
-
-
-% use for special paper notices
-%\IEEEspecialpapernotice{(Invited Paper)}
-
-
-
-
-% make the title area
-\maketitle
-
-% As a general rule, do not put math, special symbols or citations
-% in the abstract or keywords.
 \begin{abstract}
 Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionalities.
 The unlicensed channels which are available for a group of cognitive radio users, consolidate the group into a cluster and the number of the available unlicensed channels decides that cluster's robustness against the licensed users' influence.
@@ -345,35 +117,17 @@ The proposed distributed clustering scheme outperforms the related works in term
 The extensive simulation is conducted, which clearly supports our claims.
 \end{abstract}
 
-% Note that keywords are not normally used for peerreview papers.
-\begin{IEEEkeywords}
-cognitive radio, robust cluster, game theory, congestion game, distributed, centralized, cluster size control.
-\end{IEEEkeywords}
+%\keywords{class file; \LaTeXe; \emph{\journalabb}}
 
-
-
-
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
-
+\maketitle
 \graphicspath{
 {../figures/04_clutering/}
 }
 
-
 \section{Introduction}
 \label{intro}
 %CR concept
-\IEEEPARstart{C}{ognitive} radio (CR) is a promising technology to solve the spectrum scarcity problem~\cite{Mitola}.
+Cognitive radio (CR) is a promising technology to solve the spectrum scarcity problem~\cite{Mitola}.
 Licensed users access the spectrum allocated to them whenever there is information to be transmitted.
 In contrast, as one way, unlicensed users can access the spectrum via opportunistic spectrum access, \ie they access the licensed spectrum only after validating the channel is unoccupied by licensed users, where spectrum sensing~\cite{sensing_survey_2009} plays an important role in this process.
 %
@@ -1887,104 +1641,14 @@ Hence, the weighted $k$-set packing can be reduced to the robust clustering prob
 \end{proof}
 
 
-\section*{Acknowledgment}
-
-The authors would like to thank xxxx
 
 
-% Can use something like this to put references on a page
-% by themselves when using endfloat and the captionsoff option.
-\ifCLASSOPTIONcaptionsoff
-  \newpage
-\fi
-
-
-
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-%\IEEEtriggeratref{8}
-% The "triggered" command can be changed if desired:
-%\IEEEtriggercmd{\enlargethispage{-5in}}
-
-% references section
-
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
-%\bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
-
-
-
-
-% You can push biographies down or up by placing
-% a \vfill before or after them. The appropriate
-% use of \vfill depends on what kind of text is
-% on the last page and whether or not the columns
-% are being equalized.
-
-%\vfill
-
-% Can be used to pull up biographies so that the bottom of the last one
-% is flush with the other column.
-%\enlargethispage{-5in}
-\bibliographystyle{IEEEtran}
-%\bibliographystyle{unsrt}
 \bibliography{../backmatter/myrefs}
 
 
-% biography section
-% 
-% If you have an EPS/PDF photo (graphicx package needed) extra braces are
-% needed around the contents of the optional argument to biography to prevent
-% the LaTeX parser from getting confused when it sees the complicated
-% \includegraphics command within an optional argument. (You could create
-% your own custom macro containing the \includegraphics command to make things
-% simpler here.)
-%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
-% or if you just want to reserve a space for a photo:
-%IEEEbiographynophoto
-\begin{IEEEbiography}{Di Li}
-received BE and MS degrees in control engineering from Zhejiang University and Shaanxi University of Science and Technology respectively in China.
-He worked with James Gross for his PhD in RWTH Aachen University since 2010.
-\end{IEEEbiography}
-
-% if you will not have a photo at all:
-\begin{IEEEbiography}{Erwin Fang}
-Biography text here.
-Biography text here.
-Biography text here.
-Biography text here.
-Biography text here.
-Biography text here.
-
-\end{IEEEbiography}
-%\vspace{-50 mm}
-% insert where needed to balance the two columns on the last page with
-% biographies
-%\newpage
-
-\begin{IEEEbiography}{James Gross}
-Biography text here.
-Biography text here.
-Biography text here.
-Biography text here.
-Biography text here.
-Biography text here.
-Biography text here.
-
-\end{IEEEbiography}
+\ack This class file was developed by Sunrise Setting Ltd,
+Paignton, Devon, UK. Website:\\
+\href{http://www.sunrise-setting.co.uk}{\texttt{www.sunrise-setting.co.uk}}
 
 
 \end{document}
-
-
