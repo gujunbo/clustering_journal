@@ -14,7 +14,9 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \newcommand{\eg}{e.g., }
 \newcommand{\ie}{i.e., }
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
-%\usepackage{algorithmic}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
 \usepackage{times}
 %\usepackage{mathptmx}
 \usepackage{mathtools}
@@ -329,6 +331,7 @@ As to a cognitive radio network, where the set of CR nodes is $\mathcal{N}$.
 Each cluster complies with the definition in~\ref{sec:model}, whose number of CCs in a cluster $C$ is $f(C)$.
 The robust clustering problem is to decide the set of clusters $\mathcal{T}$, where 
 \begin{enumerate}
+\setlength{\itemindent}{-.17in}
 \item the sum of the $f(C) is the maximal$, where $C\in \mathcal{T}$ 
 \item the intersection of any two clusters in $\mathcal{T}$ is an empty set
 \item the union of clusters in $\mathcal{T}$ is $\mathcal{N}$
@@ -708,7 +711,7 @@ The $t$ is set to 1.3.
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=0.5\linewidth]{figure2.pdf}
-  \caption{Clusters formation after the phase I of ROSS. CR nodes $A, B, D$ are debatable nodes as they belong to multiple clusters.}
+  \caption{Clusters formation after the phase I of ROSS. Nodes $A, B, D$ are debatable nodes as they belong to multiple clusters.}
   \label{fig2}
 \end{figure}
 
@@ -1418,10 +1421,6 @@ The reason is with ROSS, cluster heads form clusters on the basis of their neigh
 \end{algorithm}
 
 
-% you can choose not to have a title for an appendix
-% if you want by leaving the argument blank
-%\section*{Algorithm~\ref{alg_size_control_available_CCC}}
-%\section{}
 \begin{algorithm}               % enter the algorithm environment
 \caption{ROSS phase I: cluster head guarantees the availability of CC (start from line 1) / cluster size control (start from line 2)}          % give the algorithm a caption
 \label{alg_size_control_available_CCC}
@@ -1606,43 +1605,11 @@ Hence, the weighted $k$-set packing can be reduced to the robust clustering prob
 
 
 
-%\begin{table}[h!]
-%     \begin{center}
-%     \begin{tabular}{ C{3cm}  C{4.5cm} }
-%     \toprule
-%      $\mathcal{N}$  & $\{0, 1,2,3,4,5,6, 7, 8, 9\}$\\ 
-%    \cmidrule(r){1-1}\cmidrule(lr){2-2}     
-%      $\mathcal{Q}$  & $\{ \{1\}, \{1, 5\}, \{1,2,4\}, \{2,3\}, \{4\} \}$\\ 
-%    \cmidrule(r){1-1}\cmidrule(lr){2-2}     
-%      Instance for Weighted $k$-set packing  & $\{ \{1\}, \{2,3\}, \{4\} \}$, weights are 2, 3, 4\\ 
-%    \cmidrule(r){1-1}\cmidrule(lr){2-2}
-%      Instance with dummy elements (step 1)
-%      & 
-%		$\{ \, \{1,11\},\{2,12, 3, 13\}, \{ 4,14\} \, \}$
-%      \\    \cmidrule(r){1-1}\cmidrule(lr){2-2}
-%	clusters mapped from $\mathcal{I}$  (step 2)
-%	  &
-%	  \begin{minipage}{.3\textwidth}	
-%      \includegraphics[width=0.6\linewidth]{np_hard_proof_step_2_3.pdf}
-%    \end{minipage}
-%          \\    \cmidrule(r){1-1}\cmidrule(lr){2-2}
-%	formation of clusters (step 3)
-%	  &
-%	  \begin{minipage}{.3\textwidth}	
-%      \includegraphics[width=0.6\linewidth]{np_hard_proof_step4.pdf}
-%    \end{minipage}
-%	  \\       \bottomrule
-%      \end{tabular}
-%      \caption{}
-%      \label{no_hard_proof_instance}
-%      \end{center}
-%      \end{table}
-
 \end{proof}
 
 
 
-
+\bibliographystyle{IEEEtran}
 \bibliography{../backmatter/myrefs}
 
 
