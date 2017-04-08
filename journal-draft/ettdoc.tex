@@ -1193,10 +1193,10 @@ Figure~\ref{control_msg} shows the analytical result of the amount of transmissi
 {\small
 \hfill{}
 \begin{threeparttable}
-\begin{tabular}{|C{2 cm}|C{2.8 cm}|C{3.15 cm}|C{7.7 cm}|}
+\begin{tabular}{|C{1.8 cm}|C{2.6 cm}|C{3 cm}|C{6.3 cm}|}
 \hline
  Scheme 				&Message Complexity 	&   Quantitative number of messages 		& Content and size of the message 									\\ \hline
- ROSS-DGA, ROSS-$\delta$-DGA 	&$\mathcal{O}(N^3)$ (worst case)		&   $N+n^2m$ (upper bound)  				&   \multirow{2}{*}{\parbox{7.7cm}{PhaseI: ID, $d_i$,$g_i$, which are 3 bytes;\\ PhaseII: Cluster head $i$ broadcasts channel availability on all cluster members, where are $|C(i)| |\mathcal{K}|$ bytes}}								\\ \cline{1-3}
+ ROSS-DGA, ROSS-$\delta$-DGA 	&$\mathcal{O}(N^3)$ (worst case)		&   $N+n^2m$ (upper bound)  				&   \multirow{2}{*}{\parbox{7.7cm}{PhaseI: ID, $d_i$,$g_i$, which are 3 bytes;\\ PhaseII: Cluster head $i$ broadcasts channel availability to all \\ members, where are $|C(i)| |\mathcal{K}|$ bytes}}								\\ \cline{1-3}
  ROSS-DFA, ROSS-$\delta$-DFA 	&$\mathcal{O}(N)$ (worst case)		&   $N + n$	 (upper bound) 					& 	      												\\ \hline
  SOC 					&$\mathcal{O}(N)$		&   $3N$									& Every CR node $i$ broadcasts channel availability on all cluster members, which is $|C(i)| |\mathcal{K}|$ bytes
  \\ \hline
@@ -1237,15 +1237,15 @@ The desired sizes adopted are listed in the Table~\ref{Simulation_para}, which i
 \caption{}
 \label{Simulation_para}
 {\small
-\hfill{}
-\begin{tabular}{|L{3.7 cm}|C{1 cm}|C{1 cm}|C{1 cm}|}
+%\hfill{}
+\begin{tabular}{|L{3 cm}|C{0.85 cm}|C{0.85 cm}|C{0.85 cm}|}
 \hline
 Number of CRs			& 100 	&  200 					& 300 \\ \hline
 Average num. of neighbours 	&9.5	&   20		& 31  \\ \hline
 Desired size $\delta$ 	& 6	&   12 						& 20      \\ \hline
 \end{tabular}
 }
-\hfill{}
+%\hfill{}
 \end{table}
 
 
