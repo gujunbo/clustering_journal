@@ -22,9 +22,9 @@
 \BIBdecl
 
 \bibitem{Mitola}
-I.~Mitola, J. and J.~Maguire, G.Q., ``Cognitive radio: making software radios
-  more personal,'' \emph{Personal Communications, IEEE}, vol.~6, no.~4, pp. 13
-  --18, aug. 1999.
+J.~Mitola and G.~Q. Maguire, ``Cognitive radio: making software radios more
+  personal,'' \emph{IEEE Personal Communications}, vol.~6, no.~4, pp. 13--18,
+  Aug 1999.
 
 \bibitem{sensing_survey_2009}
 T.~Yucek and H.~Arslan, ``A survey of spectrum sensing algorithms for cognitive
@@ -37,8 +37,7 @@ Q.~Zhao and B.~Sadler, ``A survey of dynamic spectrum access,'' \emph{Signal
 
 \bibitem{Sahai_FundamentalDesignTradeoffs2006}
 A.~Sahai, R.~Tandra, S.~M. Mishra, and N.~Hoven, ``Fundamental design tradeoffs
-  in cognitive radio systems,'' in \emph{Proc. of the 1st Intl. workshop on
-  technology and policy for accessing spectrum}, ser. ACM TAPAS '06.
+  in cognitive radio systems,'' in \emph{Proc. of ACM TAPAS '06}.
 
 \bibitem{coorperativeSensing_Akyildiz11}
 I.~F. Akyildiz, B.~F. Lo, and R.~Balakrishnan, ``Cooperative spectrum sensing
@@ -47,13 +46,7 @@ I.~F. Akyildiz, B.~F. Lo, and R.~Balakrishnan, ``Cooperative spectrum sensing
 
 \bibitem{Sun07_clustering_spectrum_secsing}
 C.~Sun, W.~Zhang, and K.~B. Letaief, ``Cluster-based cooperative spectrum
-  sensing in cognitive radio systems,'' in \emph{proc. of IEEE ICC}, 2007, pp.
-  2511--2515.
-
-\bibitem{Zhao07}
-J.~Zhao, H.~Zheng, and G.-H. Yang, ``Spectrum sharing through distributed
-  coordination in dynamic spectrum access networks,'' \emph{Wireless Com. and
-  Mobile Computing}, vol.~7, no.~9, pp. 1061--1075, 2007.
+  sensing in cognitive radio systems,'' in \emph{proc. of IEEE ICC 2007}.
 
 \bibitem{willkomm08}
 D.~Willkomm, M.~Bohge, D.~Holl{\'o}s, J.~Gross, and A.~Wolisz, ``Double
@@ -63,7 +56,7 @@ D.~Willkomm, M.~Bohge, D.~Holl{\'o}s, J.~Gross, and A.~Wolisz, ``Double
 \bibitem{centralizedSharing80222}
 C.~Passiatore and P.~Camarda, ``A centralized inter-network resource sharing
   ({CIRS}) scheme in {IEEE} 802.22 cognitive networks,'' in \emph{Proc. of IFIP
-  Annual Mediterranean Ad Hoc Networking Workshop 2011}, 2011.
+  Annual Mediterranean Ad Hoc Networking Workshop 2011}.
 
 \bibitem{Abbasi_survey_07}
 A.~A. Abbasi and M.~Younis, ``A survey on clustering algorithms for wireless
@@ -94,6 +87,11 @@ V.~Kawadia and P.~R. Kumar, ``Power control and clustering in ad hoc
 \bibitem{clustering_mesh_globecom2010}
 M.~Krebs, A.~Stein, and M.~A. Lora, ``Topology stability-based clustering for
   wireless mesh networks,'' in \emph{IEEE GLOBECOM 2010}.
+
+\bibitem{Zhao07}
+J.~Zhao, H.~Zheng, and G.-H. Yang, ``Spectrum sharing through distributed
+  coordination in dynamic spectrum access networks,'' \emph{Wireless Com. and
+  Mobile Computing}, vol.~7, no.~9, 2007.
 
 \bibitem{Chen07}
 T.~Chen, H.~Zhang, G.~Maggio, and I.~Chlamtac, ``Cogmesh: A cluster-based
