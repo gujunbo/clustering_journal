@@ -45,6 +45,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \usepackage{enumitem}
 \usepackage{lipsum}
 \setlist[itemize]{leftmargin=*}
+\setlist[enumerate]{wide=\parindent}
 \usepackage[referable]{threeparttablex}
 \renewlist{tablenotes}{enumerate}{1}
 \makeatletter
@@ -168,7 +169,9 @@ Thus the number of small clusters, especially the \textit{singleton clusters}, \
 As to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels, which undermines the robustness of the cluster.
 Thus the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not given consideration.
 Cluster size also plays a part in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
-In this paper we focus on the efficient formation of the clusters and the evaluation of the robustness of the formed clusters, but our scheme is also able to generate the clusters with the desired size, which gives the network designers more freedom when the power consumption is involved in the design of network applications.
+In this paper we will analyze the robust clustering and propose efficient solutions.
+Our schemes generate the clusters which demonstrate both the robustness against the increasing primary activity and the compliance with the desired cluster sizes.
+Hence our schemes provide the network designers with more freedom when the power consumption is involved in the design of network applications.
 %In this paper we will introduce a robust cluster structure for CRN, where the robustness means the ability of the clusters to sustain under the influence of the increasing activity of primary users, and the direct metric is the number of CCs in the clusters.
 
 
@@ -180,7 +183,7 @@ In this paper we focus on the efficient formation of the clusters and the evalua
 %Cluster sizes affect the power consumption directly in wirelss sensor networks~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 %When the cluster size is not deliberately discussed, it is also decided alongside the optimization of the network, \eg the opimal selection of the aggregation points in a wireless sensor network results in the clusters~\cite{data_aggr_algorithm_04}.
 
-Different clustering strategies have been proposed for wireless networks of different type.
+Different clustering strategies have been proposed for wireless networks of different types.
 As there is no restriction on the nodes to access the spectrum in wireless ad-hoc, mesh networks and sensor networks, the objective of clustering is to decrease the transmission power consumption~\cite{Kawadia03}, to improve the routing performance~\cite{clustering_mesh_globecom2010}, or to imrove the network lifetime and coverage~\cite{Abbasi_survey_07}.
 %Various clustering schemes are proposed to target different aspects in cognitive radio networks.
 %Work~\cite{Consensus_based_clustering12} improves spectrum sensing ability by grouping the CR users with potentially best detection performance into the same cluster.
@@ -212,7 +215,7 @@ Furthermore, this work doesn't consider the robustness of clusters against the i
 %
 This paper is on the basis of the work in~\cite{Li11_ROSS}, but extends in two dimensions.
 First, this paper renews the definition of robustness of clusters in a CRN, which is no longer the average number of CCs of clusters, but the ability of the clusters to sustain when the primary users' activity becomes more dynamic.
-Second, this paper proposes size control mechanism, which solves the problem of devergence of clusters sizes in ~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
+Second, this paper proposes size control mechanism, which solves the problem of devergence of clusters sizes in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
 Besides, this paper provides a comprehensive analysis of the robust clustering problem and proposes a centralized solution. 
 %We stick to the motivation of forming robust clusters in CRN \ie let more CR users benefited from the cooperative decision making which is due to the clusters. 
 %We propose both centralized and distributed clustering schemes, which result in more CR users in the clusters composed with multiple CR users, not only when the clusters are just formed, but also afterwards when the primary users' activity changes.
@@ -261,14 +264,14 @@ Over the control channel, a secondary user $i$ can exchange its spectrum sensing
 In the following, we refer to the licensed channels as channels in general, and will explicitly mention the dedicated control channel if necessary. 
 
 We give the definition of cluster in CRN as follows. 
-A cluster $C$ is a set of secondary nodes which possess the same set of common channels.
+A cluster $C$ is a set of secondary nodes, and there is one set of common channels which are available for each node.
 In particular, a cluster consists of a cluster head $h(C)$ and a number of cluster members, and the cluster head is able to communicate with any cluster member directly.
 A cluster can be formed only by the cluster head.
 %$\text{Nb}(i)$ denotes node $i$'s neighborhood which consists of all its one hop neighbors.
 %For any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds.
 The size of $C$ is denoted by $|C|$.
 When the cluster head of a cluster is $i$, we denote that cluster by $C(i)$.
-$K(C)$ denotes the set of CCs in cluster $C$, $ K(C) = \Cap_{i\in C} K_i$.
+$K(C)$ denotes the set of CCs in cluster $C$, $ K(C) = \bigcap_{i\in C} K_i$.
 %Clustering is performed periodically, because the secondary users are mobile and the primary users change their operation channels, thus the channel availability on secondary users changes accordingly.
 The notations used in the system model are listed in Table~\ref{tab1}.
 \begin{table}[h!]
@@ -328,19 +331,19 @@ On the other hand, the sizes of the formed clusters should be regulated, \ie the
 \textit{Robust clustering problem in CRN.}
 
 As to a cognitive radio network, where the set of CR nodes is $\mathcal{N}$.
-Each cluster complies with the definition in~\ref{sec:model}, whose number of CCs in a cluster $C$ is $f(C)$.
+%Each cluster complies with the definition in , whose number of CCs in a cluster $C$ is $f(C)$.
 The robust clustering problem is to decide the set of clusters $\mathcal{T}$, where 
 \begin{enumerate}
-\setlength{\itemindent}{-.17in}
-\item the sum of the $f(C) is the maximal$, where $C\in \mathcal{T}$ 
+\setlength{\itemindent}{.05in}
+\item the sum of the $f(C)$ is the maximal, where $C\in \mathcal{T}$ 
 \item the intersection of any two clusters in $\mathcal{T}$ is an empty set
 \item the union of clusters in $\mathcal{T}$ is $\mathcal{N}$
-\item the cluster sizes should fall in the scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, $\delta_1 \leq \delta\leq \delta_2$, and $\delta$ is decided according to the application to be implemented.
+\item the cluster sizes should fall in the scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, $\delta_1 \leq \delta\leq \delta_2$, and $\delta$ is decided according to the application to be implemented in the CRN.
 \end{enumerate}
 
 \end{mydef}
 
-Assume we have obtained the set of $\mathcal{S}$ which contains all the possible clusters in $\mathcal{N}$, \ie $\mathcal{S}=\{C_1, C_2,\ldots,C_i, \ldots, C_{|\mathcal{S}|}\}$ \footnote{The subscript $i$ means the $i$-th cluster in $\mathcal{S}$.} and there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = \mathcal{N}$.
+Assume we have obtained the set of $\mathcal{S}$ which contains all the clusters in $\mathcal{N}$, \ie $\mathcal{S}=\{C_1, C_2,\ldots,C_i, \ldots, C_{|\mathcal{S}|}\}$ \footnote{The subscript $i$ means the $i$-th cluster in $\mathcal{S}$.} and there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = \mathcal{N}$.
 The decision version of this problem is to determine whether there is a non-empty set $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C_i\in \mathcal{S}'} f(C_i) \geqslant \lambda$ where $\lambda$ is a real number.
 We have the following theorem on the complexity of this problem.
 
@@ -788,13 +791,11 @@ Congestion game is an attractive game model which describes the problem where pa
 The framework of the congestion game has been used to model certain problems in internet-centric applications or cloud computing, where self-interested clients compete for the centralized resources and meanwhile interact with each other.
 For example, server selection is involved in distributed computing platforms~\cite{Cloud_Computing_2010}, or users downloading files from cloud, etc.
 
-To formulate the debatable nodes' membership clarification into the desired congestion game, we reexamine this process from a different (or opposite) perspective. 
-From the new perspective, the debatable nodes are not included in any cluster, and they are looking for the proper cluster to join.
-% in other words, their claiming clusters become clusters which are beside them. 
-%Now for the debatable nodes, the previous problem of deciding which clusters to leave becomes a new problem that which cluster to join.
-A debatable node $i$ chooses one cluster $C$ out of $S_i$ to join if the decrease of CCs in cluster $C$ is the smaller than any other cluster in $S_i$.
-The decrease of CCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K(C) \vert=\sum_{C\in S_i}({\vert K(C) \vert-\vert K(C\cup i) \vert})$.
-The interaction between the debatable nodes and the claiming clusters is shown in Figure~\ref{debatable_nodes_claiming_cluster}.
+To formulate the debatable nodes' membership clarification into the desired congestion game, we reexamine this process from a different/opposite perspective. 
+From the new perspective, the debatable nodes are not included in any cluster and they need to decide on one cluster to join.
+When a debatable node $i$ join one cluster $C$, the decrease of CCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K(C) \vert=\sum_{C\in S_i}({\vert K(C) \vert-\vert K(C\cup i) \vert})$.
+Then, node $i$ chooses the cluster $C$, where the decrease of CCs in cluster $C$ is smaller than the decrease if $i$ would have joined any other claiming cluster in $S_i$.
+The relation between the debatable nodes and the claiming clusters is shown in Figure~\ref{debatable_nodes_claiming_cluster}.
 %The concern on convergence appears again as we have discussed in the previous subsubsection.
 %We give proof on convergence under game theoretic framework.
 \begin{figure}[ht!]
@@ -866,8 +867,8 @@ As to singleton congestion game, there exists a pure equilibria which can be rea
 In our problem, the players are the debatable nodes, and the resources are the claiming clusters.
 Thus the number of steps can be expressed as $\mathcal{O}(N^3)$.
 
-In fact, the upper bound of the number of steps which are actually involved in this process is much smaller than $N^3$.%, as both $n$ and $m$ are considerably smaller than $N$.
-The percentage of debatable nodes in the network is illustrated in Figure~\ref{percentage_overlapping_node}, which is between 10\% to 60\% of the total number of CR nodes in the network.
+In fact, the upper bound for the number of steps which are actually involved in this process is much smaller than $N^3$.
+The percentage of debatable nodes in the network is shown in Figure~\ref{percentage_overlapping_node}, which is between 10\% to 60\% of the total CR nodes in the network.
 In the other hand, the number of clusters heads is dependent on the network density and the CR node's transmission range as mentioned in Section~\ref{phaseI}.
 The simulation in \cite{robust_clustering_arxiv} shows that the cluster heads are only 3.4\% to 20\% of the total CR nodes.
 
@@ -995,13 +996,8 @@ We investigate the distribution of CRs residing in the formed clusters with diff
 
 \item \textbf{Robustness of the clusters against newly added PUs.}
 We increase the number of PUs to challenge the non-singleton clusters, and count the number of the unclustered CR nodes.
-This metric directly indicates the robustness of clusters from a more practical point of view, \ie as to the clusters formed for a given CRN and spectrum availability, how many CR nodes can still make use of the clusters when the spectrum availability decreases.
-%robustness of clusters, as this metric directly shows how many nodes can make use of the cluster structure.
-%When we investigate the performance with moderate and vigorous intensity of primary users' activities, 
-%All the robust clustering schemes are proposed for a given CRN, when the available spectrum becomes scarce when the primary users' operation becomes more intense, the metric can illustrate the robustness of clusters by showing the unclustered CR nodes.
-%This metric is closely related with cluster robustness, \ie the less CR nodes which are not  nodes means more CR nodes are included into non-singleton clusters which survive the primary users' influence.
-%When we vary the intensity of primary users' activity, \eg from low to medium level by increasing the number of primary users, 
-%The drawback of this metric is, it doesn't indicate the robustness of the non-singleton clusters when the primary users conquer more spectrum.
+This metric indicates the robustness of the clusters, \ie as to the clusters formed for a given CRN and spectrum availability, how many CR nodes can still be benefited from the clusters when the spectrum availability decreases.
+
 
 
 \item \textbf{Amount of control messages involved.}
@@ -1031,7 +1027,7 @@ The desired cluster size $\delta$ is 3.
 As for the centralized scheme, the parameters used in the \textit{punishment} for choosing the clusters with undesired sizes are set as follows, $\rho_1 =  0.4$, $\rho_2 =  0.6$.
 
 
-\subsubsection{Average number of CCs in Non-singleton Clusters}
+\subsubsection{CCs in Non-singleton Clusters}
 \label{ccc_20}
 %We first have a look at the average number of common channels per non-singleton cluster.
 % shows the average number of the CCs of non-singleton clusters,
@@ -1051,7 +1047,7 @@ As to the variants of ROSS, we notice that the greedy mechanism increases CCs in
 
 \begin{figure*}[th]
 \begin{multicols}{3}
-    \includegraphics[width=\linewidth]{ccc_20.pdf}\par\caption{Number of common channels of non-singleton clusters}\label{ccc_per_nonsingleton}
+    \includegraphics[width=\linewidth]{ccc_20.pdf}\par\caption{Average number of CCs of non-singleton clusters}\label{ccc_per_nonsingleton}
     \includegraphics[width=\linewidth]{cdf_clusterSize_20.pdf}\par\caption{Cumulative distribution of CRs residing in clusters with different sizes}\label{size_control}    
     \includegraphics[width=\linewidth]{survival_rate_20.pdf}\par\caption{Number of unclustered CRs with decreasing spectrum availability}\label{singleton_clusters}
 \end{multicols}
@@ -1084,7 +1080,7 @@ The sizes of clusters resulted from ROSS-DGA and ROSS-DFA are disperse, but appe
 
 
 
-\subsubsection{Robustness of the clusters against newly added PUs}
+\subsubsection{Robustness of the formed clusters}
 %When the number of PUs in CRN increases, or their operation becomes more intensive, some clusters don't seize any CCs any more, so that the cluster members and the cluster heads become unclustered, or singleton clusters.
 %If there is no common channels available any more because of the new added PUs, the cluster is regarded as destroyed and the former cluster member CRs become unclustered CRs or in other words singleton clusters.
 %We investigate the number of singleton clusters with primary users whose intensity of activities are varying.
@@ -1255,7 +1251,7 @@ Desired size $\delta$ 	& 6	&   12 						& 20      \\ \hline
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=.7\linewidth]{ccc_large_scale_color.pdf}
-  \caption{Number of common channels of non-singleton clusters.}
+  \caption{Average number of CCs of non-singleton clusters}
   \label{ccc_large_scale}
 \end{figure}
 
@@ -1269,7 +1265,7 @@ SOC achieves the most CCs per non-singleton cluster, but the lead over the varia
 
 
 
-\subsubsection{Robustness of the clusters against increased PUs}
+\subsubsection{Robustness of the formed clusters}
 We increase the primary users' activity by importing 20 batches of PUs sequentially in the CRN, where each batch includes 10 PUs. 
 
 Figure~\ref{singleton_clusters_100} and \ref{singleton_clusters_200} show that when $N=100$ and 200, compared with the variants of ROSS, more unclustered CR nodes are generated by SOC.
@@ -1287,8 +1283,9 @@ We only show the average values of the variants of ROSS as their confidence inte
     \includegraphics[width=\linewidth]{survival_rate_100_edge50.pdf}\par\caption{100 CRs}\label{singleton_clusters_100}
     \includegraphics[width=\linewidth]{survival_rate_200_edge50.pdf}\par\caption{200 CRs}\label{singleton_clusters_200}
     \includegraphics[width=\linewidth]{survival_rate_300_edge50.pdf}\par\caption{300 CRs}\label{singleton_clusters_300}
-\end{multicols}\caption{Percentage of CR nodes which are not included in any non-singleton clusters}
-\label{unclustered_100_200_300}
+\end{multicols}
+%\caption{Percentage of CR nodes which are not included in any non-singleton clusters}
+%\label{unclustered_100_200_300}
 \end{figure*}
 
 %When the network is denser, the improvement on cluster sizes and robustness by the greedy search in the membership clarification phase is more obvious.
@@ -1299,8 +1296,8 @@ We only show the average values of the variants of ROSS as their confidence inte
     \includegraphics[width=\linewidth]{cdf_clusterSize_200.pdf}\par\caption{200 CRs, 30 PUs in network}\label{cdf_clusterSize_200}
     \includegraphics[width=\linewidth]{cdf_clusterSize_300.pdf}\par\caption{300 CRs, 30 PUs in network}\label{cdf_clusterSize_300}
 \end{multicols}
-\caption{Cumulative distribution of CRs residing in clusters with different sizes}
-\label{cdf_100_200_300}
+%\caption{Cumulative distribution of CRs residing in clusters with different sizes}
+%\label{cdf_100_200_300}
 \end{figure*}
 
 \subsubsection{Cluster Size Control}

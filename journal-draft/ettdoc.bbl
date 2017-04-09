@@ -74,8 +74,7 @@ A.~A. Abbasi and M.~Younis, ``A survey on clustering algorithms for wireless
 Q.~Wu, G.~Ding, J.~Wang, X.~Li, and Y.~Huang,
   ``\BIBforeignlanguage{English}{Consensus-based decentralized clustering for
   cooperative spectrum sensing in cognitive radio networks},''
-  \emph{\BIBforeignlanguage{English}{Chinese Science Bulletin}}, vol.~57, no.
-  28-29, 2012.
+  \emph{\BIBforeignlanguage{English}{Chinese Science Bulletin}}, vol.~57, 2012.
 
 \bibitem{clustering_globecom11}
 H.~D. R.~Y. Huazi~Zhang, Zhaoyang~Zhang1 and X.~Chen, ``Distributed
@@ -86,7 +85,7 @@ H.~D. R.~Y. Huazi~Zhang, Zhaoyang~Zhang1 and X.~Chen, ``Distributed
 B.~E. Ali~Jorio, Sanaa El~Fkihi and D.~Aboutajdine, ``An energy-efficient
   clustering routing algorithm based on geographic position and residual energy
   for wireless sensor network,'' \emph{Journal of Computer Networks and
-  Communications}, vol. 2015, April 2015.
+  Communications}, vol. 2015, 04 '15.
 
 \bibitem{Kawadia03}
 V.~Kawadia and P.~R. Kumar, ``Power control and clustering in ad hoc
@@ -94,8 +93,7 @@ V.~Kawadia and P.~R. Kumar, ``Power control and clustering in ad hoc
 
 \bibitem{clustering_mesh_globecom2010}
 M.~Krebs, A.~Stein, and M.~A. Lora, ``Topology stability-based clustering for
-  wireless mesh networks,'' in \emph{Global Telecommunications Conference
-  (GLOBECOM 2010), 2010 IEEE}, Dec 2010, pp. 1--5.
+  wireless mesh networks,'' in \emph{IEEE GLOBECOM 2010}.
 
 \bibitem{Chen07}
 T.~Chen, H.~Zhang, G.~Maggio, and I.~Chlamtac, ``Cogmesh: A cluster-based
