@@ -9,7 +9,7 @@
 \newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
 T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
-\def\volumeyear{2012}
+\def\volumeyear{2017}
 
 \newcommand{\eg}{e.g., }
 \newcommand{\ie}{i.e., }
@@ -88,25 +88,32 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \usepackage{float}
 \usepackage{caption}% http://ctan.org/pkg/caption
 \captionsetup[table]{format=plain,labelformat=simple,labelsep=period}%
-
+%\usepackage{authblk}
 
 \begin{document}
 
-\runningheads{A.~N.~Other}{A demonstration of the \journalabb\
-class file}
+%\runningheads{A.~N.~Other}{A demonstration of the \journalabb\
+%class file}
 
 \articletype{RESEARCH ARTICLE}
 
 \title{Robust Clustering for Ad Hoc Cognitive Radio Network}
-
+%\author[1]{Di Li\thanks{li@umic.rwth-aachen.de}}
+%\author[2]{Erwin Fang\thanks{xx}}
+%\author[3]{James Gross}
 \author{Di Li, Erwin Fang, James Gross\corrauth}
-
+%\affil[1]{RWTH Aachen University}
+%\affil[2]{ETH Zurich}
+%\affil[3]{KTH Royal Institute of Technology}
 \address{RWTH Aachen University, ETH Zurich, KTH Royal Institute of Technology }
-
+%\renewcommand\Authands{ and }
 \corraddr{Communication Theory Lab
-School of Electrical Engineering
+School of Electrical Engineering, 
 KTH Royal Institute of Technology
 SE - 100 44 Stockholm\\Email: james.gross@ee.kth.se}
+
+
+
 
 \begin{abstract}
 Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionalities.
@@ -131,7 +138,7 @@ The extensive simulation is conducted, which clearly supports our claims.
 \section{Introduction}
 \label{intro}
 %CR concept
-Cognitive radio (CR) is a promising technology to solve the spectrum scarcity problem~\cite{Mitola}.
+Cognitive radio (CR) is a promising technology to solve the spectrum scarcity problem for the upcomging era of internet of things~\cite{Mitola, Rawat20161}.
 Licensed users access the spectrum allocated to them whenever there is information to be transmitted.
 In contrast, as one way, unlicensed users can access the spectrum via opportunistic spectrum access, \ie they access the licensed spectrum only after validating the channel is unoccupied by licensed users, where spectrum sensing~\cite{sensing_survey_2009} plays an important role in this process.
 %
