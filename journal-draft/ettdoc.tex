@@ -665,65 +665,63 @@ During Phase I, whenever a CR node is decided to be a cluster head and according
 
 \subsubsection{Cluster Size Control in Dense CRN}
 \label{ross_p2_cluster_pruning}
+In this subsection, we illustrate the pressing necessity to control the cluster size when CRN becomes denser.
+We consider a cluster $C(i)$ where $i$ is the cluster head in a dense CRN. 
+To make the analysis easier, we assume there is no cluster heads which are generated within $i$'s neighborhood during the procedure of guaranteeing CCs.
+Assuming the CR users and PUs are evenly distributed and PUs occupy the licensed channels randomly, then both CR nodes density and channel availability in the CRN can be seen to be spatially homogeneous.
+In this case the formed clusters are decided by the transmission range and network density.
+According to Algorithm~\ref{alg0}, the nearest cluster heads could locate just outside node $i$'s transmission range.
+%
+An instance of this situation is shown in Figure~\ref{clusters_denseNetwork}.
+In the figure, black dots represent cluster heads, the circles denote the transmission ranges of cluster heads.
+Cluster members are not shown in the figure.
+%Circles represent the transmission range of cluster head, within which CR nodes are absorbed in cluster.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.3\linewidth]{clusters_denseNetwork_2.pdf}
+  \caption{Clusters formation in extremely dense CRN. Black dots are cluster heads, cluster members are not drawn.}
+  \label{clusters_denseNetwork}
+\end{figure}
+Let $l$ be the length of side of simulation plan square, and $r$ be CR's transmission radius.
+Based on the aforementioned analysis and geometry illustration as shown in Figure~\ref{clusters_denseNetwork}, we give an estimate on the maximum number of generated clusters, which is the product of the number of cluster heads in one row and that number in one line, $l/r * l/r = l^2/r^2$.
+%Now we verify the estimation with simulation.
+%We distribute CR and primary users randomly on a square plain, $r$=10 and $l$=50.
+%Network density is increased by adding more CR users.
+%We now have a look at how does the network density affect the cluster size when the transmission range is constant.
+%This implicates when the cluster size is decided by the density of the network.
+%As to SOC, the membership of one cluster is decided after a complex process, and the cluster size is roughly the same with one neighborhood.xxxx
+%We can see from the example that although two neighbouring clusters can overlap greatly with each other, no cluster head will be covered by other clusters.
+Given $r$=10 and $l$=50, the maximum number of clusters is 25.
+The number of clusters in the simulation is shown in Figure~\ref{number_clusters_scale}.
+Simulation is run for 50 times and the confidence interval is 95\%.
+With the increase of CR users, network density (the average number of neighbours) increases linearly, and the number of clusters approaches to 25 which complies with the estimation.
 
-%In this subsection, we illustrate the pressing necessity to control the cluster size when CRN becomes denser.
-%
-%We consider a cluster $C(i)$ where $i$ is the cluster head in a dense CRN. 
-%To make the analysis easier, we assume there is no cluster heads which are generated within $i$'s neighborhood during the procedure of guaranteeing CCs.
-%Assuming the CR users and PUs are evenly distributed and PUs occupy the licensed channels randomly, then both CR nodes density and channel availability in the CRN can be seen to be spatially homogeneous.
-%In this case the formed clusters are decided by the transmission range and network density.
-%According to Algorithm~\ref{alg0}, the nearest cluster heads could locate just outside node $i$'s transmission range.
-%%
-%An instance of this situation is shown in Figure~\ref{clusters_denseNetwork}.
-%In the figure, black dots represent cluster heads, the circles denote the transmission ranges of cluster heads.
-%Cluster members are not shown in the figure.
-%%Circles represent the transmission range of cluster head, within which CR nodes are absorbed in cluster.
-%\begin{figure}[h!]
-%  \centering
-%  \includegraphics[width=0.3\linewidth]{clusters_denseNetwork_2.pdf}
-%  \caption{Clusters formation in extremely dense CRN. Black dots are cluster heads, cluster members are not drawn.}
-%  \label{clusters_denseNetwork}
-%\end{figure}
-%Let $l$ be the length of side of simulation plan square, and $r$ be CR's transmission radius.
-%Based on the aforementioned analysis and geometry illustration as shown in Figure~\ref{clusters_denseNetwork}, we give an estimate on the maximum number of generated clusters, which is the product of the number of cluster heads in one row and that number in one line, $l/r * l/r = l^2/r^2$.
-%%Now we verify the estimation with simulation.
-%%We distribute CR and primary users randomly on a square plain, $r$=10 and $l$=50.
-%%Network density is increased by adding more CR users.
-%%We now have a look at how does the network density affect the cluster size when the transmission range is constant.
-%%This implicates when the cluster size is decided by the density of the network.
-%%As to SOC, the membership of one cluster is decided after a complex process, and the cluster size is roughly the same with one neighborhood.xxxx
-%%We can see from the example that although two neighbouring clusters can overlap greatly with each other, no cluster head will be covered by other clusters.
-%Given $r$=10 and $l$=50, the maximum number of clusters is 25.
-%The number of clusters in the simulation is shown in Figure~\ref{number_clusters_scale}.
-%Simulation is run for 50 times and the confidence interval is 95\%.
-%With the increase of CR users, network density (the average number of neighbours) increases linearly, and the number of clusters approaches to 25 which complies with the estimation.
-%
-%\begin{figure}[h]
-%  \centering
-%  \includegraphics[width=0.7\linewidth]{number_clusters_upperBound.pdf}
-%  \caption{The correlation between the number of formed clusters and network density.}
-%  \label{number_clusters_scale}
-%\end{figure}
-It is necessary to control the cluster size when CRN becomes denser.
-Both analysis and simulation~\cite{robust_clustering_arxiv} show that when applying ROSS, after the clusters are saturated with the increase of network density, the cluster size increases linearly with the network density, thus certain measures are needed to curb this problem.
-This task falls upon the cluster heads.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\linewidth]{number_clusters_upperBound.pdf}
+  \caption{The correlation between the number of formed clusters and network density.}
+  \label{number_clusters_scale}
+\end{figure}
+
+Both analysis and simulation show that when applying ROSS, after the clusters are saturated with the increase of network density, the cluster size increases linearly with the network density, thus certain measures are needed to curb this problem.
+This task falls to the cluster heads.
 To control the cluster size, cluster heads prune their cluster members to reach the desired cluster size.
 The desired size $\delta$ is decided based on the capability of the CR users and the tasks to be conveyed.
 As there are overlaps between neighboring clusters, the sizes of the clusters formed in this phase are larger than that of the finally formed clusters.
 Hence, a cluster head excludes some cluster members when the cluster size exceeds $t\cdot \delta$, where constant parameter $t$ is dependent on the network density and CR nodes' transmission range and $t>1$.
-In particular, the cluster head removes the cluster members sequentially according to the following principle, the absence of one cluster member leads to the maximum increase of the CCs within the cluster.
+In particular, the cluster head removes the cluster members sequentially according to the following principle, the absence of one cluster member leads to the maximum increase of common channels within the cluster.
 This process ends when each cluster's size is smaller or equal to $t \cdot\delta$.
-This procedure is similar with that in Section~\ref{ross_p1_guarantee_ccc}, thus Algorithm~\ref{alg_size_control_available_CCC} can be reused.
+ %delta needs to be changed, f(delta) XXXXXXX
+This procedure is similar with guaranteeing the existence of CCs in cluster, thus can reuse Algorithm~\ref{alg_size_control_available_CCC}.
 The $t$ is set to 1.3. 	
 
 
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=0.5\linewidth]{figure2.pdf}
-  \caption{Clusters formation after the phase I of ROSS. Nodes $A, B, D$ are debatable nodes as they belong to multiple clusters.}
+  \caption{Clusters formation after the phase I of ROSS. CR nodes $A, B, D$ are debatable nodes as they belong to multiple clusters.}
   \label{fig2}
 \end{figure}
-
 
 \subsection{Phase II - Membership Clarification}
 \label{membershipClarification}
