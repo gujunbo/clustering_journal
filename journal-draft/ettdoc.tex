@@ -576,7 +576,7 @@ Two metrics are proposed to characterize the proximity in terms of available spe
 $d_i$ is the total number of the CCs between node $i$ and each of its neighbors.
 %It is an indicator of node $i$'s adhesion to the CRN. 
 
-\item \textit{Neighborhood connectivity degree} $g_i$: the number of CCs which are available for $i$ and all its neighbors.
+\item \textit{Neighborhood connectivity degree} $g_i$: the number of CCs which are available for $i$ and all of its neighbors.
 $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which represents the ability of $i$ to form a robust cluster with its neighbors.
 \end{itemize}
 Individual connectivity degree $d_i$ and neighborhood connectivity degree $g_i$ together form the \textit{connectivity vector}.
@@ -595,7 +595,7 @@ Figure~\ref{fig1} illustrates an example CRN where every node's connectivity vec
 \subsubsection{Determining Cluster Heads and Forming Clusters}
 The procedure of determining the cluster heads is as follows.
 Each CR node decides whether it is a cluster head by comparing its connectivity vector with its neighbors.
-When CR node $i$ has lower individual connectivity degree than all its neighbors except for those which have already identified to be cluster heads, node $i$ becomes a cluster head.
+When CR node $i$ has lower individual connectivity degree than all of its neighbors except for those which have already identified to be cluster heads, node $i$ becomes a cluster head.
 If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes the cluster heads, then the node between $i$ and $j$, which has higher neighborhood connectivity degree will become the cluster head.
 If $g_i = g_j$ as well, the node ID is used to break the tie, \ie the one with smaller node ID becomes the cluster head.
 %
@@ -604,7 +604,7 @@ The node which is identified as a cluster head broadcasts a message to notify it
 The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in the appendix.
 
 After receiving the notification from a cluster head, a CR node $i$ is aware that it becomes a member of a cluster. 
-Consequently, $i$ sets its individual connectivity degree to a positive number $M > |\mathcal{K}| \cdot N$, and broadcasts the new individual connectivity degree to all its neighbors. 
+Consequently, $i$ sets its individual connectivity degree to a positive number $M > |\mathcal{K}| \cdot N$, and broadcasts the new individual connectivity degree to all of its neighbors. 
 %wrong:
 %Note that there is no cluster head which receives the notification on cluster head eligibility, and there is a Lemma on this.
 %\begin{theorem}{lemma}
@@ -654,7 +654,7 @@ The sequence of elimination is performed according to an ascending list of nodes
 In other words, the cluster member which has the least common channels with the cluster head is excluded first.
 If there are multiple nodes having the same number of common channels with the cluster head, the node whose elimination brings in more common channels will be excluded.
 If this criterion meets a tie, the tie will be broken by deleting the node with smaller node ID.
-It is possible that the cluster head excludes all its neighbors, resulting in a singleton cluster which is composed by itself.
+It is possible that the cluster head excludes all of its neighbors, resulting in a singleton cluster which is composed by itself.
 %At the end of this procedure every formed cluster has at least one common channel.
 %The pseudo code for cluster head to obtain at least one common channel is shown in Algorithm~\ref{alg_size_control_available_CCC}.
 The pseudo code for this procedure is shown in Algorithm~\ref{alg_size_control_available_CCC}.
