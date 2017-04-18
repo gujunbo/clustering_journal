@@ -149,9 +149,9 @@ Z.~Gu, Q.-S. Hua, and W.~Dai, ``Fully distributed algorithms for blind
   rendezvous in cognitive radio networks,'' in \emph{Proceedings of the 2014
   ACM MobiHoc}, ser. MobiHoc '14.
 
-\bibitem{robust_clustering_arxiv}
-D.~Li, E.~Fang, and J.~Gross, ``{Robust Clustering in Cognitive Radio Network
-  with Cluster Size Control},'' 2017.
+\bibitem{2017arXiv170404828L}
+D.~{Li}, E.~{Fang}, and J.~{Gross}, ``{Versatile Robust Clustering of Ad Hoc
+  Cognitive Radio Network},'' \emph{ArXiv e-prints, 1704.04828}.
 
 \bibitem{game_for_communication_01}
 A.~MacKenzie and S.~Wicker, ``Game theory in communications: motivation,
@@ -176,6 +176,10 @@ B.~J.~S. Chee and C.~Franklin, Jr., \emph{Cloud Computing: Technologies and
 H.~Ackermann, H.~Röglin, and B.~Vöcking, ``Pure {N}ash equilibria in
   player-specific and weighted congestion games,'' \emph{Theoretical Computer
   Science}, vol. Vol. 410, no.~17, pp. 1552 -- 1563, 2009.
+
+\bibitem{robust_clustering_arxiv}
+D.~Li, E.~Fang, and J.~Gross, ``{Robust Clustering in Cognitive Radio Network
+  with Cluster Size Control},'' 2017.
 
 \bibitem{Basagni99}
 S.~Basagni, ``Distributed clustering for ad hoc networks,'' \emph{Proc. of
