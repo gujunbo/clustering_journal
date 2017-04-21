@@ -105,7 +105,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 %\affil[1]{RWTH Aachen University}
 %\affil[2]{ETH Zurich}
 %\affil[3]{KTH Royal Institute of Technology}
-\address{RWTH Aachen University\textsuperscript{1}, ETH Zurich\textsuperscript{2}, KTH Royal Institute of Technology\textsuperscript{3} }
+\address{RWTH Aachen University\textsuperscript{1}, Swisscom (Schweiz) AG\textsuperscript{2}, KTH Royal Institute of Technology\textsuperscript{3} }
 %\renewcommand\Authands{ and }
 \corraddr{Communication Theory Lab
 School of Electrical Engineering, 
@@ -116,16 +116,16 @@ SE - 100 44 Stockholm\\Email: james.gross@ee.kth.se}
 
 
 \begin{abstract}
-Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionality.
-The unlicensed channels which are available for a group of cognitive radio users, consolidate the group into a cluster and the number of the available unlicensed channels decides that cluster's robustness against the licensed users' influence.
-This paper analyses the problem of how to form robust clusters in cognitive radio network, so that more cognitive radio users can get the benefits from cluster structure when the primary users' operation becomes more intense.
+Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionalities.
+Unlicensed channels, which are available for a group of cognitive radio users, consolidate the group into a cluster and the number of the available unlicensed channels decides that cluster's robustness against the licensed users' influence.
+This paper analyses the problem of how to form robust clusters in a cognitive radio network so that more cognitive radio users can get the benefits from cluster structure when the primary users' operations becomes more intense.
 %In the process of forming clusters, every secondary user decides with whom to form a cluster, or which cluster to join.
 We give a formal description of the robust clustering problem, prove it to be NP-hard and propose both centralized and distributed solutions.
-The congestion game model is adopted to analyze the process of cluster formation, which not only contributes the design of the distributed clustering scheme, but also provides the guarantee on the convergence into Nash Equilibrium and the convergence speed.
+The congestion game model is adopted to analyze the process of cluster formation, which not only contributes to the design of the distributed clustering scheme, but also provides the guarantee on the convergence into Nash Equilibrium and the convergence speed.
 %Our proposed clustering solution is versatile to fulfill some other requirements such as faster convergence and cluster size control.
-The proposed distributed clustering scheme outperforms the related works in terms of cluster robustness, convergence speed and overhead.
+The proposed distributed clustering scheme outperforms state-of-the-art related works in terms of cluster robustness, convergence speed and overhead.
 %Besides, we prove the clustering problem is NP-hard, and also propose the centralized solution.
-The extensive simulation is conducted, which clearly supports our claims.
+Extensive simulations have been conducted which clearly support our claims.
 \end{abstract}
 
 %\keywords{class file; \LaTeXe; \emph{\journalabb}}
@@ -147,13 +147,13 @@ In this hierarchical spectrum access model~\cite{zhao_survey_DSA_2007}, the lice
 %cluster
 Regarding the operation of CRN, efficient spectrum sensing is identified to be critical for a smooth operation of a cognitive radio network~\cite{Sahai_FundamentalDesignTradeoffs2006}.
 Efficient spectrum sensing can be achieved by cooperative spectrum sensing of multiple secondary users, which has been shown to cope effectively with noise uncertainty and channel fading, thus remarkably improving the sensing accuracy~\cite{coorperativeSensing_Akyildiz11}.
-Collaborative sensing relies on the consensus of CR users\footnote{The terms user and node appear interchangeably in this paper. In particular, user is adopted when its networking or cognitive ability are discussed or stressed, while we refer node typicallly in the context of the topology.} within a certain area, in this regard, clustering is regarded as an effective method to realize cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing}.
+Collaborative sensing relies on the consensus of CR users\footnote{The terms user and node appear interchangeably in this paper. In particular, user is adopted when its networking or cognitive ability are discussed or stressed, while we refer to nodes typicallly in the context of the network topology.} within a certain area, in this regard, clustering is regarded as an effective method to realize cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing}.
 % ... decreases considerably the negative probability due to the random channel effects like fading and shadowing.
 Clustering is a process of grouping certain users in geographic proximity into a collective.
-In the context of cognitive radio netowrks, a formed cluster helps the participants not only improve the spectrum sensing accuracy, but also coordinate the channel switch operation when the primary users are detected by at least one secondary user in that cluster, then all the cluster menmbers can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
+In the context of cognitive radio netowrks, a formed cluster helps the participants not only to improve the spectrum sensing accuracy, but also to coordinate the channel switch operation when the primary users are detected by at least one secondary user in that cluster. Then all the cluster menmbers can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
 Clustering also benefits the operation of a CRN by reducing the interference between cognitive clusters~\cite{centralizedSharing80222}, and supporting routing~\cite{Abbasi_survey_07}.
 %As to the coexistence of CR users, they can be notified by cluster head (CH) or other cluster members about the possible collision, the possibility for them to interfere neighbouring clusters is reduced~\cite{centralizedSharing80222}. 
-Except for benefiting the dynamic spectrum sharing in CRN, clustering contributes to the other wireless networks in many aspects, which has already been discussed in many works.
+Except for benefiting the dynamic spectrum sharing in CRN, clustering contributes to the other wireless networks in many aspects, which has already been discussed in many works. [CITATION MISSING]
 
 %%[crn for clustering] 
 %%due to attenuation of signal propagation, primary users can only be detected by CR users when they locate closely to CR users.
@@ -163,21 +163,21 @@ Except for benefiting the dynamic spectrum sharing in CRN, clustering contribute
 
 In CRN, clusters are formed in the very beginning of the network operation, and re-formed periodically according to the dynamics of the CRN.
 Each formed cluster has one or multiple unlicensed channels which are available for every CR node in the cluster.
-The available unlicensed channels are referred to in the following of this paper as \textit{common licensed channels} (or common channels for short, which is abbreviated as CC).
+In this paper available unlicensed channels are called \textit{common licensed channels} (or common channels for short, which is abbreviated as CC).
 Both payload and control overheads can be transmitted on the CCs.
 %Out of the available CCs, there are always one or multiple channels which are used for the payload communication.
-When one or several cluster members can not access one certain CC on which primary user activity is detected, the channel will be excluded from the set of CCs.
+When one or several cluster members can not access one certain CC on which primary some user activity is detected, the channel will be excluded from the set of CCs.
 In particular, if that channel is being used for payload communication, the communication pair will stop and resume the transmission on another available CC.
-The availability of CCs within a cluster defines the existence of that cluster, \ie no CCs are available means the corresponding cluster doesn't exist.
+The availability of CCs within a cluster defines the existence of that cluster, \ie if no CCs are available then the corresponding cluster does not exist.
 %As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
-In the context of CRN, the activity of primary users is usually unknown to the secondary users, then the primary users' activity is deemed as random.
-In this case, the cluster which secures more CCs will anticipate a longer life expectancy, in other words, is more robust.
-It is obvious that fewer secondary users in one cluster yield more CCs, but this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where more users result in more accurate sensing result~\cite{Consensus_based_clustering12}.
+In the context of CRN, the activity of primary users is usually unknown to the secondary users. In such cases the primary users' activity is deemed as random.
+Consequently, a cluster which secures more CCs will anticipate a longer life expectancy. In other words, such clusters are more robust.
+It is obvious that fewer secondary users in one cluster yield more CCs. However, this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where more users result in more accurate sensing result~\cite{Consensus_based_clustering12}.
 Thus the number of small clusters, especially the \textit{singleton clusters}, \ie the cluster which has only one CR node, should be minimized.
-As to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels, which undermines the robustness of the cluster.
-Thus the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not given consideration.
-Cluster size also plays a part in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
-In this paper we will analyze the robust clustering and propose efficient solutions.
+As to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels. This undermines the robustness of the cluster.
+Thus, the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not considered.
+Cluster sizes also play a role in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
+In this paper we will analyze the robust clustering problem and propose efficient solutions.
 Our schemes generate the clusters which demonstrate both the robustness against the increasing primary activity and the compliance with the desired cluster sizes.
 Hence our schemes provide the network designers with more freedom when the power consumption is involved in the design of network applications.
 %In this paper we will introduce a robust cluster structure for CRN, where the robustness means the ability of the clusters to sustain under the influence of the increasing activity of primary users, and the direct metric is the number of CCs in the clusters.
@@ -198,31 +198,31 @@ As there is no restriction on the nodes to access the spectrum in wireless ad-ho
 %Clustering scheme~\cite{clustering_globecom11} obtains the best cluster size which minimizes power consumption caused by communication within and among clusters.
 %\cite{clustering_globecom11} proposes clustering strategy in cognitive radio network, which looks into the relationship between cluster size and power consumption and accordingly controlling the cluster size to decrease power consumption.
 With regard to forming clusters in CRN, deciding on the common channel within each cluster is the foremost question to answer.
-\cite{Zhao07, Chen07,Affinity_clustering_09icccn} propose the clustering schemes and make sure every cluster possesses at least one CC.
-Clustering scheme~\cite{Consensus_based_clustering12} looks for the network partition which improves the accuracy of spectrum sensing with the cluster structure.
+\cite{Zhao07, Chen07,Affinity_clustering_09icccn} propose the clustering schemes and enforce that every cluster possesses at least one CC.
+Clustering scheme~\cite{Consensus_based_clustering12} looks for a network partition which improves the accuracy of spectrum sensing with the cluster structure.
 %Clustering scheme~\cite{clustering_globecom11} obtains the best cluster size which minimizes power consumption caused by communication within and among clusters.
 \cite{TWC2012_cooperative_communication} forms the clusters by deciding on the cluster heads, where the transmit power for the long-haul transmission between the cluster heads is minimized.
 \cite{clustering_globecom11} proposes a cluster structure which promises energy efficiency.
 \cite{cluster_EW10} proposes strategy on how to decide on the CCs and access the multiple CCs within clusters.
-An event-driven clustering scheme is proposed for cognitive radio sensor network in \cite{Ozger_cluster_crsn_13}.
-No one among the above mentioned schemes provides the robustness to the formed clusters against primary users. 
+An event-driven clustering scheme is proposed for cognitive radio sensor networks in \cite{Ozger_cluster_crsn_13}.
+None of the above mentioned schemes provides a certain robustness to formed clusters against primary users. 
 
-Robustness of clusters is discussed in~\cite{LIU_TMC11_2}, where a distributed clustering scheme (denoted as SOC) which is designed to generate robust clusters against primary users is proposed.
+Robustness of clusters is discussed in~\cite{LIU_TMC11_2}. A distributed clustering scheme (denoted as SOC) which is designed to generate robust clusters against primary users is proposed.
 The robustness of the clusters comes from the fact that there are multiple CCs available for the clusters.
 SOC involves three phases of distributed executions.
-In the first phase, every secondary user forms clusters with some one-hop neighbors, in the second and third phase, each secondary user seeks to either merge other clusters or join one of them.
+In the first phase, every secondary user forms clusters with some one-hop neighbors. In the second and third phase, each secondary user seeks to either merge other clusters or join one of them.
 The metric adopted by every secondary user in all the phases is the product of the number of CCs and cluster size.
-The drawbacks of this scheme are as follows, although the adopted metric considers both cluster size and the number of CCs, cluster formation can be easily dominated by only one factor, e.g. a node which can access many channels may exclude its neighbor and form a cluster by itself.
+The drawbacks of this scheme are as follows, although the adopted metric considers both cluster size and the number of CCs, cluster formation can be easily dominated by only one factor, e.g. a node which can access many channels may exclude its neighbor and form a cluster by itself. (THIS SENTENCE IS TOO COMPLICATED. BREAK IT DOWN TO 2 OR 3 PLEASE.)
 In addition, this scheme leads to the high variance of the cluster sizes, which is not desired in certain applications as discussed in~\cite{clustering_globecom11, cluster_EW10}.
-\cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters, although the authors claim robustness is one goal to achieve, the minimum number of clusters is finally pursued.
+\cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters. Although the authors claim that robustness is one goal to achieve, the minimum number of clusters is finally pursued.
 %
 A distributed clustering scheme ROSS is proposed in~\cite{Li11_ROSS} under the game theoretic framework. 
 Compared with the clustering schemes introduced above, the clusters are formed faster and the clusters possess more CCs than SOC.
-But as all the other clustering schemes, this scheme doesn't have control over the formation of the very small or very large clusters which are not desirable.
+However, as all the other clustering schemes, this scheme does not have control over the formation of the very small or very large clusters which are not desirable.
 Furthermore, this work doesn't consider the robustness of clusters against the increasing activity of primary users, which leaves their claim of robustness unverified.
 %
-This paper is on the basis of the work in~\cite{Li11_ROSS}, but extends in two dimensions.
-First, this paper renews the definition of robustness of clusters in a CRN, which is no longer the average number of CCs of clusters, but the ability of the clusters to sustain when the primary users' activity becomes more dynamic.
+This paper extends~\cite{Li11_ROSS} in two dimensions.
+First, this paper renews the definition of robustness of clusters in a CRN, which is no longer the average number of CCs of clusters, but the ability of the clusters to sustain when the primary users' activity becomes more dynamic. (BAD FORMULATION TO SAY "renew". Changing definitions itself does not impose any benefit. Is there any an improval?)
 Second, this paper proposes size control mechanism, which solves the problem of devergence of clusters sizes in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
 Besides, this paper provides a comprehensive analysis of the robust clustering problem and proposes a centralized solution. 
 %We stick to the motivation of forming robust clusters in CRN \ie let more CR users benefited from the cooperative decision making which is due to the clusters. 
@@ -242,7 +242,7 @@ The rest of paper is organized as follows.
 We present the system model and the robust clustering problem in Section~\ref{sec:model}. 
 The centralized and distributed solutions are introduced in Section~\ref{centralized_solution} and~\ref{ross} respectively.
 %The clustering problem is given through analysis and a centralized scheme is proposed in section~\ref{centralized_scheme}.
-Extensive performance evaluation is presented in Section~\ref{performance}.
+Some Extensive performance evaluation is presented in Section~\ref{performance}.
 Finally, we conclude our work and point out the direction for future research in Section~\ref{conclusion}.
 
 
