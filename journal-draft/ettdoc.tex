@@ -153,7 +153,7 @@ Clustering is a process of grouping certain users in geographic proximity into a
 In the context of cognitive radio netowrks, a formed cluster helps the participants not only to improve the spectrum sensing accuracy, but also to coordinate the channel switch operation when the primary users are detected by at least one secondary user in that cluster. Then all the cluster menmbers can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
 Clustering also benefits the operation of a CRN by reducing the interference between cognitive clusters~\cite{centralizedSharing80222}, and supporting routing~\cite{Abbasi_survey_07}.
 %As to the coexistence of CR users, they can be notified by cluster head (CH) or other cluster members about the possible collision, the possibility for them to interfere neighbouring clusters is reduced~\cite{centralizedSharing80222}. 
-Except for benefiting the dynamic spectrum sharing in CRN, clustering contributes to the other wireless networks in many aspects, which has already been discussed in many works. [CITATION MISSING]
+Except for benefiting the dynamic spectrum sharing in CRN, clustering contributes to the other wireless networks in many aspects, which has already been discussed in many works~\cite{Kawadia03, clustering_mesh_globecom2010, Abbasi_survey_07}.
 
 %%[crn for clustering] 
 %%due to attenuation of signal propagation, primary users can only be detected by CR users when they locate closely to CR users.
@@ -212,7 +212,8 @@ The robustness of the clusters comes from the fact that there are multiple CCs a
 SOC involves three phases of distributed executions.
 In the first phase, every secondary user forms clusters with some one-hop neighbors. In the second and third phase, each secondary user seeks to either merge other clusters or join one of them.
 The metric adopted by every secondary user in all the phases is the product of the number of CCs and cluster size.
-The drawbacks of this scheme are as follows, although the adopted metric considers both cluster size and the number of CCs, cluster formation can be easily dominated by only one factor, e.g. a node which can access many channels may exclude its neighbor and form a cluster by itself. (THIS SENTENCE IS TOO COMPLICATED. BREAK IT DOWN TO 2 OR 3 PLEASE.)
+The drawbacks of this scheme are as follows, although the adopted metric considers both the cluster size and the number of CCs, cluster formation can be easily dominated by only one factor.
+For example, a node which accesses abundant channels may form a cluster by itself and doesn't have motivation to unite neighboring nodes to form a cluster.
 In addition, this scheme leads to the high variance of the cluster sizes, which is not desired in certain applications as discussed in~\cite{clustering_globecom11, cluster_EW10}.
 \cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters. Although the authors claim that robustness is one goal to achieve, the minimum number of clusters is finally pursued.
 %
@@ -222,9 +223,10 @@ However, as all the other clustering schemes, this scheme does not have control 
 Furthermore, this work doesn't consider the robustness of clusters against the increasing activity of primary users, which leaves their claim of robustness unverified.
 %
 This paper extends~\cite{Li11_ROSS} in two dimensions.
-First, this paper renews the definition of robustness of clusters in a CRN, which is no longer the average number of CCs of clusters, but the ability of the clusters to sustain when the primary users' activity becomes more dynamic. (BAD FORMULATION TO SAY "renew". Changing definitions itself does not impose any benefit. Is there any an improval?)
-Second, this paper proposes size control mechanism, which solves the problem of devergence of clusters sizes in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
-Besides, this paper provides a comprehensive analysis of the robust clustering problem and proposes a centralized solution. 
+First, this paper considers the correlation between the cluster robustness and the cluster size.
+As a result the cluster robustness is no longer indicated merely by the average number of CCs of clusters, but the ability of the CR nodes to get benefit from collective decision and of the clusters to sustain when the primary users' activity becomes more dynamic.
+Besides, this involment of cluster size enable us to solve the problem of clusters size devergence, which appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
+Second, this paper provides a comprehensive analysis of the robust clustering problem, proposes both centralized and distributed solutions, and conducts extensive simulations. 
 %We stick to the motivation of forming robust clusters in CRN \ie let more CR users benefited from the cooperative decision making which is due to the clusters. 
 %We propose both centralized and distributed clustering schemes, which result in more CR users in the clusters composed with multiple CR users, not only when the clusters are just formed, but also afterwards when the primary users' activity changes.
 %Besides, both centralized and distributed schemes take the cluster size into consideration, and both can control the sizes of the formed clusters to certain extent.
