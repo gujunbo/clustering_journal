@@ -340,20 +340,22 @@ On the other hand, the sizes of the formed clusters should be regulated, \ie the
 As to a cognitive radio network where the set of CR nodes is $\mathcal{N}$, the robust clustering problem is to decide the set of clusters $\mathcal{T}$, where 
 \begin{enumerate}
 \setlength{\itemindent}{.05in}
-\item the sum of the $f(C)$ is the maximal, where $C\in \mathcal{T}$ 
 \item the intersection of any two clusters in $\mathcal{T}$ is an empty set
 \item the union of clusters in $\mathcal{T}$ is $\mathcal{N}$
-\item the cluster sizes should fall in the scope $\langle\delta_1, \delta_2\rangle$, where $\delta, \delta_1, \delta_2\in \mathbb{Z}^+$, $\delta_1 \leq \delta\leq \delta_2$, and $\delta$ is decided according to the application to be implemented in the CRN.
+\item the sum of the $f(C)$ is the maximal, where $C\in \mathcal{T}$ and meanwhile the cluster sizes fall in the scope $\langle\delta_1, \delta_2\rangle$.
+$\delta_1, \delta_2\in \mathbb{Z}^+$ and $\delta_1 \leq \delta_2$.
+\item the size of $C$ in $\mathcal{T}$ is allowed to be 1.
+%, and $\delta$ is decided according to the application to be implemented in the CRN.
 \end{enumerate}
-
 \end{mydef}
 
-Assume we have obtained the set of $\mathcal{S}$ which contains all the clusters in $\mathcal{N}$, \ie $\mathcal{S}=\{C_1, C_2,\ldots,C_i, \ldots, C_{|\mathcal{S}|}\}$ \footnote{The subscript $i$ means the $i$-th cluster in $\mathcal{S}$.} and there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = \mathcal{N}$.
-The decision version of this problem is to determine whether there is a non-empty set $\mathcal{S}'\subseteq \mathcal{S}$, so that $\sum_{C_i\in \mathcal{S}'} f(C_i) \geqslant \lambda$ where $\lambda$ is a real number.
+
+The decision version of this problem is to determine whether there is a set of clusters, say $\mathcal{X}$, so that $\sum_{\forall C\in \mathcal{X}} f(C) \geqslant \lambda$ where $\lambda$ is a real number.
 We have the following theorem on the problem's complexity.
 \begin{theorem}
 \label{theorem1}
-The robust clustering problem in CRN is NP-hard, when the maximum size of clusters is larger than 3, $\delta_1=1$ and $\delta_2 = N$.
+The robust clustering problem in CRN is NP-hard, when $\delta_1=2$ and $\delta_2 > 3$.
+%when the maximum size of clusters is larger than 3
 %Assume a CRN can be represented by a connected graph, and there is at least one common channel between any pair of neighbours, then forming at least two CR nodes into one cluster is NP-complete.
 \end{theorem}
 The proof is in Appendix~\ref{proof_theorem1}.
@@ -378,8 +380,9 @@ The proof is in Appendix~\ref{proof_theorem1}.
 \section{Centralized Solution for Robust Clustering}
 \label{centralized_solution}
 When the global knowledge of the CRN is available to us, we can propose a centralized scheme as comparison.
+We obtain the set of $\mathcal{S}$ which contains all the clusters in $\mathcal{N}$, \ie $\mathcal{S}=\{C_1, C_2,\ldots,C_i, \ldots, C_{|\mathcal{S}|}\}$ \footnote{The subscript $i$ means the $i$-th cluster in $\mathcal{S}$.} and there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = \mathcal{N}$.
 The proposed centralized solution formulates the problem in Definition~\ref{def_centralized_clustering} as an optimization problem which is solved with standard software packages.
-The optimization searches the set $\mathcal{S}$ and decides on the clusters according to the following optimization formulation,
+The optimization decides on the clusters according to the following optimization formulation,
 %
 %which constitute the whole CRN without overlapping between any two of them, besides, the sum of CCs of the chosen clusters is maximized.
 %Then, a central node (or controller) with the knowledge of all CR nodes (and also the possible clusters) can solve the problem based on the following formulation. 
@@ -1531,65 +1534,53 @@ If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming
 \label{proof_theorem1}
 \begin{proof}
 To prove the robust clustering problem is NP-hard, we reduce the \textit{maximum weighted k-set packing problem}, which is NP-hard when $k\geqslant 3$~\cite{Computers_a_Intractability}, to the the robust clustering problem to show the latter is at least as hard as the former.
-Given a collection of sets of cardinality at most $k$ with weights for each set, the maximum weighted packing problem is that of finding a collection of disjoint sets of maximum total weight.
-The decision version of weighted $k$-set packing problem is,
+Given a collection of sets of cardinality at most $k$ and with weights for each set, the maximum weighted packing problem is that of finding a collection of disjoint sets of maximum total weight.
+The decision version of the weighted $k$-set packing problem is,
 \begin{mydef}
 \label{def_kset_packing}
-Given a finite set $\mathcal{G}$ of non-negative integers where $\mathcal{G} \subsetneq \mathbb{N}$, and a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$ where $S_i \subseteq \mathcal{G}$ and $\max(S_i)\geq 3$ for $1 \leq i \leq m$.
-Every set $S$ in $\mathcal{Q}$ has a weight $\omega(S) \in \mathbb{R}$. 
+Given a finite set $\mathcal{G}$ of non-negative integers where $\mathcal{G} \subsetneq \mathbb{N}$, and a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$ where $S_i \subseteq \mathcal{G}$ and $\max(|S_i|)\geq 3$ for $1 \leq i \leq m$.
+Every set $S$ in $\mathcal{Q}$ has a weight $\omega(S) \in \mathbb{N}^+$. 
 %
-The problem is to find a collection $\mathcal{S} \subseteq \mathcal{Q}$ such that $\mathcal{S}$ contains only pairwise disjoint sets and the total weight of the sets in $\mathcal{S}$ is greater than a given positive number $\lambda$, i.e., $\sum_{S \in \mathcal{S}} \omega(S) > \lambda$.
+The problem is to find a collection $\mathcal{I} \subseteq \mathcal{Q}$ such that $\mathcal{I}$ contains only the pairwise disjoint sets and the total weight of these sets is greater than a given positive number $\lambda$, i.e., $\sum_{\forall S \in \mathcal{I}} \omega(S) > \lambda$.
 \end{mydef}
 
-We assume the weights of sets are positive integers.
-Then we will show that any instance $\mathcal{I}$ of a weighted $k$-set packing problem, \ie a collection of sets, can be transformed to a clusters formation for a CRN.
-W.l.o.g. let set $\mathcal{G} = \{ 1, \ldots , N \}$.
-The polynomial algorithm $\sigma$ consists of three steps.
+%We assume the weights of sets are positive integers.
+We will show that any instance $\mathcal{I}$ of a weighted $k$-set packing problem, \ie a collection of sets, can be transformed into an instance of a robust clustering for a CRN within polynomial time.
+W.l.o.g. let set $\mathcal{G} = \{ 1, \ldots , N \}$, and redeem there are $N$ CR nodes in the CRN which is to form clusters. 
 
+The procedure of the transformation is as follows.
 \begin{itemize}
+\item First, all the sets in the instance $\mathcal{I}$ are mapped sequentially to a group of clusters, \ie for a set $S\in\mathcal{I}$, the elements in $S$ are mapped to CR nodes which compose a cluster $C$, moreover, the resultant CR node's ID equals to the corresponding element in $\mathcal{S}$.
+This transformation takes $N$ steps.
+\item If $\mathcal{I}$ is not the solution because the intersection of two sets is not empty, the resultant clusters are not the solution to the clustering problem due to the overlapped clusters.
+When $\mathcal{I}$ contains only the disjoint sets, for each mapped cluster $C$, we assign the available channels for the nodes in $C$ so that the number of common channels in $C$ equals to the weight $\omega(S)$.
+This step of transformation takes $N*|\mathcal{K}|$ steps where $\mathcal{K}$ is the set of licensed channels.
+\item The resultant clusters are not an instance for the robust clustering problem yet because the clusters don't include all the CR nodes in the CRN, just as the instance $\mathcal{I}$ doesn't include all the elements in $\mathcal{G}$.
+We add the CR nodes besides the mapped clusters, which correspond to the elements in $\mathcal{G}\backslash\mathcal{I}$.
+We can randomly assign available channels on these newly added CR nodes, which do not contribute to the sum of the numbers of the common channels $f(C)$ as defined in~\ref{def_centralized_clustering} because they actually form singleton clusters and their cluster sizes are smaller than 2.
+This steps takes at most $N$ steps.
 
-%\item In the first step, we transform the instance $\mathcal{I}$ to $\mathcal{I'}$ by duplicating the elements of the sets in $\mathcal{I}$.
-%In particular, as to each element in set $S\in \mathcal{I}$, we duplicate the element and assign a new index which is N bigger than the original index.
-%The weight of these sets remain unchanged.
-%The purpose of this transformation is to eliminate the set in $\mathcal{I}$, which has only one element.
-
-\item First, the sets in the instance $\mathcal{I}$ are mapped sequentially to the clusters of CR nodes on a two-dimensional Euclidean plane, where the CR user ID is identical with the corresponding element's index.
-
-\item Second, for each mapped cluster $C$, we assign the channels for the nodes in $C$ so that $|K(C)|$ equals to the $\omega(S)$.
-We can simply assign the first $|K(C)|$ channels to each CR node in $C$, without considering the possible mismatch when the same CR node appears in different clusters and is assigned with different channels.
-%The channel availability on the CR nodes whose IDs are $N$ apart is the same.
-%Besides, there is a bijection between every set in $\mathcal{I'}$ and one cluster in the CRN.
-%In this process, we decide the channel availability on each CR node so that the number of CCs in each cluster is equal to the weight of the corresponding set.
-%
-%When there are two sets in $\mathcal{I'}$ and one is a subset of the other one, \ie  $S_1\subset S_2$, and $\omega(S_1) < \omega(S_2)$, then we should swap the weights of the sets before mapping them into clusters. 
-
-
-%\item In second step, we map the elements in $\mathcal{Q}\setminus \mathcal{I}$ to CR nodes. 
-%We arbitrarily put these CR nodes in the CRN, then these CR nodes form singleton clusters by themselves.
-%According to the definition of robust clustering problem in CRN, the number of CCs of these singleton clusters is 0.
-%These singleton clusters and the clusters mapped from $\mathcal{I'}$ constitute a clustering solution.
-
-% finding these singleton clusters requires at most $N$ steps.
-
-%As to duplicated elements, we also map them into a CR node, thus there exist CR nodes with identical ID.
-%As a result, these CR nodes constitute a collection of CR nodes, and they can not be called as a CRN yet as there are not communication links drawn between them.
-%Connections in CRN under this context is decided by physical conditions, which means to have a communication link, the two CR nodes should have common channels and locate within each other's transmission range.
-%We further assume that all CR nodes locate in a way that any two pair of nodes has potential to be connected if their IDs are in the same set in $\mathcal{S}$, the instance for weighted $k$-set packing.
-%\item Mere isolated nodes don't constitute network, thus we add connections in CRN based on the sets in $\mathcal{S}'$ sequentially.
-%For each set $s'\in \mathcal{S}'$, we add connection between two CR nodes if their IDs can be found in $s'$.
-%No connection exists between two CR nodes if their IDs don't appear in the same set in $\mathcal{S}$.
-
-%We complete the polynomial algorithm $\sigma$ for the the transformation so far.
-%The number of common channels of cluster $f$ is non-increasing function of cluster size, while, the weight of set in weighted $k$-set packing problem doesn't have this property.
-%In weighted $k$-set packing, the weight of a set with smaller size could be larger than a set with more elements.
-%But this difference doesn't hinder the transformation because an instance of weighted $k$-set packing contains only disjoint sets in $\mathcal{G}$.
 
 \end{itemize}
-The number of steps is dependent on $\mathcal{I}$, which is between 1 and $N^2$.
+In this way, we change any instance of a weighted $k$-set packing problem into an instance of robust clustering.
+%The polynomial algorithm $\sigma$ consists of three steps.
+%\begin{itemize}
 %
-Assume we have a robust clustering black box which checks whether the clustering instance meets the requirement, \ie clusters are not overlapping and the total sum of CCs exceeds $\lambda$ or not.
-If \textit{yes} is said, then the total weight of the corresponding instance of the maximum weighted k-set packing problem is greater than $\lambda$.
-If the black box says \textit{no}, either due to overlapping clusters or the sum of CCs is smaller than $\lambda$, the corresponding instance of the packing problem is not a solution.
+%\item First, the sets in the instance $\mathcal{I}$ are mapped sequentially to the clusters of CR nodes on a two-dimensional Euclidean plane, where the CR user ID is identical with the corresponding element's index.
+%
+%\item Second, for each mapped cluster $C$, we assign the channels for the nodes in $C$ so that $|K(C)|$ equals to the $\omega(S)$.
+%We can simply assign the first $|K(C)|$ channels to each CR node in $C$, without considering the possible mismatch when the same CR node appears in different clusters and is assigned with different channels.
+%
+%\end{itemize}
+%The number of steps is dependent on $\mathcal{I}$, which is between 1 and $N^2$.
+%
+Assume we have a robust clustering black box which checks whether the clustering instance meets the requirement, \ie clusters are not overlapping, and the sum of CCs of the clusters whose size is larger than 1 exceeds $\lambda$ or not.
+\begin{itemize}
+\item If \textit{yes} is said, then the total weight of the corresponding instance of the maximum weighted k-set packing problem is greater than $\lambda$.
+\item If the black box says \textit{no}, either due to overlapping clusters or the sum of CCs is smaller than $\lambda$, the corresponding instance of the packing problem is not a solution.
+\end{itemize}
+
+
 
 % The direction is wrong!!
 %When $\mathcal{I}$ is not an instance for weighted $k$-set packing problem due to the existence of joint sets, the corresponding clustering instance is not a successful cluster partition for the robust clustering problem, as there are overlapped clusters.
@@ -1597,7 +1588,7 @@ If the black box says \textit{no}, either due to overlapping clusters or the sum
 %When the sets in an instance $\mathcal{I}$ for weighted $k$-set packing are disjoint, the sum of weights is identical to the total number of the CCs in the CRN which are mapped from $\mathcal{I'}$.
 %Thus, when a instance $\mathcal{I}$ for $k$-set packing problem is true (or false), \ie the sum of weights is greater than $\lambda$, then in the CRN which is mapped from $\mathcal{I'}$, the sum of the numbers of CCs of the clusters is greater (or smaller) than $\lambda$.
 
-Hence, the weighted $k$-set packing can be reduced to the robust clustering problem in CRN, then the latter problem is of NP-hard.
+Hence, the weighted $k$-set packing can be reduced to the robust clustering problem in CRN, thus the latter problem is as hard as the former thus is of NP-hard.
 %An example of the reduction is shown in Table~\ref{no_hard_proof_instance}.
 
 
