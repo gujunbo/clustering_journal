@@ -90,6 +90,8 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \captionsetup[table]{format=plain,labelformat=simple,labelsep=period}
 %\usepackage{authblk}
 
+\usepackage{color}
+
 \begin{document}
 
 %\runningheads{A.~N.~Other}{A demonstration of the \journalabb\
@@ -344,7 +346,7 @@ As to a cognitive radio network where the set of CR nodes is $\mathcal{N}$, the 
 \setlength{\itemindent}{.05in}
 \item the intersection of any two clusters in $\mathcal{T}$ is an empty set
 \item the union of clusters in $\mathcal{T}$ is $\mathcal{N}$
-\item the sum of the $f(C)$ is the maximal, where $C\in \mathcal{T}$ and meanwhile the cluster sizes fall in the scope $\big[\delta_1, \delta_2\big]$.
+\item the sum of the $f(C)$, the number of common channels, is the maximal, where $C\in \mathcal{T}$ and meanwhile the cluster sizes fall in the scope $\big[\delta_1, \delta_2\big]$.
 $\delta_1, \delta_2\in \mathbb{Z}^+$ and $\delta_1 \leq \delta_2$.
 When the cluster size is out of $\big[\delta_1, \delta_2\big]$, $f(C)=0$.
 
@@ -353,8 +355,7 @@ When the cluster size is out of $\big[\delta_1, \delta_2\big]$, $f(C)=0$.
 \end{enumerate}
 \end{mydef}
 
-
-The decision version of this problem is to determine whether there is a set of clusters, say $\mathcal{X}$, so that $\sum_{\forall C\in \mathcal{X}} f(C) \geqslant \lambda$ where $\lambda$ is a real number.
+The decision version of this problem is to determine whether there exists a set of clusters, say $\mathcal{X}$, so that $\cup C_{C\in\mathcal{X}} = \mathcal{N}$, and $\sum_{C\in \mathcal{X}} f(C) \geqslant \lambda$ where $\lambda$ is a real number.
 We have the following theorem on the problem's complexity.
 \begin{theorem}
 \label{theorem1}
@@ -1552,22 +1553,28 @@ The problem is to find a collection $\mathcal{I} \subseteq \mathcal{Q}$ such tha
 First, we argue that robust clustering problem is in NP, since given a collection of clusters, a certifier can efficiently check that such clusters are pairwise disjoint, indeed contains all the CR nodes in the CRN $\mathcal{N}$ and the sum of $f(C)$ as shown in Definition~\ref{def_centralized_clustering} is greater than a certain value.
 
 We will show that the weighted $k$-set packing problem $\leq_P$ CRN robust clustering problem.
-Given an instance of the weighted $k$-set packing problem, \ie a collection of sets of distinct integers $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$, the integer weight $\omega(S)$ for set $S$ and a integer $\lambda$, we will construct an instance of a CRN robust clustering problem within polynomial time.
-W.l.o.g. we let set $\cup_{\forall i\in\{1, \ldots, m\}}S_i = \{ 1, \ldots , N \} = \mathcal{N}$.
+Given an instance of the weighted $k$-set packing problem, \ie \textcolor{blue}{a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$, where the set $S_i, i\in \{1,2,\ldots,m\}$ consists of positive integers.
+There is an integer weight $\omega(S_i)$ for $S_i$, in the end an integer $\lambda$ completes the description of this instance.}
+We will construct an instance of a CRN robust clustering problem within polynomial time.
+W.l.o.g. we let set $\cup_{i\in\{1, 2,\ldots, m\}}S_i = \{ 1, 2,\ldots , N \} = \mathcal{P}$.
 
 We will construct the CRN and the clusters as follows:
-For every set $S$ whose size is larger than 1, a corresponding cluster of CR nodes is generated.
-The CR nodes within this cluster can pair wise communicate and the IDs of these CR nodes correspond to the elements in $S$, besides, we allocate the $|\omega(S)|$ channels to all the CR nodes in this cluster, and the channels are on the spectrum band which is exclusive for this cluster.
-For every set $S$ which contains only one element, \ie $S =\{i\}$, a cluster composed with two CR nodes are created.
-One CR node's ID is $i$, the other CR node is the dummy node of the former and its ID is $N+i$.
-$|\omega(S)|$ channels from the exclusive spectrum band for this cluster are allocated to these two CR nodes.
-In the end, we construct the singleton clusters, where the IDs of the CR nodes correspond to the elements in $\mathcal{N}\backslash \cup_{S_i}$.
+For every set $S\in \mathcal{Q}$, there will be a corresponding cluster composed with CR nodes constructed.
+For the set whose size is larger than 1, the IDs of the constructed CR nodes are identical with the elements in it, and we locate the CR nodes so that any two of them can communicate directly when common channels are available on them.
+Besides, a set of channels with cardinality of $|\omega(S)|$ is allocated to all the CR nodes in this cluster, and the channels are on the spectrum band which is exclusive for this cluster.
+For the set $S$ which contains only one element, \ie $S =\{t\}$ where $t\in\mathcal{P}$, a cluster composed with two CR nodes will be created.
+In this case, one CR node's ID is $t$, the other CR node is the dummy node of the former and its ID is $t+N$.
+A number of $|\omega(S)|$ channels from the exclusive spectrum band for this cluster are allocated to these two CR nodes.
+In the end, we construct the singleton clusters, where the IDs of the CR nodes are from the difference of sets $\cup{S_i}$ and $\mathcal{P}$, and the number of CCs in these singleton clusters are the same as the weights for the corresponding sets.
+Actually, all the constructed CR nodes can be assumed to be put in a very small area so that each CR node is within the transmission scope of every other CR node.
+Note that in each constructed cluster, the CR nodes occupy the common channels which are exclusive to this cluster.
 Now we have completed a CRN and can claim that all the constructed clusters $C$ constitute the complete CRN network $\mathcal{N}$.
 
 Now suppose there is a set of pairwise disjoint clusters which constitute the CRN $\mathcal{N}$, and the sum of $f(C)$ is greater than $\lambda$.
-After removing the singleton clusters, we can easily find the natural association between the clusters in the CRN and the sets in $\mathcal{Q}$. 
-The clusters which contain dummy CR nodes correspond to the sets which contain only one element, and the other clusters correspond to the sets in $\mathcal{Q}$, whose elements are the node IDs of the corresponding clusters.
-Then the sum of the weights of such sets equals to the sum of $f(C)$ and thus greater than $\lambda$.
+After removing the singleton clusters (whose common channels don't contribute to the sum of $f(C)$), we can easily find the natural association between the remaining clusters in the CRN and the sets in $\mathcal{Q}$. 
+The clusters in the CRN correspond to the sets in $\mathcal{Q}$ according to the mapping between the node IDs in the clusters and the elements in the sets.
+In particular, the clusters which contain dummy CR nodes correspond to the sets which contain only one element.
+Then the sum of the weights of the corresponding sets equals to the sum of $f(C)$ and thus greater than $\lambda$.
 
 
 We have now shown that our algorithm solves the weighted $k$-set packing problem using a black box for the robust clustering problem. 
