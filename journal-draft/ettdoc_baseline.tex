@@ -224,7 +224,7 @@ For example, a node which accesses abundant channels may form a cluster by itsel
 In addition, this scheme leads to the high variance of the cluster sizes, which is not desired in certain applications as discussed in~\cite{clustering_globecom11, cluster_EW10}.
 \cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters. Although the authors claim that robustness is one goal to achieve, the minimum number of clusters is finally pursued.
 %
-A distributed clustering scheme ROSS (Robust Spectrum Sharing) is proposed in~\cite{Li11_ROSS} under the game theoretic framework. 
+A distributed clustering scheme ROSS is proposed in~\cite{Li11_ROSS} under the game theoretic framework. 
 Compared with the clustering schemes introduced above, the clusters are formed faster and the clusters possess more CCs than SOC.
 However, as all the other clustering schemes, this scheme does not have control over the formation of the very small or very large clusters which are not desirable.
 Furthermore, this work doesn't consider the robustness of clusters against the increasing activity of primary users, which leaves their claim of robustness unverified.
@@ -282,8 +282,7 @@ In the following, we refer to the licensed channels as channels in general, and 
 We give the definition of cluster in CRN as follows. 
 A cluster $C$ is a set of secondary nodes, and there is one set of common channels which are available for each node.
 In particular, a cluster consists of a cluster head $h(C)$ and a number of cluster members, and the cluster head is able to communicate with any cluster member directly.
-Our scheme enables the cluster heads are selected in a distributed manner, and a cluster can only be formed only by these selected cluster head.
-%C1-4
+A cluster can be formed only by the cluster head.
 %$\text{Nb}(i)$ denotes node $i$'s neighborhood which consists of all its one hop neighbors.
 %For any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds.
 The size of $C$ is denoted by $|C|$.
@@ -594,15 +593,11 @@ $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which represents the ability of $i
 \end{itemize}
 Individual connectivity degree $d_i$ and neighborhood connectivity degree $g_i$ together form the \textit{connectivity vector}.
 Figure~\ref{fig1} illustrates an example CRN where every node's connectivity vector is shown.	
-In Figure~\ref{fig1}, some primary users are randomly deployed in the network, and they are free to choose one channel out of the set of licensed channels $\mathcal{K}$ to operate.
-As to the secondary users, the channels they are allowed to use are those which are not ruled out by the primary users in their vicinities. 
-The sets of the indices of the available channels sensed by each node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, \\K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, \\K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, \\K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$.
-%C1-5
 \begin{figure}[ht!]
   \centering
 \includegraphics[width=0.7\linewidth]{figure1.pdf}
 % \includegraphics{figure1.pdf}
-	\caption{Connectivity graph of the example CRN and the connectivity vector $(d_i, g_i)$ for each node. Primary users are not shown. The desired cluster size $\delta =3$. Dashed edge indicates the end nodes are within each other's transmission range.}
+	\caption{Connectivity graph of the example CRN and the connectivity vector $(d_i, g_i)$ for each node. The desired cluster size $\delta =3$. The sets of the indices of the available channels sensed by each node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$. Dashed edge indicates the end nodes are within each other's transmission range.}
 	\label{fig1}
 \end{figure}
 
@@ -642,22 +637,20 @@ The manipulation of the individual connectivity degree of the cluster members ac
 We have the following theorem to show that every secondary user will eventually be either integrated into a certain cluster or becomes a cluster head.
 \begin{theorem}
 \label{clustering:theorem}
-Given a CRN, it takes at most $N$ steps before every secondary user either becomes cluster head, or gets included into at least one cluster.
+Given a CRN, it takes at most $N$ steps that every secondary user either becomes cluster head, or gets included into at least one cluster.
 \end{theorem}
-Here, by \textit{step} we mean Algorithm~\ref{clustering:theorem} is executed by a secondary user for one time.
-Note that the minimum number of steps is 1, \eg when a cluster head is elected and all the other nodes are within its neighborhood.
-The Proof on the upper bound of the steps is given in Appendix~\ref{proof_clustering:theorem}.
-%The proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
-Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a chain as discussed in the example in the proof.
+Here, by \textit{step} we mean one secondary user executing Algorithm~\ref{clustering:theorem} for one time.
+The Proof is in Appendix~\ref{proof_clustering:theorem}.
 %
-Assuming there is a token in the CRN, one node is allowed to execute Algorithm~\ref{alg0} only when it holds the token, and it then transfers the token to the neighboring node on the chain.
+The procedure of the proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
+Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a list as discussed in the example in the proof.
+%
 If one step can be finished within a certain time span $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
-%C1-6
 As Algorithm~\ref{alg0} can be executed concurrently by different secondary users, the needed time can be considerably reduced.
 %According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
 %
 %This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
-If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, the outcome is shown in Figure~\ref{fig2}.
+If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, then the outcome is shown in Figure~\ref{fig2}.
 Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C(H)$ is $\{H, B, A, G\}$.
 	
 
@@ -915,8 +908,7 @@ The debatable nodes consider their claiming clusters to include all their debata
 As ROSS-DFA is quicker than ROSS-DGA, the former is especially suitable for the CRN where the channel availability changes frequently.
 To run ROSS-DFA, debatable nodes execute only one loop in Algorithm~\ref{alg4}.
 
-Now we apply both ROSS-DGA and ROSS-DFA to the network in Figure~\ref{fig2} which has been applied the phase I of ROSS.
-%C1-8
+Now we apply both ROSS-DGA and ROSS-DFA to the toy network in Figure~\ref{fig2} which has been applied the phase I of ROSS.
 In the network, node $A$'s claiming clusters are cluster $C(C), C(H)\in S_A$, their members are $\{A,B,C,D\}$ and $\{A,B,H,G\}$ respectively. 
 The two possible strategies of node $A$ is illustrated in Figure \ref{fig3}.
 In Figure \ref{AinC}, node $A$ staying in $C(C)$ and leaving $C(H)$ brings 2 more CCs to $S_A$, which is more than that brought by another strategy shown in \ref{AinH}.
@@ -1411,9 +1403,9 @@ Through simulation, the distributed schemes demonstrate similar performance with
 \label{alg0} 
 \DontPrintSemicolon
 \SetAlgoLined
-\KwIn{$d_j, g_j, j\in \text{Nb}(i)\setminus \Lambda$, $\Lambda$ denotes the set of cluster heads among $\text{Nb}(i)$. Empty sets $\tau_1,\tau_2$}
-\KwResult{Returning 1 means $i$ is cluster head, and $d_j$ is set to 0, $j\in \text{Nb}(i)\setminus \Lambda$. Returning 0 means $i$ is not cluster head.}
-%C1-6-wording
+\KwIn{$d_j, g_j, j\in \text{Nb}(i)\setminus \Lambda$, $\Lambda$ means cluster heads. Empty sets $\tau_1,\tau_2$}
+\KwResult{Returning 1 means $i$ is cluster head, then $d_j$ is set to 0, $j\in \text{Nb}(i)\setminus \Lambda$. returning 0 means $i$ is not cluster head.}
+
 \If{$\nexists j\in \text{Nb}(i)\setminus \Lambda$, such that $d_i \geq d_j$}{
 	return 1;
 	}

@@ -68,6 +68,14 @@ A.~A. Abbasi and M.~Younis, ``A survey on clustering algorithms for wireless
   sensor networks,'' \emph{Comput. Commun.}, vol.~30, no. 14-15, pp.
   2826--2841, 2007.
 
+\bibitem{Kawadia03}
+V.~Kawadia and P.~R. Kumar, ``Power control and clustering in ad hoc
+  networks,'' in \emph{Proc. of INFOCOM '03}, 2003, pp. 459--469.
+
+\bibitem{clustering_mesh_globecom2010}
+M.~Krebs, A.~Stein, and M.~A. Lora, ``Topology stability-based clustering for
+  wireless mesh networks,'' in \emph{IEEE GLOBECOM 2010}.
+
 \bibitem{Consensus_based_clustering12}
 Q.~Wu, G.~Ding, J.~Wang, X.~Li, and Y.~Huang,
   ``\BIBforeignlanguage{English}{Consensus-based decentralized clustering for
@@ -84,14 +92,6 @@ B.~E. Ali~Jorio, Sanaa El~Fkihi and D.~Aboutajdine, ``An energy-efficient
   clustering routing algorithm based on geographic position and residual energy
   for wireless sensor network,'' \emph{Journal of Computer Networks and
   Communications}, vol. 2015, 04 '15.
-
-\bibitem{Kawadia03}
-V.~Kawadia and P.~R. Kumar, ``Power control and clustering in ad hoc
-  networks,'' in \emph{Proc. of INFOCOM '03}, 2003, pp. 459--469.
-
-\bibitem{clustering_mesh_globecom2010}
-M.~Krebs, A.~Stein, and M.~A. Lora, ``Topology stability-based clustering for
-  wireless mesh networks,'' in \emph{IEEE GLOBECOM 2010}.
 
 \bibitem{Zhao07}
 J.~Zhao, H.~Zheng, and G.-H. Yang, ``Spectrum sharing through distributed
