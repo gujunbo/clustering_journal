@@ -156,32 +156,34 @@ Regarding the operation of CRN, efficient spectrum sensing is identified to be c
 Efficient spectrum sensing can be achieved by cooperative spectrum sensing of multiple secondary users, which has been shown to cope effectively with noise uncertainty and channel fading, thus remarkably improving the sensing accuracy~\cite{coorperativeSensing_Akyildiz11}.
 Collaborative sensing relies on the consensus of CR users\footnote{The terms user and node appear interchangeably in this paper. In particular, user is adopted when its networking or cognitive ability are discussed or stressed, while we refer to nodes typicallly in the context of the network topology.} within a certain area, in this regard, clustering is regarded as an effective method to realize cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing}.
 % ... decreases considerably the negative probability due to the random channel effects like fading and shadowing.
-Clustering is a process of grouping certain users in geographic proximity into a collective.
-In the context of cognitive radio netowrks, a formed cluster helps the participants not only to improve the spectrum sensing accuracy, but also to coordinate the channel switch operation when the primary users are detected by at least one secondary user in that cluster. Then all the cluster menmbers can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
+
+Clustering is the process of grouping certain users in geographic proximity into a collective, and as an effective technique, it is proposed with the emergence of mobile wireless networks~\cite{gerla_97} and there has been a plethora of clustering schemes.
+As to the wireless networks where no restriction is imposed on the nodes to access the spectrum, \ie 
+%Different clustering strategies have been proposed for wireless networks of different types.
+wireless ad-hoc, mesh networks and sensor networks, the objective of clustering can be to decrease the transmission power consumption~\cite{Kawadia03}, to improve the routing performance~\cite{clustering_mesh_globecom2010}, or to imrove the network lifetime and coverage~\cite{Abbasi_survey_07}.
+%In CRN, clusters are formed in the very beginning of the network operation, and re-formed periodically according to the dynamics of the CRN.
+In the context of cognitive radio netowrks, a formed cluster helps the participants not only improve the spectrum sensing accuracy, but also coordinate the channel switch operation when the primary users are detected by at least one secondary user in that cluster. Then all the cluster menmbers can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
 Clustering also benefits the operation of a CRN by reducing the interference between cognitive clusters~\cite{centralizedSharing80222}, and supporting routing~\cite{Abbasi_survey_07}.
 %As to the coexistence of CR users, they can be notified by cluster head (CH) or other cluster members about the possible collision, the possibility for them to interfere neighbouring clusters is reduced~\cite{centralizedSharing80222}. 
-Except for benefiting the dynamic spectrum sharing in CRN, clustering contributes to the other wireless networks in many aspects, which has already been discussed in many works~\cite{Kawadia03, clustering_mesh_globecom2010, Abbasi_survey_07}.
+%Except for benefiting the dynamic spectrum sharing in CRN, clustering contributes to the other wireless networks in many aspects~\cite{Kawadia03, clustering_mesh_globecom2010, Abbasi_survey_07}.
 
-%%[crn for clustering] 
-%%due to attenuation of signal propagation, primary users can only be detected by CR users when they locate closely to CR users.
-%In cognitive radio networks, secondary users which locate closely with each other are possibly affected by the same group of primary users, so that the availability of licensed spectrum is similar to them, \ie certain channels are available on each of them.
-%The similarity of available spectrum on a group of neighbouring CR nodes, along with the benefit of collaborative decision among multiple nodes, leads to clustering as an effective approach for many applications.
-%[robustness issue for clustering]
-
-In CRN, clusters are formed in the very beginning of the network operation, and re-formed periodically according to the dynamics of the CRN.
-Each formed cluster has one or multiple unlicensed channels which are available for every CR node in the cluster.
+In CRN, a formed cluster seizes one or multiple unlicensed channels which are available for every CR node in the cluster.
 In this paper available unlicensed channels are called \textit{common licensed channels} (or common channels for short, which is abbreviated as CC).
+The availability of CCs within a cluster decides the existence of that cluster, \ie if no CCs are available then the corresponding cluster does not exist.
 Both payload and control overheads can be transmitted on the CCs.
 %Out of the available CCs, there are always one or multiple channels which are used for the payload communication.
 When one or several cluster members can not access one certain CC on which primary some user activity is detected, the channel will be excluded from the set of CCs.
 In particular, if that channel is being used for payload communication, the communication pair will stop and resume the transmission on another available CC.
-The availability of CCs within a cluster defines the existence of that cluster, \ie if no CCs are available then the corresponding cluster does not exist.
 %As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
-In the context of CRN, the activity of primary users is usually unknown to the secondary users. In such cases the primary users' activity is deemed as random.
-Consequently, a cluster which secures more CCs will anticipate a longer life expectancy. In other words, such clusters are more robust.
-It is obvious that fewer secondary users in one cluster yield more CCs. However, this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where more users result in more accurate sensing result~\cite{Consensus_based_clustering12}.
+In the context of CRN, the activity of primary users is usually unknown to the secondary users, and the primary users' activity is deemed as random.
+Consequently, a cluster which secures more CCs will anticipate a longer life expectancy. 
+In other words, such clusters are more robust.
+
+Cluster size is inherently correlated with the cluster robustness.
+Given a CRN, it is obvious that getting rid of certain secondary users from a cluster may yield more CCs.
+However, this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where more users result in more accurate sensing result~\cite{Consensus_based_clustering12}.
 Thus the number of small clusters, especially the \textit{singleton clusters}, \ie the cluster which has only one CR node, should be minimized.
-As to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels. This undermines the robustness of the cluster.
+In the other hand, as to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels. This undermines the robustness of the cluster.
 Thus, the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not considered.
 Cluster sizes also play a role in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 In this paper we will analyze the robust clustering problem and propose efficient solutions.
@@ -190,16 +192,21 @@ Hence our schemes provide the network designers with more freedom when the power
 %In this paper we will introduce a robust cluster structure for CRN, where the robustness means the ability of the clusters to sustain under the influence of the increasing activity of primary users, and the direct metric is the number of CCs in the clusters.
 
 
+Here we give a brief review on the clustering in CRN, with emphasis on the theme of robust clustering.
+%%[crn for clustering] 
+%%due to attenuation of signal propagation, primary users can only be detected by CR users when they locate closely to CR users.
+%In cognitive radio networks, secondary users which locate closely with each other are possibly affected by the same group of primary users, so that the availability of licensed spectrum is similar to them, \ie certain channels are available on each of them.
+%The similarity of available spectrum on a group of neighbouring CR nodes, along with the benefit of collaborative decision among multiple nodes, leads to clustering as an effective approach for many applications.
+%[robustness issue for clustering]
+%%%%%%%%%%%
 %On the other hand, large clusters are not preferred in some scenarios neither, \eg for the CRN composed with resource limited users, managing the cluster members in a large cluster is a substantial burden. 
 %Hence, the cluster size should fall in a desired range according to different application scenarios~\cite{Chen04clusteringalgorithms, capacity_cluster_06}.
-
+%%%%%%%%%%%%
 %with the intention to provide a robust infrastructure for the applications which may be conducted above that in CRN.
 %that being said, when we design this clustering scheme in CRN, we do consider the services to be delivered by the network.
 %Cluster sizes affect the power consumption directly in wirelss sensor networks~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 %When the cluster size is not deliberately discussed, it is also decided alongside the optimization of the network, \eg the opimal selection of the aggregation points in a wireless sensor network results in the clusters~\cite{data_aggr_algorithm_04}.
-
-Different clustering strategies have been proposed for wireless networks of different types.
-As there is no restriction on the nodes to access the spectrum in wireless ad-hoc, mesh networks and sensor networks, the objective of clustering is to decrease the transmission power consumption~\cite{Kawadia03}, to improve the routing performance~\cite{clustering_mesh_globecom2010}, or to imrove the network lifetime and coverage~\cite{Abbasi_survey_07}.
+%%%%%%%%%%%%%
 %Various clustering schemes are proposed to target different aspects in cognitive radio networks.
 %Work~\cite{Consensus_based_clustering12} improves spectrum sensing ability by grouping the CR users with potentially best detection performance into the same cluster.
 %Clustering scheme~\cite{clustering_globecom11} obtains the best cluster size which minimizes power consumption caused by communication within and among clusters.

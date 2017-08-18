@@ -53,6 +53,24 @@ I.~F. Akyildiz, B.~F. Lo, and R.~Balakrishnan, ``Cooperative spectrum sensing
 C.~Sun, W.~Zhang, and K.~B. Letaief, ``Cluster-based cooperative spectrum
   sensing in cognitive radio systems,'' in \emph{proc. of IEEE ICC 2007}.
 
+\bibitem{gerla_97}
+C.~R. Lin and M.~Gerla, ``Adaptive clustering for mobile wireless networks,''
+  \emph{IEEE Journal on Selected Areas in Communications}, vol.~15, no.~7, pp.
+  1265--1275, Sep 1997.
+
+\bibitem{Kawadia03}
+V.~Kawadia and P.~R. Kumar, ``Power control and clustering in ad hoc
+  networks,'' in \emph{Proc. of INFOCOM '03}, 2003, pp. 459--469.
+
+\bibitem{clustering_mesh_globecom2010}
+M.~Krebs, A.~Stein, and M.~A. Lora, ``Topology stability-based clustering for
+  wireless mesh networks,'' in \emph{IEEE GLOBECOM 2010}.
+
+\bibitem{Abbasi_survey_07}
+A.~A. Abbasi and M.~Younis, ``A survey on clustering algorithms for wireless
+  sensor networks,'' \emph{Comput. Commun.}, vol.~30, no. 14-15, pp.
+  2826--2841, 2007.
+
 \bibitem{willkomm08}
 D.~Willkomm, M.~Bohge, D.~Holl{\'o}s, J.~Gross, and A.~Wolisz, ``Double
   hopping: A new approach for dynamic frequency hopping in cognitive radio
@@ -62,19 +80,6 @@ D.~Willkomm, M.~Bohge, D.~Holl{\'o}s, J.~Gross, and A.~Wolisz, ``Double
 C.~Passiatore and P.~Camarda, ``A centralized inter-network resource sharing
   ({CIRS}) scheme in {IEEE} 802.22 cognitive networks,'' in \emph{Proc. of IFIP
   Annual Mediterranean Ad Hoc Networking Workshop 2011}.
-
-\bibitem{Abbasi_survey_07}
-A.~A. Abbasi and M.~Younis, ``A survey on clustering algorithms for wireless
-  sensor networks,'' \emph{Comput. Commun.}, vol.~30, no. 14-15, pp.
-  2826--2841, 2007.
-
-\bibitem{Kawadia03}
-V.~Kawadia and P.~R. Kumar, ``Power control and clustering in ad hoc
-  networks,'' in \emph{Proc. of INFOCOM '03}, 2003, pp. 459--469.
-
-\bibitem{clustering_mesh_globecom2010}
-M.~Krebs, A.~Stein, and M.~A. Lora, ``Topology stability-based clustering for
-  wireless mesh networks,'' in \emph{IEEE GLOBECOM 2010}.
 
 \bibitem{Consensus_based_clustering12}
 Q.~Wu, G.~Ding, J.~Wang, X.~Li, and Y.~Huang,
