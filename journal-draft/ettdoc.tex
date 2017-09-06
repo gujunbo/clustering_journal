@@ -153,7 +153,8 @@ In this hierarchical spectrum access model~\cite{zhao_survey_DSA_2007}, the lice
 %
 %cluster
 Regarding the operation of CRN, efficient spectrum sensing is identified to be critical for a smooth operation of a cognitive radio network~\cite{Sahai_FundamentalDesignTradeoffs2006}.
-Efficient spectrum sensing can be achieved by cooperative spectrum sensing of multiple secondary users, which has been shown to cope effectively with noise uncertainty and channel fading, thus remarkably improving the sensing accuracy~\cite{coorperativeSensing_Akyildiz11}.
+The rate of false negative, \ie misdetecting the active primary users, can be decreased by cooperative spectrum sensing of multiple secondary users, which has been shown to cope effectively with noise uncertainty and channel fading, thus remarkably improving the sensing accuracy~\cite{Jacob2012, coorperativeSensing_Akyildiz11}.
+%C3
 Collaborative sensing relies on the consensus of CR users\footnote{The terms user and node appear interchangeably in this paper. In particular, user is adopted when its networking or cognitive ability are discussed or stressed, while we refer to nodes typicallly in the context of the network topology.} within a certain area, in this regard, clustering is regarded as an effective method to realize cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing}.
 % ... decreases considerably the negative probability due to the random channel effects like fading and shadowing.
 
@@ -183,7 +184,7 @@ Cluster size is inherently correlated with the cluster robustness.
 Given a CRN, it is obvious that getting rid of certain secondary users from a cluster may yield more CCs.
 However, this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where more users result in more accurate sensing result~\cite{Consensus_based_clustering12}.
 Thus the number of small clusters, especially the \textit{singleton clusters}, \ie the cluster which has only one CR node, should be minimized.
-In the other hand, as to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels. This undermines the robustness of the cluster.
+On the other hand, as to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels. This undermines the robustness of the cluster.
 Thus, the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not considered.
 Cluster sizes also play a role in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 In this paper we will analyze the robust clustering problem and propose efficient solutions.
@@ -906,7 +907,7 @@ Thus the number of steps can be expressed as $\mathcal{O}(N^3)$.
 %
 In fact, the upper bound for the number of steps which are involved in this process is much smaller than $N^3$.
 The percentage of debatable nodes in the network is shown in Figure~\ref{percentage_overlapping_node}, which is between 10\% to 60\% of the total CR nodes in the network.
-In the other hand, the number of clusters heads is dependent on the network density and the CR node's transmission range as mentioned in Section~\ref{phaseI}.
+On the other hand, the number of clusters heads is dependent on the network density and the CR node's transmission range as mentioned in Section~\ref{phaseI}.
 The simulation in \cite{robust_clustering_arxiv} shows the cluster heads are only 3.4\% to 20\% of the total CR nodes.
 
 
@@ -1013,7 +1014,7 @@ As to the CRN shown in Figure~\ref{fig1}, the resulting clusters by the centrali
 
 
 
-We investigate the schemes with respect to four metrics.
+We investigate the schemes in the following aspects.
 
 \begin{itemize}
 \item \textbf{The average number of CCs per non-singleton cluster.}
@@ -1038,9 +1039,24 @@ We investigate the distribution of CRs residing in the formed clusters with diff
 \item \textbf{Amount of control messages involved.}
 We investigate the number of control messages involved in the clustering process.
 
+\item \textbf{Influence from inaccurate spectrum sensing.}
+The above simulations are conducted with the assumption of perfect spectrum sensing.
+As the errors in spectrum sensing is inevitable, we are interested to see the performance of the distributed schemes when the spectrum sensing is not perfect.
+%The errors in spectrum sensing is inevitable, and the decision is made by the secondary users and based on the sensing results, without considering the difference between the sensing result and the ground truth.
+The false negative in spectrum sensing, which misdetects the presence of the active primary users, is harmful to the primary users and should be avoided as much as possible.
+On the contrary, false positive \ie which reports the presence of active primary users when there are actually not, only decreases the available spectrum for the secondary users.
+In this regard, we assume only the false negative exists in the spectrum sensing.
+
+We assume when a secondary user is within the transmission range of an active primary user, the probability that it misdetects and thus regards a channel is available equals to the rate of false negative.
+The secondary users make clustering decisions based on the imperfect spectrum sensing.
+After the clustering process is completed, we correct the spectrum availability with the ground truth.
+Then certain formed clusters may be affected as their CCCs which are obtained due to false negative will be revoked.
+%When the clustering process is completed, we will examine the performances on robustness and cluster size control with the group truth spectrum availability.
+%C3
 \end{itemize}
 
-Simulation consists of two parts, first we investigate the performance of centralized scheme and the distributed schemes in a small network, as there is no polynomial time solution available to solve the centralized problem.
+
+The simulation consists of two parts, first we investigate the performance of centralized scheme and the distributed schemes in a small network, as there is no polynomial time solution available to solve the centralized problem.
 In the second part, we investigate the performance of the proposed distributed schemes in the CRN with different scales and densities.
 The following simulation setting is the same for both simulation parts.
 CRs and PUs are deployed on a two-dimensional Euclidean plane.
@@ -1288,7 +1304,7 @@ Desired size $\delta$ 	& 6	&   12 						& 20      \\ \hline
 
 \begin{figure}[ht!]
   \centering
-  \includegraphics[width=.7\linewidth]{ccc_large_scale_color.pdf}
+  \includegraphics[width=.7\linewidth]{ccc_large_scale_color_082017_newdata_no_texture.pdf}
   \caption{Average number of CCs of non-singleton clusters}
   \label{ccc_large_scale}
 \end{figure}
@@ -1367,6 +1383,35 @@ In contrary, the clusters from SOC demonstrates obvious divergence on cluster si
 %This means that the sizes of the clusters generated by ROSS-DGA are limited by the network density, and the size control feature further restricts the appearances of the big clusters, thus when the variants of ROSS are implemented, most of the CR nodes are in the clusters which are slightly smaller than the desired size. 
 The limitation of distributed scheme ROSS is it doesn't generate clusters whose sizes exceed the cluster head's neighborhood.
 The reason is with ROSS, cluster heads form clusters on the basis of their neighborhood, and don't involve the nodes which are outside the neighborhood.
+
+\subsubsection{The Performance with False Negative in Spectrum Sensing}
+
+
+Figure~\ref{false_negative} shows the average number of CCCs are decreased slightly.
+The reason is that in the process of 
+A channel on a CR, which is due to false negative, is very likely ruled out during the interaction in the neighborhood.
+Figure~\ref{false_negative_ccc} is shows the size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC with the existence of spectrum sensing false negative.
+\begin{figure}[!h]
+  \centering
+   \includegraphics[width=0.7\linewidth]{false_negative.pdf}
+  \caption{The number of CCCs per non-singleton cluster with the presence of spectrum sensing false negative}
+  %, there are $x=6$ when $N=100$, $x=12$ when $N=200$, $x=21$ when $N=300$, which is around $2/3$ of the number of average neighbours.
+  \label{false_negative_ccc}
+\end{figure}
+
+The influence of the false negative on the sustainability of the clusters can be seen from Figure~\ref{false_negative_CDF}.
+When false negative exists and increases, the number of singleton clusters increases accordingly.
+Actually as to the ROSS variants, the changes of the CDF curves are due to the increasing singleton clusters.
+In contrast to the ROSS variants, the clusters resulted from SOC are affected by the sensing errors greatly, \ie when false negative rate is 30\%, a lot more small clusters are generated than that when other false negative rates present.
+ROSS variants are resilient to the false negative through the negotiation within the neighborhoods, whereas SOC demonstrates obvious divergence when certain rate of false negative exists.
+
+\begin{figure}[!h]
+  \centering
+   \includegraphics[width=0.7\linewidth]{draw_cdf_clusterSize_with_false_negative.pdf}
+  \caption{100 CRs with false negative in spectrum sensing, 30 PUs in network}
+  \label{false_negative_CDF}
+\end{figure}
+
 
 \subsection{Insights Obtained from the Simulation}
 The simulation made with the large CRN network confirms that made with the small CRN network, which is that the average number of CCs along doesn't tell the robustness of the clusters, because the cluster size and the constitution of the cluster also affect the robustness.
