@@ -171,14 +171,17 @@ Clustering also benefits the operation of a CRN by reducing the interference bet
 In CRN, a formed cluster seizes one or multiple unlicensed channels which are available for every CR node in the cluster.
 In this paper available unlicensed channels are called \textit{common licensed channels} (or common channels for short, which is abbreviated as CC).
 The availability of CCs within a cluster decides the existence of that cluster, \ie if no CCs are available then the corresponding cluster does not exist.
-Both payload and control overheads can be transmitted on the CCs.
+As the activity of primary users is usually unknown to the secondary users, it is deemed as random as to secondary users.
+Consequently, a cluster which secures more CCs will anticipate a longer life expectancy. 
+In other words, such clusters are more robust.
+In this paper, the robustness of a cluster is the ability to sustain with the existence of primary users.
+%
+Within in a cluster, both payload and control overheads can be transmitted on the CCs.
 %Out of the available CCs, there are always one or multiple channels which are used for the payload communication.
 When one or several cluster members can not access one certain CC on which primary some user activity is detected, the channel will be excluded from the set of CCs.
 In particular, if that channel is being used for payload communication, the communication pair will stop and resume the transmission on another available CC.
 %As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
-In the context of CRN, the activity of primary users is usually unknown to the secondary users, and the primary users' activity is deemed as random.
-Consequently, a cluster which secures more CCs will anticipate a longer life expectancy. 
-In other words, such clusters are more robust.
+
 
 Cluster size is inherently correlated with the cluster robustness.
 Given a CRN, it is obvious that getting rid of certain secondary users from a cluster may yield more CCs.
