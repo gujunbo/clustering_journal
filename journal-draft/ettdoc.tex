@@ -1053,7 +1053,7 @@ In this regard, we assume only the false negative exists in the spectrum sensing
 We assume when a secondary user is within the transmission range of an active primary user, the probability that it misdetects and thus regards a channel is available equals to the rate of false negative.
 The secondary users make clustering decisions based on the imperfect spectrum sensing.
 After the clustering process is completed, we correct the spectrum availability with the ground truth.
-Then certain formed clusters may be affected as their CCCs which are obtained due to false negative will be revoked.
+Then certain formed clusters may be affected as their CCs which are obtained due to false negative will be revoked.
 %When the clustering process is completed, we will examine the performances on robustness and cluster size control with the group truth spectrum availability.
 %C3
 \end{itemize}
@@ -1390,12 +1390,12 @@ The reason is with ROSS, cluster heads form clusters on the basis of their neigh
 \subsubsection{The Performance with False Negative in Spectrum Sensing}
 
 
-Figure~\ref{false_negative_ccc} shows the average number of CCCs decrease slightly when the false negative rate increases.
+Figure~\ref{false_negative_ccc} shows the average number of CCs decrease slightly when the false negative rate increases.
 The size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC is shown in Figure~\ref{false_negative_ccc}.
 \begin{figure}[!h]
   \centering
    \includegraphics[width=0.7\linewidth]{false_negative.pdf}
-  \caption{The number of CCCs per non-singleton cluster with the presence of spectrum sensing false negative}
+  \caption{The number of CCs per non-singleton cluster with the presence of spectrum sensing false negative}
   %, there are $x=6$ when $N=100$, $x=12$ when $N=200$, $x=21$ when $N=300$, which is around $2/3$ of the number of average neighbours.
   \label{false_negative_ccc}
 \end{figure}
@@ -1418,7 +1418,7 @@ The negotiation within the neighborhoods adopted by ROSS variants rules out the 
 
 \subsection{Insights Obtained from the Simulation}
 The simulation with large CRN network confirms the conclusion drawn from the small CRN network.
-First, different from the assumption adopted in all the previous works, the average number of CCCs per cluster can tell the robustness against the increasing influence of the primary users.
+First, different from the assumption adopted in all the previous works, the average number of CCs per cluster can tell the robustness against the increasing influence of the primary users.
 Second, the centralized clustering scheme is able to form the clusters which satisfy the requirement on cluster size strictly, and the clusters are robust against PUs' increasing activity, besides, it involves the smallest control overhead in the process of clustering.
 Third, as distributed schemes, the variants of ROSS outperform SOC considerably in four aspects.
 \begin{itemize}
