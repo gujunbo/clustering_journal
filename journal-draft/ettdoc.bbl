@@ -44,6 +44,15 @@ Q.~Zhao and B.~Sadler, ``A survey of dynamic spectrum access,'' \emph{Signal
 A.~Sahai, R.~Tandra, S.~M. Mishra, and N.~Hoven, ``Fundamental design tradeoffs
   in cognitive radio systems,'' in \emph{Proc. of ACM TAPAS '06}.
 
+\bibitem{Jacob2012}
+\BIBentryALTinterwordspacing
+J.~Jacob, B.~R. Jose, and J.~Mathew, \emph{Cellular Automata Approach for
+  Spectrum Sensing in Energy Efficient Sensor Network Aided Cognitive
+  Radio}.\hskip 1em plus 0.5em minus 0.4em\relax Berlin, Heidelberg: Springer
+  Berlin Heidelberg, 2012, pp. 54--61. [Online]. Available:
+  \url{https://doi.org/10.1007/978-3-642-32112-2_7}
+\BIBentrySTDinterwordspacing
+
 \bibitem{coorperativeSensing_Akyildiz11}
 I.~F. Akyildiz, B.~F. Lo, and R.~Balakrishnan, ``Cooperative spectrum sensing
   in cognitive radio networks: A survey,'' \emph{Phys. Commun.}, vol.~4, no.~1,
