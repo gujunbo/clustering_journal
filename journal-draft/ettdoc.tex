@@ -656,7 +656,7 @@ We have the following theorem to show that every secondary user will eventually 
 Given a CRN, it takes at most $N$ steps before every secondary user either becomes cluster head, or gets included into at least one cluster.
 \end{theorem}
 Here, by \textit{step} we mean Algorithm~\ref{clustering:theorem} is executed by a secondary user for one time.
-Note that the minimum number of steps is 1, \eg when a cluster head is elected and all the other nodes are within its neighborhood.
+In one special scenario, \eg when a cluster head is elected and all the other nodes are within its neighborhood, the number of steps is 1.
 The Proof on the upper bound of the steps is given in Appendix~\ref{proof_clustering:theorem}.
 %The proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
 Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a chain as discussed in the example in the proof.
@@ -1582,12 +1582,12 @@ This assumption is fair as the neighborhood connectivity degrees and node ID are
 
 %we assume every node has at least one neighbour.
 For the sake of contradiction, let us assume there exist a secondary user $\alpha$ which is not included into any cluster.
-Then there is at least one node $\beta\in \text{Nb}(\alpha)$ such that $d_{\alpha} > d_{\beta}$ (otherwise $\alpha$ becomes cluster head). 
+Then there exists a node $\beta\in \text{Nb}(\alpha)$ such that $d_{\alpha} > d_{\beta}$ (otherwise $\alpha$ becomes cluster head). 
 In this case, according to Algorithm~\ref{alg0}, $\beta$ is not included in any clusters, because otherwise $d_{\beta} = M$, a large positive integer, which contradicts to $d_{\alpha} > d_{\beta}$.
 Now, we distinguish between two cases: 
 %Otherwise, node $\alpha$ is eligible to form a cluster. COMMENT: unnecessary sentence!
 If $\beta$ becomes cluster head, node $\alpha$ is included, the assumption is not true.
-If $\beta$ is not a cluster head, then $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighboring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
+If $\beta$ is not a cluster head, then $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has a neighboring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
 % (COMMENT: $\beta$ not being a cluster head and $\beta$ not belonging to any cluster is not the same statement!!! ANSWER(Di): I add some more words)
 So far, when there is no cluster head identified, the unclustered nodes, \ie $\alpha$, $\beta$ form a linked list, where their connectivity degrees monotonically decrease.
 But this list will not continue to grow, because the minimum individual connectivity degree is zero, and the length of this list is upper bounded by the total number of nodes in the CRN.
