@@ -1,0 +1,82 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{cite}
+\author{Di Li}
+\title{Response to editors}
+\begin{document}
+
+We thank all the reviewers and editors for their feedback and suggestions.
+In the following we will address the questions and comments from the viewers.
+
+Reviewer 1:
+
+ 1)  First of all, clustering technique is not new and it is one of the well-researched areas in ad hoc network, cognitive radio, HetNet etc. The article does not review the latest publications in this area. The references are not adequate due to the fact that no recent works have been investigated. Therefore, it makes it insufficient (or unsatisfactory) work in present context.
+A lot of works on clustering in ad hoc networks or sensor networks, which address routing, power consumption and communication quality.
+Compared with the wireless networks where spectrum availability is not opportunistic, the clustering in CRN facilitated the better usage of the available spectrum, and meanwhile the conduction of clustering is restricted by the spectrum availability.
+This fact makes clustering in CRN a difficult topic.
+Up to now, only \cite{LIU_TMC11_2, Li11_ROSS, mansoor_15_cluster_robust} and \cite{Mansoor2015} xxxxxxxxxxxxxxxx
+
+ 
+ 
+    2)  The presentation of the paper is not good enough and needs a lot of improvements. For instance, ROSS scheme has been mentioned in the paper in many places, but it is not properly defined (though reference has been given). I had to check the reference paper to know it is Robust Spectrum Sharing. The journal article must be self-contained.
+    This explanation of the scheme name is added in the introduction section.
+    
+    3)  The paragraphs are too long in the Introduction. As a result, the paragraph contains too many information which are not related each other. This makes readers difficult to understand the concept.
+    xxxxxxx
+    
+    4)   In page 3, it is mentioned that “A cluster can be formed only by the cluster head”. As a matter of fact, the cluster head formation is itself a very challenging task in any cluster based approach. There are many previous works which describe the cluster head selection techniques. Please justify your statement with proper assumption or previous works that how the cluster heads are selected. I can see the description is in the few pages later but some information must be provided where it is described first time. By the way, the CH formation technique described in 4.1.1 is not novel.
+	    As the reviewer has pointed out, this statement is somehow misleading. 
+	    We put this line in the paper and wanted to say that after the clusters are decided, it is the cluster head's job to form a cluster out of the neighboring nodes.
+In the revised version, we have changed the statement as "Our scheme enables the cluster heads are selected in a distributed manner, and a cluster can only be formed only by these selected cluster head. "
+    
+    5)  In my understanding, the values of connectivity degree in Fig. 1 came from the assumption of $K_A$, $K_B$ …..$K_H$. Each node has number of available channels and I assume that they have been randomly chosen as mentioned in Fig. 1 Caption. It would be good to mention how to obtain such information in ad hoc cognitive radio network?
+    As stated in the system model, both primary and second users are able to work on the same set of channels. 
+    We assume the primary users are randomly located and work on each channel with a certain probability.
+    Then the secondary users can only use the channel which is not being used by the primary users, and the secondary user locates out of the transmission range of that primary user.
+    
+    6)  Theorem 4.1 is too obvious, authors need to discuss in terms of convergence and complexity of the proposed method. In fact, Theorem 4.1 and description immediately are so confusing and misleading. If step is defined as executing Algorithm 4.1 for one time which again takes at most N steps. A further clarification is needed.
+    We give the definition of 'step' in the revised version.
+    Immediately below the theorem 4.1, "Here, by step we mean Algorithm 4.1 is executed by a secondary user for one time."
+    7)  In 4.1.3, parameter t depends on density of the network. Please clarify what is the impact of selecting value of t in system design, such as selecting t to be higher than 1.3.
+    
+    8)  In page 7, what does “the toy network in Figure 2” mean? I hope it’s a typo. Otherwise, the Sections 4.2.1, 4.2.2, 4.2.3 are nicely written.
+    
+    9)  In simulation, have authors considered the spectrum sensing parameters on each secondary nodes? Are the channels randomly made available to users? Please clarify. What value of A is chosen in simulation?
+    
+    10) It is mentioned in the article that “The number of licensed channels is 10, each PU is operating on each channel with probability of 50\%”. It means there will be only 5 channels available (maximum) to each secondary users. In section 5.1, 7 channels are available for each CR node. It means there is chance of interference in two nodes. Please clarify those conflicts.
+    
+    11) Further comparison is needed against the previous works to justify the robustness of the proposed method.
+
+
+
+Reviewer: 2
+
+Comments to the Author
+In this paper, authors investigate the optimization algorithms for node clustering strategy in ad hoc based cognitive radio networks, where both the centralized solution and distributed solution are considered.
+
+In Section 2, that the definition of channel $k\in K$, i.e. fading channel or noisy channel? Does the channel contain pathloss and shadowing and/or fast fading? Does the value of k indicate the channel gain in either time or frequency domain? Does the channel invariant or variant (how fast) during the clustering for how long windows range? In practical, the channel changes along with the transmission, the performance clustering may be impacted by the varying channel. What's the impact of insufficient channel knowledge?
+
+The work emphasize on the robustness of clustering. However, such an evaluation in terms of robustness metric is not clear. The definition of robustness and relative discussions as well as the results should be further elaborated. The definition appears in Section 5 but my suggestion is to clearly state it in the system model and describe why choose this robustness metric according its relation with system design.
+
+In Section 4, algorithm flow charts should be included.
+
+In Section 5, Fig. 10 is missing. Fig. 14-16 can be subfigures, similar to Fig. 17-19.
+
+
+Reviewer: 3
+
+Comments to the Author
+In this paper, the authors consider the robust clustering problem in the ad-hoc Cognitive Radio Networks (CRNs). The paper is well fromalized. The research background and motivation are well described. The research problem is well addressed. The simulation based experiment is conducted to show the performance of the suggested solution approach to the addressed problem.
+
+Overall, the considered topic is very interesting. The authors well presented the considerations and assumptions on several key research issues, which inherently exist in the ad-hoc networks, for instance, decentralized spectrum sensing, synchronization on the sensing results and congestion control. To solve the addressed problem, the authors jointly use different research methods such as graphic theory and game theory, which have been widely reported in recent studies on CRNs. The experiment is well conducted with the thorough performance analysis and comparison on different experimental scenarios.
+
+However, it seems that the authors totally miss a very important research issue, which is referred to as spectrum sensing errors in terms of overlook and misidentification on the channel availability by Secondary Users (SUs). Because the sensing errors may highly affect the effectiveness and performance of the suggested solution approach, the authors need to complement the paper by accordingly either advancing the feasible solutions to alleviate sensing errors or analysing the effect of sensing errors on the suggested solution approach.
+
+
+%\bibliographystyle{IEEEtran}
+\bibliography{../backmatter/myrefs}
+\bibliographystyle{plain}
+\end{document}
