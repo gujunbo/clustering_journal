@@ -174,7 +174,8 @@ The availability of CCs within a cluster decides the existence of that cluster, 
 As the activity of primary users is usually unknown to the secondary users, it is deemed as random as to secondary users.
 Consequently, a cluster which secures more CCs will anticipate a longer life expectancy. 
 In other words, such clusters are more robust.
-In this paper, the robustness of the clusters is their ability to sustain with the existence of primary users.
+In this paper, the robustness of the clusters is their ability to uphold with the influence of the active primary users.
+The robust clustering enables more secondary users to reside in the resulted clusters when the available spectrum becomes scarcer.
 %
 Within in a cluster, both payload and control overheads can be transmitted on the CCs.
 %Out of the available CCs, there are always one or multiple channels which are used for the payload communication.
@@ -195,7 +196,7 @@ Our schemes generate the clusters which demonstrate both the robustness against 
 Hence our schemes provide the network designers with more freedom when the power consumption is involved in the design of network applications.
 %In this paper we will introduce a robust cluster structure for CRN, where the robustness means the ability of the clusters to sustain under the influence of the increasing activity of primary users, and the direct metric is the number of CCs in the clusters.
 
-
+\section{Related Works and the Relation with This Paper}
 In the following we will give a brief review on the clustering in CRN, with emphasis on the theme of robust clustering.
 %%[crn for clustering] 
 %%due to attenuation of signal propagation, primary users can only be detected by CR users when they locate closely to CR users.
@@ -225,6 +226,8 @@ Clustering scheme~\cite{Consensus_based_clustering12} looks for a network partit
 An event-driven clustering scheme is proposed for cognitive radio sensor networks in \cite{Ozger_cluster_crsn_13}.
 None of the above mentioned schemes provides a certain robustness to formed clusters against primary users. 
 
+The authors of~\cite{Mansoor2015} propose a clustering algorithm which aims to speed up the process of re-clustering in case a cluster doesn't uphold in from of active primary users.
+But this work doesn't consider to improve the ability of the formed clusters to maintain, and the messaging cost which is involved in this process is not considered.
 Robustness of clusters is discussed in~\cite{LIU_TMC11_2}. A distributed clustering scheme (denoted as SOC) which is designed to generate robust clusters against primary users is proposed.
 The robustness of the clusters comes from the fact that there are multiple CCs available for the clusters.
 SOC involves three phases of distributed executions.
@@ -240,7 +243,7 @@ Compared with the clustering schemes introduced above, the clusters are formed f
 However, as all the other clustering schemes, this scheme does not have control over the formation of the very small or very large clusters which are not desirable.
 Furthermore, both this work and SOC define robustness just to be the number of CCs per cluster, and don't consider the sustainability of clusters against the increasing activity of primary users, which leaves their claim on robustness unverified.
 %
-This paper extends~\cite{Li11_ROSS} in two dimensions.
+This paper fundamentally extends~\cite{Li11_ROSS} in two dimensions.
 First, this paper considers the correlation between the cluster robustness and the cluster size.
 As a result the cluster robustness is no longer indicated merely by the average number of CCs of clusters, but the ability of the CR nodes to get benefit from collective decision and of the clusters to sustain when the primary users' activity becomes more dynamic.
 Besides, this involment of cluster size enable us to solve the problem of clusters size devergence, which appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
@@ -348,8 +351,9 @@ $f(C)$ & the number of CCs of a cluster $C$, which is used \\
 \subsection{Robust Clustering Problem in CRN}
 \label{problem}
 
-As introduced in Section~\ref{intro}, in order to be robust against primary users' activity, the formed clusters should have more CCs.
-On the other hand, the sizes of the formed clusters should be regulated, \ie they don't diverge from a given value greatly.
+As introduced in Section~\ref{intro}, robustness of the clusters is their ability to uphold with the influence of the active primary users, and it is represented by the number of secondary users which are not included in any cluster.
+To achieve better robustness, the formed clusters should have more CCs.
+Meanwhile, the sizes of the formed clusters should be regulated, \ie they don't diverge from a given value greatly.adv
 %Considering the above mentioned requirements, we present the definition of robust clustering problem as follows.
 
 
@@ -575,7 +579,14 @@ Another obstacle comes from the fact that the centralized controller needs to be
 
 In this section we introduce the distributed clustering scheme ROSS.
 With ROSS, CR nodes form clusters based on the proximity of the available spectrum in their neighborhood after a series of interactions with their neighbors.
-ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{membership clarification}.
+ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{membership clarification} as shown in Figure~\ref{flowChartROSS}.
+\begin{figure}[ht!]
+  \centering
+\includegraphics[width=0.8\linewidth]{flow_chart.pdf}
+	\caption{Processors of ROSS}
+	\label{flowChartROSS}
+\end{figure}
+
 In the first phase, clusters are formed quickly and every CR user becomes either a cluster head or a cluster member, besides, cluster size control is implemented in this phase.
 In the second phase, non-overlapping clusters are formed in a way that the CCs of relevant clusters are mostly increased.
 
@@ -627,8 +638,9 @@ When CR node $i$ has lower individual connectivity degree than all of its neighb
 If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes the cluster heads, then the node between $i$ and $j$, which has higher neighborhood connectivity degree will become the cluster head.
 If $g_i = g_j$ as well, the node ID is used to break the tie, \ie the one with smaller node ID becomes the cluster head.
 %
-The node which is identified as a cluster head broadcasts a message to notify its neighbors of this change, and its neighbors which are not cluster heads become cluster members
-\footnote{The reason for the occurrence of the cluster heads in the neighborhood of a new cluster head will be explained in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning})}.
+The node which is identified as a cluster head broadcasts a message to notify its neighbors of this change, then its neighbors which are not cluster heads become cluster members.
+\footnote{The reason for the occurrence of the cluster heads in the neighborhood of a new cluster head will be explained in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning})}
+Actually during the whole phase I, whenever a CR node is decided to be a cluster head thus accordingly forms a cluster, or its cluster's composition is changed, the cluster head will broadcast the new information about its cluster, which includes the sets of available channels on all its cluster members.
 The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in the appendix.
 
 After receiving the notification from a cluster head, a CR node $i$ is aware that it becomes a member of a cluster. 
@@ -673,7 +685,7 @@ When a secondary user becomes cluster head, it will not become cluster member ag
 \end{lemma}
 \begin{proof}
 A secondary node becomes cluster head when its \textit{Individual connectivity degree} is smaller than all its neighbors.
-Afterwards, the \textit{Individual connectivity degree} becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
+Afterwards, the \textit{Individual connectivity degree} of its neighbors becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
 \end{proof}
 
 %According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
@@ -717,7 +729,7 @@ It is possible that the cluster head excludes all of its neighbors, resulting in
 The pseudo code for this procedure is shown in Algorithm~\ref{alg_size_control_available_CCC}.
 As to the nodes which are eliminated from the previous clusters, they restore their original individual connectivity degrees, then execute Algorithm~\ref{alg0} and become either cluster heads or get included into other clusters afterwards according to Theorem~\ref{clustering:theorem}.
 
-During Phase I, whenever a CR node is decided to be a cluster head and accordingly forms a cluster, or its cluster's composition is changed, the cluster head will broadcast the updated information about its cluster, which includes the sets of available channels on all its cluster members.
+
 
 
 \subsubsection{Cluster Size Control in Dense CRN}
@@ -769,7 +781,7 @@ The desired size $\delta$ is decided based on the capability of the CR users and
 As there are overlaps between neighboring clusters, the sizes of the clusters formed in this phase are larger than that of the finally formed clusters.
 Hence, a cluster head excludes some cluster members when the cluster size exceeds a certain threshold.
 We set the threshold as $t\cdot \delta$, where $\delta$ is the desired cluster size.
-The constant parameter $t$ is usually larger than 1 and is dependent on the network density and CR nodes' transmission range, in particular, $t$ is between 1 and the ratio between the average number of neighbors and the desired size.
+The constant parameter $t$ is usually larger than 1 and is dependent on the network density and CR nodes' transmission range, in particular, $t$ is between 1 and the ratio between the average neighborhood size and the desired size.
 A smaller or bigger $t$ may lead to more clusters with smaller or larger size than $\delta$.
 Because of $t$, the threshold is larger than the desired size, then there will be some nodes choosing to affiliate with other clusters in the following phases.
 %C1-7
@@ -1101,7 +1113,8 @@ The simulation is written in C++, and the performance results are averaged over 
 
 
 \subsection{Centralized Schemes vs. Decentralized Schemes}
-In this part of simulation, there are 10 primary users and 20 CR users dropped randomly (with uniform distribution) within a square area of size $A^{2}$, where $A$ is a positive value and we set the transmission ranges of primary and CR users to $A/3$.
+In this part of simulation, there are 10 primary users and 20 CR users dropped randomly (with uniform distribution) in a square area where side length is $A$.
+$A$ is a positive value and the transmission ranges of both primary and CR users are set to $A/3$.
 %C1-10, C1-9
 %There are 10 available channels. 
 %With this setting, the average number of neighbours of one CR user is 4.8.
@@ -1135,7 +1148,7 @@ As to the variants of ROSS, we notice that the greedy mechanism increases CCs in
     \includegraphics[width=\linewidth]{cdf_clusterSize_20.pdf}\par\caption{Cumulative distribution of CRs residing in clusters with different sizes}\label{size_control}    
     \includegraphics[width=\linewidth]{survival_rate_20.pdf}\par\caption{Number of unclustered CRs with decreasing spectrum availability}\label{singleton_clusters}
 \end{multicols}
-\caption{Comparison between the distributed and centralized clustering schemes ($N$ = 20)}
+%\caption{Comparison between the distributed and centralized clustering schemes ($N$ = 20)}
 \label{compare_dis_centralized}
 \end{figure*}
 
@@ -1178,6 +1191,7 @@ The centralized scheme with desired size of 2 generates the most robust clusters
 The centralized scheme with desired size of 3 doesn't outperform the variants of ROSS, because pursuing cluster size prevents forming the the clusters with more CCs.
 In contrary, the variants of ROSS generate some smaller clusters which are more likely to maintain when there are more PUs.
 
+If we use the number of secondary users residing in a cluster as the numerical representation of cluster robustness, then the variants of ROSS is from 5\%,  30\% and 230\% more robust than SOC with the number of newly added PR is 10, 40 and 80 respectively.
 The above observation shows that the average number of CCs of non-singleton clusters doesn't necessarily illustrate the robustness  of cluster, \ie SOC obtains the most CCs for the clusters which are meanwhile the most vulnerable.
 Besides, with similar distribution of sizes, the clusters generated by ROSS-DGA and ROSS-DFA are more robust than that by SOC.
 
@@ -1392,7 +1406,7 @@ This result coincides with the analysis in Section~\ref{ross_p2_cluster_pruning}
 To better understand the distribution of the sizes of formed clusters, for each network density, we depict the empirical cumulative distribution of CR nodes which are in clusters with different sizes in Figures~\ref{cdf_clusterSize_100}~\ref{cdf_clusterSize_200}~\ref{cdf_clusterSize_300} respectively.
 \begin{figure}[!h]
   \centering
-   \includegraphics[width=0.7\linewidth]{nClusters_largeNetwork.pdf}
+   \includegraphics[width=0.7\linewidth]{nClusters_largeNetwork_no_texture.pdf}
   \caption{The number of formed clusters.}
   %, there are $x=6$ when $N=100$, $x=12$ when $N=200$, $x=21$ when $N=300$, which is around $2/3$ of the number of average neighbours.
   \label{nClusters_largeNetwork}
