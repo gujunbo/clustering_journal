@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  17 SEP 2017 23:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  17 SEP 2017 23:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1470,10 +1470,6 @@ Package pdftex.def Info: ../figures/04_clutering/false_negative.pdf used on inp
 ut line 1438.
 (pdftex.def)             Requested size: 146.99936pt x 102.29527pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
 <../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf, id=636, 
 385.44pt x 312.16624pt>
 File: ../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf Grap
@@ -1481,13 +1477,32 @@ hic file (type pdf)
 
 <use ../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf>
 Package pdftex.def Info: ../figures/04_clutering/draw_cdf_clusterSize_with_fals
-e_negative.pdf used on input line 1454.
+e_negative.pdf used on input line 1452.
 (pdftex.def)             Requested size: 146.99936pt x 119.0531pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <22> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1512.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1525.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 1544
+.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <9> not available
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 1544.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13 <../figures/04_clutering/survival_rate_100_edge50.pdf> <../figures/04_clut
@@ -1497,24 +1512,12 @@ utering/cdf_clusterSize_200.pdf> <../figures/04_clutering/cdf_clusterSize_300.p
 df> <../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf> <../figures
 /04_clutering/false_negative.pdf> <../figures/04_clutering/draw_cdf_clusterSize
 _with_false_negative.pdf>]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <22> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1515.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1528.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 1547
-.
- (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <9> not available
-(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 1547.
-
 <../figures/04_clutering/lemma1.pdf, id=748, 563.87807pt x 108.10442pt>
 File: ../figures/04_clutering/lemma1.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/lemma1.pdf>
 Package pdftex.def Info: ../figures/04_clutering/lemma1.pdf used on input line 
-1639.
+1636.
 (pdftex.def)             Requested size: 126.00128pt x 24.15584pt.
  [14 <../figures/04_clutering/lemma1.pdf>] [15] (./ettdoc.bbl
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
@@ -1532,15 +1535,15 @@ Missing character: There is no ¶ in font ptmr7t!
 Missing character: There is no Ã in font ptmr7t!
 Missing character: There is no ¶ in font ptmr7t!
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1769.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1766.
 
 [17
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1769.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1766.
  (./ettdoc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1769.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1769.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1766.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1766.
 
 Package rerunfilecheck Info: File `ettdoc.out' has not changed.
 (rerunfilecheck)             Checksum: 8476D96E7A3D65289FAF62E39F6D6403;1236.
@@ -1550,7 +1553,7 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1769.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1766.
  )
 (\end occurred inside a group at level 1)
 
@@ -1559,7 +1562,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1769.
 Here is how much of TeX's memory you used:
  20506 strings out of 493013
  353767 string characters out of 6133342
- 853335 words of memory out of 5000000
+ 854335 words of memory out of 5000000
  23461 multiletter control sequences out of 15000+600000
  65935 words of font info for 141 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
@@ -1590,7 +1593,7 @@ lvetic/uhvr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/helvetic/
 uhvro8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pf
 b></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/lo
 cal/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ettdoc.pdf (17 pages, 787066 bytes).
+Output written on ettdoc.pdf (17 pages, 786792 bytes).
 PDF statistics:
  980 PDF objects out of 1000 (max. 8388607)
  804 compressed objects within 9 object streams

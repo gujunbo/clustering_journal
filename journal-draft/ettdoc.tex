@@ -1354,8 +1354,8 @@ Desired size $\delta$ 	& 6	&   12 						& 20      \\ \hline
 \end{figure}
 
 The average number of CCs of the non-singleton clusters is shown in Figure~\ref{ccc_large_scale}.
-SOC achieves the most CCs per non-singleton cluster, but the lead over the variants of ROSS decreases significantly when $N$ increases.
-%\ie when $N=300$, the number of CCs achieved by ROSS variants (except for ROSS-$\delta$-DFA) is almost the same as that resulted from SOC.
+Here we don't see the obvious difference between different schemes on the number of CCs.
+%SOC achieves the most CCs per non-singleton cluster, but the lead over the variants of ROSS decreases significantly when $N$ increases.
 %This means SOC out performs in terms of the average number of CCs per non-singleton cluster when network is sparse.
 %This is also observed in the evaluation in Section \ref{ccc_20} where $N=20$.
 %When the network becomes denser, even this metric favours SOC as discussed in the beginning of Section~\ref{performance}, ROSS-DGA achieves even more CCs than SOC, and ROSS-DFA and ROSS-$\delta$-DGA increase the number of CCs visibly.
@@ -1432,7 +1432,7 @@ The reason is with ROSS, cluster heads form clusters on the basis of their neigh
 
 
 Figure~\ref{false_negative_ccc} shows the average number of CCs decrease slightly when the false negative rate increases.
-The size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC is shown in Figure~\ref{false_negative_ccc}.
+The size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC is shown in Figure~\ref{false_negative_CDF}.
 \begin{figure}[!h]
   \centering
    \includegraphics[width=0.7\linewidth]{false_negative.pdf}
@@ -1443,19 +1443,16 @@ The size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC is shown in Fig
 %The influence of the false negative on the sustainability of the clusters can be seen from Figure~\ref{false_negative_CDF}.
 For all the schemes, when false negative increases, the number of singleton clusters increases accordingly.
 %As to the ROSS variants, the changes of the CDF curves are resulted from the increasing singleton clusters.
-The clusters from SOC are affected by the sensing errors greatly, \ie when false negative rate is 30\%, a lot more small clusters are generated than that when other false negative rates present.
-SOC demonstrates obvious divergence when certain rate of false negative exists, in contrary, ROSS variants are resilient to the false negative in terms of cluster sizes.
-The negotiation within the neighborhoods adopted by ROSS variants rules out the channel which is due to false negative successfully, which doesn't work well in SOC.
-
-
-
+The clusters from SOC are affected by the sensing errors the greatly.
+More unclustered nodes are generated, and a lot of small clusters are formed, \eg when false negative rate is 30\%.
+In contrary, ROSS variants are resilient in terms of unclusterd nodes and cluster sizes.
+We can conclude that through negotiation within the neighborhoods, ROSS variants successfully rules out the channel from false negative sensing.
 \begin{figure}[!h]
   \centering
    \includegraphics[width=0.7\linewidth]{draw_cdf_clusterSize_with_false_negative.pdf}
   \caption{100 CRs with false negative in spectrum sensing, 30 PUs in network}
   \label{false_negative_CDF}
 \end{figure}
-
 
 \subsection{Insights Obtained from the Simulation}
 The simulation with large CRN network confirms the conclusion drawn from the small CRN network.
