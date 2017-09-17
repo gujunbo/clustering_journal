@@ -650,24 +650,51 @@ The manipulation of the individual connectivity degree of the cluster members ac
 %, which enables the nodes which are outside of the cluster can possibly become cluster heads or can also be included into other clusters.
 %We have the following theorem to show that when there is no one secondary which shares no CC with any other secondary users, \ie
 %all secondary users' individual connectivity degrees are greater than zero, then every secondary user will eventually be either integrated into a certain cluster, or becomes a cluster head.
-We have the following theorem to show that every secondary user will eventually be either integrated into a certain cluster or becomes a cluster head.
-\begin{theorem}
-\label{clustering:theorem}
-Given a CRN, it takes at most $N$ steps before every secondary user either becomes cluster head, or gets included into at least one cluster.
-\end{theorem}
-Here, by \textit{step} we mean Algorithm~\ref{clustering:theorem} is executed by a secondary user for one time.
-In one special scenario, \eg when a cluster head is elected and all the other nodes are within its neighborhood, the number of steps is 1.
-The Proof on the upper bound of the steps is given in Appendix~\ref{proof_clustering:theorem}.
+We have the following lemma to show that every secondary user will eventually be either integrated into a certain cluster or becomes a cluster head.
+
+\begin{lemma}
+\label{clustering:lemma1}
+Given a CRN where any secondary user is able to communicate with any other secondary user through the other nodes, then after the phase of cluster head selection and initial cluster formation, every secondary user either becomes cluster head, or gets included into at least one cluster.
+\end{lemma}
+
+%Here, by \textit{step} we mean Algorithm~\ref{clustering:theorem} is executed by a secondary user for one time.
+%In one special scenario, \eg when a cluster head is elected and all the other nodes are within its neighborhood, the number of steps is 1.
+The Proof is given in Appendix~\ref{proof_clustering:lemma1}.
 %The proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
-Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a chain as discussed in the example in the proof.
+%Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a chain as discussed in the example in the proof.
 %
-Assuming there is a token in the CRN, one node is allowed to execute Algorithm~\ref{alg0} only when it holds the token, and it then transfers the token to the neighboring node on the chain.
-If one step can be finished within a certain time span $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
+%Assuming there is a token in the CRN, one node is allowed to execute Algorithm~\ref{alg0} only when it holds the token, and it then transfers the token to the neighboring node on the chain.
+%If one step can be finished within a certain time span $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
 %C1-6
-As Algorithm~\ref{alg0} can be executed concurrently by different secondary users, the needed time can be considerably reduced.
+
+\begin{lemma}
+\label{clustering:lemma2}
+When a secondary user becomes cluster head, it will not become cluster member again.
+\end{lemma}
+\begin{proof}
+A secondary node becomes cluster head when its \textit{Individual connectivity degree} is smaller than all its neighbors.
+Afterwards, the \textit{Individual connectivity degree} becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
+\end{proof}
+
 %According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
 %
 %This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
+
+\begin{lemma}
+\label{clustering:lemma3}
+In the process of cluster head selection and initial cluster formation, the maximum number of times that a secondary node becomes cluster head is $N$.
+\end{lemma}
+This lemma can be easily gotten from~\ref{clustering:lemma2} considering the $N$ is the number of all the secondary users in the CRN.
+Based on these Lemmas, we can easily obtain Theorem~\ref{clustering:lemma1},
+\begin{theorem}
+\label{clustering:theorem}
+Assuming the time for a secondary user to update the information about cluster heads in its neighborhood is $T$, then it takes at most $N*T $ time to finish the process of cluster head selection and initial cluster formation.
+\end{theorem}
+Phase I ends when no more secondary users becoming cluster head.
+based on~\ref{clustering:lemma1} and~\ref{clustering:lemma3}, the theorem is proved.
+
+
+As Algorithm~\ref{alg0} can be executed concurrently by different secondary users, the needed time can be considerably reduced.
 If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, the outcome is shown in Figure~\ref{fig2}.
 Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C(H)$ is $\{H, B, A, G\}$.
 	
@@ -1571,7 +1598,7 @@ Through simulation, the distributed schemes demonstrate similar performance with
 
 \section{Proof of Theorem~\ref{clustering:theorem}}
 \begin{proof}
-\label{proof_clustering:theorem}
+\label{proof_clustering:lemma1}
 %Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
 We consider a CRN which can be represented as a connected graph.
 % (COMMENT: Why is it necessarily connected? No special case where the graph has two components? ANSWER(Di): It is possible for the graph to have two components. My point it, when theorem works in one component, it works in the complete graph.)
@@ -1590,7 +1617,7 @@ If $\beta$ becomes cluster head, node $\alpha$ is included, the assumption is no
 If $\beta$ is not a cluster head, then $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has a neighboring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
 % (COMMENT: $\beta$ not being a cluster head and $\beta$ not belonging to any cluster is not the same statement!!! ANSWER(Di): I add some more words)
 So far, when there is no cluster head identified, the unclustered nodes, \ie $\alpha$, $\beta$ form a linked list, where their connectivity degrees monotonically decrease.
-But this list will not continue to grow, because the minimum individual connectivity degree is zero, and the length of this list is upper bounded by the total number of nodes in the CRN.
+But this list will not continue growing, because the minimum individual connectivity degree is zero, and the length of this list is upper bounded by the total number of nodes in the CRN.
 An example of the formed node series is shown as Figure~\ref{lemma1}.
 
 \begin{figure}[ht!]
@@ -1608,7 +1635,7 @@ Then $\omega$ incorporates all its one-hop neighbors (here we assume that every 
 The nodes which join a cluster set their individual connection degrees to $M$, which makes the node immediately precede in the list to become a cluster head.
 In this way, cluster heads are generated from the tail to the head in the list, and every node in the list is in at least one cluster, which contradicts the assumption that $\alpha$ is not included in any cluster.
 
-If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming a cluster member} as one step, as the length of the list of secondary users is not larger than $N$, there are $N$ steps for this scenario to form the initial clusters.
+%If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming a cluster member} as one step, as the length of the list of secondary users is not larger than $N$, there are $N$ steps for this scenario to form the initial clusters.
 
 %we know that within at most $N$ steps, all the nodes belong to certain clusters. (COMMENT: No, we don't! Where was that shown?)
 \end{proof}
