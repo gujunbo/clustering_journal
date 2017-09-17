@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  17 SEP 2017 23:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  18 SEP 2017 00:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -459,15 +459,8 @@ LaTeX Font Info:    ... okay on input line 11.
 \makeMPintoPDFobject=\count105
 \everyMPtoPDFconversion=\toks22
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 20.
- (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
 LaTeX Font Info:    Try loading font information for U+msa on input line 38.
-
-(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 38.
@@ -484,13 +477,13 @@ e de-ployed on a two-dimensional
 
 [3] [4] (./response_to_editors.bbl) [5] (./response_to_editors.aux) ) 
 Here is how much of TeX's memory you used:
- 2268 strings out of 493013
- 26937 string characters out of 6133342
+ 2251 strings out of 493013
+ 26635 string characters out of 6133342
  86650 words of memory out of 5000000
- 5810 multiletter control sequences out of 15000+600000
+ 5796 multiletter control sequences out of 15000+600000
  6598 words of font info for 26 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,6n,24p,660b,193s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,6n,24p,657b,200s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/loca
 l/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local
 /texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/
@@ -499,7 +492,7 @@ exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
 ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
 e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on response_to_editors.pdf (5 pages, 99973 bytes).
+Output written on response_to_editors.pdf (5 pages, 99963 bytes).
 PDF statistics:
  48 PDF objects out of 1000 (max. 8388607)
  33 compressed objects within 1 object stream

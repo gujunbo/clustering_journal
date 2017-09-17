@@ -15,7 +15,7 @@ In the following we will address the each questions and comment from the viewers
 
 \section{Reviewer 1:}
 
-\begin{itemize}
+\begin{enumerate}
 
 \item \textcolor{blue}{  First of all, clustering technique is not new and it is one of the well-researched areas in ad hoc network, cognitive radio, HetNet etc. The article does not review the latest publications in this area. The references are not adequate due to the fact that no recent works have been investigated. Therefore, it makes it insufficient (or unsatisfactory) work in present context.}
 
@@ -99,13 +99,13 @@ The robustness is illustrated by the number of the unclustered CR nodes in the C
 We have modified the analysis of the simulation result in Section 6.1.3 and 6.2.2.
 We have also added additional simulations about the effects of sensing errors on the distributed schemes in Section 6.2.4.
 
-\end{itemize}
+\end{enumerate}
 
 \section{Reviewer 2:}
 
 Comments to the Author
 In this paper, authors investigate the optimization algorithms for node clustering strategy in ad hoc based cognitive radio networks, where both the centralized solution and distributed solution are considered.
-\begin{itemize}
+\begin{enumerate}
 
 
 \item \textcolor{blue}{ In Section 2, that the definition of channel $k\in K$, i.e. fading channel or noisy channel? Does the channel contain pathloss and shadowing and/or fast fading? Does the value of k indicate the channel gain in either time or frequency domain? }
@@ -122,6 +122,7 @@ In reality, when the communication during the clustering process doesn't succeed
 
 
 \item \textcolor{blue}{ The work emphasize on the robustness of clustering. However, such an evaluation in terms of robustness metric is not clear. The definition of robustness and relative discussions as well as the results should be further elaborated. The definition appears in Section 5 but my suggestion is to clearly state it in the system model and describe why choose this robustness metric according its relation with system design.}
+
 \textbf{Answer:} We take the advice and have done the modifications in two places.
 1. We mention the definition of robustness of clusters in the 3rd paragraph of the introduction section.
 2. In Section 3.1, the robustness is associated with the number of secondary users which are not included in any cluster.
@@ -129,12 +130,14 @@ with these modifications, readers will understand the robustness metric in Secti
 
 
 \item \textcolor{blue}{ In Section 4, algorithm flow charts should be included.}
+
 \textbf{Answer:} a flow chart as Figure 1 is added in Section 5 (which is Section 4 before this major revision)
 
 \item \textcolor{blue}{ In Section 5, Fig. 10 is missing. Fig. 14-16 can be subfigures, similar to Fig. 17-19.}
+
 \textbf{Answer:} Figure 10 in Section 5 in the previous version is deleted.
 
-\end{itemize}
+\end{enumerate}
 
 \section{Reviewer 3:}
 
@@ -143,13 +146,13 @@ Comments to the Author
 In this paper, the authors consider the robust clustering problem in the ad-hoc Cognitive Radio Networks (CRNs). The paper is well formalized. The research background and motivation are well described. The research problem is well addressed. The simulation based experiment is conducted to show the performance of the suggested solution approach to the addressed problem.
 
 Overall, the considered topic is very interesting. The authors well presented the considerations and assumptions on several key research issues, which inherently exist in the ad-hoc networks, for instance, decentralized spectrum sensing, synchronization on the sensing results and congestion control. To solve the addressed problem, the authors jointly use different research methods such as graphic theory and game theory, which have been widely reported in recent studies on CRNs. The experiment is well conducted with the thorough performance analysis and comparison on different experimental scenarios.
-\begin{itemize}
+\begin{enumerate}
 \item \textcolor{blue}{ However, it seems that the authors totally miss a very important research issue, which is referred to as spectrum sensing errors in terms of overlook and misidentification on the channel availability by Secondary Users (SUs). Because the sensing errors may highly affect the effectiveness and performance of the suggested solution approach, the authors need to complement the paper by accordingly either advancing the feasible solutions to alleviate sensing errors or analyzing the effect of sensing errors on the suggested solution approach.}
 
  \textbf{Answer:} we admit that the sensing error was not considered in the paper.
 We agree with the reviewer that this is an important issue, as sensing error is inevitable in practical applications.
 We have done additional simulations about the effects of sensing errors on the distributed schemes in Section 6.2.4.
-\end{itemize}
+\end{enumerate}
 
 %\bibliographystyle{IEEEtran}
 \bibliography{../backmatter/myrefs}

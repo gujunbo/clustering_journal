@@ -1,7 +1,7 @@
 % ettdoc.tex V2.10, 19 June 2012
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL ettdoc_0705.tex   Mon Sep 11 21:54:48 2017
-%DIF ADD ettdoc.tex        Mon Sep 11 22:29:52 2017
+%DIF ADD ettdoc.tex        Mon Sep 18 00:19:42 2017
 
 \documentclass[times]{ettauth}
 \usepackage[toc,page]{appendix}
@@ -67,7 +67,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \usepackage{fancyhdr} %%Fancy Kopf- und Fußzeilen
 %\usepackage{longtable} %%Für Tabellen, die eine Seite überschreiten
 \usepackage{lscape}
-\usepackage{rotating} 
+\usepackage{rotating}
 %\usepackage[htt]{hyphenat} %Trennung von Typewriter-Schriften
 %\usepackage{listings}
 %\usepackage{pstricks-add} --> This package generates problems with booktabs (toprule, etc.)
@@ -226,10 +226,12 @@ In this hierarchical spectrum access model~\cite{zhao_survey_DSA_2007}, the lice
 %
 %cluster
 Regarding the operation of CRN, efficient spectrum sensing is identified to be critical for a smooth operation of a cognitive radio network~\cite{Sahai_FundamentalDesignTradeoffs2006}.
-\DIFdelbegin \DIFdel{Efficient spectrum sensing can be achieved }\DIFdelend \DIFaddbegin \DIFadd{The rate of false negative, \ie misdetecting the active primary users, can be decreased }\DIFaddend by cooperative spectrum sensing of multiple secondary users, which has been shown to cope effectively with noise uncertainty and channel fading, thus remarkably improving the sensing accuracy\DIFdelbegin \DIFdel{~\mbox{%DIFAUXCMD
+\DIFdelbegin \DIFdel{Efficient spectrum sensing can be achieved }\DIFdelend \DIFaddbegin \DIFadd{The rate of false negative, \ie misdetecting the active primary users, can be decreased }\DIFaddend by cooperative spectrum sensing of multiple secondary users, which has been shown to cope effectively with noise uncertainty and channel fading, thus remarkably improving the sensing accuracy~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \cite{coorperativeSensing_Akyildiz11}}%DIFAUXCMD
 .
-}\DIFdelend \DIFaddbegin \DIFadd{, coorperativeSensing_Akyildiz11}}\DIFadd{.
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\cite{Jacob2012, coorperativeSensing_Akyildiz11}}%DIFAUXCMD
+.
 %DIF > C3
 }\DIFaddend Collaborative sensing relies on the consensus of CR users\footnote{The terms user and node appear interchangeably in this paper. In particular, user is adopted when its networking or cognitive ability are discussed or stressed, while we refer to nodes typicallly in the context of the network topology.} within a certain area, in this regard, clustering is regarded as an effective method to realize cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing}.
 % ... decreases considerably the negative probability due to the random channel effects like fading and shadowing.
@@ -272,7 +274,8 @@ In this paper available unlicensed channels are called \textit{common licensed c
 As the activity of primary users is usually unknown to the secondary users, it is deemed as random as to secondary users.
 Consequently, a cluster which secures more CCs will anticipate a longer life expectancy. 
 In other words, such clusters are more robust.
-In this paper, the robustness of the clusters is their ability to sustain with the existence of primary users.
+In this paper, the robustness of the clusters is their ability to uphold with the influence of the active primary users.
+The robust clustering enables more secondary users to reside in the resulted clusters when the available spectrum becomes scarcer.
 %DIF > 
 Within in a cluster, both }\DIFaddend payload and control overheads can be transmitted on the CCs.
 %Out of the available CCs, there are always one or multiple channels which are used for the payload communication.
@@ -298,8 +301,8 @@ Our schemes generate the clusters which demonstrate both the robustness against 
 Hence our schemes provide the network designers with more freedom when the power consumption is involved in the design of network applications.
 %In this paper we will introduce a robust cluster structure for CRN, where the robustness means the ability of the clusters to sustain under the influence of the increasing activity of primary users, and the direct metric is the number of CCs in the clusters.
 
-
-\DIFaddbegin \DIFadd{In the following we will give a brief review on the clustering in CRN, with emphasis on the theme of robust clustering.
+\DIFaddbegin \section{\DIFadd{Related Works and the Relation with This Paper}}
+\DIFadd{In the following we will give a brief review on the clustering in CRN, with emphasis on the theme of robust clustering.
 %DIF > %[crn for clustering] 
 %DIF > %due to attenuation of signal propagation, primary users can only be detected by CR users when they locate closely to CR users.
 %DIF > In cognitive radio networks, secondary users which locate closely with each other are possibly affected by the same group of primary users, so that the availability of licensed spectrum is similar to them, \ie certain channels are available on each of them.
@@ -342,7 +345,11 @@ Clustering scheme~\cite{Consensus_based_clustering12} looks for a network partit
 An event-driven clustering scheme is proposed for cognitive radio sensor networks in \cite{Ozger_cluster_crsn_13}.
 None of the above mentioned schemes provides a certain robustness to formed clusters against primary users. 
 
-Robustness of clusters is discussed in~\cite{LIU_TMC11_2}. A distributed clustering scheme (denoted as SOC) which is designed to generate robust clusters against primary users is proposed.
+\DIFaddbegin \DIFadd{The authors of~\mbox{%DIFAUXCMD
+\cite{Mansoor2015} }%DIFAUXCMD
+propose a clustering algorithm which aims to speed up the process of re-clustering in case a cluster doesn't uphold in from of active primary users.
+But this work doesn't consider to improve the ability of the formed clusters to maintain, and the messaging cost which is involved in this process is not considered.
+}\DIFaddend Robustness of clusters is discussed in~\cite{LIU_TMC11_2}. A distributed clustering scheme (denoted as SOC) which is designed to generate robust clusters against primary users is proposed.
 The robustness of the clusters comes from the fact that there are multiple CCs available for the clusters.
 SOC involves three phases of distributed executions.
 In the first phase, every secondary user forms clusters with some one-hop neighbors. In the second and third phase, each secondary user seeks to either merge other clusters or join one of them.
@@ -357,7 +364,7 @@ Compared with the clustering schemes introduced above, the clusters are formed f
 However, as all the other clustering schemes, this scheme does not have control over the formation of the very small or very large clusters which are not desirable.
 Furthermore, \DIFdelbegin \DIFdel{this work doesn}\DIFdelend \DIFaddbegin \DIFadd{both this work and SOC define robustness just to be the number of CCs per cluster, and don}\DIFaddend 't consider the \DIFdelbegin \DIFdel{robustness }\DIFdelend \DIFaddbegin \DIFadd{sustainability }\DIFaddend of clusters against the increasing activity of primary users, which leaves their claim \DIFdelbegin \DIFdel{of }\DIFdelend \DIFaddbegin \DIFadd{on }\DIFaddend robustness unverified.
 %
-This paper extends~\cite{Li11_ROSS} in two dimensions.
+This paper \DIFaddbegin \DIFadd{fundamentally }\DIFaddend extends~\cite{Li11_ROSS} in two dimensions.
 First, this paper considers the correlation between the cluster robustness and the cluster size.
 As a result the cluster robustness is no longer indicated merely by the average number of CCs of clusters, but the ability of the CR nodes to get benefit from collective decision and of the clusters to sustain when the primary users' activity becomes more dynamic.
 Besides, this involment of cluster size enable us to solve the problem of clusters size devergence, which appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
@@ -465,9 +472,10 @@ $f(C)$ & the number of CCs of a cluster $C$, which is used \\
 \subsection{Robust Clustering Problem in CRN}
 \label{problem}
 
-As introduced in Section~\ref{intro}, in order to be robust against primary users' activity, the formed clusters should have more CCs.
-On the other hand, the sizes of the formed clusters should be regulated, \ie they don't diverge from a given value greatly.
-%Considering the above mentioned requirements, we present the definition of robust clustering problem as follows.
+As introduced in Section~\ref{intro}, \DIFdelbegin \DIFdel{in order to be robust against primary users' activity, the }\DIFdelend \DIFaddbegin \DIFadd{robustness of the clusters is their ability to uphold with the influence of the active primary users, and it is represented by the number of secondary users which are not included in any cluster.
+To achieve better robustness, the }\DIFaddend formed clusters should have more CCs.
+\DIFdelbegin \DIFdel{On the other hand}\DIFdelend \DIFaddbegin \DIFadd{Meanwhile}\DIFaddend , the sizes of the formed clusters should be regulated, \ie they don't diverge from a given value greatly.\DIFaddbegin \DIFadd{adv
+}\DIFaddend %Considering the above mentioned requirements, we present the definition of robust clustering problem as follows.
 
 
 
@@ -692,8 +700,16 @@ Another obstacle comes from the fact that the centralized controller needs to be
 
 In this section we introduce the distributed clustering scheme ROSS.
 With ROSS, CR nodes form clusters based on the proximity of the available spectrum in their neighborhood after a series of interactions with their neighbors.
-ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{membership clarification}.
-In the first phase, clusters are formed quickly and every CR user becomes either a cluster head or a cluster member, besides, cluster size control is implemented in this phase.
+ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{membership clarification} \DIFdelbegin \DIFdel{.
+}\DIFdelend \DIFaddbegin \DIFadd{as shown in Figure~\ref{flowChartROSS}.
+}\begin{figure}[ht!]
+  \centering
+\includegraphics[width=0.8\linewidth]{flow_chart.pdf}
+	\caption{\DIFaddFL{Processors of ROSS}}
+	\label{flowChartROSS}
+\end{figure}
+
+\DIFaddend In the first phase, clusters are formed quickly and every CR user becomes either a cluster head or a cluster member, besides, cluster size control is implemented in this phase.
 In the second phase, non-overlapping clusters are formed in a way that the CCs of relevant clusters are mostly increased.
 
 %is based on the spectrum sensing results in its neighbours , then
@@ -744,8 +760,9 @@ When CR node $i$ has lower individual connectivity degree than all of its neighb
 If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes the cluster heads, then the node between $i$ and $j$, which has higher neighborhood connectivity degree will become the cluster head.
 If $g_i = g_j$ as well, the node ID is used to break the tie, \ie the one with smaller node ID becomes the cluster head.
 %
-The node which is identified as a cluster head broadcasts a message to notify its neighbors of this change, and its neighbors which are not cluster heads become cluster members
-\footnote{The reason for the occurrence of the cluster heads in the neighborhood of a new cluster head will be explained in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning})}.
+The node which is identified as a cluster head broadcasts a message to notify its neighbors of this change, \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{then }\DIFaddend its neighbors which are not cluster heads become cluster members\DIFaddbegin \DIFadd{.
+}\DIFaddend \footnote{The reason for the occurrence of the cluster heads in the neighborhood of a new cluster head will be explained in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning})}
+\DIFaddbegin \DIFadd{Actually during the whole phase I, whenever a CR node is decided to be a cluster head thus accordingly forms a cluster, or its cluster's composition is changed, the cluster head will broadcast the new information about its cluster, which includes the sets of available channels on all its cluster members}\DIFaddend .
 The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in the appendix.
 
 After receiving the notification from a cluster head, a CR node $i$ is aware that it becomes a member of a cluster. 
@@ -767,26 +784,70 @@ The manipulation of the individual connectivity degree of the cluster members ac
 %, which enables the nodes which are outside of the cluster can possibly become cluster heads or can also be included into other clusters.
 %We have the following theorem to show that when there is no one secondary which shares no CC with any other secondary users, \ie
 %all secondary users' individual connectivity degrees are greater than zero, then every secondary user will eventually be either integrated into a certain cluster, or becomes a cluster head.
-We have the following theorem to show that every secondary user will eventually be either integrated into a certain cluster or becomes a cluster head.
-\begin{theorem}
-\label{clustering:theorem}
-Given a CRN, it takes at most $N$ steps \DIFdelbegin \DIFdel{that }\DIFdelend \DIFaddbegin \DIFadd{before }\DIFaddend every secondary user either becomes cluster head, or gets included into at least one cluster.
-\end{theorem}
-Here, by \textit{step} we mean \DIFdelbegin \DIFdel{one secondary user executing }\DIFdelend Algorithm~\ref{clustering:theorem} \DIFaddbegin \DIFadd{is executed by a secondary user }\DIFaddend for one time.
-\DIFdelbegin \DIFdel{The Proof is }\DIFdelend \DIFaddbegin \DIFadd{Note that the minimum number of steps is 1, \eg when a cluster head is elected and all the other nodes are within its neighborhood.
-The Proof on the upper bound of the steps is given }\DIFaddend in Appendix~\ref{proof_clustering:theorem}.
-%DIF < 
-\DIFdelbegin \DIFdel{The procedure of the proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
-}\DIFdelend %DIF > The proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
-Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a \DIFdelbegin \DIFdel{list }\DIFdelend \DIFaddbegin \DIFadd{chain }\DIFaddend as discussed in the example in the proof.
-%
-\DIFaddbegin \DIFadd{Assuming there is a token in the CRN, one node is allowed to execute Algorithm~\ref{alg0} only when it holds the token, and it then transfers the token to the neighboring node on the chain.
-}\DIFaddend If one step can be finished within a certain time span $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
+We have the following \DIFdelbegin \DIFdel{theorem }\DIFdelend \DIFaddbegin \DIFadd{lemma }\DIFaddend to show that every secondary user will eventually be either integrated into a certain cluster or becomes a cluster head.
+\DIFdelbegin %DIFDELCMD < \begin{theorem}
+%DIFDELCMD < \label{clustering:theorem}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin 
+
+\begin{lemma}
+\label{clustering:lemma1}
+\DIFaddend Given a CRN \DIFdelbegin \DIFdel{, it takes at most $N$ steps that }\DIFdelend \DIFaddbegin \DIFadd{where any secondary user is able to communicate with any other secondary user through the other nodes, then after the phase of cluster head selection and initial cluster formation, }\DIFaddend every secondary user either becomes cluster head, or gets included into at least one cluster.
+\DIFdelbegin %DIFDELCMD < \end{theorem}
+%DIFDELCMD < %%%
+\DIFdel{Here, by }\textit{\DIFdel{step}} %DIFAUXCMD
+\DIFdel{we mean one secondary user executing Algorithm~\ref{clustering:theorem} for one time.
+}\DIFdelend \DIFaddbegin \end{lemma}
+
+%DIF > Here, by \textit{step} we mean Algorithm~\ref{clustering:theorem} is executed by a secondary user for one time.
+%DIF > In one special scenario, \eg when a cluster head is elected and all the other nodes are within its neighborhood, the number of steps is 1.
+\DIFaddend The Proof is \DIFaddbegin \DIFadd{given }\DIFaddend in Appendix~\DIFdelbegin \DIFdel{\ref{proof_clustering:theorem}.
+}\DIFdelend \DIFaddbegin \DIFadd{\ref{proof_clustering:lemma1}.
+%DIF > The proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
+%DIF > Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a chain as discussed in the example in the proof.
+}\DIFaddend %
+\DIFdelbegin \DIFdel{The procedure of the proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}.
+Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a list as discussed in the example in the proof.
+}\DIFdelend %DIF > Assuming there is a token in the CRN, one node is allowed to execute Algorithm~\ref{alg0} only when it holds the token, and it then transfers the token to the neighboring node on the chain.
+%DIF > If one step can be finished within a certain time span $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
 %DIF > C1-6
-As Algorithm~\ref{alg0} can be executed concurrently by different secondary users, the needed time can be considerably reduced.
-%According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
-%
-%This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
+\DIFaddbegin 
+
+\begin{lemma}
+\label{clustering:lemma2}
+\DIFadd{When a secondary user becomes cluster head, it will not become cluster member again.
+}\end{lemma}
+\begin{proof}
+\DIFadd{A secondary node becomes cluster head when its }\textit{\DIFadd{Individual connectivity degree}} \DIFadd{is smaller than all its neighbors.
+Afterwards, the }\textit{\DIFadd{Individual connectivity degree}} \DIFadd{of its neighbors becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
+}\end{proof}
+
+%DIF > According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
+\DIFaddend %
+\DIFdelbegin \DIFdel{If one step can be finished within a certain time span $T$,
+then the total time needed for }\DIFdelend %DIF > This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
+\DIFaddbegin 
+
+\begin{lemma}
+\label{clustering:lemma3}
+\DIFadd{In the process of cluster head selection and initial cluster formation, }\DIFaddend the \DIFdelbegin \DIFdel{network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
+}\DIFdelend \DIFaddbegin \DIFadd{maximum number of times that a secondary node becomes cluster head is $N$.
+}\end{lemma}
+\DIFadd{This lemma can be easily gotten from~\ref{clustering:lemma2} considering the $N$ is the number of all the secondary users in the CRN.
+Based on these Lemmas, we can easily obtain Theorem~\ref{clustering:lemma1},
+}\begin{theorem}
+\label{clustering:theorem}
+\DIFadd{Assuming the time for a secondary user to update the information about cluster heads in its neighborhood is $T$, then it takes at most $N*T $ time to finish the process of cluster head selection and initial cluster formation.
+}\end{theorem}
+\DIFadd{Phase I ends when no more secondary users becoming cluster head.
+based on~\ref{clustering:lemma1} and~\ref{clustering:lemma3}, the theorem is proved.
+}
+
+
+\DIFaddend As Algorithm~\ref{alg0} can be executed concurrently by different secondary users, the needed time can be considerably reduced.
+%DIF < According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
+%DIF < 
+%DIF < This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
 If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, \DIFdelbegin \DIFdel{then }\DIFdelend the outcome is shown in Figure~\ref{fig2}.
 Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C(H)$ is $\{H, B, A, G\}$.
 
@@ -809,10 +870,14 @@ It is possible that the cluster head excludes all of its neighbors, resulting in
 The pseudo code for this procedure is shown in Algorithm~\ref{alg_size_control_available_CCC}.
 As to the nodes which are eliminated from the previous clusters, they restore their original individual connectivity degrees, then execute Algorithm~\ref{alg0} and become either cluster heads or get included into other clusters afterwards according to Theorem~\ref{clustering:theorem}.
 
-During Phase I, whenever a CR node is decided to be a cluster head and accordingly forms a cluster, or its cluster's composition is changed, the cluster head will broadcast the updated information about its cluster, which includes the sets of available channels on all its cluster members.
 
 
-\subsubsection{Cluster Size Control in Dense CRN}
+
+\DIFdelbegin \DIFdel{During Phase I, whenever a CR node is decided to be a cluster head and accordingly forms a cluster, or its cluster's composition is changed, the cluster head will broadcast the updated information about its cluster, which includes the sets of available channels on all its cluster members.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \subsubsection{Cluster Size Control in Dense CRN}
 \label{ross_p2_cluster_pruning}
 
 %In this subsection, we illustrate the pressing necessity to control the cluster size when CRN becomes denser.
@@ -862,7 +927,7 @@ As there are overlaps between neighboring clusters, the sizes of the clusters fo
 Hence, a cluster head excludes some cluster members when the cluster size exceeds \DIFaddbegin \DIFadd{a certain threshold.
 We set the threshold as }\DIFaddend $t\cdot \delta$, where \DIFaddbegin \DIFadd{$\delta$ is the desired cluster size.
 The }\DIFaddend constant parameter $t$ is \DIFaddbegin \DIFadd{usually larger than 1 and is }\DIFaddend dependent on the network density and CR nodes' transmission range\DIFdelbegin \DIFdel{and $t>1$.
-}\DIFdelend \DIFaddbegin \DIFadd{, in particular, $t$ is between 1 and the ratio between the average number of neighbors and the desired size.
+}\DIFdelend \DIFaddbegin \DIFadd{, in particular, $t$ is between 1 and the ratio between the average neighborhood size and the desired size.
 A smaller or bigger $t$ may lead to more clusters with smaller or larger size than $\delta$.
 Because of $t$, the threshold is larger than the desired size, then there will be some nodes choosing to affiliate with other clusters in the following phases.
 %DIF > C1-7
@@ -1205,7 +1270,8 @@ The simulation is written in C++, and the performance results are averaged over 
 
 
 \subsection{Centralized Schemes vs. Decentralized Schemes}
-\DIFdelbegin \DIFdel{There }\DIFdelend \DIFaddbegin \DIFadd{In this part of simulation, there }\DIFaddend are 10 primary users and 20 CR users dropped randomly (with uniform distribution) within a square area of size $A^{2}$, where \DIFaddbegin \DIFadd{$A$ is a positive value and }\DIFaddend we set the transmission ranges of primary and CR users to $A/3$.
+\DIFdelbegin \DIFdel{There }\DIFdelend \DIFaddbegin \DIFadd{In this part of simulation, there }\DIFaddend are 10 primary users and 20 CR users dropped randomly (with uniform distribution) \DIFdelbegin \DIFdel{within }\DIFdelend \DIFaddbegin \DIFadd{in }\DIFaddend a square area \DIFdelbegin \DIFdel{of size $A^{2}$, where we set }\DIFdelend \DIFaddbegin \DIFadd{where side length is $A$.
+$A$ is a positive value and }\DIFaddend the transmission ranges of \DIFaddbegin \DIFadd{both }\DIFaddend primary and CR users \DIFaddbegin \DIFadd{are set }\DIFaddend to $A/3$.
 %DIF > C1-10, C1-9
 %There are 10 available channels. 
 %With this setting, the average number of neighbours of one CR user is 4.8.
@@ -1239,7 +1305,11 @@ As to the variants of ROSS, we notice that the greedy mechanism increases CCs in
     \includegraphics[width=\linewidth]{cdf_clusterSize_20.pdf}\par\caption{Cumulative distribution of CRs residing in clusters with different sizes}\label{size_control}    
     \includegraphics[width=\linewidth]{survival_rate_20.pdf}\par\caption{Number of unclustered CRs with decreasing spectrum availability}\label{singleton_clusters}
 \end{multicols}
-\caption{Comparison between the distributed and centralized clustering schemes ($N$ = 20)}
+\DIFdelbeginFL %DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Comparison between the distributed and centralized clustering schemes ($N$ = 20)}}
+%DIFAUXCMD
+\DIFdelendFL %DIF > \caption{Comparison between the distributed and centralized clustering schemes ($N$ = 20)}
 \label{compare_dis_centralized}
 \end{figure*}
 
@@ -1282,7 +1352,8 @@ The centralized scheme with desired size of 2 generates the most robust clusters
 The centralized scheme with desired size of 3 doesn't outperform the variants of ROSS, because pursuing cluster size prevents forming the the clusters with more CCs.
 In contrary, the variants of ROSS generate some smaller clusters which are more likely to maintain when there are more PUs.
 
-The above observation shows that the average number of CCs of non-singleton clusters doesn't necessarily illustrate the robustness  of cluster, \ie SOC obtains the most CCs for the clusters which are meanwhile the most vulnerable.
+\DIFaddbegin \DIFadd{If we use the number of secondary users residing in a cluster as the numerical representation of cluster robustness, then the variants of ROSS is from 5\%,  30\% and 230\% more robust than SOC with the number of newly added PR is 10, 40 and 80 respectively.
+}\DIFaddend The above observation shows that the average number of CCs of non-singleton clusters doesn't necessarily illustrate the robustness  of cluster, \ie SOC obtains the most CCs for the clusters which are meanwhile the most vulnerable.
 Besides, with similar distribution of sizes, the clusters generated by ROSS-DGA and ROSS-DFA are more robust than that by SOC.
 
 
@@ -1446,9 +1517,11 @@ Desired size $\delta$ 	& 6	&   12 						& 20      \\ \hline
 \end{figure}
 
 The average number of CCs of the non-singleton clusters is shown in Figure~\ref{ccc_large_scale}.
-SOC achieves the most CCs per non-singleton cluster, but the lead over the variants of ROSS decreases significantly when $N$ increases.
-%\ie when $N=300$, the number of CCs achieved by ROSS variants (except for ROSS-$\delta$-DFA) is almost the same as that resulted from SOC.
-%This means SOC out performs in terms of the average number of CCs per non-singleton cluster when network is sparse.
+\DIFdelbegin \DIFdel{SOC achieves the most CCs per non-singleton cluster, but the lead over the variants of ROSS decreases significantly when $N$ increases.
+%DIF < \ie when $N=300$, the number of CCs achieved by ROSS variants (except for ROSS-$\delta$-DFA) is almost the same as that resulted from SOC.
+}\DIFdelend \DIFaddbegin \DIFadd{Here we don't see the obvious difference between different schemes on the number of CCs.
+%DIF > SOC achieves the most CCs per non-singleton cluster, but the lead over the variants of ROSS decreases significantly when $N$ increases.
+}\DIFaddend %This means SOC out performs in terms of the average number of CCs per non-singleton cluster when network is sparse.
 %This is also observed in the evaluation in Section \ref{ccc_20} where $N=20$.
 %When the network becomes denser, even this metric favours SOC as discussed in the beginning of Section~\ref{performance}, ROSS-DGA achieves even more CCs than SOC, and ROSS-DFA and ROSS-$\delta$-DGA increase the number of CCs visibly.
 
@@ -1498,8 +1571,10 @@ This result coincides with the analysis in Section~\ref{ross_p2_cluster_pruning}
 To better understand the distribution of the sizes of formed clusters, for each network density, we depict the empirical cumulative distribution of CR nodes which are in clusters with different sizes in Figures~\ref{cdf_clusterSize_100}~\ref{cdf_clusterSize_200}~\ref{cdf_clusterSize_300} respectively.
 \begin{figure}[!h]
   \centering
-   \includegraphics[width=0.7\linewidth]{nClusters_largeNetwork.pdf}
-  \caption{The number of formed clusters.}
+   \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.7\linewidth]{nClusters_largeNetwork.pdf}
+%DIFDELCMD <   %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.7\linewidth]{nClusters_largeNetwork_no_texture.pdf}
+  \DIFaddendFL \caption{The number of formed clusters.}
   %, there are $x=6$ when $N=100$, $x=12$ when $N=200$, $x=21$ when $N=300$, which is around $2/3$ of the number of average neighbours.
   \label{nClusters_largeNetwork}
 \end{figure}
@@ -1524,7 +1599,7 @@ The reason is with ROSS, cluster heads form clusters on the basis of their neigh
 
 
 \DIFadd{Figure~\ref{false_negative_ccc} shows the average number of CCs decrease slightly when the false negative rate increases.
-The size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC is shown in Figure~\ref{false_negative_ccc}.
+The size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC is shown in Figure~\ref{false_negative_CDF}.
 }\begin{figure}[!h]
   \centering
    \includegraphics[width=0.7\linewidth]{false_negative.pdf}
@@ -1535,20 +1610,16 @@ The size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC is shown in Fig
 %DIF > The influence of the false negative on the sustainability of the clusters can be seen from Figure~\ref{false_negative_CDF}.
 \DIFadd{For all the schemes, when false negative increases, the number of singleton clusters increases accordingly.
 %DIF > As to the ROSS variants, the changes of the CDF curves are resulted from the increasing singleton clusters.
-The clusters from SOC are affected by the sensing errors greatly, \ie when false negative rate is 30\%, a lot more small clusters are generated than that when other false negative rates present.
-SOC demonstrates obvious divergence when certain rate of false negative exists, in contrary, ROSS variants are resilient to the false negative in terms of cluster sizes.
-The negotiation within the neighborhoods adopted by ROSS variants rules out the channel which is due to false negative successfully, which doesn't work well in SOC.
-}
-
-
-
-\begin{figure}[!h]
+The clusters from SOC are affected by the sensing errors the greatly.
+More unclustered nodes are generated, and a lot of small clusters are formed, \eg when false negative rate is 30\%.
+In contrary, ROSS variants are resilient in terms of unclusterd nodes and cluster sizes.
+We can conclude that through negotiation within the neighborhoods, ROSS variants successfully rules out the channel from false negative sensing.
+}\begin{figure}[!h]
   \centering
    \includegraphics[width=0.7\linewidth]{draw_cdf_clusterSize_with_false_negative.pdf}
   \caption{\DIFaddFL{100 CRs with false negative in spectrum sensing, 30 PUs in network}}
   \label{false_negative_CDF}
 \end{figure}
-
 
 \DIFaddend \subsection{Insights Obtained from the Simulation}
 The simulation \DIFdelbegin \DIFdel{made with the }\DIFdelend \DIFaddbegin \DIFadd{with }\DIFaddend large CRN network confirms \DIFdelbegin \DIFdel{that made with the }\DIFdelend \DIFaddbegin \DIFadd{the conclusion drawn from the }\DIFaddend small CRN network\DIFdelbegin \DIFdel{, which is that the }\DIFdelend \DIFaddbegin \DIFadd{.
@@ -1715,8 +1786,10 @@ Through simulation, the distributed schemes demonstrate similar performance with
 
 \section{Proof of Theorem~\ref{clustering:theorem}}
 \begin{proof}
-\label{proof_clustering:theorem}
-%Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
+\DIFdelbegin %DIFDELCMD < \label{proof_clustering:theorem}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \label{proof_clustering:lemma1}
+\DIFaddend %Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
 We consider a CRN which can be represented as a connected graph.
 % (COMMENT: Why is it necessarily connected? No special case where the graph has two components? ANSWER(Di): It is possible for the graph to have two components. My point it, when theorem works in one component, it works in the complete graph.)
 To simplify the discussion, we assume the secondary users have unique individual connectivity degrees. 
@@ -1726,15 +1799,15 @@ This assumption is fair as the neighborhood connectivity degrees and node ID are
 
 %we assume every node has at least one neighbour.
 For the sake of contradiction, let us assume there exist a secondary user $\alpha$ which is not included into any cluster.
-Then there is at least one node $\beta\in \text{Nb}(\alpha)$ such that $d_{\alpha} > d_{\beta}$ (otherwise $\alpha$ becomes cluster head). 
+Then there \DIFdelbegin \DIFdel{is at least one }\DIFdelend \DIFaddbegin \DIFadd{exists a }\DIFaddend node $\beta\in \text{Nb}(\alpha)$ such that $d_{\alpha} > d_{\beta}$ (otherwise $\alpha$ becomes cluster head). 
 In this case, according to Algorithm~\ref{alg0}, $\beta$ is not included in any clusters, because otherwise $d_{\beta} = M$, a large positive integer, which contradicts to $d_{\alpha} > d_{\beta}$.
 Now, we distinguish between two cases: 
 %Otherwise, node $\alpha$ is eligible to form a cluster. COMMENT: unnecessary sentence!
 If $\beta$ becomes cluster head, node $\alpha$ is included, the assumption is not true.
-If $\beta$ is not a cluster head, then $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has at least one neighboring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
+If $\beta$ is not a cluster head, then $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has \DIFdelbegin \DIFdel{at least one }\DIFdelend \DIFaddbegin \DIFadd{a }\DIFaddend neighboring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
 % (COMMENT: $\beta$ not being a cluster head and $\beta$ not belonging to any cluster is not the same statement!!! ANSWER(Di): I add some more words)
 So far, when there is no cluster head identified, the unclustered nodes, \ie $\alpha$, $\beta$ form a linked list, where their connectivity degrees monotonically decrease.
-But this list will not continue to grow, because the minimum individual connectivity degree is zero, and the length of this list is upper bounded by the total number of nodes in the CRN.
+But this list will not continue \DIFdelbegin \DIFdel{to grow}\DIFdelend \DIFaddbegin \DIFadd{growing}\DIFaddend , because the minimum individual connectivity degree is zero, and the length of this list is upper bounded by the total number of nodes in the CRN.
 An example of the formed node series is shown as Figure~\ref{lemma1}.
 
 \begin{figure}[ht!]
@@ -1752,7 +1825,10 @@ Then $\omega$ incorporates all its one-hop neighbors (here we assume that every 
 The nodes which join a cluster set their individual connection degrees to $M$, which makes the node immediately precede in the list to become a cluster head.
 In this way, cluster heads are generated from the tail to the head in the list, and every node in the list is in at least one cluster, which contradicts the assumption that $\alpha$ is not included in any cluster.
 
-If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming a cluster member} as one step, as the length of the list of secondary users is not larger than $N$, there are $N$ steps for this scenario to form the initial clusters.
+\DIFdelbegin \DIFdel{If we see a secondary user }\textit{\DIFdel{becoming a cluster head}}%DIFAUXCMD
+\DIFdel{, or }\textit{\DIFdel{becoming a cluster member}} %DIFAUXCMD
+\DIFdel{as one step, as the length of the list of secondary users is not larger than $N$, there are $N$ steps for this scenario to form the initial clusters.
+}\DIFdelend %DIF > If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming a cluster member} as one step, as the length of the list of secondary users is not larger than $N$, there are $N$ steps for this scenario to form the initial clusters.
 
 %we know that within at most $N$ steps, all the nodes belong to certain clusters. (COMMENT: No, we don't! Where was that shown?)
 \end{proof}

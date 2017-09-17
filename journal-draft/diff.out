@@ -1,16 +1,17 @@
 \BOOKMARK [1][]{section.1}{1 Introduction}{}% 1
-\BOOKMARK [1][]{section.2}{2 System Model and Problem Formulation}{}% 2
-\BOOKMARK [2][]{subsection.2.1}{2.1 Robust Clustering Problem in CRN}{section.2}% 3
-\BOOKMARK [1][]{section.3}{3 Centralized Solution for Robust Clustering}{}% 4
-\BOOKMARK [1][]{section.4}{4 Distributed Clustering Algorithm: ROSS}{}% 5
-\BOOKMARK [2][]{subsection.4.1}{4.1 Phase I - Cluster Formation}{section.4}% 6
-\BOOKMARK [2][]{subsection.4.2}{4.2 Phase II - Membership Clarification}{section.4}% 7
-\BOOKMARK [1][]{section.5}{5 Performance Evaluation}{}% 8
-\BOOKMARK [2][]{subsection.5.1}{5.1 Centralized Schemes vs. Decentralized Schemes}{section.5}% 9
-\BOOKMARK [2][]{subsection.5.2}{5.2 Comparison among the Distributed Schemes}{section.5}% 10
-\BOOKMARK [2][]{subsection.5.3}{5.3 Insights Obtained from the Simulation}{section.5}% 11
-\BOOKMARK [1][]{section.6}{6 Conclusion}{}% 12
-\BOOKMARK [1][]{section*.20}{Appendices}{}% 13
-\BOOKMARK [1][]{Appendix.a.A}{A Peudo Code for the Algorithm ??, ?? and ??}{}% 14
-\BOOKMARK [1][]{Appendix.a.B}{B Proof of Theorem ??}{}% 15
-\BOOKMARK [1][]{Appendix.a.C}{C Proof of Theorem ??}{}% 16
+\BOOKMARK [1][]{section.2}{2 Related Works and the Relation with This Paper}{}% 2
+\BOOKMARK [1][]{section.3}{3 System Model and Problem Formulation}{}% 3
+\BOOKMARK [2][]{subsection.3.1}{3.1 Robust Clustering Problem in CRN}{section.3}% 4
+\BOOKMARK [1][]{section.4}{4 Centralized Solution for Robust Clustering}{}% 5
+\BOOKMARK [1][]{section.5}{5 Distributed Clustering Algorithm: ROSS}{}% 6
+\BOOKMARK [2][]{subsection.5.1}{5.1 Phase I - Cluster Formation}{section.5}% 7
+\BOOKMARK [2][]{subsection.5.2}{5.2 Phase II - Membership Clarification}{section.5}% 8
+\BOOKMARK [1][]{section.6}{6 Performance Evaluation}{}% 9
+\BOOKMARK [2][]{subsection.6.1}{6.1 Centralized Schemes vs. Decentralized Schemes}{section.6}% 10
+\BOOKMARK [2][]{subsection.6.2}{6.2 Comparison among the Distributed Schemes}{section.6}% 11
+\BOOKMARK [2][]{subsection.6.3}{6.3 Insights Obtained from the Simulation}{section.6}% 12
+\BOOKMARK [1][]{section.7}{7 Conclusion}{}% 13
+\BOOKMARK [1][]{section*.21}{Appendices}{}% 14
+\BOOKMARK [1][]{Appendix.a.A}{A Peudo Code for the Algorithm 1, 2 and 3}{}% 15
+\BOOKMARK [1][]{Appendix.a.B}{B Proof of Theorem 5.1}{}% 16
+\BOOKMARK [1][]{Appendix.a.C}{C Proof of Theorem 3.1}{}% 17
