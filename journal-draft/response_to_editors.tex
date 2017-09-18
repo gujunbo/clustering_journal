@@ -19,36 +19,41 @@ In the following we will address the each questions and comment from the viewers
 
 \item \textcolor{blue}{  First of all, clustering technique is not new and it is one of the well-researched areas in ad hoc network, cognitive radio, HetNet etc. The article does not review the latest publications in this area. The references are not adequate due to the fact that no recent works have been investigated. Therefore, it makes it insufficient (or unsatisfactory) work in present context.}
 
-\textbf{Answer:} As mentioned in the introduction section, a lot of works on clustering in ad hoc networks or sensor networks, which address routing, power consumption and communication quality.
+\textbf{Answer:} As mentioned in the introduction section, there has been a lot of works on clustering in ad hoc networks or sensor networks.
+They address problems such like routing, power consumption and communication quality.
 Compared with the wireless networks where spectrum availability is not opportunistic, the clustering in CRN facilitated the better usage of the available spectrum, meanwhile clustering itself is restricted by the spectrum availability.
 This fact makes clustering in CRN a difficult topic.
 Up to now, only \cite{LIU_TMC11_2, Li11_ROSS, mansoor_15_cluster_robust} have tried to address the robustness issue of the formed clusters in CRN.
-After searching, we find a paper \cite{Mansoor2015} from 2015 IEEE Crowncom, which proposes a clustering algorithm which aims to speed up the process of re-clustering in case a cluster doesn't uphold in from of active primary users.
-But this work doesn't consider to improve the ability of the formed clusters to maintain, and the messaging cost which is involved in this process is not considered.
-We have included this citation in the related work part.
+After searching, we find one relavent paper \cite{Mansoor2015} from 2015 IEEE Crowncom.
+It proposes a clustering algorithm which aims to speed up the process of re-clustering in case a cluster doesn't uphold in from of active primary users.
+But this work doesn't consider to improve the ability of the formed clusters to maintain, besides, the messaging cost which is involved in this process is not considered.
+We have included this citation in the related work section in the revised version.
 
  
 \item \textcolor{blue}{  The presentation of the paper is not good enough and needs a lot of improvements. For instance, ROSS scheme has been mentioned in the paper in many places, but it is not properly defined (though reference has been given). I had to check the reference paper to know it is Robust Spectrum Sharing. The journal article must be self-contained.}
     
-    \textbf{Answer:} This explanation of the scheme name is added in the introduction section.
+    \textbf{Answer:} The explanation of the scheme name is provided in the introduction section.
     The paper has been thoroughly proofread.
     
 \item \textcolor{blue}{  The paragraphs are too long in the Introduction. As a result, the paragraph contains too many information which are not related each other. This makes readers difficult to understand the concept.}
     
-    \textbf{Answer:} Now the section of introduction consists of 4 paragraphs: introduction of CRN with mentioning of spectrum sensing $\rightarrow$ clustering in CRN $\rightarrow$ robustness of clustering $\rightarrow$ the role of cluster size in robust clustering in CRN.
-    The related works are put in a separate section.
+    \textbf{Answer:} We polish the paper and now the section of introduction consists of 4 paragraphs: introduction of CRN with mentioning of spectrum sensing $\rightarrow$ clustering in CRN $\rightarrow$ robustness of clustering $\rightarrow$ the role of cluster size in robust clustering in CRN.
+    The part of related works becomes one separate section.
     
 \item \textcolor{blue}{   In page 3, it is mentioned that “A cluster can be formed only by the cluster head”. As a matter of fact, the cluster head formation is itself a very challenging task in any cluster based approach. There are many previous works which describe the cluster head selection techniques. Please justify your statement with proper assumption or previous works that how the cluster heads are selected. I can see the description is in the few pages later but some information must be provided where it is described first time. By the way, the CH formation technique described in 4.1.1 is not novel.}
 
 \textbf{Answer:} We agree with the reviewer that this statement is not well explained.
-	    Initially, we put this line in the paper and wanted to say that after the clusters are decided, it is the cluster head's job to form a cluster out of the neighboring nodes.
+	    At first, we put this line in the first submission and wanted to say that after the clusters are decided, it is the cluster head's job to form a cluster out of the neighboring nodes.
 In the revised version, we have changed the statement as "Our scheme enables the cluster heads are selected in a distributed manner, and a cluster can only be formed only by these selected cluster head. "
     
 \item \textcolor{blue}{  In my understanding, the values of connectivity degree in Fig. 1 came from the assumption of $K_A$, $K_B$ …..$K_H$. Each node has number of available channels and I assume that they have been randomly chosen as mentioned in Fig. 1 Caption. It would be good to mention how to obtain such information in ad hoc cognitive radio network?}
 
-\textbf{Answer:} As stated in the system model, both primary and second users work on the same set of channels, i.e., the former use the channel whenever it is needed, and the later can only use it opportunistically.
+\textbf{Answer:} 
+The available channels on the nodes in Fig. 1 is randomly chosen, which is only used to explain our scheme.
+But in the simulation, the available channels on the secondary users are decided by the primary users.
+As stated in the system model, both primary and second users work on the same set of channels, i.e., the former use the channel whenever it is needed, and the later can only use it opportunistically.
     We assume the primary users are randomly located and work on each channel with a certain probability.
-    Then the secondary users can only use the channel which is not being used by the primary users, and the secondary user locates out of the transmission range of that primary user.
+    With spectrum sensing, the secondary users can detect the presence of active primary users, and thus obtain the available channels.
     
 \item \textcolor{blue}{  Theorem 4.1 is too obvious, authors need to discuss in terms of convergence and complexity of the proposed method. In fact, Theorem 4.1 and description immediately are so confusing and misleading. If step is defined as executing Algorithm 4.1 for one time which again takes at most N steps. A further clarification is needed.}
 
@@ -71,27 +76,28 @@ In the revised version, we have changed the statement as "Our scheme enables the
     
 \item \textcolor{blue}{  In simulation, have authors considered the spectrum sensing parameters on each secondary nodes? Are the channels randomly made available to users? Please clarify. What value of A is chosen in simulation?}
 
-\textbf{Answer:} In the simulation, CRs and PUs are deployed on a two-dimensional Euclidean plane. 
-Each PU is operating on each channel with probability of 50\%.
-Then the channel availability on the secondary users are decided as follows.
-As to a secondary user, if none of the primary users whose transmission range include the secondary user works on a channel, the channel will be available for that secondary user. 
+\textbf{Answer:} In the most part of the simulation, we assume the secondary users have accurate spectrum sensing ability.
+They are able to detect the active primary users in their vicinity.
+We can say the channel availability on the secondary users is decided by the primary users.
+As to a secondary user, if none of the primary users whose transmission range include the secondary user works on a channel, that channel will be available for that secondary user. 
+We also consider the existence of sensing error, in Section 6.2.4 in new version, we investigate the influence caused by false negative sensing error.
 
  'A' represents the length the simulation square.
     And the radius of transmission of both primary and secondary users is a fraction of A.
-    By doing this, we separate our scheme with concrete physical layer communication standards, and A can be given a concrete value after the physical layer protocol is decided.
+    By doing this, we separate our scheme with concrete physical layer communication technologies, and A can be given a concrete value in practice when the physical layer technology is decided.
     
 \item \textcolor{blue}{ It is mentioned in the article that “The number of licensed channels is 10, each PU is operating on each channel with probability of 50\%”. It means there will be only 5 channels available (maximum) to each secondary users. In section 5.1, 7 channels are available for each CR node. It means there is chance of interference in two nodes. Please clarify those conflicts.}
 
 \textbf{Answer:} 
 The simulation consists of two parts, the comparison between the centralized and distributed schemes, and the comparison between the distributed schemes.
-Some parameters are identical for both parts, (stated in the second paragraph in Section 6) but there are some parameters are different (as stated in the beginning of Section 6.1 and 6.2 respectively).
-The difference lies in the scale of the CRN and the primary users, and the transmission ranges.
-The reason is that there doesn't exist efficient method to solve the centralized scheme, then we have to do simulation in a smaller network.
+Some parameters are identical for both parts (stated in the second paragraph in Section 6), but there are some parameters are different (as stated in the beginning of Section 6.1 and 6.2 respectively).
+The difference lies in the number of the CRN and the primary users, and the transmission ranges.
+The reason is because there doesn't exist an efficient method to solve the centralized scheme, thus we have to do simulation in a smaller network.
 
 The parameter setting questioned by the reviewer is for the simulation involving centralized schemes in Section 6.1.
-According to the description, here will be "only 5 channels available", not "to each secondary users", but to the nodes within the primary user's transmission range.
-    The transmission radius of primary user is A/3, which means some nodes are not affected by all the primary users.
-    Other than that, from the simulation we conclude that averagely 7.1 channels are available for each secondary user.
+%According to the description, here will be "only 5 channels available", not "to each secondary users", but to the nodes within the primary user's transmission range.
+    Please note that the transmission radius of primary user is A/3, which means some nodes are not affected by all the primary users.
+    Other than that, from the simulation we know averagely 7.1 channels are available for each secondary user.
     
 \item \textcolor{blue}{ Further comparison is needed against the previous works to justify the robustness of the proposed method.}
 \textbf{Answer:} 	We add the definition of robustness in both the introduction section (3rd paragraph) and system model section (Section 3.1).
@@ -111,14 +117,14 @@ In this paper, authors investigate the optimization algorithms for node clusteri
 \item \textcolor{blue}{ In Section 2, that the definition of channel $k\in K$, i.e. fading channel or noisy channel? Does the channel contain pathloss and shadowing and/or fast fading? Does the value of k indicate the channel gain in either time or frequency domain? }
 
 \textbf{Answer:} As shown in the section of system model, "We adopt the unit disk model for both primary and CR users’ transmission."
-In the other words, we don't make any assumption on the concrete propagation model, but just assume the communication is successful when the two ends locate within each other's transmission range.
+In other words, we don't make any assumption on the concrete propagation model, but just assume the communication is successful when the two ends locate within each other's transmission range.
 We adopt this simple communication model so as to focus on secondary users' behavior to pursue the robust cluster structure.
 
 \item \textcolor{blue}{ Does the channel invariant or variant (how fast) during the clustering for how long windows range? In practical, the channel changes along with the transmission, the performance clustering may be impacted by the varying channel. What's the impact of insufficient channel knowledge?}
 
 \textbf{Answer:} We assume the channel availability doesn't change during the clustering process.
 We agree with the reviewer that the channel variance affects the clustering by disrupting the communication.
-In reality, when the communication during the clustering process doesn't succeed when the channel quality deteriorates, the involved nodes can still make decisions based on the available knowledge of neighbors according to our algorithm.
+In reality, if the communication during the clustering process doesn't succeed as the channel quality deteriorates, the involved nodes can still make decisions based on the available knowledge of neighbors according to our algorithm.
 
 
 \item \textcolor{blue}{ The work emphasize on the robustness of clustering. However, such an evaluation in terms of robustness metric is not clear. The definition of robustness and relative discussions as well as the results should be further elaborated. The definition appears in Section 5 but my suggestion is to clearly state it in the system model and describe why choose this robustness metric according its relation with system design.}
@@ -135,7 +141,7 @@ with these modifications, readers will understand the robustness metric in Secti
 
 \item \textcolor{blue}{ In Section 5, Fig. 10 is missing. Fig. 14-16 can be subfigures, similar to Fig. 17-19.}
 
-\textbf{Answer:} Figure 10 in Section 5 in the previous version is deleted.
+\textbf{Answer:} Advice is taken and change is made. Please refer Fig 8 - 9. 
 
 \end{enumerate}
 
@@ -149,7 +155,7 @@ Overall, the considered topic is very interesting. The authors well presented th
 \begin{enumerate}
 \item \textcolor{blue}{ However, it seems that the authors totally miss a very important research issue, which is referred to as spectrum sensing errors in terms of overlook and misidentification on the channel availability by Secondary Users (SUs). Because the sensing errors may highly affect the effectiveness and performance of the suggested solution approach, the authors need to complement the paper by accordingly either advancing the feasible solutions to alleviate sensing errors or analyzing the effect of sensing errors on the suggested solution approach.}
 
- \textbf{Answer:} we admit that the sensing error was not considered in the paper.
+ \textbf{Answer:} It is true that the sensing error was not considered in the first submission.
 We agree with the reviewer that this is an important issue, as sensing error is inevitable in practical applications.
 We have done additional simulations about the effects of sensing errors on the distributed schemes in Section 6.2.4.
 \end{enumerate}
