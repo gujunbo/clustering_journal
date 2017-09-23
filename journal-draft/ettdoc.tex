@@ -191,12 +191,31 @@ Thus the number of small clusters, especially the \textit{singleton clusters}, \
 On the other hand, as to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels. This undermines the robustness of the cluster.
 Thus, the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not considered.
 Cluster sizes also play a role in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
-In this paper we will analyze the robust clustering problem and propose efficient solutions.
-Our schemes generate the clusters which demonstrate both the robustness against the increasing primary activity and the compliance with the desired cluster sizes.
-Hence our schemes provide the network designers with more freedom when the power consumption is involved in the design of network applications.
-%In this paper we will introduce a robust cluster structure for CRN, where the robustness means the ability of the clusters to sustain under the influence of the increasing activity of primary users, and the direct metric is the number of CCs in the clusters.
+
+In this paper robust clustering in CRN is analyzed and both centralized and distributed schemes are proposed.
+This paper is based on our previous work ROSS (Robust Spectrum Sharing)~\cite{Li11_ROSS}, but fundamental extensions are made in several aspects.
+This paper provides a comprehensive analysis of the robust clustering problem, analyze and investigate the influence of cluster size and the number of CCs on cluster robustness.
+We claim that the cluster robustness against the primary users is no longer indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
+The involment of cluster size enables us to solve the problem of clusters size devergence, which appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
+These new extensions are made on the basis of ROSS and its light weight version, the latter involves less overheads thus is more suitable for the scenario where fast deployment is desired.
+Throughout this paper, we refer to the clustering schemes on the basis of ROSS as the \textit{variants of ROSS}.
+
+%Our schemes generate the clusters which demonstrate both the robustness against the increasing primary activity and the compliance with the desired cluster sizes.
+
+
+The rest of paper is organized as follows. 
+In section~\ref{related_work}, we will introduce the clustering techniques in CRN and those focusing on robustness.
+The relation between this paper and work~\cite{Li11_ROSS} is elaborated.
+She system model and the robust clustering problem formulation are presented in Section~\ref{sec:model}. 
+The centralized and distributed solutions are introduced in Section~\ref{centralized_solution} and~\ref{ross} respectively.
+%The clustering problem is given through analysis and a centralized scheme is proposed in section~\ref{centralized_scheme}.
+Extensive performance evaluation is given in Section~\ref{performance}.
+Our work is concluded in Section~\ref{conclusion}.
+
+
 
 \section{Related Works and the Relation with This Paper}
+\label{related_work}
 In the following we will give a brief review on the clustering in CRN, with emphasis on the theme of robust clustering.
 %%[crn for clustering] 
 %%due to attenuation of signal propagation, primary users can only be detected by CR users when they locate closely to CR users.
@@ -243,30 +262,9 @@ Compared with the clustering schemes introduced above, the clusters are formed f
 However, as all the other clustering schemes, this scheme does not have control over the formation of the very small or very large clusters which are not desirable.
 Furthermore, both this work and SOC define robustness just to be the number of CCs per cluster, and don't consider the sustainability of clusters against the increasing activity of primary users, which leaves their claim on robustness unverified.
 %
-This paper fundamentally extends~\cite{Li11_ROSS} in two dimensions.
-First, this paper considers the correlation between the cluster robustness and the cluster size.
-As a result the cluster robustness is no longer indicated merely by the average number of CCs of clusters, but the ability of the CR nodes to get benefit from collective decision and of the clusters to sustain when the primary users' activity becomes more dynamic.
-Besides, this involment of cluster size enable us to solve the problem of clusters size devergence, which appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
-Second, this paper provides a comprehensive analysis of the robust clustering problem, proposes both centralized and distributed solutions, and conducts extensive simulations. 
-%We stick to the motivation of forming robust clusters in CRN \ie let more CR users benefited from the cooperative decision making which is due to the clusters. 
-%We propose both centralized and distributed clustering schemes, which result in more CR users in the clusters composed with multiple CR users, not only when the clusters are just formed, but also afterwards when the primary users' activity changes.
-%Besides, both centralized and distributed schemes take the cluster size into consideration, and both can control the sizes of the formed clusters to certain extent.
-%In particular, the decentralized clustering approach ROSS (RObust Spectrum Sharing) is able to form clusters with desired sizes.
-%When compared with other distributed works, ROSS involves smaller signaling overhead and the generated clusters are significantly more robust against the primary users which appear after the clusters are formed.
-%thesis
-%and the generated clusters are more robust than the other clustering scheme which has claims on cluster robustness, \ie more secondary users residing in clusters against increasing influence from primary users.
-%
-%ROSS selects cluster head through coordination within its neighborhood, and then cluster membership is decided locally and its fast convergence is proved under game theoretic framework. 
-%For our scheme we can prove convergence in cluster formation phase and resolve ambiguities with respect to cluster membership in a game-theoretic setting. 
-The new extensions are made on basis of ROSS and its light weight version, the latter involves less overheads thus is more suitable for the scenario where fast deployment is desired.
-Throughout this paper, we refer to the clustering schemes on the basis of ROSS as the \textit{variants of ROSS}.
 
-The rest of paper is organized as follows. 
-We present the system model and the robust clustering problem in Section~\ref{sec:model}. 
-The centralized and distributed solutions are introduced in Section~\ref{centralized_solution} and~\ref{ross} respectively.
-%The clustering problem is given through analysis and a centralized scheme is proposed in section~\ref{centralized_scheme}.
-Some Extensive performance evaluation is presented in Section~\ref{performance}.
-Finally, we conclude our work and point out the direction for future research in Section~\ref{conclusion}.
+
+
 
 
 
@@ -1483,7 +1481,6 @@ The proposed clustering schemes generate clusters which have long life expectanc
 %The congestion game model in game theory is used to design the distributed schemes.
 %A Light weighted clustering scheme ROSS is also proposed.
 Through simulation, the distributed schemes demonstrate similar performance with the centralized scheme in terms of cluster robustness, signaling overhead and cluster sizes, and outperform the comparison distributed scheme on all metrics.
-
 
 %In the other way around, forming big cluster which extends a cluster head's neighborhood has limited application scenarios, as multiple hop communication and coordination are required within these clusters.
 
