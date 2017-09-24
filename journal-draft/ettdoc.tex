@@ -171,16 +171,15 @@ Clustering also benefits the operation of a CRN by reducing the interference bet
 In CRN, a formed cluster seizes one or multiple unlicensed channels which are available for every CR node in the cluster.
 In this paper available unlicensed channels are called \textit{common licensed channels} (or common channels for short, which is abbreviated as CC).
 The availability of CCs within a cluster decides the existence of that cluster, \ie if no CCs are available then the corresponding cluster does not exist.
-As the activity of primary users is usually unknown to the secondary users, it is deemed as random as to secondary users.
+The activity of primary users is usually unknown to the secondary users thus deemed as random to secondary users.
 Consequently, a cluster which secures more CCs will anticipate a longer life expectancy. 
 In other words, such clusters are more robust.
-In this paper, the robustness of the clusters is their ability to uphold with the influence of the active primary users.
+In this paper, the robustness of the clusters is their ability to uphold with the influence of active primary users.
 The robust clustering enables more secondary users to reside in the resulted clusters when the available spectrum becomes scarcer.
 %
 Within in a cluster, both payload and control overheads can be transmitted on the CCs.
-%Out of the available CCs, there are always one or multiple channels which are used for the payload communication.
-When one or several cluster members can not access one certain CC on which primary some user activity is detected, the channel will be excluded from the set of CCs.
-In particular, if that channel is being used for payload communication, the communication pair will stop and resume the transmission on another available CC.
+When one or several cluster members can not access a certain CC on which primary user's activity is detected, the channel will be excluded from the set of CCs.
+In particular, if that channel is being used for payload communication, the communication pair will stop and resume transmission on another available CC.
 %As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
 
 
@@ -194,15 +193,13 @@ Cluster sizes also play a role in transmission power consumption, \ie cluster si
 
 In this paper robust clustering in CRN is analyzed and both centralized and distributed schemes are proposed.
 This paper is based on our previous work ROSS (Robust Spectrum Sharing)~\cite{Li11_ROSS}, but fundamental extensions are made in several aspects.
-This paper provides a comprehensive analysis of the robust clustering problem, analyze and investigate the influence of cluster size and the number of CCs on cluster robustness.
-We claim that the cluster robustness against the primary users is no longer indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
-The involment of cluster size enables us to solve the problem of clusters size devergence, which appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
-These new extensions are made on the basis of ROSS and its light weight version, the latter involves less overheads thus is more suitable for the scenario where fast deployment is desired.
+This paper gives a comprehensive analysis of robust clustering problem, analyze and investigate the influence of cluster size and the number of CCs on cluster robustness.
+We claim that the cluster robustness is no longer indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
+The involment of cluster size enables us to solve the size devergence problem in clusters, which appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
+Based on ROSS, our proposed distributed schemes are still suitable for the scenario where fast deployment is desired.
 Throughout this paper, we refer to the clustering schemes on the basis of ROSS as the \textit{variants of ROSS}.
-
-%Our schemes generate the clusters which demonstrate both the robustness against the increasing primary activity and the compliance with the desired cluster sizes.
-
-
+%
+%
 The rest of paper is organized as follows. 
 In section~\ref{related_work}, we will introduce the clustering techniques in CRN and those focusing on robustness.
 The relation between this paper and work~\cite{Li11_ROSS} is elaborated.
@@ -607,16 +604,17 @@ Two metrics are proposed to characterize the proximity in terms of available spe
 
 \item \textit{Individual connectivity degree} $d_i$: $d_i=\sum_{j\in \text{Nb}(i)}\vert K_i\cap K_j\vert$. 
 $d_i$ is the total number of the CCs between node $i$ and each of its neighbors.
-%It is an indicator of node $i$'s adhesion to the CRN. 
 
 \item \textit{Neighborhood connectivity degree} $g_i$: the number of CCs which are available for $i$ and all of its neighbors.
 $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which represents the ability of $i$ to form a robust cluster with its neighbors.
 \end{itemize}
 Individual connectivity degree $d_i$ and neighborhood connectivity degree $g_i$ together form the \textit{connectivity vector}.
-Figure~\ref{fig1} illustrates an example CRN where every node's connectivity vector is shown.	
-In Figure~\ref{fig1}, some primary users are randomly deployed in the network, and they are free to choose one channel out of the set of licensed channels $\mathcal{K}$ to operate.
-As to the secondary users, the channels they are allowed to use are those which are not ruled out by the primary users in their vicinities. 
-The sets of the indices of the available channels sensed by each node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, \\K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, \\K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, \\K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$.
+Connectivity vector is calculated by every secondary user after channel availability is obtained, and is then broadcasted.
+Figure~\ref{fig1} illustrates an CRN where every node's channel availability and connectivity vector is shown.
+This CRN is used as an example in the rest of this section to illustrate the proposed distributed schemes.
+%In Figure~\ref{fig1}, some primary users are randomly deployed in the network, and they are free to choose one channel out of the set of licensed channels $\mathcal{K}$ to operate.
+%As to the secondary users, the channels they are allowed to use are those which are not ruled out by the primary users in their vicinities. 
+In the example the sets of the indices of the available channels sensed by each node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, \\K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, \\K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, \\K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$.
 %C1-5
 \begin{figure}[ht!]
   \centering
@@ -780,8 +778,12 @@ As there are overlaps between neighboring clusters, the sizes of the clusters fo
 Hence, a cluster head excludes some cluster members when the cluster size exceeds a certain threshold.
 We set the threshold as $t\cdot \delta$, where $\delta$ is the desired cluster size.
 The constant parameter $t$ is usually larger than 1 and is dependent on the network density and CR nodes' transmission range, in particular, $t$ is between 1 and the ratio between the average neighborhood size and the desired size.
-A smaller or bigger $t$ may lead to more clusters with smaller or larger size than $\delta$.
-Because of $t$, the threshold is larger than the desired size, then there will be some nodes choosing to affiliate with other clusters in the following phases.
+%A smaller or bigger $t$ may lead to more clusters with smaller or larger size than $\delta$.
+	When $t$ is smaller, \eg $t=1$, the formed cluster in the phase I will be $\delta$.
+	For the cluster whose members are included by other clusters, the size of this cluster will be smaller than $\delta$ after the membership clarification phase.
+	If $t$ is chosen large, \eg $t\cdot\delta$ equals to the size of neighborhood, the mechanism of adjusting the cluster size will not work any more.
+	
+Because of $t$, the threshold to prune is larger than the desired size, then there will be some nodes choosing to affiliate with other clusters in the following phases.
 %C1-7
 In particular, the cluster head removes the cluster members sequentially according to the following principle, the absence of one cluster member leads to the maximum increase of the CCs within the cluster.
 This process ends when each cluster's size is smaller or equal to $t \cdot\delta$.
@@ -1113,6 +1115,7 @@ The simulation is written in C++, and the performance results are averaged over 
 \subsection{Centralized Schemes vs. Decentralized Schemes}
 In this part of simulation, there are 10 primary users and 20 CR users dropped randomly (with uniform distribution) in a square area where side length is $A$.
 $A$ is a positive value and the transmission ranges of both primary and CR users are set to $A/3$.
+By doing this, we try to abstract from the influence of any given physical layer technology, and A can be given a concrete value in practice when the physical layer technology is decided.
 %C1-10, C1-9
 %There are 10 available channels. 
 %With this setting, the average number of neighbours of one CR user is 4.8.
@@ -1604,7 +1607,7 @@ Through simulation, the distributed schemes demonstrate similar performance with
 \end{algorithm}
 
 
-\section{Proof of Theorem~\ref{clustering:theorem}}
+\section{Proof of Lemma~\ref{clustering:theorem}}
 \begin{proof}
 \label{proof_clustering:lemma1}
 %Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
