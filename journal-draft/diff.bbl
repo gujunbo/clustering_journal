@@ -103,6 +103,15 @@ B.~E. Ali~Jorio, Sanaa El~Fkihi and D.~Aboutajdine, ``An energy-efficient
   for wireless sensor network,'' \emph{Journal of Computer Networks and
   Communications}, vol. 2015, 04 '15.
 
+\bibitem{Li11_ROSS}
+D.~Li and J.~Gross, ``Robust clustering of ad-hoc cognitive radio networks
+  under opportunistic spectrum access,'' in \emph{Proc. of IEEE ICC '11}.
+
+\bibitem{LIU_TMC11_2}
+S.~Liu, L.~Lazos, and M.~Krunz, ``Cluster-based control channel allocation in
+  opportunistic cognitive radio networks,'' \emph{IEEE Trans. Mob. Comput.},
+  vol.~11, no.~10, pp. 1436--1449, 2012.
+
 \bibitem{Zhao07}
 J.~Zhao, H.~Zheng, and G.-H. Yang, ``Spectrum sharing through distributed
   coordination in dynamic spectrum access networks,'' \emph{Wireless Com. and
@@ -136,19 +145,10 @@ N.~Mansoor, A.~K.~M. Muzahidul~Islam, M.~Zareei, S.~Baharun, and S.~Komaki,
   ``Construction of a robust clustering algorithm for cognitive radio ad-hoc
   network,'' in \emph{Proc. of CROWNCOM 2015}.
 
-\bibitem{LIU_TMC11_2}
-S.~Liu, L.~Lazos, and M.~Krunz, ``Cluster-based control channel allocation in
-  opportunistic cognitive radio networks,'' \emph{IEEE Trans. Mob. Comput.},
-  vol.~11, no.~10, pp. 1436--1449, 2012.
-
 \bibitem{mansoor_15_cluster_robust}
 N.~Mansoor, A.~Islam, M.~Zareei, S.~Baharun, and S.~Komaki, ``Construction of a
   robust clustering algorithm for cognitive radio ad-hoc network,'' in
   \emph{Proc. of CROWNCOM 2015}.
-
-\bibitem{Li11_ROSS}
-D.~Li and J.~Gross, ``Robust clustering of ad-hoc cognitive radio networks
-  under opportunistic spectrum access,'' in \emph{Proc. of IEEE ICC '11}.
 
 \bibitem{unitDiskModel}
 B.~Clark, C.~Colbourn, and D.~Johnson, ``Unit disk graphs,'' \emph{Annals of

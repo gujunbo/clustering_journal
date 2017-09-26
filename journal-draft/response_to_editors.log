@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  24 SEP 2017 17:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  24 SEP 2017 20:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -475,11 +475,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 Here is how much of TeX's memory you used:
  2251 strings out of 493013
  26635 string characters out of 6133342
- 87650 words of memory out of 5000000
+ 86650 words of memory out of 5000000
  5796 multiletter control sequences out of 15000+600000
  6598 words of font info for 26 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,6n,24p,657b,213s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 27i,6n,24p,657b,211s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texl
@@ -488,7 +488,7 @@ ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
 /2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
 016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
 16/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on response_to_editors.pdf (7 pages, 105119 bytes).
+Output written on response_to_editors.pdf (7 pages, 105176 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

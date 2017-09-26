@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  24 SEP 2017 17:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.26)  24 SEP 2017 20:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -499,7 +499,7 @@ Overfull \hbox (12.94502pt too wide) in paragraph at lines 156--161
  []
 
 [4]
-Overfull \hbox (25.41734pt too wide) in paragraph at lines 200--203
+Overfull \hbox (25.41734pt too wide) in paragraph at lines 202--205
 |   []   |   []   |   []   |   []   |   [][][]|   []   |   []   |   []   |   []
    |   []   |   []
  []
@@ -509,7 +509,7 @@ Overfull \hbox (25.41734pt too wide) in paragraph at lines 200--203
 Here is how much of TeX's memory you used:
  2345 strings out of 493013
  27617 string characters out of 6133342
- 127603 words of memory out of 5000000
+ 126603 words of memory out of 5000000
  5885 multiletter control sequences out of 15000+600000
  6704 words of font info for 27 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -522,7 +522,7 @@ sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
 ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
 cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loc
 al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/latxfont/lasy6.pfb>
-Output written on diff_response_to_editors.pdf (7 pages, 120233 bytes).
+Output written on diff_response_to_editors.pdf (7 pages, 120345 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  42 compressed objects within 1 object stream
