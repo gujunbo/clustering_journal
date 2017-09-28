@@ -192,13 +192,15 @@ On the other hand, as to the cluster which consists of many nodes, although the 
 Thus, the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not considered.
 Cluster sizes also play a role in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 
-In this paper robust clustering in CRN is analyzed and both centralized and distributed schemes are proposed.
-This paper is based on our previous work ROSS (Robust Spectrum Sharing)~\cite{Li11_ROSS}, but fundamental extensions are made in several aspects.
-This paper gives a comprehensive analysis of robust clustering problem, analyze and investigate the influence of cluster size and the number of CCs on cluster robustness.
-We claim that the cluster robustness is no longer indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
-The involment of cluster size enables us to solve the size devergence problem in clusters, which appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
-Based on ROSS, our proposed distributed schemes are still suitable for the scenario where fast deployment is desired.
-Throughout this paper, we refer to the clustering schemes on the basis of ROSS as the \textit{variants of ROSS}.
+In this paper robust clustering in CRN is analyzed as a mathematical problem and proved to be NP-hard, then both centralized and distributed schemes are proposed.
+We rethink the metric used to measure the cluster robustness in the previous works~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}, and we claim cluster robustness can not be indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
+In this paper, we identify the robustness by the number of unclustered CR nodes.
+We also consider the necessity of cluster size control and its influence on cluster robustness.
+The propsoed distributed schemes extend our previous work ROSS (Robust Spectrum Sharing)~\cite{Li11_ROSS} by involving cluster size control.
+Our distributed schemes solve the size devergence problem in clusters as appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
+Besides, our proposed distributed schemes are still suitable for the scenario where fast deployment is desired.
+Throughout this paper, we call the proposed distributed schemes the \textit{variants of ROSS}.
+ 
 %
 %
 The rest of paper is organized as follows. 
