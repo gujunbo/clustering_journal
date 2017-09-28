@@ -781,6 +781,7 @@ When a secondary user becomes cluster head, it will not become cluster member ag
 \begin{proof}
 A secondary node becomes cluster head when its \textit{Individual connectivity degree} is smaller than all its neighbors.
 Afterwards, the \textit{Individual connectivity degree} of its neighbors becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
+As to the node which is excluded form a cluster due to guaranteeing CC or size control, its \textit{Individual connectivity degree} is restored, but it will not include its former cluster head, even if it becomes cluster head as regulated in~\ref{alg0}.
 \end{proof}
 
 %According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.

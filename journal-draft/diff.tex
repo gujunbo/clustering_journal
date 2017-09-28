@@ -1,7 +1,7 @@
 % ettdoc.tex V2.10, 19 June 2012
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL ettdoc_0705.tex   Mon Sep 11 21:54:48 2017
-%DIF ADD ettdoc.tex        Sun Sep 24 21:45:19 2017
+%DIF ADD ettdoc.tex        Thu Sep 28 19:12:15 2017
 
 \documentclass[times]{ettauth}
 \usepackage[toc,page]{appendix}
@@ -197,8 +197,9 @@ Germany
 
 \begin{abstract}
 Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionalities.
-Unlicensed channels, which are available for a group of cognitive radio users, consolidate the group into a cluster and the number of the available unlicensed channels decides that cluster's robustness against the licensed users' influence.
-This paper analyses the problem of how to form robust clusters in a cognitive radio network so that more cognitive radio users can get the benefits from cluster structure when the primary users' operations becomes more intense.
+Unlicensed channels, which are \DIFaddbegin \DIFadd{temporally }\DIFaddend available for a group of cognitive radio users \DIFaddbegin \DIFadd{in one area}\DIFaddend , consolidate the group into a cluster\DIFdelbegin \DIFdel{and the number of the }\DIFdelend \DIFaddbegin \DIFadd{.
+More }\DIFaddend available unlicensed channels \DIFdelbegin \DIFdel{decides that cluster 's robustness }\DIFdelend \DIFaddbegin \DIFadd{in a cluster make the cluster more likely to uphold }\DIFaddend against the licensed users' influence \DIFaddbegin \DIFadd{than only one available channel, which make that cluster to be more robust}\DIFaddend .
+This paper analyses the problem of how to form robust clusters in a cognitive radio network so that more cognitive radio users can \DIFdelbegin \DIFdel{get the benefits }\DIFdelend \DIFaddbegin \DIFadd{still be benefited }\DIFaddend from cluster structure when the primary users' operations becomes more intense.
 %In the process of forming clusters, every secondary user decides with whom to form a cluster, or which cluster to join.
 We give a formal description of the robust clustering problem, prove it to be NP-hard and propose both centralized and distributed solutions.
 The congestion game model is adopted to analyze the process of cluster formation, which not only contributes to the design of the distributed clustering scheme, but also provides the guarantee on the convergence into Nash Equilibrium and the convergence speed.
@@ -302,22 +303,29 @@ Cluster sizes also play a role in transmission power consumption, \ie cluster si
 Our schemes generate the clusters which demonstrate both the robustness against the increasing primary activity and the compliance with the desired cluster sizes.
 Hence our schemes provide the network designers with more freedom when the power consumption is involved in the design of network applications.
 %DIF < In this paper we will introduce a robust cluster structure for CRN, where the robustness means the ability of the clusters to sustain under the influence of the increasing activity of primary users, and the direct metric is the number of CCs in the clusters.
-}\DIFdelend \DIFaddbegin \DIFadd{robust clustering in CRN is analyzed and both centralized and distributed schemes are proposed.
-This paper is based on our previous work ROSS (Robust Spectrum Sharing)~\mbox{%DIFAUXCMD
-\cite{Li11_ROSS}}%DIFAUXCMD
-, but fundamental extensions are made in several aspects.
-This paper gives a comprehensive analysis of robust clustering problem, analyze and investigate the influence of cluster size and the number of CCs on cluster robustness.
-We claim that the cluster robustness is no longer indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
-The involment of cluster size enables us to solve the size devergence problem in clusters, which appears in~\mbox{%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{robust clustering in CRN is analyzed as a mathematical problem and proved to be NP-hard, then both centralized and distributed schemes are proposed.
+We rethink the metric used to measure the cluster robustness in the previous works~\mbox{%DIFAUXCMD
+\cite{Li11_ROSS} }%DIFAUXCMD
+and~\mbox{%DIFAUXCMD
+\cite{LIU_TMC11_2}}%DIFAUXCMD
+, and we claim cluster robustness can not be indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
+In this paper, we identify the robustness by the number of unclustered CR nodes.
+We also consider the necessity of cluster size control and its influence on cluster robustness.
+The propsoed distributed schemes extend our previous work ROSS (Robust Spectrum Sharing)~\mbox{%DIFAUXCMD
+\cite{Li11_ROSS} }%DIFAUXCMD
+by involving cluster size control.
+Our distributed schemes solve the size devergence problem in clusters as appears in~\mbox{%DIFAUXCMD
 \cite{Li11_ROSS} }%DIFAUXCMD
 and~\mbox{%DIFAUXCMD
 \cite{LIU_TMC11_2}}%DIFAUXCMD
 .
-Based on ROSS, our proposed distributed schemes are still suitable for the scenario where fast deployment is desired.
-Throughout this paper, we refer to the clustering schemes on the basis of ROSS as the }\textit{\DIFadd{variants of ROSS}}\DIFadd{.
+Besides, our proposed distributed schemes are still suitable for the scenario where fast deployment is desired.
+Throughout this paper, we call the proposed distributed schemes the }\textit{\DIFadd{variants of ROSS}}\DIFadd{.
+ }\DIFaddend 
+
 %DIF > 
 %DIF > 
-The rest of paper is organized as follows. 
+\DIFaddbegin \DIFadd{The rest of paper is organized as follows. 
 In section~\ref{related_work}, we will introduce the clustering techniques in CRN and those focusing on robustness.
 The relation between this paper and work~\mbox{%DIFAUXCMD
 \cite{Li11_ROSS} }%DIFAUXCMD
@@ -327,11 +335,11 @@ The centralized and distributed solutions are introduced in Section~\ref{central
 %DIF > The clustering problem is given through analysis and a centralized scheme is proposed in section~\ref{centralized_scheme}.
 Extensive performance evaluation is given in Section~\ref{performance}.
 Our work is concluded in Section~\ref{conclusion}.
-}\DIFaddend 
+}
 
 
 
-\DIFaddbegin \section{\DIFadd{Related Works and the Relation with This Paper}}
+\section{\DIFadd{Related Work}}
 \label{related_work}
 \DIFadd{In the following we will give a brief review on the clustering in CRN, with emphasis on the theme of robust clustering.
 %DIF > %[crn for clustering] 
@@ -354,9 +362,9 @@ Our work is concluded in Section~\ref{conclusion}.
 
 %DIFDELCMD < %%%
 \DIFdel{Different clustering strategies have been proposed for wireless networks of different types.
-As there is no restriction on the nodes to access the spectrum in wireless ad-hoc, mesh networks andsensor networks, the objective of clustering is to decrease the transmission power consumption~\mbox{%DIFAUXCMD
+As there is no restriction on the nodes to access the spectrum in wireless ad-hoc, mesh networks and sensor networks, the objective of clustering is to decrease the transmission power consumption~\mbox{%DIFAUXCMD
 \cite{Kawadia03}}%DIFAUXCMD
-, to improve the routing performance~\mbox{%DIFAUXCMD
+, to improve the routing performance ~\mbox{%DIFAUXCMD
 \cite{clustering_mesh_globecom2010}}%DIFAUXCMD
 , or to imrove the network lifetime and coverage~\mbox{%DIFAUXCMD
 \cite{Abbasi_survey_07}}%DIFAUXCMD
@@ -516,8 +524,8 @@ $f(C)$ & the number of CCs of a cluster $C$, which is used \\
 \subsection{Robust Clustering Problem in CRN}
 \label{problem}
 
-As introduced in Section~\ref{intro}, \DIFdelbegin \DIFdel{in order to be robust against primary users' activity, the }\DIFdelend \DIFaddbegin \DIFadd{robustness of the clusters is their ability to uphold with the influence of the active primary users, and it is represented by the number of secondary users which are not included in any cluster.
-To achieve better robustness, the }\DIFaddend formed clusters should have more CCs.
+As introduced in Section~\ref{intro}, \DIFdelbegin \DIFdel{in order to be robust against primary users' activity, the formed clusters should }\DIFdelend \DIFaddbegin \DIFadd{robustness of the clusters is their ability to uphold with the influence of the active primary users, and it is represented by the number of secondary users which are not included in any cluster.
+To achieve better robustness, we form the clusters so that they }\DIFaddend have more CCs.
 \DIFdelbegin \DIFdel{On the other hand}\DIFdelend \DIFaddbegin \DIFadd{Meanwhile}\DIFaddend , the sizes of the formed clusters should be regulated, \ie they don't diverge from a given value greatly.\DIFaddbegin \DIFadd{adv
 }\DIFaddend %Considering the above mentioned requirements, we present the definition of robust clustering problem as follows.
 
@@ -739,12 +747,13 @@ Another obstacle comes from the fact that the centralized controller needs to be
 %We thus list all possible clusters whose sizes are from 2 to one certain number \footnote{this number of decided by the density of CR network, along with the occupation of PUs. We set this number as cluster size of the biggest cluster ever appears when conducting distributed schemes.}, and check each combination of clusters to find the best covering of network on the aspect of number of ICCs per cluster.
 %The complexity of computation is thus \bigO$(N^\delta)$, $\delta$ is the preferred cluster size.
 
-\section{Distributed Clustering Algorithm: ROSS}
+\section{Distributed Clustering Algorithm: \DIFaddbegin \DIFadd{Variants of }\DIFaddend ROSS}
 \label{ross}
 
-In this section we introduce the distributed clustering scheme ROSS.
-With ROSS, CR nodes form clusters based on the proximity of the available spectrum in their neighborhood after a series of interactions with their neighbors.
-ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{membership clarification} \DIFdelbegin \DIFdel{.
+In this section we introduce \DIFdelbegin \DIFdel{the distributed clustering scheme ROSS.
+With }\DIFdelend \DIFaddbegin \DIFadd{our distributed clustering schemes.
+With the variants of }\DIFaddend ROSS, CR nodes form clusters based on the proximity of the available spectrum in their neighborhood after a series of interactions with their neighbors.
+\DIFdelbegin \DIFdel{ROSS consists }\DIFdelend \DIFaddbegin \DIFadd{The variants of ROSS consist }\DIFaddend of two cascaded phases: \textit{cluster formation} and \textit{membership clarification} \DIFdelbegin \DIFdel{.
 }\DIFdelend \DIFaddbegin \DIFadd{as shown in Figure~\ref{flowChartROSS}.
 }\begin{figure}[ht!]
   \centering
@@ -753,7 +762,7 @@ ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{mem
 	\label{flowChartROSS}
 \end{figure}
 
-\DIFaddend In the first phase, clusters are formed quickly and every CR user becomes either a cluster head or a cluster member, besides, cluster size control is implemented in this phase.
+\DIFaddend In the first phase, clusters are formed quickly and every CR user becomes either \DIFdelbegin \DIFdel{a }\DIFdelend cluster head or \DIFdelbegin \DIFdel{a }\DIFdelend cluster member, besides, cluster size control is implemented in this phase.
 In the second phase, non-overlapping clusters are formed in a way that the CCs of relevant clusters are mostly increased.
 
 %is based on the spectrum sensing results in its neighbours , then
@@ -780,8 +789,9 @@ $d_i$ is the total number of the CCs between node $i$ and each of its neighbors.
 \item \textit{Neighborhood connectivity degree} $g_i$: the number of CCs which are available for $i$ and all of its neighbors.
 $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which represents the ability of $i$ to form a robust cluster with its neighbors.
 \end{itemize}
-Individual connectivity degree $d_i$ and neighborhood connectivity degree $g_i$ together form the \textit{connectivity vector}.
-\DIFaddbegin \DIFadd{Connectivity vector is calculated by every secondary user after channel availability is obtained, and is then broadcasted.
+Individual connectivity degree $d_i$ and neighborhood connectivity degree $g_i$ together form the \textit{connectivity vector} \DIFdelbegin \DIFdel{.
+}\DIFdelend \DIFaddbegin \DIFadd{$(d_i, g_i)$.
+Connectivity vector is calculated by every secondary user after channel availability is obtained, and is then broadcasted.
 }\DIFaddend Figure~\ref{fig1} illustrates an \DIFdelbegin \DIFdel{example }\DIFdelend CRN where every node's \DIFaddbegin \DIFadd{channel availability and }\DIFaddend connectivity vector is shown.
 \DIFaddbegin \DIFadd{This CRN is used as an example in the rest of this section to illustrate the proposed distributed schemes.
 %DIF > In Figure~\ref{fig1}, some primary users are randomly deployed in the network, and they are free to choose one channel out of the set of licensed channels $\mathcal{K}$ to operate.
@@ -800,16 +810,16 @@ In the example the sets of the indices of the available channels sensed by each 
 
 
 \subsubsection{Determining Cluster Heads and Forming Clusters}
-The procedure of determining the cluster heads is as follows.
+The procedure of determining \DIFdelbegin \DIFdel{the }\DIFdelend cluster heads is as follows.
 Each CR node decides whether it is a cluster head by comparing its connectivity vector with its neighbors.
 When CR node $i$ has lower individual connectivity degree than all of its neighbors except for those which have already identified to be cluster heads, node $i$ becomes a cluster head.
-If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes the cluster heads, then the node between $i$ and $j$, which has higher neighborhood connectivity degree will become the cluster head.
+If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes \DIFdelbegin \DIFdel{the }\DIFdelend cluster heads, then the node \DIFdelbegin \DIFdel{between $i$ and $j$, which has }\DIFdelend \DIFaddbegin \DIFadd{with }\DIFaddend higher neighborhood connectivity degree will become \DIFdelbegin \DIFdel{the }\DIFdelend cluster head.
 If $g_i = g_j$ as well, the node ID is used to break the tie, \ie the one with smaller node ID becomes the cluster head.
 %
 The node which is identified as a cluster head broadcasts a message to notify its neighbors of this change, \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{then }\DIFaddend its neighbors which are not cluster heads become cluster members\DIFaddbegin \DIFadd{.
 }\DIFaddend \footnote{The reason for the occurrence of the cluster heads in the neighborhood of a new cluster head will be explained in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning})}
-\DIFaddbegin \DIFadd{Actually during the whole phase I, whenever a CR node is decided to be a cluster head thus accordingly forms a cluster, or its cluster's composition is changed, the cluster head will broadcast the new information about its cluster, which includes the sets of available channels on all its cluster members}\DIFaddend .
-The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in the appendix.
+\DIFaddbegin \DIFadd{Actually during the whole phase I, whenever a CR node is decided to be a cluster head thus accordingly forms a cluster, or its cluster's composition is changed, the cluster head broadcasts the new information about its cluster, which includes the sets of available channels on all its cluster members}\DIFaddend .
+The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in \DIFdelbegin \DIFdel{the }\DIFdelend appendix.
 
 After receiving the notification from a cluster head, a CR node $i$ is aware that it becomes a member of a cluster. 
 Consequently, $i$ sets its individual connectivity degree to a positive number $M > |\mathcal{K}| \cdot N$, and broadcasts the new individual connectivity degree to all of its neighbors. 
@@ -830,73 +840,30 @@ The manipulation of the individual connectivity degree of the cluster members ac
 %, which enables the nodes which are outside of the cluster can possibly become cluster heads or can also be included into other clusters.
 %We have the following theorem to show that when there is no one secondary which shares no CC with any other secondary users, \ie
 %all secondary users' individual connectivity degrees are greater than zero, then every secondary user will eventually be either integrated into a certain cluster, or becomes a cluster head.
-We have the following \DIFdelbegin \DIFdel{theorem }\DIFdelend \DIFaddbegin \DIFadd{lemma }\DIFaddend to show that every secondary user will eventually be either integrated into a certain cluster or becomes a cluster head.
-\DIFdelbegin %DIFDELCMD < \begin{theorem}
+\DIFdelbegin \DIFdel{We have the following theorem to show that every secondary user will eventually be either integrated into a certain cluster or becomes a cluster head.
+}%DIFDELCMD < \begin{theorem}
 %DIFDELCMD < \label{clustering:theorem}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin 
-
-\begin{lemma}
-\label{clustering:lemma1}
-\DIFaddend Given a CRN \DIFdelbegin \DIFdel{, it takes at most $N$ steps that }\DIFdelend \DIFaddbegin \DIFadd{where any secondary user is able to communicate with any other secondary user through the other nodes, then after the phase of cluster head selection and initial cluster formation, }\DIFaddend every secondary user either becomes cluster head, or gets included into at least one cluster.
-\DIFdelbegin %DIFDELCMD < \end{theorem}
+\DIFdel{Given a CRN, it takes at most $N$ steps that every secondary user either becomes cluster head, or gets included into at least one cluster.
+}%DIFDELCMD < \end{theorem}
 %DIFDELCMD < %%%
 \DIFdel{Here, by }\textit{\DIFdel{step}} %DIFAUXCMD
 \DIFdel{we mean one secondary user executing Algorithm~\ref{clustering:theorem} for one time.
-}\DIFdelend \DIFaddbegin \end{lemma}
-
-%DIF > Here, by \textit{step} we mean Algorithm~\ref{clustering:theorem} is executed by a secondary user for one time.
-%DIF > In one special scenario, \eg when a cluster head is elected and all the other nodes are within its neighborhood, the number of steps is 1.
-\DIFaddend The Proof is \DIFaddbegin \DIFadd{given }\DIFaddend in Appendix~\DIFdelbegin \DIFdel{\ref{proof_clustering:theorem}.
-}\DIFdelend \DIFaddbegin \DIFadd{\ref{proof_clustering:lemma1}.
-%DIF > The proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
-%DIF > Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a chain as discussed in the example in the proof.
-}\DIFaddend %
-\DIFdelbegin \DIFdel{The procedure of the proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}.
+The Proof is in Appendix~\ref{proof_clustering:theorem}.
+%DIF < 
+The procedure of the proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
 Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a list as discussed in the example in the proof.
-}\DIFdelend %DIF > Assuming there is a token in the CRN, one node is allowed to execute Algorithm~\ref{alg0} only when it holds the token, and it then transfers the token to the neighboring node on the chain.
-%DIF > If one step can be finished within a certain time span $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
-%DIF > C1-6
-\DIFaddbegin 
-
-\begin{lemma}
-\label{clustering:lemma2}
-\DIFadd{When a secondary user becomes cluster head, it will not become cluster member again.
-}\end{lemma}
-\begin{proof}
-\DIFadd{A secondary node becomes cluster head when its }\textit{\DIFadd{Individual connectivity degree}} \DIFadd{is smaller than all its neighbors.
-Afterwards, the }\textit{\DIFadd{Individual connectivity degree}} \DIFadd{of its neighbors becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
-}\end{proof}
-
-%DIF > According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
-\DIFaddend %
-\DIFdelbegin \DIFdel{If one step can be finished within a certain time span $T$,
-then the total time needed for }\DIFdelend %DIF > This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
-\DIFaddbegin 
-
-\begin{lemma}
-\label{clustering:lemma3}
-\DIFadd{In the process of cluster head selection and initial cluster formation, }\DIFaddend the \DIFdelbegin \DIFdel{network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
-}\DIFdelend \DIFaddbegin \DIFadd{maximum number of times that a secondary node becomes cluster head is $N$.
-}\end{lemma}
-\DIFadd{This lemma can be easily gotten from~\ref{clustering:lemma2} considering the $N$ is the number of all the secondary users in the CRN.
-Based on these Lemmas, we can easily obtain Theorem~\ref{clustering:lemma1},
-}\begin{theorem}
-\label{clustering:theorem}
-\DIFadd{Assuming the time for a secondary user to update the information about cluster heads in its neighborhood is $T$, then it takes at most $N*T $ time to finish the process of cluster head selection and initial cluster formation.
-}\end{theorem}
-\DIFadd{Phase I ends when no more secondary users becoming cluster head.
-based on~\ref{clustering:lemma1} and~\ref{clustering:lemma3}, the theorem is proved.
-}
-
-
-\DIFaddend As Algorithm~\ref{alg0} can be executed concurrently by different secondary users, the needed time can be considerably reduced.
+%DIF < 
+If one step can be finished within a certain time span $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
+As Algorithm~\ref{alg0} can be executed concurrently by different secondary users, the needed time can be considerably reduced.
 %DIF < According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
 %DIF < 
 %DIF < This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
-If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, \DIFdelbegin \DIFdel{then }\DIFdelend the outcome is shown in Figure~\ref{fig2}.
+If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, then the outcome is shown in Figure~\ref{fig2}.
 Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C(H)$ is $\{H, B, A, G\}$.
+	}\DIFdelend 
 
+	
 
 
 
@@ -914,7 +881,7 @@ It is possible that the cluster head excludes all of its neighbors, resulting in
 %At the end of this procedure every formed cluster has at least one common channel.
 %The pseudo code for cluster head to obtain at least one common channel is shown in Algorithm~\ref{alg_size_control_available_CCC}.
 The pseudo code for this procedure is shown in Algorithm~\ref{alg_size_control_available_CCC}.
-As to the nodes which are eliminated from the previous clusters, they restore their original individual connectivity degrees, then execute Algorithm~\ref{alg0} and become either cluster heads or get included into other clusters afterwards according to Theorem~\ref{clustering:theorem}.
+As \DIFdelbegin \DIFdel{to }\DIFdelend \DIFaddbegin \DIFadd{for }\DIFaddend the nodes which are eliminated from \DIFdelbegin \DIFdel{the previous clusters}\DIFdelend \DIFaddbegin \DIFadd{a cluster}\DIFaddend , they restore their original individual connectivity degrees, then execute Algorithm~\ref{alg0} and become either cluster heads or get included into other clusters afterwards according to Theorem~\ref{clustering:theorem}.
 
 
 
@@ -997,7 +964,62 @@ This procedure is similar with that in Section~\ref{ross_p1_guarantee_ccc}, thus
 \end{figure}
 
 
-\subsection{Phase II - Membership Clarification}
+%DIF > %%%%%%%%%%%%%%
+\DIFaddbegin \DIFadd{We have the following lemma to show that every secondary user will eventually be either integrated into a certain cluster or becomes a cluster head.
+}
+
+\begin{lemma}
+\label{clustering:lemma1}
+\DIFadd{Given a CRN where any secondary user is able to communicate with any other secondary user through the other nodes, then after the phase of cluster head selection and initial cluster formation, every secondary user either becomes cluster head, or gets included into at least one cluster.
+}\end{lemma}
+
+%DIF > Here, by \textit{step} we mean Algorithm~\ref{clustering:theorem} is executed by a secondary user for one time.
+%DIF > In one special scenario, \eg when a cluster head is elected and all the other nodes are within its neighborhood, the number of steps is 1.
+\DIFadd{The Proof is given in Appendix~\ref{proof_clustering:lemma1}.
+%DIF > The proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
+%DIF > Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a chain as discussed in the example in the proof.
+%DIF > 
+%DIF > Assuming there is a token in the CRN, one node is allowed to execute Algorithm~\ref{alg0} only when it holds the token, and it then transfers the token to the neighboring node on the chain.
+%DIF > If one step can be finished within a certain time span $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
+%DIF > C1-6
+}
+
+\begin{lemma}
+\label{clustering:lemma2}
+\DIFadd{When a secondary user becomes cluster head, it will not become cluster member again.
+}\end{lemma}
+\begin{proof}
+\DIFadd{A secondary node becomes cluster head when its }\textit{\DIFadd{Individual connectivity degree}} \DIFadd{is smaller than all its neighbors.
+Afterwards, the }\textit{\DIFadd{Individual connectivity degree}} \DIFadd{of its neighbors becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
+As to the node which is excluded form a cluster due to guaranteeing CC or size control, its }\textit{\DIFadd{Individual connectivity degree}} \DIFadd{is restored, but it will not include its former cluster head, even if it becomes cluster head as regulated in~\ref{alg0}.
+}\end{proof}
+
+%DIF > According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
+%DIF > 
+%DIF > This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
+
+\begin{lemma}
+\label{clustering:lemma3}
+\DIFadd{In the process of cluster head selection and initial cluster formation, the maximum number of times that a secondary node becomes cluster head is $N$.
+}\end{lemma}
+\DIFadd{This lemma can be easily gotten from~\ref{clustering:lemma2} considering the $N$ is the number of all the secondary users in the CRN.
+Based on these Lemmas, we can easily obtain Theorem~\ref{clustering:lemma1},
+}\begin{theorem}
+\label{clustering:theorem}
+\DIFadd{Assuming the time for a secondary user to update the information about cluster heads in its neighborhood is $T$, then it takes at most $N*T $ time to finish the process of cluster head selection and initial cluster formation.
+}\end{theorem}
+\DIFadd{Phase I ends when no more secondary users becoming cluster head.
+based on~\ref{clustering:lemma1} and~\ref{clustering:lemma3}, the theorem is proved.
+}
+
+
+\DIFadd{As Algorithm~\ref{alg0} is executed concurrently by different secondary users, the needed time can be considerably reduced.
+If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, the outcome is shown in Figure~\ref{fig2}.
+Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C(H)$ is $\{H, B, A, G\}$.
+}
+
+
+\DIFaddend \subsection{Phase II - Membership Clarification}
 \label{membershipClarification}
 %\subsubsection*{Problem Description}
 As to the example CRN shown in Figure~\ref{fig1}, the resulted clusters are shown in Figure~\ref{fig2} after running phase I of ROSS.
@@ -1701,7 +1723,7 @@ First, the }\DIFdelend \DIFaddbegin \DIFadd{in four aspects.
 
 \section{Conclusion}
 \label{conclusion}
-In this paper we investigate the robust clustering problem in CRN extensively and propose both centralized and distributed clustering solutions.
+In this paper we investigate the robust clustering problem in CRN \DIFdelbegin \DIFdel{extensively }\DIFdelend \DIFaddbegin \DIFadd{thoroughly }\DIFaddend and propose both centralized and distributed clustering solutions.
 We give the mathematical description of the problem and prove the NP hardness of it.
 The proposed clustering schemes generate clusters which have long life expectancy against the primary users' activity, and the generated clusters have similar sizes with the desired one.
 %The congestion game model in game theory is used to design the distributed schemes.
