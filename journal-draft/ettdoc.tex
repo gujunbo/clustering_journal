@@ -572,12 +572,12 @@ Another obstacle comes from the fact that the centralized controller needs to be
 %We thus list all possible clusters whose sizes are from 2 to one certain number \footnote{this number of decided by the density of CR network, along with the occupation of PUs. We set this number as cluster size of the biggest cluster ever appears when conducting distributed schemes.}, and check each combination of clusters to find the best covering of network on the aspect of number of ICCs per cluster.
 %The complexity of computation is thus \bigO$(N^\delta)$, $\delta$ is the preferred cluster size.
 
-\section{Distributed Clustering Algorithm: ROSS}
+\section{Distributed Clustering Algorithm: Variants of ROSS}
 \label{ross}
 
-In this section we introduce the distributed clustering scheme ROSS.
-With ROSS, CR nodes form clusters based on the proximity of the available spectrum in their neighborhood after a series of interactions with their neighbors.
-ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{membership clarification} as shown in Figure~\ref{flowChartROSS}.
+In this section we introduce our distributed clustering schemes.
+With the variants of ROSS, CR nodes form clusters based on the proximity of the available spectrum in their neighborhood after a series of interactions with their neighbors.
+The variants of ROSS consist of two cascaded phases: \textit{cluster formation} and \textit{membership clarification} as shown in Figure~\ref{flowChartROSS}.
 \begin{figure}[ht!]
   \centering
 \includegraphics[width=0.8\linewidth]{flow_chart.pdf}
@@ -585,7 +585,7 @@ ROSS consists of two cascaded phases: \textit{cluster formation} and \textit{mem
 	\label{flowChartROSS}
 \end{figure}
 
-In the first phase, clusters are formed quickly and every CR user becomes either a cluster head or a cluster member, besides, cluster size control is implemented in this phase.
+In the first phase, clusters are formed quickly and every CR user becomes either cluster head or cluster member, besides, cluster size control is implemented in this phase.
 In the second phase, non-overlapping clusters are formed in a way that the CCs of relevant clusters are mostly increased.
 
 %is based on the spectrum sensing results in its neighbours , then
@@ -611,7 +611,7 @@ $d_i$ is the total number of the CCs between node $i$ and each of its neighbors.
 \item \textit{Neighborhood connectivity degree} $g_i$: the number of CCs which are available for $i$ and all of its neighbors.
 $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which represents the ability of $i$ to form a robust cluster with its neighbors.
 \end{itemize}
-Individual connectivity degree $d_i$ and neighborhood connectivity degree $g_i$ together form the \textit{connectivity vector}.
+Individual connectivity degree $d_i$ and neighborhood connectivity degree $g_i$ together form the \textit{connectivity vector} $(d_i, g_i)$.
 Connectivity vector is calculated by every secondary user after channel availability is obtained, and is then broadcasted.
 Figure~\ref{fig1} illustrates an CRN where every node's channel availability and connectivity vector is shown.
 This CRN is used as an example in the rest of this section to illustrate the proposed distributed schemes.
@@ -631,16 +631,16 @@ In the example the sets of the indices of the available channels sensed by each 
 
 
 \subsubsection{Determining Cluster Heads and Forming Clusters}
-The procedure of determining the cluster heads is as follows.
+The procedure of determining cluster heads is as follows.
 Each CR node decides whether it is a cluster head by comparing its connectivity vector with its neighbors.
 When CR node $i$ has lower individual connectivity degree than all of its neighbors except for those which have already identified to be cluster heads, node $i$ becomes a cluster head.
-If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes the cluster heads, then the node between $i$ and $j$, which has higher neighborhood connectivity degree will become the cluster head.
+If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes cluster heads, then the node with higher neighborhood connectivity degree will become cluster head.
 If $g_i = g_j$ as well, the node ID is used to break the tie, \ie the one with smaller node ID becomes the cluster head.
 %
 The node which is identified as a cluster head broadcasts a message to notify its neighbors of this change, then its neighbors which are not cluster heads become cluster members.
 \footnote{The reason for the occurrence of the cluster heads in the neighborhood of a new cluster head will be explained in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning})}
-Actually during the whole phase I, whenever a CR node is decided to be a cluster head thus accordingly forms a cluster, or its cluster's composition is changed, the cluster head will broadcast the new information about its cluster, which includes the sets of available channels on all its cluster members.
-The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in the appendix.
+Actually during the whole phase I, whenever a CR node is decided to be a cluster head thus accordingly forms a cluster, or its cluster's composition is changed, the cluster head broadcasts the new information about its cluster, which includes the sets of available channels on all its cluster members.
+The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in appendix.
 
 After receiving the notification from a cluster head, a CR node $i$ is aware that it becomes a member of a cluster. 
 Consequently, $i$ sets its individual connectivity degree to a positive number $M > |\mathcal{K}| \cdot N$, and broadcasts the new individual connectivity degree to all of its neighbors. 
@@ -705,7 +705,7 @@ Phase I ends when no more secondary users becoming cluster head.
 based on~\ref{clustering:lemma1} and~\ref{clustering:lemma3}, the theorem is proved.
 
 
-As Algorithm~\ref{alg0} can be executed concurrently by different secondary users, the needed time can be considerably reduced.
+As Algorithm~\ref{alg0} is executed concurrently by different secondary users, the needed time can be considerably reduced.
 If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, the outcome is shown in Figure~\ref{fig2}.
 Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C(H)$ is $\{H, B, A, G\}$.
 	
@@ -726,7 +726,7 @@ It is possible that the cluster head excludes all of its neighbors, resulting in
 %At the end of this procedure every formed cluster has at least one common channel.
 %The pseudo code for cluster head to obtain at least one common channel is shown in Algorithm~\ref{alg_size_control_available_CCC}.
 The pseudo code for this procedure is shown in Algorithm~\ref{alg_size_control_available_CCC}.
-As to the nodes which are eliminated from the previous clusters, they restore their original individual connectivity degrees, then execute Algorithm~\ref{alg0} and become either cluster heads or get included into other clusters afterwards according to Theorem~\ref{clustering:theorem}.
+As for the nodes which are eliminated from a cluster, they restore their original individual connectivity degrees, then execute Algorithm~\ref{alg0} and become either cluster heads or get included into other clusters afterwards according to Theorem~\ref{clustering:theorem}.
 
 
 
