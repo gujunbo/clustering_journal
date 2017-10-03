@@ -125,15 +125,15 @@ Germany
 \begin{abstract}
 Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionalities.
 Unlicensed channels, which are temporally available for a group of cognitive radio users in one area, consolidate the group into a cluster.
-More available unlicensed channels in a cluster make the cluster more likely to uphold against the licensed users' influence than only one available channel, which make that cluster to be more robust.
-This paper analyses the problem of how to form robust clusters in a cognitive radio network so that more cognitive radio users can still be benefited from cluster structure when the primary users' operations becomes more intense.
+More available unlicensed channels in a cluster make the cluster more likely to uphold against the licensed users' influence, making clusters more robust.
+This paper analyses the problem of how to form robust clusters in a cognitive radio network such that cognitive radio systems benefit from collaboration within clusters despite intense primary user activity.
 %In the process of forming clusters, every secondary user decides with whom to form a cluster, or which cluster to join.
 We give a formal description of the robust clustering problem, prove it to be NP-hard and propose both centralized and distributed solutions.
-The congestion game model is adopted to analyze the process of cluster formation, which not only contributes to the design of the distributed clustering scheme, but also provides the guarantee on the convergence into Nash Equilibrium and the convergence speed.
+The congestion game model is adopted to analyze the process of cluster formation, which not only contributes to the design of the distributed clustering scheme, but also provides a guarantee on the convergence to a Nash equilibrium and the convergence speed.
 %Our proposed clustering solution is versatile to fulfill some other requirements such as faster convergence and cluster size control.
 The proposed distributed clustering scheme outperforms state-of-the-art related works in terms of cluster robustness, convergence speed and overhead.
 %Besides, we prove the clustering problem is NP-hard, and also propose the centralized solution.
-Extensive simulations have been conducted which clearly support our claims.
+Extensive simulations are presented supporting the theoretical claims.
 \end{abstract}
 
 %\keywords{class file; \LaTeXe; \emph{\journalabb}}
@@ -159,7 +159,8 @@ The rate of false negative, \ie misdetecting the active primary users, can be de
 Collaborative sensing relies on the consensus of CR users\footnote{The terms user and node appear interchangeably in this paper. In particular, user is adopted when its networking or cognitive ability are discussed or stressed, while we refer to nodes typicallly in the context of the network topology.} within a certain area, in this regard, clustering is regarded as an effective method to realize cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing}.
 % ... decreases considerably the negative probability due to the random channel effects like fading and shadowing.
 
-Clustering is the process of grouping certain users in geographic proximity into a collective, and as an effective technique, it is proposed with the emergence of mobile wireless networks~\cite{gerla_97} and there has been a plethora of clustering schemes.
+Clustering is the process of grouping certain users in geographic proximity into a collective,.
+% and as an effective technique, it is proposed with the emergence of mobile wireless networks~\cite{gerla_97} and there has been a plethora of clustering schemes.
 As to the wireless networks where no restriction is imposed on the nodes to access the spectrum, \ie 
 %Different clustering strategies have been proposed for wireless networks of different types.
 wireless ad-hoc, mesh networks and sensor networks, the objective of clustering can be to decrease the transmission power consumption~\cite{Kawadia03}, to improve the routing performance~\cite{clustering_mesh_globecom2010}, or to imrove the network lifetime and coverage~\cite{Abbasi_survey_07}.
@@ -173,12 +174,11 @@ In CRN, a formed cluster seizes one or multiple unlicensed channels which are av
 In this paper available unlicensed channels are called \textit{common licensed channels} (or common channels for short, which is abbreviated as CC).
 The availability of CCs within a cluster decides the existence of that cluster, \ie if no CCs are available then the corresponding cluster does not exist.
 The activity of primary users is usually unknown to the secondary users thus deemed as random to secondary users.
-Consequently, a cluster which secures more CCs will anticipate a longer life expectancy. 
-In other words, such clusters are more robust.
+Consequently, a cluster which secures more CCs will be more robust to random primary user activity and anticipate a longer life expectancy. 
 In this paper, the robustness of the clusters is their ability to uphold with the influence of active primary users.
-The robust clustering enables more secondary users to reside in the resulted clusters when the available spectrum becomes scarcer.
+The robust clustering enables more secondary users to reside in the resulting clusters when the available spectrum becomes scarcer.
 %
-Within in a cluster, both payload and control overheads can be transmitted on the CCs.
+In a cluster, both payload and control overheads can be transmitted on the CCs.
 When one or several cluster members can not access a certain CC on which primary user's activity is detected, the channel will be excluded from the set of CCs.
 In particular, if that channel is being used for payload communication, the communication pair will stop and resume transmission on another available CC.
 %As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
@@ -193,20 +193,21 @@ Thus, the cluster robustness discussed in terms of number of CCs carries little 
 Cluster sizes also play a role in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 
 In this paper robust clustering in CRN is analyzed as a mathematical problem and proved to be NP-hard, then both centralized and distributed schemes are proposed.
-We rethink the metric used to measure the cluster robustness in the previous works~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}, and we claim cluster robustness can not be indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
+We propose an alternate metric to measure cluster robustness in contrast to previous works~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
+We claim cluster robustness can not be indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
 In this paper, we identify the robustness by the number of unclustered CR nodes.
 We also consider the necessity of cluster size control and its influence on cluster robustness.
 The propsoed distributed schemes extend our previous work ROSS (Robust Spectrum Sharing)~\cite{Li11_ROSS} by involving cluster size control.
-Our distributed schemes solve the size devergence problem in clusters as appears in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
+Our distributed schemes solve the size divergence problem in clusters as discussed in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
 Besides, our proposed distributed schemes are still suitable for the scenario where fast deployment is desired.
 Throughout this paper, we call the proposed distributed schemes the \textit{variants of ROSS}.
  
 %
 %
-The rest of paper is organized as follows. 
-In section~\ref{related_work}, we will introduce the clustering techniques in CRN and those focusing on robustness.
+The rest of the paper is organized as follows. 
+In section~\ref{related_work}, we introduce the clustering techniques in CRN and those focusing on robustness.
 The relation between this paper and work~\cite{Li11_ROSS} is elaborated.
-She system model and the robust clustering problem formulation are presented in Section~\ref{sec:model}. 
+The system model and the robust clustering problem formulation are presented in Section~\ref{sec:model}. 
 The centralized and distributed solutions are introduced in Section~\ref{centralized_solution} and~\ref{ross} respectively.
 %The clustering problem is given through analysis and a centralized scheme is proposed in section~\ref{centralized_scheme}.
 Extensive performance evaluation is given in Section~\ref{performance}.
@@ -216,7 +217,7 @@ Our work is concluded in Section~\ref{conclusion}.
 
 \section{Related Work}
 \label{related_work}
-In the following we will give a brief review on the clustering in CRN, with emphasis on the theme of robust clustering.
+In the following we give a brief review on the clustering in CRN, with emphasis on the theme of robust clustering.
 %%[crn for clustering] 
 %%due to attenuation of signal propagation, primary users can only be detected by CR users when they locate closely to CR users.
 %In cognitive radio networks, secondary users which locate closely with each other are possibly affected by the same group of primary users, so that the availability of licensed spectrum is similar to them, \ie certain channels are available on each of them.
@@ -245,8 +246,9 @@ Clustering scheme~\cite{Consensus_based_clustering12} looks for a network partit
 An event-driven clustering scheme is proposed for cognitive radio sensor networks in \cite{Ozger_cluster_crsn_13}.
 None of the above mentioned schemes provides a certain robustness to formed clusters against primary users. 
 
-The authors of~\cite{Mansoor2015} propose a clustering algorithm which aims to speed up the process of re-clustering in case a cluster doesn't uphold in from of active primary users.
-But this work doesn't consider to improve the ability of the formed clusters to maintain, and the messaging cost which is involved in this process is not considered.
+The authors of~\cite{Mansoor2015} propose a clustering algorithm which aims to speed up the process of re-clustering in case a cluster doesn't uphold in front of active primary users.
+%But this work doesn't consider to improve the ability of the formed clusters to maintain, and the messaging cost which is involved in this process is not considered.
+However, this work does not consider robustness improvement of clusters, while also ignoring messaging overhead.
 Robustness of clusters is discussed in~\cite{LIU_TMC11_2}. A distributed clustering scheme (denoted as SOC) which is designed to generate robust clusters against primary users is proposed.
 The robustness of the clusters comes from the fact that there are multiple CCs available for the clusters.
 SOC involves three phases of distributed executions.
@@ -257,10 +259,10 @@ For example, a node which accesses abundant channels may form a cluster by itsel
 In addition, this scheme leads to the high variance of the cluster sizes, which is not desired in certain applications as discussed in~\cite{clustering_globecom11, cluster_EW10}.
 \cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters. Although the authors claim that robustness is one goal to achieve, the minimum number of clusters is finally pursued.
 %
-A distributed clustering scheme ROSS (Robust Spectrum Sharing) is proposed in~\cite{Li11_ROSS} under the game theoretic framework. 
+We propose a distributed clustering scheme ROSS (Robust Spectrum Sharing) in~\cite{Li11_ROSS} under the game theoretic framework. 
 Compared with the clustering schemes introduced above, the clusters are formed faster and the clusters possess more CCs than SOC.
 However, as all the other clustering schemes, this scheme does not have control over the formation of the very small or very large clusters which are not desirable.
-Furthermore, both this work and SOC define robustness just to be the number of CCs per cluster, and don't consider the sustainability of clusters against the increasing activity of primary users, which leaves their claim on robustness unverified.
+Furthermore, both this work and SOC define robustness just to be the number of CCs per cluster, and don't consider the sustainability of clusters against increasing activity of primary users, leaving the issue of cluster robustness open..
 %
 
 
@@ -350,8 +352,8 @@ $f(C)$ & the number of CCs of a cluster $C$, which is used \\
 \label{problem}
 
 As introduced in Section~\ref{intro}, robustness of the clusters is their ability to uphold with the influence of the active primary users, and it is represented by the number of secondary users which are not included in any cluster.
-To achieve better robustness, we form the clusters so that they have more CCs.
-Meanwhile, the sizes of the formed clusters should be regulated, \ie they don't diverge from a given value greatly.adv
+To achieve better robustness, we propose that cluster should be formed by increasing the  number of CCs.
+Meanwhile, the sizes of the formed clusters should be regulated, \ie they don't diverge from a given value greatly.
 %Considering the above mentioned requirements, we present the definition of robust clustering problem as follows.
 
 
@@ -581,7 +583,7 @@ The variants of ROSS consist of two cascaded phases: \textit{cluster formation} 
 \begin{figure}[ht!]
   \centering
 \includegraphics[width=0.8\linewidth]{flow_chart.pdf}
-	\caption{Processors of ROSS}
+	\caption{Processing steps of ROSS}
 	\label{flowChartROSS}
 \end{figure}
 
@@ -639,7 +641,7 @@ If $g_i = g_j$ as well, the node ID is used to break the tie, \ie the one with s
 %
 The node which is identified as a cluster head broadcasts a message to notify its neighbors of this change, then its neighbors which are not cluster heads become cluster members.
 \footnote{The reason for the occurrence of the cluster heads in the neighborhood of a new cluster head will be explained in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning})}
-Actually during the whole phase I, whenever a CR node is decided to be a cluster head thus accordingly forms a cluster, or its cluster's composition is changed, the cluster head broadcasts the new information about its cluster, which includes the sets of available channels on all its cluster members.
+Actually during the whole phase I, whenever a CR node is decided to be a cluster head (thus accordingly forms a cluster), or its cluster's composition is changed, the cluster head broadcasts the new information about its cluster, which includes the sets of available channels on all its cluster members.
 The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in appendix.
 
 After receiving the notification from a cluster head, a CR node $i$ is aware that it becomes a member of a cluster. 
@@ -779,9 +781,9 @@ The Proof is given in Appendix~\ref{proof_clustering:lemma1}.
 When a secondary user becomes cluster head, it will not become cluster member again.
 \end{lemma}
 \begin{proof}
-A secondary node becomes cluster head when its \textit{Individual connectivity degree} is smaller than all its neighbors.
-Afterwards, the \textit{Individual connectivity degree} of its neighbors becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
-As to the node which is excluded form a cluster due to guaranteeing CC or size control, its \textit{Individual connectivity degree} is restored, but it will not include its former cluster head, even if it becomes cluster head as regulated in~\ref{alg0}.
+A secondary node becomes cluster head when its \textit{individual connectivity degree} is smaller than all its neighbors.
+Afterwards, the \textit{individual connectivity degree} of its neighbors becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
+As to the node which is excluded form a cluster due to guaranteeing CC or size control, its \textit{individual connectivity degree} is restored, but it will not include its former cluster head, even if it becomes cluster head as regulated in~\ref{alg0}.
 \end{proof}
 
 %According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
@@ -792,17 +794,17 @@ As to the node which is excluded form a cluster due to guaranteeing CC or size c
 \label{clustering:lemma3}
 In the process of cluster head selection and initial cluster formation, the maximum number of times that a secondary node becomes cluster head is $N$.
 \end{lemma}
-This lemma can be easily gotten from~\ref{clustering:lemma2} considering the $N$ is the number of all the secondary users in the CRN.
+This lemma can be easily obtained from~\ref{clustering:lemma2} considering the $N$ is the number of all the secondary users in the CRN.
 Based on these Lemmas, we can easily obtain Theorem~\ref{clustering:lemma1},
 \begin{theorem}
 \label{clustering:theorem}
 Assuming the time for a secondary user to update the information about cluster heads in its neighborhood is $T$, then it takes at most $N*T $ time to finish the process of cluster head selection and initial cluster formation.
 \end{theorem}
-Phase I ends when no more secondary users becoming cluster head.
-based on~\ref{clustering:lemma1} and~\ref{clustering:lemma3}, the theorem is proved.
+Phase I ends when no more secondary users are becoming cluster head.
+Based on~\ref{clustering:lemma1} and~\ref{clustering:lemma3}, the theorem is proved.
 
 
-As Algorithm~\ref{alg0} is executed concurrently by different secondary users, the needed time can be considerably reduced.
+As Algorithm~\ref{alg0} is executed concurrently by different secondary users, the required time can be considerably reduced.
 If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, the outcome is shown in Figure~\ref{fig2}.
 Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C(H)$ is $\{H, B, A, G\}$.
 
@@ -1090,14 +1092,14 @@ We investigate the distribution of CRs residing in the formed clusters with diff
 We investigate the number of control messages involved in the clustering process.
 
 \item \textbf{Influence from inaccurate spectrum sensing.}
-The above simulations are conducted with the assumption of perfect spectrum sensing.
-As the errors in spectrum sensing is inevitable, we are interested to see the performance of the distributed schemes when the spectrum sensing is not perfect.
+The above simulations are conducted under the assumption of perfect spectrum sensing.
+As spectrum sensing in practise is subject to errors, we are interested to see the performance of the distributed schemes when the spectrum sensing is not perfect.
 %The errors in spectrum sensing is inevitable, and the decision is made by the secondary users and based on the sensing results, without considering the difference between the sensing result and the ground truth.
 The false negative in spectrum sensing, which misdetects the presence of the active primary users, is harmful to the primary users and should be avoided as much as possible.
-On the contrary, false positive \ie which reports the presence of active primary users when there are actually not, only decreases the available spectrum for the secondary users.
+On the contrary, a false positive \ie which reports the presence of active primary users when there are actually none, only decreases the available spectrum for the secondary users.
 In this regard, we assume only the false negative exists in the spectrum sensing.
 
-We assume when a secondary user is within the transmission range of an active primary user, the probability that it misdetects and thus regards a channel is available equals to the rate of false negative.
+We assume when a secondary user is within the transmission range of an active primary user, the probability that it misdetects and thus regards a channel as being available equals to the rate of false negative.
 The secondary users make clustering decisions based on the imperfect spectrum sensing.
 After the clustering process is completed, we correct the spectrum availability with the ground truth.
 Then certain formed clusters may be affected as their CCs which are obtained due to false negative will be revoked.
@@ -1200,7 +1202,7 @@ The centralized scheme with desired size of 2 generates the most robust clusters
 The centralized scheme with desired size of 3 doesn't outperform the variants of ROSS, because pursuing cluster size prevents forming the the clusters with more CCs.
 In contrary, the variants of ROSS generate some smaller clusters which are more likely to maintain when there are more PUs.
 
-If we use the number of secondary users residing in a cluster as the numerical representation of cluster robustness, then the variants of ROSS is from 5\%,  30\% and 230\% more robust than SOC with the number of newly added PR is 10, 40 and 80 respectively.
+If we use the number of secondary users residing in a cluster as the numerical representation of cluster robustness, then the ROSS based schemes are 5\%,  30\% and 230\% more robust than SOC, where the numbers of newly added PR are 10, 40 and 80 respectively.
 The above observation shows that the average number of CCs of non-singleton clusters doesn't necessarily illustrate the robustness  of cluster, \ie SOC obtains the most CCs for the clusters which are meanwhile the most vulnerable.
 Besides, with similar distribution of sizes, the clusters generated by ROSS-DGA and ROSS-DFA are more robust than that by SOC.
 
@@ -1450,9 +1452,9 @@ The size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC is shown in Fig
   \label{false_negative_ccc}
 \end{figure}
 %The influence of the false negative on the sustainability of the clusters can be seen from Figure~\ref{false_negative_CDF}.
-For all the schemes, when false negative increases, the number of singleton clusters increases accordingly.
+For all the schemes, when false negatives increase, the number of singleton clusters increases accordingly.
 %As to the ROSS variants, the changes of the CDF curves are resulted from the increasing singleton clusters.
-The clusters from SOC are affected by the sensing errors the greatly.
+The clusters from SOC are affected by the sensing errors greatly.
 More unclustered nodes are generated, and a lot of small clusters are formed, \eg when false negative rate is 30\%.
 In contrary, ROSS variants are resilient in terms of unclusterd nodes and cluster sizes.
 We can conclude that through negotiation within the neighborhoods, ROSS variants successfully rules out the channel from false negative sensing.
@@ -1472,7 +1474,7 @@ Third, as distributed schemes, the variants of ROSS outperform SOC considerably 
 \item The variants of ROSS generate less unclustered nodes than SOC for a given CRN, and the resulted clusters are more robust than SOC when PUs become more active.
 \item The signaling overhead involved in ROSS is about half of that needed for SOC, and the signaling messages are much shorter that the latter.
 \item The sizes of the clusters generated by ROSS demonstrate smaller discrepancy than that of SOC.
-\item The variants of ROSS are more resilient against the imperfect spectrum sensing.
+\item The variants of ROSS are more resilient against the erroneous spectrum sensing.
 \end{itemize}
 
 Moreover, the ROSS variants with size control features achieve similar performance to the centralized scheme in terms of cluster size, and the cluster robustness is similar when applying the variants of ROSS and the centralized scheme respectively.
