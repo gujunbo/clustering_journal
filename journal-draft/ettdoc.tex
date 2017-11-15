@@ -161,11 +161,11 @@ Collaborative sensing relies on the consensus of CR users\footnote{The terms use
 
 Clustering is the process of grouping certain users in geographic proximity into a collective.
 % and as an effective technique, it is proposed with the emergence of mobile wireless networks~\cite{gerla_97} and there has been a plethora of clustering schemes.
-As to the wireless networks where no restriction is imposed on the nodes to access the spectrum, \ie 
-%Different clustering strategies have been proposed for wireless networks of different types.
+As to wireless networks where no restriction is imposed on nodes to access the spectrum, \ie 
 wireless ad-hoc, mesh networks and sensor networks, the objective of clustering can be to decrease the transmission power consumption~\cite{Kawadia03}, to improve the routing performance~\cite{clustering_mesh_globecom2010}, or to imrove the network lifetime and coverage~\cite{Abbasi_survey_07}.
 %In CRN, clusters are formed in the very beginning of the network operation, and re-formed periodically according to the dynamics of the CRN.
-In the context of cognitive radio netowrks, a formed cluster helps the participants not only improve the spectrum sensing accuracy, but also coordinate the channel switch operation when the primary users are detected by at least one secondary user in that cluster. Then all the cluster menmbers can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
+In the context of cognitive radio netowrks, a formed cluster helps the participants not only improve spectrum sensing accuracy, but also coordinate channel switch operation when primary users are detected by at least one secondary user in that cluster. 
+Then all the cluster members can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
 Clustering also benefits the operation of a CRN by reducing the interference between cognitive clusters~\cite{centralizedSharing80222}, and supporting routing~\cite{Abbasi_survey_07}.
 %As to the coexistence of CR users, they can be notified by cluster head (CH) or other cluster members about the possible collision, the possibility for them to interfere neighbouring clusters is reduced~\cite{centralizedSharing80222}. 
 %Except for benefiting the dynamic spectrum sharing in CRN, clustering contributes to the other wireless networks in many aspects~\cite{Kawadia03, clustering_mesh_globecom2010, Abbasi_survey_07}.
@@ -247,13 +247,15 @@ An event-driven clustering scheme is proposed for cognitive radio sensor network
 None of the above mentioned schemes provides a certain robustness to formed clusters against primary users. 
 
 The authors of~\cite{Mansoor2015} propose a clustering algorithm which aims to speed up the process of re-clustering in case a cluster doesn't uphold in front of active primary users.
-%But this work doesn't consider to improve the ability of the formed clusters to maintain, and the messaging cost which is involved in this process is not considered.
-However, this work does not consider robustness improvement of clusters, while also ignoring messaging overhead.
-Robustness of clusters is discussed in~\cite{LIU_TMC11_2}. A distributed clustering scheme (denoted as SOC) which is designed to generate robust clusters against primary users is proposed.
-The robustness of the clusters comes from the fact that there are multiple CCs available for the clusters.
-SOC involves three phases of distributed executions.
-In the first phase, every secondary user forms clusters with some one-hop neighbors. In the second and third phase, each secondary user seeks to either merge other clusters or join one of them.
-The metric adopted by every secondary user in all the phases is the product of the number of CCs and cluster size.
+However, this work does not consider cluster robustness and messaging overhead during frequent re-clustering processes.
+A distributed clustering scheme~\cite{LIU_TMC11_2} (denoted as SOC) is proposed, which is designed to generate clusters which  have multiple CCs.
+The authors compared SOC with other schemes in terms of the average number of CCs of the formed cluster, where SOC outperforms other schemes by 50\%-100\%. 
+Note that SOC's comparison schemes are designed either for ad hoc network without consideration of channel availability~\cite{Basagni99}, or for CRN but just considering connection among CR nodes~\cite{Zhao07}. 
+%The robustness of the clusters comes from the multiple CCs available for the clusters.
+%SOC involves three phases of distributed executions.
+In the first phase of SOC, every secondary user forms clusters with some one-hop neighbors. 
+In the second and final phase, each secondary user seeks to either merge other clusters or join one of them.
+The product of the number of CCs and cluster size is adopted as the metric by each secondary user in every phase. 
 The drawbacks of this scheme are as follows, although the adopted metric considers both the cluster size and the number of CCs, cluster formation can be easily dominated by only one factor.
 For example, a node which accesses abundant channels may form a cluster by itself and doesn't have motivation to unite neighboring nodes to form a cluster.
 In addition, this scheme leads to the high variance of the cluster sizes, which is not desired in certain applications as discussed in~\cite{clustering_globecom11, cluster_EW10}.
@@ -1037,11 +1039,9 @@ In the following, we refer to the above mentioned four schemes as the variants o
 As shown in Section~\ref{centralized_solution}, the centralized robust clustering scheme is formulated as an integer linear optimization problem and is solved by MATLAB with the function $bintprog$.
 \end{itemize}
 
-The ROSS without size control mechanism is similar with the schemes proposed in \cite{Li11_ROSS}.
-The authors of~\cite{LIU_TMC11_2} compared SOC with other schemes in terms of the average number of CCs of the formed cluster, on which SOC outperforms other schemes by 50\%-100\%. 
-SOC's comparison schemes are designed either for ad hoc network without consideration of channel availability~\cite{Basagni99}, or for CRN but just considering connection among CR nodes~\cite{Zhao07}. 
-Thus SOC is the only distributed scheme as comparison.
-As to the CRN shown in Figure~\ref{fig1}, the resulting clusters by the centralized scheme and SOC are shown in Figure~\ref{fig:final_clustering}.
+%The ROSS without size control mechanism is similar with the schemes proposed in \cite{Li11_ROSS}.
+
+
 
 %Before we investigating the performance of the clustering schemes with simulation, we apply the two comparison clustering schemes in the example CRN in Figure~\ref{fig1}, and make an initial comparison in terms of the amount of CCs. 
 %As to the centralized robust clustering scheme, we set the desired cluster size $\delta$ as 3, as a result, according to the network topology, the collection of all the possible clusters
@@ -1065,8 +1065,8 @@ As to the CRN shown in Figure~\ref{fig1}, the resulting clusters by the centrali
 \end{figure}
 
 
-
-We investigate the schemes in the following aspects.
+As to the CRN shown in Figure~\ref{fig1}, the resulting clusters by the centralized scheme and SOC are shown in Figure~\ref{fig:final_clustering}.
+We now investigate the performances of the schemes in the following aspects.
 
 \begin{itemize}
 \item \textbf{The average number of CCs per non-singleton cluster.}
@@ -1137,21 +1137,15 @@ As for the centralized scheme, the parameters used in the \textit{punishment} fo
 
 \subsubsection{CCs in Non-singleton Clusters}
 \label{ccc_20}
-%We first have a look at the average number of common channels per non-singleton cluster.
-% shows the average number of the CCs of non-singleton clusters,
-%as the singleton clusters (in other words unclustered nodes) don't execute any functionalities of clusters, which are has be discussed in Section~\ref{intro}.
-From Figure~\ref{ccc_per_nonsingleton}, we can see the centralized schemes outperform the distributed schemes.
-Among the distributed schemes, SOC achieves the most CCs.
-The reason is, SOC is liable to group the neighboring CRs which share the most abundant spectrum together, no matter how many of them are there, thus the number of CC of the formed clusters is higher.
+Figure~\ref{ccc_per_nonsingleton} shows the centralized schemes outperform the distributed schemes.
+SOC achieves the most CCs among the distributed schemes, because SOC groups the neighboring CRs which share the most abundant spectrum together, without considering the number of them.
 %We have discussed the flaw of this metric as it doesn't convey the number of unclustered CR nodes, in fact, 
-On the other hand, SOC generates the most unclustered CRs.
+As a result, SOC also generates the most unclustered CRs.
 As to the variants of ROSS, we notice that the greedy mechanism increases CCs in non-singleton clusters significantly.
 %, this is due to the procedure that debatable nodes greedily look for better affiliation to improve the number of CCs.
 %We also notice that the size control feature doesn't affect the number of CCs for both ROSS-DGA and ROSS-DFA.
 %Size control mechanism converts the large clusters into small ones, but meanwhile clusters with the desired sizes have to be made when forming smaller clusters is possible.
 %, which can also be observed in the large scale CRN in Section~\ref{largeScaleCRN}.
-
-%This is because the desired cluster size happens to be the average size of clusters generated by ROSS-DGA and ROSS-DFA, then the size control functionality doesn't play effect to increase the number of CCs.
 
 \begin{figure*}[th]
 \begin{multicols}{3}
@@ -1159,7 +1153,6 @@ As to the variants of ROSS, we notice that the greedy mechanism increases CCs in
     \includegraphics[width=\linewidth]{cdf_clusterSize_20.pdf}\par\caption{Cumulative distribution of CRs residing in clusters with different sizes}\label{size_control}    
     \includegraphics[width=\linewidth]{survival_rate_20.pdf}\par\caption{Number of unclustered CRs with decreasing spectrum availability}\label{singleton_clusters}
 \end{multicols}
-%\caption{Comparison between the distributed and centralized clustering schemes ($N$ = 20)}
 \label{compare_dis_centralized}
 \end{figure*}
 
@@ -1167,24 +1160,17 @@ As to the variants of ROSS, we notice that the greedy mechanism increases CCs in
 
 \subsubsection{Cluster Size}
 \label{cluster_size}
-%\begin{figure}[h]
-%  \centering
-%  \includegraphics[width=0.8\linewidth]{cdf_clusterSize_20.pdf}
-%  \caption{Cumulative distribution of CRs residing in clusters with different sizes.}
-%  \label{size_control}
-%\end{figure}
 
-Figure~\ref{size_control} depicts the empirical cumulative distribution of the CRs in clusters of different sizes, from which we have two conclusions.
-First, given the channel availability in the CRN, SOC generates more unclustered CR nodes than other schemes.
-The centralized schemes don't produce unclustered CR nodes in the simulation, the unclustered nodes generated by ROSS-DGA/DFA account for 3\% of the total CR nodes, as comparison, 10\% of nodes are unclustered when applying SOC.
-ROSS-DGA and ROSS-DFA with size control feature generate 5\%-8\% unclustered CR nodes, which is due to the cluster pruning procedure (discussed in section~\ref{ross_p1_guarantee_ccc} and section~\ref{ross_p2_cluster_pruning}).
-Second, the centralized schemes and cluster size control mechanism of ROSS generate clusters with the desired cluster size.
-%When the desired size is 2, each generated cluster has two members, whereas when the desired size is 3, about 15\% CRs are formed into 2 node clusters.
-As to ROSS-DFG and ROSS-DFA with size control feature, CR nodes reside averagely in clusters whose sizes are 2, 3 and 4.
-%When ROSS-3-DFA is applied, most number of CRs are in 3 node clusters, nevertheless, slightly less nodes are found in 2 node and 4 node clusters, there are also considerable number of singleton clusters.
-%ROSS-3-DGA decreases the clusters sizes and results in more 2 node clusters, the second most CRs are found in 3 node clusters.
-The sizes of clusters resulted from ROSS-DGA and ROSS-DFA are disperse, but appear to be better than SOC, i.e., the 50\% percentiles for ROSS-DGA, ROSS-DFA and SOC are 4.5, 5, and 5.5, and the 90\% percentiles for the three schemes are 8, 8, and 9, the corresponding sizes of ROSS are closer to the desired size.
-%Figure~\ref{size_control} shows distributed clustering schemes are not able to control cluster sizes perfectly, but ROSS-DGA and ROSS-DFA eliminate the clusters whose size diverges largely with the desired one, \ie single node clusters and clusters with size of 13 and 14.
+
+Figure~\ref{size_control} depicts the empirical cumulative distribution of the CRs in clusters of different sizes.
+%First, given the channel availability in the CRN, SOC generates more unclustered CR nodes than other schemes.
+The centralized schemes don't produce unclustered CR nodes in the simulation.
+The unclustered nodes generated by ROSS-DGA/DFA account for 3\% of the total CR nodes, as comparison, 10\% of nodes are unclustered when applying SOC.
+ROSS-DGA and ROSS-DFA with size control feature generate 5\%-8\% unclustered CR nodes, which is due to the cluster pruning procedure (discussed in Section~\ref{ross_p1_guarantee_ccc} and Section~\ref{ross_p2_cluster_pruning}).
+
+In terms of cluster size, the clusters resulted from centralized schemes and ROSS with cluster size control mechanism have little deviation from the desired cluster size.
+%As to ROSS-DFG and ROSS-DFA with size control feature, CR nodes reside averagely in clusters whose sizes are 2, 3 and 4.
+The sizes of clusters resulted from ROSS-DGA and ROSS-DFA are disperse, but appear to be better than SOC, i.e., the 50\% percentiles for ROSS-DGA, ROSS-DFA and SOC are 4.5, 5, and 5.5, and the 90\% percentiles for the three schemes are 8, 8, and 9, the corresponding sizes resulted by ROSS are closer to the desired size.
 
 
 
@@ -1195,38 +1181,32 @@ The sizes of clusters resulted from ROSS-DGA and ROSS-DFA are disperse, but appe
 %We will obtain two observations by examining this metric.
 %First, we will know how many CR nodes are unclusterred by applying the robust clustering schemes in a given CRN.
 In this part of simulation, we put PUs sequentially into CRN to decrease the available spectrum.
-10 PUs are in the network in the beginning, then extra 19 batches of PUs are added sequentially, where each batch includes 5 PUs. 
-%
-Figure~\ref{singleton_clusters} shows certain clusters can not maintain and the number of unclustered CR nodes grows when the number of PUs increases.
+10 PUs are in the network at start, extra 19 batches of PUs are added sequentially and each batch includes 5 PUs. 
+Figure~\ref{singleton_clusters} shows certain clusters can not maintain and the number of unclustered CR nodes increases when the number of PUs increases.
 The centralized scheme with desired size of 2 generates the most robust clusters, meanwhile, SOC results in the most vulnerable clusters.
 The centralized scheme with desired size of 3 doesn't outperform the variants of ROSS, because pursuing cluster size prevents forming the the clusters with more CCs.
 In contrary, the variants of ROSS generate some smaller clusters which are more likely to maintain when there are more PUs.
 
-If we use the number of secondary users residing in a cluster as the numerical representation of cluster robustness, then the ROSS based schemes are 5\%, 30\% and 230\% more robust than SOC, where the numbers of newly added PR are 10, 40 and 80 respectively.
-The above observation shows that the average number of CCs of non-singleton clusters doesn't necessarily illustrate the robustness  of cluster, \ie SOC obtains the most CCs for the clusters which are meanwhile the most vulnerable.
-Besides, with similar distribution of sizes, the clusters generated by ROSS-DGA and ROSS-DFA are more robust than that by SOC.
+Considering the number of secondary users residing in a cluster, ROSS based schemes benefit 5\%, 30\% and 230\% more secondary users from neighborhood cooperation than SOC, when the numbers of newly added PR are 10, 40 and 80 respectively.
+The above observation also shows the average number of CCs of non-singleton clusters doesn't necessarily illustrate the robustness  of cluster, \ie SOC obtains the most CCs among the distributed schemes, but the resulted clusters are vulnerable.
 
 
 \subsubsection{Control Signaling Overhead}
 
 In this section we compare the overhead of signaling involved in different clustering schemes.
-We count the number of \textit{transmissions of control messages} as message complexity~\cite{complexity_aggregation_2011}, and without distinguishing broadcast or uni-cast control messages.
+We count the number of \textit{transmissions of control messages} as message complexity~\cite{complexity_aggregation_2011}, without distinguishing broadcast or uni-cast control messages.
 In Section~\ref{ross}, this metric is synonymous with the \textit{the number of updates}.
 %We don't consider the the control messages which are involved in neighborhood discovery, which is the premise and deemed to be the same for all clustering schemes.
 %According to~\cite{complexity_aggregation_2011}, the message complexity is defined as the number of messages used by all nodes.
-%To have the same metric to compare, 
-
-
 
 As to ROSS, in the first phase the maximal number of broadcast is $N$ according to~\ref{clustering:theorem}.
 The upper bounds for the transmissions are $n^2m$ and $n$ for ROSS-DGA and ROSS-DFA respectively.
 Scheme SOC consists of three rounds, and in each round every node needs to broadcast to do comparisons and cluster mergers.
 The centralized scheme is conducted at the centralized control device, which involves information aggregation and clustering decision dissemination.
-We adopt the backbone structure proposed in~\cite{Efficient_broadcasting_gathering_adhoc} to analyze the centralized scheme's message complexity.
-We apply ROSS to generate cluster heads which serve as the backbone.
-In the process of information aggregation, all the nodes transmit information to the cluster heads which forward the messages to the controller, then in the process of dissemination, all the cluster heads and the debatable nodes broadcast the clustering result, thus the upper bound for the number of broadcast is $N+m+n$.
+To analyze the centralized scheme's message complexity, we adopt the backbone structure proposed in~\cite{Efficient_broadcasting_gathering_adhoc}, and apply ROSS to generate cluster heads which serve as the backbone.
+In the process of information aggregation, all the nodes transmit information to the cluster heads which forward the messages to the controller. 
+In the process of dissemination, all the cluster heads and the debatable nodes broadcast the clustering result, thus the upper bound for the number of broadcast is $N+m+n$.
 
-%
 %, when a CR node decides itself to be the cluster head, it broadcasts a message containing its ID, cluster members and the set of CCs in its cluster.
 %In the second phase, a debatable node broadcasts its affiliation to inform its claiming clusters, then the cluster heads of the claiming clusters broadcast message about the new cluster members if they are changed due to the debatable node's decision.
 %The upper bound of the total number of the control messages involved in cluster formation is analyzed in Theorem~\ref{clustering:theorem} and Section~\ref{clustering:phaseII:game}.
@@ -1269,27 +1249,9 @@ Figure~\ref{percentage_overlapping_node} shows the percentage of debatable nodes
 %2. broadcast new X1, form new X2
 %3. broadcast X3
 %The complexity parameters are the number of nodes $n$ in network, number of clusters $h$.
-Table \ref{tab_overhead} shows the message complexity, quantitative amount of the control messages, and the size of control messages.
+Table \ref{tab_overhead} shows message complexity, quantitative amount of control messages, and size of control messages.
 Figure~\ref{control_msg} shows the analytical result of the amount of transmissions involved in different schemes.
 %the upper bound of the number of transmissions of ROSS, and the analytic number of transmissions of the centralized scheme. 
-
-
-
-
-%\begin{table}[hc]
-%\centering
-%\caption{Singalling overhead. Notations: $n$-number of CR nodes in CRN, $h$-number of cluster heads, $m$-number of debatable nodes, $c$-number of demanding clusters.}\label{tab_overhead}
-%\begin{tabular}{|p{2.2 cm}|p{1.5 cm}|p{3.7 cm}|}
-%\hline
-% Scheme 					&   Number of transmissions 					& Content of message \\ \hline
-% ROSS-DGA, ROSS-$\delta$-DGA 		&   $h+2*m^2c$ (upper bound)
-%				& $ID_{H_C}$ and $K_C$ for $h+m^2c$ times, notification to join one cluster for $m^2c$ times					\\ \hline
-% ROSS-DFA, ROSS-$\delta$-DFA 		&   $h+ 2m$	 (upper bound) 						& $ID_{H_C}$ and $K_C$ for $h+m$ times, notification to join one cluster for $m$ times	 					\\ \hline
-% SOC 						&   $3*n$					& $\{K_i\}, i\in M\subseteq \texttt{Nb}_i$						\\ \hline
-% Centralized				&	$n$						& $\{C\}$         	\\ 
-% \hline
-%\end{tabular}
-%\end{table}
 
 \begin{center}
 \begin{table*}[!htb]
@@ -1330,7 +1292,7 @@ Figure~\ref{control_msg} shows the analytical result of the amount of transmissi
 
 \subsection{Comparison among the Distributed Schemes}
 \label{largeScaleCRN}
-In this section we investigate the performances of the proposed distributed clustering schemes in CRN with different network scales and densities.
+In this section we investigate the performances of the proposed distributed clustering schemes with different network scales and densities.
 The transmission range of CR is $A/5$, PU's transmission range is $2A/5$.
 The initial number of PU is 30.
 %The number of CR is 100, 200 and 300, and the average number of neighbours of each CR is 9.5, 20, and 31.
@@ -1375,15 +1337,15 @@ Here we don't see the obvious difference between different schemes on the number
 
 
 \subsubsection{Robustness of the Formed Clusters}
-Here we see how vulnerable the clusters are when they are exposed to the increasing influence of the PUs.
-We increase the primary users' activity by importing 20 batches of PUs sequentially in the CRN, where each batch includes 10 PUs. 
+Here we see how robust clusters are when exposed to the increasing influence of PUs.
+We increase primary users' activity by importing 20 batches of PUs sequentially in CRN, where each batch includes 10 PUs. 
 %
-Figure~\ref{singleton_clusters_100} and \ref{singleton_clusters_200} show that when $N=100$ and 200, compared with the variants of ROSS, more unclustered CR nodes are caused by SOC with the same intensity of PUs' activities.
-When $N=300$ as shown in Figure~\ref{singleton_clusters_300} and the new PUs are not many, ROSS-DGA/DFA generate slightly more unclustered CR nodes than SOC, but SOC's performance deteriorates quickly when the PUs continue increasing.
+Figure~\ref{singleton_clusters_100} and \ref{singleton_clusters_200} show when $N=100$ and 200, with the same intensity of PUs' activities, more unclustered CR nodes are resulted from SOC than the variants of ROSS,  
+When $N=300$ as shown in Figure~\ref{singleton_clusters_300} and new PUs are not many, ROSS-DGA/DFA generate slightly more unclustered CR nodes than SOC, but SOC's performance deteriorates quickly when the number of PUs continue increasing.
 %
-From Figure~\ref{singleton_clusters_100} to~\ref{singleton_clusters_300}, we can see that significantly less unclustered CR nodes are generated by the variants of ROSS which have size control mechanism.
+From Figure~\ref{singleton_clusters_100} to~\ref{singleton_clusters_300}, we can see that significantly less unclustered CR nodes are generated by ROSS with size control mechanism.
 Besides, the greedy mechanism moderately strengthens the robustness of the clusters.
-We only show the average values of the variants of ROSS as their confidence intervals overlap.
+%We only show the average values of the variants of ROSS as their confidence intervals overlap.
 
 
 
@@ -1411,10 +1373,10 @@ We only show the average values of the variants of ROSS as their confidence inte
 \end{figure*}
 
 \subsubsection{Cluster Size Control}
-Figure~\ref{nClusters_largeNetwork} shows when the network density increases, \ie $N$ changes from 100 to 300, the number of generated clusters by SOC increases linearly, whereas that by ROSS increases by a smaller margin.
+Figure~\ref{nClusters_largeNetwork} shows when network density increases, \ie $N$ changes from 100 to 300 in the same area, the number of clusters resulted from SOC increases linearly, whereas that by ROSS increases by a smaller margin.
 This result coincides with the analysis in Section~\ref{ross_p2_cluster_pruning}.
 %When the network becomes denser, more clusters are generated by SOC compared with ROSS variants.
-To better understand the distribution of the sizes of formed clusters, for each network density, we depict the empirical cumulative distribution of CR nodes which are in clusters with different sizes in Figures~\ref{cdf_clusterSize_100}~\ref{cdf_clusterSize_200}~\ref{cdf_clusterSize_300} respectively.
+To see the distribution of the sizes of formed clusters, for each network density, we depict empirical cumulative distribution of CR nodes which are in clusters with different sizes in Figures~\ref{cdf_clusterSize_100}~\ref{cdf_clusterSize_200}~\ref{cdf_clusterSize_300} respectively.
 \begin{figure}[!h]
   \centering
    \includegraphics[width=0.7\linewidth]{nClusters_largeNetwork_no_texture.pdf}
@@ -1423,21 +1385,15 @@ To better understand the distribution of the sizes of formed clusters, for each 
   \label{nClusters_largeNetwork}
 \end{figure}
 
-The variants of ROSS generate more clusters whose sizes are closer to the desired size, \ie when $N=100$ and desired cluster size is 6 as shown in Figures~\ref{cdf_clusterSize_100}, 90\% of CR nodes are in the clusters whose sizes are from 3 to 9, while as to SOC, only 17\% of nodes are in the clusters with these sizes.
-Similarly, when $N=200$ and the desired size is 12 as shown in Figure~\ref{cdf_clusterSize_200}, 80\% of nodes are in the clusters whose sizes are from 6 to 18, meanwhile only 30\% of nodes constitute clusters of these sizes when SOC is executed.
+The cluster sizes resulted from the variants of ROSS are in proximity to the desired size, \ie as shown in Figures~\ref{cdf_clusterSize_100}, 90\% of CR nodes are in the clusters whose sizes are between 3 and 9, while for SOC, only 17\% of nodes are in the clusters with these sizes.
+Similarly, when $N=200$ and desired size is 12 as shown in Figure~\ref{cdf_clusterSize_200}, 80\% of nodes are in the clusters whose sizes are between 6 and 18, meanwhile only 30\% of nodes are in the clusters with these sizes when SOC is executed.
 %Now we check how many CR nodes are in the clusters whose sizes deviate not much from the desired size, where we put the deviation limit at $\pm 50\%$ of the desired size.
-The clusters sizes from ROSS-$\delta$-DGA and ROSS-$\delta$-DFA concentrates more than that from ROSS-DGA and ROSS-DFA.
+The clusters sizes from ROSS-$\delta$-DGA and ROSS-$\delta$-DFA concentrates more around the desired size than that from ROSS-DGA and ROSS-DFA.
 In contrary, the clusters from SOC demonstrates obvious divergence on cluster sizes.
-
-
-%As to ROSS-DGA, the 95\% percentiles of the ROSS-DGA curves are 8, 18 and 20.
-%When the size control feature is implemented, the 95\% percentiles of ROSS-$\delta$-DGA is 5,12,13. 
-%Meanwhile, the 50\% percentiles of the ROSS-DGA curves are 6, 10 and 14 respectively, and the 50\% percentiles of the ROSS-$\delta$-DGA are 4,7,9.
-%As comparison, the 95\% percentiles of SOC are 36, 30, and 40 in the respective networks.
 
 %This means that the sizes of the clusters generated by ROSS-DGA are limited by the network density, and the size control feature further restricts the appearances of the big clusters, thus when the variants of ROSS are implemented, most of the CR nodes are in the clusters which are slightly smaller than the desired size. 
 The limitation of distributed scheme ROSS is it doesn't generate clusters whose sizes exceed the cluster head's neighborhood.
-The reason is with ROSS, cluster heads form clusters on the basis of their neighborhood, and don't involve the nodes which are outside the neighborhood.
+The reason is with ROSS, cluster heads form clusters on the basis of their neighborhood, thus don't involve the nodes out of the neighborhood.
 
 \subsubsection{The Performance with False Negative in Spectrum Sensing}
 
@@ -1448,16 +1404,13 @@ The size distribution of the ROSS-DGA, ROSS-$\delta$-DGA and SOC is shown in Fig
   \centering
    \includegraphics[width=0.7\linewidth]{false_negative.pdf}
   \caption{The number of CCs per non-singleton cluster with the presence of spectrum sensing false negative}
-  %, there are $x=6$ when $N=100$, $x=12$ when $N=200$, $x=21$ when $N=300$, which is around $2/3$ of the number of average neighbours.
   \label{false_negative_ccc}
 \end{figure}
-%The influence of the false negative on the sustainability of the clusters can be seen from Figure~\ref{false_negative_CDF}.
-For all the schemes, when false negatives increase, the number of singleton clusters increases accordingly.
-%As to the ROSS variants, the changes of the CDF curves are resulted from the increasing singleton clusters.
-The clusters from SOC are affected by the sensing errors greatly.
+For all the schemes, when false negatives increase, the number of singleton clusters and smaller clusters increases accordingly.
+The clusters resulted from SOC are affected by the sensing errors heavily.
 More unclustered nodes are generated, and a lot of small clusters are formed, \eg when false negative rate is 30\%.
 In contrary, ROSS variants are resilient in terms of unclusterd nodes and cluster sizes.
-We can conclude that through negotiation within the neighborhoods, ROSS variants successfully rules out the channel from false negative sensing.
+We can conclude that due to the negotiation within neighborhoods, ROSS variants successfully rules out the channels obtained due to false negative sensing.
 \begin{figure}[!h]
   \centering
    \includegraphics[width=0.7\linewidth]{draw_cdf_clusterSize_with_false_negative.pdf}
@@ -1467,13 +1420,13 @@ We can conclude that through negotiation within the neighborhoods, ROSS variants
 
 \subsection{Insights Obtained from the Simulation}
 The simulation with large CRN network confirms the conclusion drawn from the small CRN network.
-First, different from the assumption adopted in all the previous works, the average number of CCs per cluster can tell the robustness against the increasing influence of the primary users.
-Second, the centralized clustering scheme is able to form the clusters which satisfy the requirement on cluster size strictly, and the clusters are robust against PUs' increasing activity, besides, it involves the smallest control overhead in the process of clustering.
-Third, as distributed schemes, the variants of ROSS outperform SOC considerably in four aspects.
-\begin{itemize}
+First, the average number of CCs per cluster, which is adopted as metric for cluster robustness, is not able to tell the robustness against the increasing influence of the primary users.
+Second, the centralized clustering scheme forms the clusters which satisfy the requirement on cluster size, and the resulted clusters are robust against PUs' increasing activity, besides, it involves the smallest control overhead in the process of clustering.
+Third, as distributed schemes, the variants of ROSS outperform SOC considerably in the following four aspects.
+\begin{itemize}[noitemsep,topsep=0pt]
 \item The variants of ROSS generate less unclustered nodes than SOC for a given CRN, and the resulted clusters are more robust than SOC when PUs become more active.
-\item The signaling overhead involved in ROSS is about half of that needed for SOC, and the signaling messages are much shorter that the latter.
-\item The sizes of the clusters generated by ROSS demonstrate smaller discrepancy than that of SOC.
+\item The amount of signaling overhead involved in ROSS is about half of that needed for SOC, and the signaling messages are much shorter that the latter.
+\item Compared with SOC, the clusters generated by ROSS don't appear with a wide span of sizes. ROSS with size control mechanism result in the clusters whose sizes are in proximity to the desired size.
 \item The variants of ROSS are more resilient against the erroneous spectrum sensing.
 \end{itemize}
 
@@ -1482,28 +1435,16 @@ Moreover, the ROSS variants with size control features achieve similar performan
 Among the variants of ROSS, the greedy mechanism in ROSS-DGA helps to improve the performance on cluster size and cluster robustness at the cost of increased signaling overhead.
 %We also notice that as a metric, the number of CCs per non-singleton cluster doesn't indicate the robustness of clusters as shown in Figure~\ref{singleton_clusters} and \ref{unclustered_100_200_300}, although it is adopted as the metric in the formation of clusters.
 
-
-
-
-
 \section{Conclusion}
 \label{conclusion}
-In this paper we investigate the robust clustering problem in CRN thoroughly and propose both centralized and distributed clustering solutions.
-We give the mathematical description of the problem and prove the NP hardness of it.
-The proposed clustering schemes generate clusters which have long life expectancy against the primary users' activity, and the generated clusters have similar sizes with the desired one.
+In this paper we investigate robust clustering problem in CRN thoroughly and propose both centralized and distributed clustering solutions.
+We give mathematical description of the problem and prove NP hardness of it.
+The proposed centralized scheme generate clusters which have long life expectancy against primary users, and the cluster sizes are close to the desired cluster size.
+%The distributed scheme not only results in more robust clusters, but the cluster sizes are in a smaller range than the comparison scheme.
 %The congestion game model in game theory is used to design the distributed schemes.
 %A Light weighted clustering scheme ROSS is also proposed.
-Through simulation, the distributed schemes demonstrate similar performance with the centralized scheme in terms of cluster robustness, signaling overhead and cluster sizes, and outperform the comparison distributed scheme on all metrics.
-Besides, spectrum sensing errors affect the performance of the variants of ROSS much less than SOC.
-
-%In the other way around, forming big cluster which extends a cluster head's neighborhood has limited application scenarios, as multiple hop communication and coordination are required within these clusters.
-
-
-
-
-
-
-
+Through simulation, the distributed schemes demonstrate similar performance with the centralized scheme in terms of cluster robustness, signaling overhead and cluster sizes.
+The distributed scheme outperforms the comparison distributed scheme by generating more robust clusters,  generating clusters whose sizes are in a smaller range, and being more resilient against the erroneous spectrum sensing.
 
 % if have a single appendix:
 %\appendix[Proof of the Zonklar Equations]
@@ -1519,9 +1460,10 @@ Besides, spectrum sensing errors affect the performance of the variants of ROSS 
 % starts a section numbered zero.)
 %
 
+\vspace{50mm} %xx mm vertical space
 
 \appendices
-\section{Peudo Code for the Algorithm~\ref{alg0}, \ref{alg_size_control_available_CCC} and~\ref{alg4}}
+\section{Peudo Code for Algorithm~\ref{alg0}, \ref{alg_size_control_available_CCC}, \ref{alg4}}
 \begin{algorithm}              % enter the algorithm environment
 \caption{ROSS phase I: cluster head determination and initial cluster formation for CR node $i$}          % give the algorithm a caption
 \label{alg0} 
@@ -1621,7 +1563,6 @@ Besides, spectrum sensing errors affect the performance of the variants of ROSS 
 \section{Proof of Lemma~\ref{clustering:theorem}}
 \begin{proof}
 \label{proof_clustering:lemma1}
-%Note that the formed cluster can be a singleton cluster, \ie cluster size is 1.
 We consider a CRN which can be represented as a connected graph.
 % (COMMENT: Why is it necessarily connected? No special case where the graph has two components? ANSWER(Di): It is possible for the graph to have two components. My point it, when theorem works in one component, it works in the complete graph.)
 To simplify the discussion, we assume the secondary users have unique individual connectivity degrees. 
