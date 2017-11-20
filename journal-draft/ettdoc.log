@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.3)  15 NOV 2017 02:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.3)  20 NOV 2017 21:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1107,81 +1107,81 @@ Missing character: There is no Ÿ in font phvr7t!
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 146.
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <6> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 159.
-LaTeX Font Info:    Calculating math sizes for size <6.5> on input line 159.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 155.
+LaTeX Font Info:    Calculating math sizes for size <6.5> on input line 155.
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 159.
+(Font)              size <6> substituted on input line 155.
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.54997> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.25> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 159.
+(Font)              size <6> substituted on input line 155.
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.54997> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.25> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 159.
+(Font)              size <6> substituted on input line 155.
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.54997> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.25> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 159.
+(Font)              size <6> substituted on input line 155.
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <4.54997> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.25> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 159.
+(Font)              size <6> substituted on input line 155.
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <4.54997> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <3.25> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <6.5> not available
-(Font)              size <6> substituted on input line 159.
+(Font)              size <6> substituted on input line 155.
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <4.54997> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <3.25> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 159.
+(Font)              size <6> substituted on input line 155.
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <4.54997> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <3.25> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6.5> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 159.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 155.
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 159.
+(Font)              size <6> substituted on input line 155.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <4.54997> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 159.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 155.
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <4.54997> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <3.25> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 159.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 155.
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.25> not available
-(Font)              size <5> substituted on input line 159.
+(Font)              size <5> substituted on input line 155.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <7.5> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 185.
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 185.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 182.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 182.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsphv.fd
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <6.5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 185.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 182.
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 185.
+(Font)              size <6> substituted on input line 182.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <8> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 185.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 182.
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <6.5> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 185.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 182.
  [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -1198,10 +1198,9 @@ Overfull \hbox (23.98322pt too wide) in paragraph at lines 314--349
  [][] 
  []
 
-[3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 364.
-
+[3]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
@@ -1215,7 +1214,7 @@ Package pdftex.def Info: ../figures/04_clutering/flow_chart.pdf used on input l
 ine 587.
 (pdftex.def)             Requested size: 168.00064pt x 130.66727pt.
  [4]
-<../figures/04_clutering/figure1.pdf, id=220, 298.11375pt x 173.64874pt>
+<../figures/04_clutering/figure1.pdf, id=218, 298.11375pt x 173.64874pt>
 File: ../figures/04_clutering/figure1.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure1.pdf>
@@ -1224,7 +1223,10 @@ Package pdftex.def Info: ../figures/04_clutering/figure1.pdf used on input line
 (pdftex.def)             Requested size: 146.99936pt x 85.6265pt.
  [5 <../figures/04_clutering/flow_chart.pdf> <../figures/04_clutering/figure1.p
 df>]
-<../figures/04_clutering/figure2.pdf, id=347, 298.11375pt x 193.72375pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+<../figures/04_clutering/figure2.pdf, id=345, 298.11375pt x 193.72375pt>
 File: ../figures/04_clutering/figure2.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure2.pdf>
@@ -1232,7 +1234,7 @@ Package pdftex.def Info: ../figures/04_clutering/figure2.pdf used on input line
  757.
 (pdftex.def)             Requested size: 105.0pt x 68.23294pt.
  [6 <../figures/04_clutering/figure2.pdf>]
-<../figures/04_clutering/singletongame_matching.pdf, id=383, 361.35pt x 311.162
+<../figures/04_clutering/singletongame_matching.pdf, id=381, 361.35pt x 311.162
 5pt>
 File: ../figures/04_clutering/singletongame_matching.pdf Graphic file (type pdf
 )
@@ -1241,7 +1243,7 @@ Package pdftex.def Info: ../figures/04_clutering/singletongame_matching.pdf use
 d on input line 895.
 (pdftex.def)             Requested size: 77.69897pt x 66.90813pt.
  [7 <../figures/04_clutering/singletongame_matching.pdf>]
-<../figures/04_clutering/figure4AinC.pdf, id=421, 177.66376pt x 109.40875pt>
+<../figures/04_clutering/figure4AinC.pdf, id=419, 177.66376pt x 109.40875pt>
 File: ../figures/04_clutering/figure4AinC.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure4AinC.pdf>
@@ -1256,7 +1258,7 @@ t/6 K\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr
 /m/n/6 ))\OMS/cmsy/m/n/6 j \OT1/cmr/m/n/6 +
  []
 
-<../figures/04_clutering/figure4AinH.pdf, id=422, 177.66376pt x 107.40125pt>
+<../figures/04_clutering/figure4AinH.pdf, id=420, 177.66376pt x 107.40125pt>
 File: ../figures/04_clutering/figure4AinH.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure4AinH.pdf>
@@ -1272,7 +1274,7 @@ t/6 K\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr
  []
 
 
-<../figures/04_clutering/final_clustering_ross.pdf, id=423, 284.06125pt x 181.6
+<../figures/04_clutering/final_clustering_ross.pdf, id=421, 284.06125pt x 181.6
 7876pt>
 File: ../figures/04_clutering/final_clustering_ross.pdf Graphic file (type pdf)
 
@@ -1282,7 +1284,7 @@ Package pdftex.def Info: ../figures/04_clutering/final_clustering_ross.pdf used
 (pdftex.def)             Requested size: 105.0pt x 67.15631pt.
  [8 <../figures/04_clutering/figure4AinC.pdf> <../figures/04_clutering/figure4A
 inH.pdf> <../figures/04_clutering/final_clustering_ross.pdf>]
-<../figures/04_clutering/final_clustering_soc.pdf, id=481, 284.06125pt x 171.64
+<../figures/04_clutering/final_clustering_soc.pdf, id=479, 284.06125pt x 171.64
 125pt>
 File: ../figures/04_clutering/final_clustering_soc.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/final_clustering_soc.pdf>
@@ -1290,7 +1292,7 @@ Package pdftex.def Info: ../figures/04_clutering/final_clustering_soc.pdf used
 on input line 1059.
 (pdftex.def)             Requested size: 91.34949pt x 55.19608pt.
 
-<../figures/04_clutering/final_clustering_LP.pdf, id=482, 283.0575pt x 169.6337
+<../figures/04_clutering/final_clustering_LP.pdf, id=480, 283.0575pt x 169.6337
 4pt>
 File: ../figures/04_clutering/final_clustering_LP.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/final_clustering_LP.pdf>
@@ -1303,7 +1305,7 @@ n input line 1061.
 pdfTeX warning: /usr/local/texlive/2017/bin/x86_64-darwin/pdflatex (file ../fig
 ures/04_clutering/final_clustering_LP.pdf): PDF inclusion: multiple pdfs with p
 age group included in a single page
->] <../figures/04_clutering/ccc_20.pdf, id=517, 399.4925pt x 319.1925pt>
+>] <../figures/04_clutering/ccc_20.pdf, id=515, 399.4925pt x 319.1925pt>
 File: ../figures/04_clutering/ccc_20.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/ccc_20.pdf>
@@ -1311,7 +1313,7 @@ Package pdftex.def Info: ../figures/04_clutering/ccc_20.pdf used on input line
 1152.
 (pdftex.def)             Requested size: 134.0pt x 107.06287pt.
 
-<../figures/04_clutering/cdf_clusterSize_20.pdf, id=518, 400.49625pt x 311.1625
+<../figures/04_clutering/cdf_clusterSize_20.pdf, id=516, 400.49625pt x 311.1625
 pt>
 File: ../figures/04_clutering/cdf_clusterSize_20.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_20.pdf>
@@ -1319,7 +1321,7 @@ Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_20.pdf used on
  input line 1153.
 (pdftex.def)             Requested size: 134.0pt x 104.11307pt.
 
-<../figures/04_clutering/survival_rate_20.pdf, id=519, 390.45876pt x 310.15875p
+<../figures/04_clutering/survival_rate_20.pdf, id=517, 390.45876pt x 310.15875p
 t>
 File: ../figures/04_clutering/survival_rate_20.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/survival_rate_20.pdf>
@@ -1327,7 +1329,7 @@ Package pdftex.def Info: ../figures/04_clutering/survival_rate_20.pdf used on i
 nput line 1154.
 (pdftex.def)             Requested size: 134.0pt x 106.4417pt.
 
-<../figures/04_clutering/percentage_overlapping_node.pdf, id=529, 395.4775pt x 
+<../figures/04_clutering/percentage_overlapping_node.pdf, id=527, 395.4775pt x 
 311.1625pt>
 File: ../figures/04_clutering/percentage_overlapping_node.pdf Graphic file (typ
 e pdf)
@@ -1355,7 +1357,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1261--1279
  []
 
 
-<../figures/04_clutering/number_controlMsg.pdf, id=533, 403.5075pt x 307.1475pt
+<../figures/04_clutering/number_controlMsg.pdf, id=531, 403.5075pt x 307.1475pt
 >
 File: ../figures/04_clutering/number_controlMsg.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/number_controlMsg.pdf>
@@ -1364,7 +1366,7 @@ input line 1284.
 (pdftex.def)             Requested size: 126.00128pt x 95.90836pt.
 
 <../figures/04_clutering/ccc_large_scale_color_082017_newdata_no_texture.pdf, i
-d=535, 366.36874pt x 291.0875pt>
+d=533, 366.36874pt x 291.0875pt>
 File: ../figures/04_clutering/ccc_large_scale_color_082017_newdata_no_texture.p
 df Graphic file (type pdf)
 
@@ -1373,12 +1375,8 @@ f>
 Package pdftex.def Info: ../figures/04_clutering/ccc_large_scale_color_082017_n
 ewdata_no_texture.pdf used on input line 1324.
 (pdftex.def)             Requested size: 146.99936pt x 116.7927pt.
- [10] [11 <../figures/04_clutering/ccc_20.pdf> <../figures/04_clutering/cdf_clu
-sterSize_20.pdf> <../figures/04_clutering/survival_rate_20.pdf> <../figures/04_
-clutering/percentage_overlapping_node.pdf> <../figures/04_clutering/number_cont
-rolMsg.pdf> <../figures/04_clutering/ccc_large_scale_color_082017_newdata_no_te
-xture.pdf>]
-<../figures/04_clutering/survival_rate_100_edge50.pdf, id=614, 397.485pt x 311.
+ [10]
+<../figures/04_clutering/survival_rate_100_edge50.pdf, id=558, 397.485pt x 311.
 1625pt>
 File: ../figures/04_clutering/survival_rate_100_edge50.pdf Graphic file (type p
 df)
@@ -1387,7 +1385,7 @@ Package pdftex.def Info: ../figures/04_clutering/survival_rate_100_edge50.pdf u
 sed on input line 1355.
 (pdftex.def)             Requested size: 134.0pt x 104.90123pt.
 
-<../figures/04_clutering/survival_rate_200_edge50.pdf, id=615, 400.49625pt x 31
+<../figures/04_clutering/survival_rate_200_edge50.pdf, id=559, 400.49625pt x 31
 0.15875pt>
 File: ../figures/04_clutering/survival_rate_200_edge50.pdf Graphic file (type p
 df)
@@ -1396,7 +1394,7 @@ Package pdftex.def Info: ../figures/04_clutering/survival_rate_200_edge50.pdf u
 sed on input line 1356.
 (pdftex.def)             Requested size: 134.0pt x 103.77722pt.
 
-<../figures/04_clutering/survival_rate_300_edge50.pdf, id=616, 407.5225pt x 311
+<../figures/04_clutering/survival_rate_300_edge50.pdf, id=560, 407.5225pt x 311
 .1625pt>
 File: ../figures/04_clutering/survival_rate_300_edge50.pdf Graphic file (type p
 df)
@@ -1404,8 +1402,12 @@ df)
 Package pdftex.def Info: ../figures/04_clutering/survival_rate_300_edge50.pdf u
 sed on input line 1357.
 (pdftex.def)             Requested size: 134.0pt x 102.3136pt.
-
-<../figures/04_clutering/cdf_clusterSize_100.pdf, id=617, 397.485pt x 311.1625p
+ [11 <../figures/04_clutering/ccc_20.pdf> <../figures/04_clutering/cdf_clusterS
+ize_20.pdf> <../figures/04_clutering/survival_rate_20.pdf> <../figures/04_clute
+ring/percentage_overlapping_node.pdf> <../figures/04_clutering/number_controlMs
+g.pdf> <../figures/04_clutering/ccc_large_scale_color_082017_newdata_no_texture
+.pdf>]
+<../figures/04_clutering/cdf_clusterSize_100.pdf, id=615, 397.485pt x 311.1625p
 t>
 File: ../figures/04_clutering/cdf_clusterSize_100.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_100.pdf>
@@ -1413,7 +1415,7 @@ Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_100.pdf used o
 n input line 1367.
 (pdftex.def)             Requested size: 134.0pt x 104.90123pt.
 
-<../figures/04_clutering/cdf_clusterSize_200.pdf, id=618, 397.485pt x 311.1625p
+<../figures/04_clutering/cdf_clusterSize_200.pdf, id=616, 397.485pt x 311.1625p
 t>
 File: ../figures/04_clutering/cdf_clusterSize_200.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_200.pdf>
@@ -1421,7 +1423,7 @@ Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_200.pdf used o
 n input line 1368.
 (pdftex.def)             Requested size: 134.0pt x 104.90123pt.
 
-<../figures/04_clutering/cdf_clusterSize_300.pdf, id=619, 396.48125pt x 311.162
+<../figures/04_clutering/cdf_clusterSize_300.pdf, id=617, 396.48125pt x 311.162
 5pt>
 File: ../figures/04_clutering/cdf_clusterSize_300.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_300.pdf>
@@ -1429,7 +1431,7 @@ Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_300.pdf used o
 n input line 1369.
 (pdftex.def)             Requested size: 134.0pt x 105.16711pt.
 
-<../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf, id=625, 363.357
+<../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf, id=623, 363.357
 5pt x 291.0875pt>
 File: ../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf Graphic fil
 e (type pdf)
@@ -1442,7 +1444,7 @@ ure.pdf used on input line 1382.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../figures/04_clutering/false_negative.pdf, id=630, 343.2825pt x 238.8925pt>
+<../figures/04_clutering/false_negative.pdf, id=628, 343.2825pt x 238.8925pt>
 File: ../figures/04_clutering/false_negative.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/false_negative.pdf>
@@ -1450,7 +1452,7 @@ Package pdftex.def Info: ../figures/04_clutering/false_negative.pdf used on inp
 ut line 1405.
 (pdftex.def)             Requested size: 146.99936pt x 102.29527pt.
 
-<../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf, id=631, 
+<../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf, id=629, 
 385.44pt x 312.16624pt>
 File: ../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf Grap
 hic file (type pdf)
@@ -1494,7 +1496,7 @@ utering/cdf_clusterSize_200.pdf> <../figures/04_clutering/cdf_clusterSize_300.p
 df> <../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf> <../figures
 /04_clutering/false_negative.pdf> <../figures/04_clutering/draw_cdf_clusterSize
 _with_false_negative.pdf>]
-<../figures/04_clutering/lemma1.pdf, id=743, 563.87807pt x 108.10442pt>
+<../figures/04_clutering/lemma1.pdf, id=741, 563.87807pt x 108.10442pt>
 File: ../figures/04_clutering/lemma1.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/lemma1.pdf>
@@ -1529,17 +1531,11 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 1718.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1718.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1718.
 
-
-
-Package rerunfilecheck Warning: File `ettdoc.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `ettdoc.out':
-(rerunfilecheck)             Before: C25F7AF8A4E42460BD80218A3DB007E2;1208
-(rerunfilecheck)             After:  B0B857DFBBCF22E7734D5DD1924F699A;1205.
+Package rerunfilecheck Info: File `ettdoc.out' has not changed.
+(rerunfilecheck)             Checksum: B0B857DFBBCF22E7734D5DD1924F699A;1205.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.75pt have occurred.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1583,10 +1579,10 @@ lvetic/uhvr8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/helvetic/
 uhvro8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmb8a.pf
 b></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/lo
 cal/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ettdoc.pdf (17 pages, 893569 bytes).
+Output written on ettdoc.pdf (17 pages, 893229 bytes).
 PDF statistics:
- 972 PDF objects out of 1000 (max. 8388607)
- 800 compressed objects within 8 object streams
+ 970 PDF objects out of 1000 (max. 8388607)
+ 798 compressed objects within 8 object streams
  203 named destinations out of 1000 (max. 500000)
  262 words of extra memory for PDF output out of 10000 (max. 10000000)
 

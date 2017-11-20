@@ -149,38 +149,37 @@ Extensive simulations are presented supporting the theoretical claims.
 Cognitive radio (CR) is a promising technology to solve the spectrum scarcity problem for the upcomging era of internet of things~\cite{Mitola, Rawat20161}.
 Licensed users access the spectrum allocated to them whenever there is information to be transmitted.
 In contrast, as one way, unlicensed users can access the spectrum via opportunistic spectrum access, \ie they access the licensed spectrum only after validating the channel is unoccupied by licensed users, where spectrum sensing~\cite{sensing_survey_2009} plays an important role in this process.
-%
 In this hierarchical spectrum access model~\cite{zhao_survey_DSA_2007}, the licensed users are also called primary users (PU), while the unlicensed users are referred to as secondary users and constitute a so called cognitive radio network (CRN).
-%
 %cluster
-Regarding the operation of CRN, efficient spectrum sensing is identified to be critical for a smooth operation of a cognitive radio network~\cite{Sahai_FundamentalDesignTradeoffs2006}.
-The rate of false negative, \ie misdetecting the active primary users, can be decreased by cooperative spectrum sensing of multiple secondary users, which has been shown to cope effectively with noise uncertainty and channel fading, thus remarkably improving the sensing accuracy~\cite{Jacob2012, coorperativeSensing_Akyildiz11}.
+For CRN, accurate spectrum sensing is critical, and the rate of false negative \ie misdetecting the active primary users, should be minimized~\cite{Sahai_FundamentalDesignTradeoffs2006}.
+Cooperative spectrum sensing, which relies on the consensus of CR users within a certain area\footnote{The terms user and node appear interchangeably in this paper. In particular, user is adopted when its networking or cognitive ability are discussed or stressed, while we refer to nodes typicallly in the context of the network topology.}, has been shown to improve spectrum sensing accuracy with the presence of noise uncertainty and channel fading~\cite{Jacob2012, coorperativeSensing_Akyildiz11}.
 %C3
-Collaborative sensing relies on the consensus of CR users\footnote{The terms user and node appear interchangeably in this paper. In particular, user is adopted when its networking or cognitive ability are discussed or stressed, while we refer to nodes typicallly in the context of the network topology.} within a certain area, in this regard, clustering is regarded as an effective method to realize cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing}.
+In this regard, clustering is regarded as an effective method to realize cooperative spectrum sensing~\cite{Sun07_clustering_spectrum_secsing}.
 % ... decreases considerably the negative probability due to the random channel effects like fading and shadowing.
 
 Clustering is the process of grouping certain users in geographic proximity into a collective.
 % and as an effective technique, it is proposed with the emergence of mobile wireless networks~\cite{gerla_97} and there has been a plethora of clustering schemes.
 As to wireless networks where no restriction is imposed on nodes to access the spectrum, \ie 
-wireless ad-hoc, mesh networks and sensor networks, the objective of clustering can be to decrease the transmission power consumption~\cite{Kawadia03}, to improve the routing performance~\cite{clustering_mesh_globecom2010}, or to imrove the network lifetime and coverage~\cite{Abbasi_survey_07}.
+wireless ad-hoc, mesh networks and sensor networks, clustering the network helps to decrease the transmission power consumption~\cite{Kawadia03},  improve the routing performance~\cite{clustering_mesh_globecom2010}, or imrove the network lifetime and coverage~\cite{Abbasi_survey_07}.
 %In CRN, clusters are formed in the very beginning of the network operation, and re-formed periodically according to the dynamics of the CRN.
-In the context of cognitive radio netowrks, a formed cluster helps the participants not only improve spectrum sensing accuracy, but also coordinate channel switch operation when primary users are detected by at least one secondary user in that cluster. 
-Then all the cluster members can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
+For cognitive radio netowrks, the formed clusters help the participating nodes improve spectrum sensing accuracy.
+Besides, clusters benefit channel switching when primary users are detected by at least one secondary user in that cluster, then all the cluster members can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
 Clustering also benefits the operation of a CRN by reducing the interference between cognitive clusters~\cite{centralizedSharing80222}, and supporting routing~\cite{Abbasi_survey_07}.
 %As to the coexistence of CR users, they can be notified by cluster head (CH) or other cluster members about the possible collision, the possibility for them to interfere neighbouring clusters is reduced~\cite{centralizedSharing80222}. 
 %Except for benefiting the dynamic spectrum sharing in CRN, clustering contributes to the other wireless networks in many aspects~\cite{Kawadia03, clustering_mesh_globecom2010, Abbasi_survey_07}.
 
-In CRN, a formed cluster seizes one or multiple unlicensed channels which are available for every CR node in the cluster.
+In CRN, a formed cluster seizes one or multiple unlicensed channels which are available for every CR node in that cluster.
 In this paper available unlicensed channels are called \textit{common licensed channels} (or common channels for short, which is abbreviated as CC).
 The availability of CCs within a cluster decides the existence of that cluster, \ie if no CCs are available then the corresponding cluster does not exist.
+In a cluster, both payload and control overheads can be transmitted on the CCs.
+When one or several cluster members can not access a certain CC because primary user's activity is detected on that channel, the channel will be excluded from the set of CCs.
+In particular, if that channel is being used for payload communication, the communication pair will stop and resume transmission on another available CC.
 The activity of primary users is usually unknown to the secondary users thus deemed as random to secondary users.
 Consequently, a cluster which secures more CCs will be more robust to random primary user activity and anticipate a longer life expectancy. 
 In this paper, the robustness of the clusters is their ability to uphold with the influence of active primary users.
 The robust clustering enables more secondary users to reside in the resulting clusters when the available spectrum becomes scarcer.
 %
-In a cluster, both payload and control overheads can be transmitted on the CCs.
-When one or several cluster members can not access a certain CC on which primary user's activity is detected, the channel will be excluded from the set of CCs.
-In particular, if that channel is being used for payload communication, the communication pair will stop and resume transmission on another available CC.
+
 %As long as there is a CC available, the corresponding cluster can continue to exchange payload data.
 
 
@@ -188,18 +187,19 @@ Cluster size is inherently correlated with the cluster robustness.
 Given a CRN, it is obvious that getting rid of certain secondary users from a cluster may yield more CCs.
 However, this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where more users result in more accurate sensing result~\cite{Consensus_based_clustering12}.
 Thus the number of small clusters, especially the \textit{singleton clusters}, \ie the cluster which has only one CR node, should be minimized.
-On the other hand, as to the cluster which consists of many nodes, although the spectrum sensing is benefited, it usually leads to less common channels. This undermines the robustness of the cluster.
+On the other hand, as to the cluster which consists of many nodes, although the spectrum sensing is benefited, there is usually only a small number of CCs.
+Thus big cluster undermines the robustness of the cluster against primary users' activity.
 Thus, the cluster robustness discussed in terms of number of CCs carries little meaning when the sizes of formed clusters are not considered.
-Cluster sizes also play a role in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
+Cluster size also plays a role in transmission power consumption, \ie cluster size affects the transmission power consumption when routing is conducted~\cite{clustering_globecom11, EnergyEfficientClusteringRouting_2015}.
 
 In this paper robust clustering in CRN is analyzed as a mathematical problem and proved to be NP-hard, then both centralized and distributed schemes are proposed.
 We propose an alternate metric to measure cluster robustness in contrast to previous works~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
 We claim cluster robustness can not be indicated merely by the average number of CCs of clusters, but by the ability of the clusters to uphold when the primary users' activity becomes more active.
-In this paper, we identify the robustness by the number of unclustered CR nodes.
+In this paper, we identify the robustness of clusters by the number of unclustered CR nodes.
 We also consider the necessity of cluster size control and its influence on cluster robustness.
 The propsoed distributed schemes extend our previous work ROSS (Robust Spectrum Sharing)~\cite{Li11_ROSS} by involving cluster size control.
-Our distributed schemes solve the size divergence problem in clusters as discussed in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
-Besides, our proposed distributed schemes are still suitable for the scenario where fast deployment is desired.
+%Our distributed schemes solve the size divergence problem in clusters as discussed in~\cite{Li11_ROSS} and~\cite{LIU_TMC11_2}.
+%Besides, our proposed distributed schemes are still suitable for the scenario where fast deployment is desired.
 Throughout this paper, we call the proposed distributed schemes the \textit{variants of ROSS}.
  
 %
