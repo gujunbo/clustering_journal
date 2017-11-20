@@ -114,7 +114,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 %KTH Royal Institute of Technology
 %SE - 100 44 Stockholm\\Email: james.gross@ee.kth.se}
 \corraddr{Chair of Communication and Distributed Systems
-Ahornstraße 55 - building E3
+Ahornstrasse 55 - building E3
 52074 Aachen
 Germany
 \\Email: li@umic.rwth-aachen.de}
@@ -163,7 +163,7 @@ As to wireless networks where no restriction is imposed on nodes to access the s
 wireless ad-hoc, mesh networks and sensor networks, clustering the network helps to decrease the transmission power consumption~\cite{Kawadia03},  improve the routing performance~\cite{clustering_mesh_globecom2010}, or imrove the network lifetime and coverage~\cite{Abbasi_survey_07}.
 %In CRN, clusters are formed in the very beginning of the network operation, and re-formed periodically according to the dynamics of the CRN.
 For cognitive radio netowrks, the formed clusters help the participating nodes improve spectrum sensing accuracy.
-Besides, clusters benefit channel switching when primary users are detected by at least one secondary user in that cluster, then all the cluster members can stop payload transmission swiftly and vacate the operating channel ~\cite{willkomm08}.
+Besides, clusters benefit channel switching when primary users are detected by at least one secondary user in that cluster, then all the cluster members can stop payload transmissions swiftly and vacate the operating channel ~\cite{willkomm08}.
 Clustering also benefits the operation of a CRN by reducing the interference between cognitive clusters~\cite{centralizedSharing80222}, and supporting routing~\cite{Abbasi_survey_07}.
 %As to the coexistence of CR users, they can be notified by cluster head (CH) or other cluster members about the possible collision, the possibility for them to interfere neighbouring clusters is reduced~\cite{centralizedSharing80222}. 
 %Except for benefiting the dynamic spectrum sharing in CRN, clustering contributes to the other wireless networks in many aspects~\cite{Kawadia03, clustering_mesh_globecom2010, Abbasi_survey_07}.
@@ -174,9 +174,9 @@ The availability of CCs within a cluster decides the existence of that cluster, 
 In a cluster, both payload and control overheads can be transmitted on the CCs.
 When one or several cluster members can not access a certain CC because primary user's activity is detected on that channel, the channel will be excluded from the set of CCs.
 In particular, if that channel is being used for payload communication, the communication pair will stop and resume transmission on another available CC.
-The activity of primary users is usually unknown to the secondary users thus deemed as random to secondary users.
-Consequently, a cluster which secures more CCs will be more robust to random primary user activity and anticipate a longer life expectancy. 
-In this paper, the robustness of the clusters is their ability to uphold with the influence of active primary users.
+The activity of primary users is usually unknown to the secondary users, thus deemed as random to secondary users.
+Consequently, a cluster which secures more CCs will be more robust to random primary user activities and anticipate a longer life expectancy. 
+In this paper, the robustness of clusters is their ability to uphold with the influence of active primary users.
 The robust clustering enables more secondary users to reside in the resulting clusters when the available spectrum becomes scarcer.
 %
 
@@ -185,7 +185,7 @@ The robust clustering enables more secondary users to reside in the resulting cl
 
 Cluster size is inherently correlated with the cluster robustness.
 Given a CRN, it is obvious that getting rid of certain secondary users from a cluster may yield more CCs.
-However, this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where more users result in more accurate sensing result~\cite{Consensus_based_clustering12}.
+However, this contradicts to one of the motivations of clustering, \ie the cooperative decision making, where in general more users result in more accurate sensing results~\cite{Consensus_based_clustering12}.
 Thus the number of small clusters, especially the \textit{singleton clusters}, \ie the cluster which has only one CR node, should be minimized.
 On the other hand, as to the cluster which consists of many nodes, although the spectrum sensing is benefited, there is usually only a small number of CCs.
 Thus big cluster undermines the robustness of the cluster against primary users' activity.
@@ -206,7 +206,7 @@ Throughout this paper, we call the proposed distributed schemes the \textit{vari
 %
 The rest of the paper is organized as follows. 
 In section~\ref{related_work}, we introduce the clustering techniques in CRN and those focusing on robustness.
-The relation between this paper and work~\cite{Li11_ROSS} is elaborated.
+The relation between this paper and work in~\cite{Li11_ROSS} is elaborated.
 The system model and the robust clustering problem formulation are presented in Section~\ref{sec:model}. 
 The centralized and distributed solutions are introduced in Section~\ref{centralized_solution} and~\ref{ross} respectively.
 %The clustering problem is given through analysis and a centralized scheme is proposed in section~\ref{centralized_scheme}.
@@ -256,15 +256,15 @@ Note that SOC's comparison schemes are designed either for ad hoc network withou
 In the first phase of SOC, every secondary user forms clusters with some one-hop neighbors. 
 In the second and final phase, each secondary user seeks to either merge other clusters or join one of them.
 The product of the number of CCs and cluster size is adopted as the metric by each secondary user in every phase. 
-The drawbacks of this scheme are as follows, although the adopted metric considers both the cluster size and the number of CCs, cluster formation can be easily dominated by only one factor.
+The drawbacks of this scheme are as follows: although the adopted metric considers both the cluster size and the number of CCs, cluster formation can be easily dominated by only one factor.
 For example, a node which accesses abundant channels may form a cluster by itself and doesn't have motivation to unite neighboring nodes to form a cluster.
 In addition, this scheme leads to the high variance of the cluster sizes, which is not desired in certain applications as discussed in~\cite{clustering_globecom11, cluster_EW10}.
 \cite{mansoor_15_cluster_robust} presents a heuristic method to form clusters. Although the authors claim that robustness is one goal to achieve, the minimum number of clusters is finally pursued.
 %
-In~\cite{Li11_ROSS} we propose a distributed clustering scheme ROSS (Robust Spectrum Sharing) under the game theoretic framework. 
+In~\cite{Li11_ROSS} we propose a distributed clustering scheme ROSS (Robust Spectrum Sharing) under a game theoretic framework. 
 Compared with the clustering schemes introduced above, the clusters are formed faster and the clusters possess more CCs than SOC.
-However, as all the other clustering schemes, this scheme does not have control over the formation of the very small or very large clusters which are not desirable.
-Furthermore, both this work and SOC define robustness just to be the number of CCs per cluster, and don't consider the sustainability of clusters against increasing activity of primary users, leaving the issue of cluster robustness open..
+However, as all the other clustering schemes, this scheme does not have control over formation of the very small or very large clusters which are not desirable.
+Furthermore, both this work and SOC define robustness just to be the number of CCs per cluster, and don't consider the sustainability of clusters against increasing activity of primary users, leaving the issue of cluster robustness open.
 %
 
 
@@ -282,8 +282,9 @@ CR users conduct spectrum sensing independently and sequentially on all licensed
 We adopt the unit disk model~\cite{unitDiskModel} for both primary and CR users' transmission.
 If a CR node $i$ locates within the transmission range of an active primary user $p$, $i$ is not allowed to use the channel which is being used by $p$.
 %On the other hand, if $i$ is not in the transmission range of primary user $p$, $i$ can certainly not detect the presence of $p$.
-We assume the primary users change their operation channels slowly, thus we consider the clustering problem at some point in time given some degree of information of the availability of the control channels.
-Due to the same reason, we omit the time index for the spectrum availability. 
+We assume the primary users change their operation channels slowly, thus we omit the time index when denoting spectrum availability. 
+%Thus we consider the clustering problem at some point in time given some degree of information of the availability of the control channels.
+%Due to the same reason, we omit the time index for the spectrum availability. 
 As the result of spectrum sensing, $K_i \subseteq \mathcal{K}$ denotes the set of available licensed channels for CR user $i$.
 As the transmission range of primary users is limited and CR users have different locations, different CR users have different views of the spectrum availability, i.e., for any $i, j \in \mathcal{N}$, $K_i = K_{j}$ does not necessarily hold.
 We therefore represent the network of CR nodes by a graph $G = (\mathcal{N}, E)$, where $E \subseteq \mathcal{N} \times \mathcal{N}$ such that $\{i, j\} \in E$ if and only if $K_{i} \cap K_{j}\neq \emptyset$ and $d_{i,j} < r$, where $d_{i,j}$ is the distance between $i, j$ and $r$ is the radius of CR user's transmission range. 
@@ -293,12 +294,13 @@ Among the CR users, we denote by $\text{Nb}(i)$ the neighborhood of $i$, which c
 We assume there is one dedicated control channel which is used to exchange signaling messages during the clustering process.
 This control channel could be one of the ISM bands or other reserved spectrum which is exclusively used for transmitting control messages.\footnote{Actually, the control messages involved in the clustering process can also be transmitted on the available licensed channels through a rendezvous process by channel hopping~\cite{channelHopping_Rendezvous_2014, Gu_distributed_rendezvous_2014}, i.e., two neighboring nodes establish communication on the same channel.}
 Over the control channel, a secondary user $i$ can exchange its spectrum sensing result $K_i$ with all its one hop neighbors $\text{Nb}(i)$.
-In the following, we refer to the licensed channels as channels in general, and will explicitly mention the dedicated control channel if necessary. 
+In the following, we refer to licensed channels as channels in general, and will explicitly mention the dedicated control channel if necessary. 
 
 We give the definition of cluster in CRN as follows. 
 A cluster $C$ is a set of secondary nodes, and there is one set of common channels which are available for each node.
-In particular, a cluster consists of a cluster head $h(C)$ and a number of cluster members, and the cluster head is able to communicate with any cluster member directly.
-Our scheme enables the cluster heads are selected in a distributed manner, and a cluster can only be formed only by these selected cluster head.
+In particular, a cluster consists of a cluster head $h(C)$ and a number of cluster members.
+The cluster head is able to communicate with any cluster member directly.
+Our scheme enables the cluster heads to be selected in a distributed manner, and a cluster can only be formed only by these selected cluster head.
 %C1-4
 %$\text{Nb}(i)$ denotes node $i$'s neighborhood which consists of all its one hop neighbors.
 %For any cluster member $i \in C$, $i \in \text{Nb} (h_C) $ holds.
