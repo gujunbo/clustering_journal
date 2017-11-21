@@ -494,7 +494,7 @@ The variants of ROSS consist of two cascaded phases: \textit{cluster formation} 
 	\label{flowChartROSS}
 \end{figure}
 
-In the first phase, clusters are formed quickly and every CR user becomes either cluster head or cluster member, cluster size control is also implemented.
+In the first phase, clusters are formed quickly and every CR user becomes either cluster head or cluster member, cluster size control is also implemented	.
 In the second phase, non-overlapping clusters are formed in a way that the CCs of relevant clusters are mostly increased.
 
 %is based on the spectrum sensing results in its neighbours , then
@@ -502,15 +502,10 @@ In the second phase, non-overlapping clusters are formed in a way that the CCs o
 
 \subsection{Phase I - Cluster Formation}
 \label{phaseI}
-We assume that before conducting clustering, spectrum sensing, neighbor discovery and exchange of spectrum availability have been completed, so that every CR node is aware of the available channels for themselves and their neighbors.
+Before conducting clustering, we assume spectrum sensing and neighbor discovery are completed, and neighboring nodes exchange their channel availabilities via the dedicated control channel. 
+As a result, every CR node is aware of the available channels for themselves and their neighbors.
 In this phase, cluster heads are determined after a series of comparisons with their neighbors. 
-Two metrics are proposed to characterize the proximity in terms of available spectrum between CR node $i$ and its neighborhood, which are used in the comparisons to decide on the cluster heads.
-
-%After introducing the connectivity vector, we can proceed to introduce the first phase of algorithm ROSS.
-
-%When a CR user is identified as cluster head, its neighborhood becomes a cluster.
-
-
+Two metrics are proposed to characterize the proximity in terms of available spectrum between CR node $i$ and its neighborhood, which will be used to decide on cluster heads.
 
 \begin{itemize}
 
@@ -522,74 +517,48 @@ $g_i=|\bigcap_{j\in \text{Nb}(i)\cup i}K_j|$, which represents the ability of $i
 \end{itemize}
 Individual connectivity degree $d_i$ and neighborhood connectivity degree $g_i$ together form the \textit{connectivity vector} $(d_i, g_i)$.
 Connectivity vector is calculated by every secondary user after channel availability is obtained, and is then broadcasted.
-Figure~\ref{fig1} illustrates an CRN where every node's channel availability and connectivity vector is shown.
-This CRN is used as an example in the rest of this section to illustrate the proposed distributed schemes.
-%In Figure~\ref{fig1}, some primary users are randomly deployed in the network, and they are free to choose one channel out of the set of licensed channels $\mathcal{K}$ to operate.
-%As to the secondary users, the channels they are allowed to use are those which are not ruled out by the primary users in their vicinities. 
-In the example the sets of the indices of the available channels sensed by each node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, \\K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, \\K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, \\K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$.
-%C1-5
+Figure~\ref{fig1} shows a CRN, where dashed edge indicates the end nodes are within each other's transmission range, the number along the dashed line is the number of common channels between the two ends.
+The sets of the indices of the available channels sensed by each node are: $K_A=\{1,2,3,4,5,6,10\}, K_B=\{1,2,3,5,7\}, \\K_C=\{1,3,4,10\}, K_D=\{1,2,3,5\}, \\K_E=\{2,3,5,7\}, K_F=\{2,4,5,6,7\}, \\K_G=\{1,2,3,4,8\}, K_H=\{1,2,5,8\}$. 
+Each node's connectivity vector is calculated and shown.
 \begin{figure}[ht!]
   \centering
 \includegraphics[width=0.7\linewidth]{figure1.pdf}
 % \includegraphics{figure1.pdf}
-	\caption{Connectivity graph of the example CRN and the connectivity vector $(d_i, g_i)$ for each node. Primary users are not shown. The desired cluster size $\delta =3$. Dashed edge indicates the end nodes are within each other's transmission range.}
+	\caption{Connectivity graph of a CRN and the connectivity vector $(d_i, g_i)$ for each node. Primary users are not shown.}
 	\label{fig1}
 \end{figure}
 
-	
-
-
 \subsubsection{Determining Cluster Heads and Forming Clusters}
 The procedure of determining cluster heads is as follows.
-Each CR node decides whether it is a cluster head by comparing its connectivity vector with its neighbors.
-When CR node $i$ has lower individual connectivity degree than all of its neighbors except for those which have already identified to be cluster heads, node $i$ becomes a cluster head.
-If there is another CR node $j$ in its neighborhood, which has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes cluster heads, then the node with higher neighborhood connectivity degree will become cluster head.
+Each CR node decides whether it is a cluster head by comparing its connectivity vector with neighbors.
+When CR node $i$ has lower individual connectivity degree than any of its neighbors except for those which have already been identified as cluster heads, node $i$ becomes a cluster head.
+If there is a CR node $j$ in $i$'s neighborhood, and has the same individual connectivity degree as $i$, \ie $d_j = d_i$ and $d_j < d_{k}, \forall k\in \text{Nb}(j)\setminus \{\Lambda\cup i\}$ where $\Lambda$ denotes cluster heads, then out of $i$ and $j$, the node with higher neighborhood connectivity degree will become cluster head.
 If $g_i = g_j$ as well, the node ID is used to break the tie, \ie the one with smaller node ID becomes the cluster head.
 %
-The node which is identified as a cluster head broadcasts a message to notify its neighbors of this change, then its neighbors which are not cluster heads become cluster members.
-\footnote{The reason for the occurrence of the cluster heads in the neighborhood of a new cluster head will be explained in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning})}
-Actually during the whole phase I, whenever a CR node is decided to be a cluster head (thus accordingly forms a cluster), or its cluster's composition is changed, the cluster head broadcasts the new information about its cluster, which includes the sets of available channels on all its cluster members.
+The node which is identified as cluster head broadcasts a message to notify its neighbors of this news, then its neighbors which are not cluster heads become its cluster members.
+\footnote{The presence of cluster heads in the neighborhood of a newly formed cluster head will be explained in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning})}
+During the whole phase I, whenever a CR node becomes cluster head (thus accordingly forms a cluster), or its cluster's composition is changed, the cluster head broadcasts the new information about its cluster, which includes the sets of available channels on itself and all its cluster members.
 The pseudo code for the cluster head decision and the initial cluster formation is shown in Algorithm~\ref{alg0} in appendix.
 
-After receiving the notification from a cluster head, a CR node $i$ is aware that it becomes a member of a cluster. 
-Consequently, $i$ sets its individual connectivity degree to a positive number $M > |\mathcal{K}| \cdot N$, and broadcasts the new individual connectivity degree to all of its neighbors. 
-%wrong:
-%Note that there is no cluster head which receives the notification on cluster head eligibility, and there is a Lemma on this.
-%\begin{theorem}{lemma}
-%There is no cluster head receiving the notification message on cluster head eligibility, which is sent from a node which newly becomes a cluster head.
-%\end{theorem}
-%\begin{proof}
-%We use contradiction to prove. 
-%Assume a CR node $j$ is cluster head, and receives a notification on cluster head eligibility form CR node $i$. 
-%According to the assumption on the reciprocal communication link, $i$ should have received the notification message from $j$ when $j$ becomes cluster head.
-%Then CR node $i$ will set its individual connectivity degree to zero, and has no possibility to become a cluster head.
-%\end{proof}
-When a CR node $i$ is associated to multiple clusters, \ie $i$ has received multiple notifications from different cluster heads, $d_i$ is still set to be $M$. 
-%In other words, with this manipulation on its individual connectivity degree, every CR node in the network will be involved in the clustering process, the proof will be given later.
+After a CR node, say $i$, receives notification that there is a new cluster head in its neighborhood, $i$ sets its individual connectivity degree to a positive number $M > |\mathcal{K}| \cdot N$, and broadcasts the new individual connectivity degree. 
+When node $i$ is associated with multiple clusters, \ie $i$ has received multiple notifications from different cluster heads, $d_i$ is still set to be $M$. 
 The manipulation of the individual connectivity degree of the cluster members accelerates the decision on the cluster heads.
-%, which enables the nodes which are outside of the cluster can possibly become cluster heads or can also be included into other clusters.
-%We have the following theorem to show that when there is no one secondary which shares no CC with any other secondary users, \ie
-%all secondary users' individual connectivity degrees are greater than zero, then every secondary user will eventually be either integrated into a certain cluster, or becomes a cluster head.
 
-	
 
 
 
 
 \subsubsection{The Existence of Common Channels}
 \label{ross_p1_guarantee_ccc}
-%After deciding itself being cluster head, CR node broadcasts to notify its neighbours on the dedicated control channel, meanwhile, $i$'s initial cluster is formed immediately, which is $i$'s neighbourhood except for those nodes which have become cluster heads, \ie $C_i=(\text{Nb}_i\setminus \text{CHs})\cup i$.
 After executing Algorithm~\ref{alg0}, certain formed clusters may not possess any CCs.
-As decreasing cluster size increases the CCs within a cluster, for those clusters having no CCs, certain nodes need to be eliminated to obtain at least one CC.
-The sequence of elimination is performed according to an ascending list of nodes which are sorted by the number of common channels between the nodes and the cluster head. 
-In other words, the cluster member which has the least common channels with the cluster head is excluded first.
-If there are multiple nodes having the same number of common channels with the cluster head, the node whose elimination brings in more common channels will be excluded.
-If this criterion meets a tie, the tie will be broken by deleting the node with smaller node ID.
-It is possible that the cluster head excludes all of its neighbors, resulting in a singleton cluster which is composed by itself.
-%At the end of this procedure every formed cluster has at least one common channel.
-%The pseudo code for cluster head to obtain at least one common channel is shown in Algorithm~\ref{alg_size_control_available_CCC}.
+As decreasing cluster size increases CCs within a cluster, for those clusters without CCs, certain nodes need to be excluded to obtain at least one CC.
+The sequence of removing is performed according to an ascending list of nodes, which are sorted according to the number of common channels between the nodes and the cluster head. 
+In other words, the cluster member which has the least common channels with the cluster head will be removed first.
+When there are multiple nodes having the same amount of common channels with the cluster head, the node whose absence brings in more common channels will be removed.
+If this criterion meets a tie, the tie can be broken by removing the node with smaller node ID.
+It is possible that the cluster head removes all its neighbors before obtaining CCs, which results in a singleton cluster which is composed by itself.
 The pseudo code for this procedure is shown in Algorithm~\ref{alg_size_control_available_CCC}.
-As for the nodes which are eliminated from a cluster, they restore their original individual connectivity degrees, then execute Algorithm~\ref{alg0} and become either cluster heads or get included into other clusters afterwards according to Theorem~\ref{clustering:theorem}.
+As for the nodes which are removed from a cluster, they restore their original individual connectivity degrees, then execute Algorithm~\ref{alg0} and become either cluster heads or get included into other clusters afterwards according to Theorem~\ref{clustering:theorem}.
 
 
 
@@ -597,61 +566,24 @@ As for the nodes which are eliminated from a cluster, they restore their origina
 \subsubsection{Cluster Size Control in Dense CRN}
 \label{ross_p2_cluster_pruning}
 
-%In this subsection, we illustrate the pressing necessity to control the cluster size when CRN becomes denser.
-%
-%We consider a cluster $C(i)$ where $i$ is the cluster head in a dense CRN. 
-%To make the analysis easier, we assume there is no cluster heads which are generated within $i$'s neighborhood during the procedure of guaranteeing CCs.
-%Assuming the CR users and PUs are evenly distributed and PUs occupy the licensed channels randomly, then both CR nodes density and channel availability in the CRN can be seen to be spatially homogeneous.
-%In this case the formed clusters are decided by the transmission range and network density.
-%According to Algorithm~\ref{alg0}, the nearest cluster heads could locate just outside node $i$'s transmission range.
-%%
-%An instance of this situation is shown in Figure~\ref{clusters_denseNetwork}.
-%In the figure, black dots represent cluster heads, the circles denote the transmission ranges of cluster heads.
-%Cluster members are not shown in the figure.
-%%Circles represent the transmission range of cluster head, within which CR nodes are absorbed in cluster.
-%\begin{figure}[h!]
-%  \centering
-%  \includegraphics[width=0.3\linewidth]{clusters_denseNetwork_2.pdf}
-%  \caption{Clusters formation in extremely dense CRN. Black dots are cluster heads, cluster members are not drawn.}
-%  \label{clusters_denseNetwork}
-%\end{figure}
-%Let $l$ be the length of side of simulation plan square, and $r$ be CR's transmission radius.
-%Based on the aforementioned analysis and geometry illustration as shown in Figure~\ref{clusters_denseNetwork}, we give an estimate on the maximum number of generated clusters, which is the product of the number of cluster heads in one row and that number in one line, $l/r * l/r = l^2/r^2$.
-%%Now we verify the estimation with simulation.
-%%We distribute CR and primary users randomly on a square plain, $r$=10 and $l$=50.
-%%Network density is increased by adding more CR users.
-%%We now have a look at how does the network density affect the cluster size when the transmission range is constant.
-%%This implicates when the cluster size is decided by the density of the network.
-%%As to SOC, the membership of one cluster is decided after a complex process, and the cluster size is roughly the same with one neighborhood.xxxx
-%%We can see from the example that although two neighbouring clusters can overlap greatly with each other, no cluster head will be covered by other clusters.
-%Given $r$=10 and $l$=50, the maximum number of clusters is 25.
-%The number of clusters in the simulation is shown in Figure~\ref{number_clusters_scale}.
-%Simulation is run for 50 times and the confidence interval is 95\%.
-%With the increase of CR users, network density (the average number of neighbours) increases linearly, and the number of clusters approaches to 25 which complies with the estimation.
-%
-%\begin{figure}[h]
-%  \centering
-%  \includegraphics[width=0.7\linewidth]{number_clusters_upperBound.pdf}
-%  \caption{The correlation between the number of formed clusters and network density.}
-%  \label{number_clusters_scale}
-%\end{figure}
-It is necessary to control the cluster size when CRN becomes denser.
-Both analysis and simulation~\cite{2017arXiv170404828L} show that when applying ROSS, after the clusters are saturated with the increase of network density, the cluster size increases linearly with the network density, thus certain measures are needed to curb this problem.
-This task falls upon the cluster heads.
-To control the cluster size, cluster heads prune their cluster members to reach the desired cluster size.
+Both analysis and simulation~\cite{2017arXiv170404828L} show that with ROSS, when network density increases to a certain level, the number of formed clusters becomes constant.
+This means if the network density keeps on increasing, the cluster size increases linearly with the network density.
+Thus It is necessary to control the cluster size when CRN becomes denser, and this task falls upon the cluster heads.
+
+To control the cluster size, cluster heads remove their cluster members when cluster sizes are larger than a threshold.
+The threshold should be larger than the desired size $\delta$, because there are overlaps between neighboring clusters.
 The desired size $\delta$ is decided based on the capability of the CR users and the tasks to be conveyed.
-As there are overlaps between neighboring clusters, the sizes of the clusters formed in this phase are larger than that of the finally formed clusters.
-Hence, a cluster head excludes some cluster members when the cluster size exceeds a certain threshold.
-We set the threshold as $t\cdot \delta$, where $\delta$ is the desired cluster size.
-The constant parameter $t$ is usually larger than 1 and is dependent on the network density and CR nodes' transmission range, in particular, $t$ is between 1 and the ratio between the average neighborhood size and the desired size.
-%A smaller or bigger $t$ may lead to more clusters with smaller or larger size than $\delta$.
+%Hence, a cluster head excludes some cluster members when the cluster size exceeds a certain threshold.
+We set the threshold as $t\cdot \delta$, where the constant parameter $t$ is dependent on the network density and CR nodes' transmission range.
+We adopt $t$ to be between 1 and the ratio of the average neighborhood size and desired size.
 	When $t$ is smaller, \eg $t=1$, the formed cluster in the phase I will be $\delta$.
-	For the cluster whose members are included by other clusters, the size of this cluster will be smaller than $\delta$ after the membership clarification phase.
+	For the cluster whose members are included by other clusters, the size of this cluster will be smaller than $\delta$ after the following membership clarification phase.
 	If $t$ is chosen large, \eg $t\cdot\delta$ equals to the size of neighborhood, the mechanism of adjusting the cluster size will not work any more.
 	
-Because of $t$, the threshold to prune is larger than the desired size, then there will be some nodes choosing to affiliate with other clusters in the following phases.
+%Because of $t$, the threshold to prune is larger than the desired size, then there will be some nodes choosing to affiliate with other clusters in the following phases.
 %C1-7
-In particular, the cluster head removes the cluster members sequentially according to the following principle, the absence of one cluster member leads to the maximum increase of the CCs within the cluster.
+The cluster head removes the cluster members sequentially according to the following principle, the absence of one cluster member leads to the maximum increase of CCs in the cluster.
+The removed nodes restore their original individual connectivity degrees.
 This process ends when each cluster's size is smaller or equal to $t \cdot\delta$.
 This procedure is similar with that in Section~\ref{ross_p1_guarantee_ccc}, thus Algorithm~\ref{alg_size_control_available_CCC} can be reused.
 %The $t$ is set to 1.3. 	
@@ -666,21 +598,15 @@ This procedure is similar with that in Section~\ref{ross_p1_guarantee_ccc}, thus
 
 
 %%%%%%%%%%%%%%%
-We have the following lemma to show that every secondary user will eventually be either integrated into a certain cluster or becomes a cluster head.
+We have the following lemma to show every secondary user will eventually be either integrated into a cluster or becomes a cluster head.
 
 \begin{lemma}
 \label{clustering:lemma1}
 Given a CRN where any secondary user is able to communicate with any other secondary user through the other nodes, then after the phase of cluster head selection and initial cluster formation, every secondary user either becomes cluster head, or gets included into at least one cluster.
 \end{lemma}
 
-%Here, by \textit{step} we mean Algorithm~\ref{clustering:theorem} is executed by a secondary user for one time.
-%In one special scenario, \eg when a cluster head is elected and all the other nodes are within its neighborhood, the number of steps is 1.
+
 The Proof is given in Appendix~\ref{proof_clustering:lemma1}.
-%The proof also illustrates the maximal time needed to conduct Algorithm~\ref{clustering:theorem}. 
-%Consider an extreme scenario, where all the secondary nodes sequentially execute Algorithm~\ref{alg0}, \ie they constitute a chain as discussed in the example in the proof.
-%
-%Assuming there is a token in the CRN, one node is allowed to execute Algorithm~\ref{alg0} only when it holds the token, and it then transfers the token to the neighboring node on the chain.
-%If one step can be finished within a certain time span $T$, then the total time needed for the network to conduct Algorithm~\ref{clustering:theorem} is $N*T$.
 %C1-6
 
 \begin{lemma}
@@ -688,14 +614,14 @@ The Proof is given in Appendix~\ref{proof_clustering:lemma1}.
 When a secondary user becomes cluster head, it will not become cluster member again.
 \end{lemma}
 \begin{proof}
-A secondary node becomes cluster head when its \textit{individual connectivity degree} is smaller than all its neighbors.
-Afterwards, the \textit{individual connectivity degree} of its neighbors becomes $M$ and has no means to decrease, thus the cluster head will remain to be cluster head.
-As to the node which is excluded form a cluster due to guaranteeing CC or size control, its \textit{individual connectivity degree} is restored, but it will not include its former cluster head, even if it becomes cluster head as regulated in~\ref{alg0}.
+A secondary node, say $i$, becomes cluster head when its \textit{individual connectivity degree} is smaller than any of its neighbors.
+Afterwards, the \textit{individual connectivity degrees} of its neighbors becomes $M$.
+%If all the neighbors stay in the cluster, the cluster head will remain to be cluster head.
+If certain nodes are removed from the cluster due to guaranteeing CC or size control, these nodes may become either cluster members of another cluster head, or cluster heads themselves.
+In both cases, $i$'s \textit{individual connectivity degrees} is still smaller than these nodes.
+Note that when the removed node becomes cluster head, it will not include its former cluster head $i$, so that $i$ doesn't become cluster member and its \textit{individual connectivity degrees} doesn't change.
 \end{proof}
 
-%According to Theorem~\ref{clustering:theorem}, Phase I completes within a reasonable amount of time.
-%
-%This judgement is conducted periodically, and phase I ends after every node ascertains it is cluster head or not.
 
 \begin{lemma}
 \label{clustering:lemma3}
@@ -705,77 +631,42 @@ This lemma can be easily obtained from~\ref{clustering:lemma2} considering the $
 Based on these Lemmas, we can easily obtain Theorem~\ref{clustering:lemma1},
 \begin{theorem}
 \label{clustering:theorem}
-Assuming the time for a secondary user to update the information about cluster heads in its neighborhood is $T$, then it takes at most $N*T $ time to finish the process of cluster head selection and initial cluster formation.
+Assuming the time for a secondary user to update the information about cluster heads in its neighborhood is $T$, then it takes at most $N*T $ to finish the process of cluster head selection and initial cluster formation.
 \end{theorem}
-Phase I ends when no more secondary users are becoming cluster head.
-Based on~\ref{clustering:lemma1} and~\ref{clustering:lemma3}, the theorem is proved.
+Phase I ends when no more secondary users become cluster heads.
+Based on Lemma~\ref{clustering:lemma1} and Lemma~\ref{clustering:lemma3}, the theorem is proved.
 
 
 As Algorithm~\ref{alg0} is executed concurrently by different secondary users, the required time can be considerably reduced.
-If we apply Algorithm~\ref{alg0} to the example shown in Figure~\ref{fig1}, the outcome is shown in Figure~\ref{fig2}.
+If we apply Algorithm~\ref{alg0} to the CRN in Figure~\ref{fig1}, the outcome can be found in Figure~\ref{fig2}.
 Node $B$ and $H$ have the same individual connectivity degree, i.e., $d_B=d_H$. As $g_H=2>g_B=1$, node $H$ becomes the cluster head and cluster $C(H)$ is $\{H, B, A, G\}$.
 
 
 \subsection{Phase II - Membership Clarification}
 \label{membershipClarification}
 %\subsubsection*{Problem Description}
-As to the example CRN shown in Figure~\ref{fig1}, the resulted clusters are shown in Figure~\ref{fig2} after running phase I of ROSS.
-We notice that nodes $A, B, D$ are included in more than one cluster. 
+As to the resulted clusters shown in Figure~\ref{fig2} after running phase I of ROSS, we notice that nodes $A, B, D$ are included in more than one cluster. 
 We refer to these nodes as \textit{debatable nodes} as their cluster affiliations are not decided.
 The clusters which include the debatable node $i$ are called \textit{claiming clusters} of node $i$, and the set of these clusters is denoted as $S_i$.  
-%Actually, debatable nodes extensively exist in CRN with larger scale.
-The debatable nodes which are generated from the first phase of ROSS should be exclusively associated with only one cluster and be removed from the other claiming clusters, this procedure is called \textit{cluster membership clarification}.
+The debatable nodes should be exclusively associated with only one cluster and be removed from the other claiming clusters, this procedure is called \textit{cluster membership clarification}.
 
-%In particular, the un-affiliation of one debatable nodes from a cluster increasing the set $K_C$ of ICCs of cluster $C$ (at the cost of potentially decreasing $R_C$, the set of OCCs).
-
-%\newtheorem{observation}{Observation}
-%\label{observation}
-%\begin{observation}
-%If the number of nodes within a cluster decreases, the number of common channels will increase or keep constant.
-%\end{observation}
-%
-%\begin{proof}
-%Contradiction, To be continued
-%\end{proof}
-%From observation 1 we know that the procedure of membership clarification will increase the set of common channels for some clusters and accordingly strengthen the robustness of intra connectivity. 
-
-% % % % %	dependancy!
-%An debatable node belongs to multiple clusters, and in the same time, it is possible that several debatable CR nodes locate within one same cluster. %Each debatable node tries to increase the sum of ICC of the clusters which it belong to. More specifically, 
-%For a debatable node $i\in S_i$ after phase I, as to clarify its membership, it will choose one cluster $C\in S_i$ to stay and withdraw from the other clusters in $S_i$ with the consideration of increasing ICCs within $S_i$ by the largest margin. 
 
 \subsubsection{Distributed Greedy Algorithm (DGA)}
-%Debatable node $i$ is aware of all its claiming clusters in $S_i$. 
-Assuming a debatable node $i$ which needs to decide one cluster $C\in S_i$ to stay and leaves the other clusters in $S_i$, then the principle for $i$ is its decision should result in the greatest increase of CCs in all its claiming clusters.
-As node $i$ has been notified of the spectrum availability on all the nodes in each claiming cluster, node $i$ is able to calculate how many more CCs will be produced in a claiming cluster if $i$ leaves that cluster.
-%Based on this calculation, $i$ decides on one claiming cluster to stay and leaves the other claiming clusters.
+When a debatable node $i$ decides one cluster $C\in S_i$ to stay and leaves the other its claiming clusters, the principle for $i$ is that its move should result in the greatest increase of CCs in all its claiming clusters.
+As node $i$ has been notified of the spectrum availability on all the nodes in each claiming cluster, node $i$ is able to calculate how many more CCs can be produced in a claiming cluster if $i$ leaves that cluster.
 Then node $i$ decides on the cluster $C\in S_i$, if $i$ leaving cluster $C$ results in less increased CCs than leaving any other claiming clusters in $S_i$.
 %As to a cluster $C\in S_i$, if $i$ leaves cluster $C$ and results in less increased CCs than leaving any other claiming clusters, then $i$ chooses to stay in cluster $C$.
 When there comes a tie between two claiming clusters, $i$ chooses to stay in the cluster whose cluster head shares the most CCs with $i$.
-When the tie still exists, node $i$ chooses to stay in the claiming cluster which has the smallest size.
-Node IDs of cluster heads will be used to break tie if all the previous metrics could not decide on the unique claiming cluster for $i$ to stay.
+When a tie still exists, node $i$ chooses to stay in the claiming cluster which has the smallest size.
+Node IDs of cluster heads will be used to break tie in the end if necessary.
 The pseudo code of this algorithm is given in Algorithm~\ref{alg4}.
-%To conduct Algorithm~\ref{alg4}, debatable node $i$ needs to know the necessary information about its claiming clusters, \ie $K(C)$ (the set of available channels in cluster $C$), $K(h_C)$ (the set of available channels on $C$'s cluster head $h_C$) and $|C|, C\in S_i$ (sizes of $i$'s claiming clusters).
 After deciding its membership, debatable node $i$ notifies all its claiming clusters of its choice, and the claiming clusters from which node $i$ leaves also broadcast their new cluster composition and the spectrum availability on all their cluster members.
 
 The autonomous decisions made by the debatable CR nodes raise the concern on the endless chain effect in the membership clarification phase.
-A debatable node's choice is dependent on the compositions of its claiming clusters, which can be changed by other debatable nodes' decisions.
-As a result, the debatable node which makes decision first may change its original choice, and this process may go on forever.
+A debatable node's choice is dependent on the compositions of its claiming clusters, and the members of these claiming clusters can be changed by other debatable nodes' moves.
+As a result, the debatable node which have made decision may not be content with its original move.
+There is concern that this process may go on forever.
 To erase this concern, we formulate the process of membership clarification into a game, where a equilibrium is reached after a finite number of best response updates made by the debatable nodes.
-
-%%  update their choices based on other debatable nodes' choices, and this process 
-%%%thesis needs1
-%For example, assuming one debatable node $i$ locates in cluster $C\in S_i$, and $C$ has more than one debatable node except for $i$.
-%Assuming node $i$ decides to stay in cluster $C$, then one another debatable nodes $j$ decides its affiliation, and there is $j\in C\in S_i$.
-%$j$'s move decreases cluster $C$'s size, and could possibly trigger node $i$ to alter its previous decision to leave $C$, as $C$'s size is smaller now and leaving it may result in more increase of CCs in $S_i$.
-%At this point of time, debatable node $j$ may rejoin cluster $C$ due to the changes in $S_j$, then both node $i$ and $j$ face the \textit{same} situation again.
-%%\footnote{Actually it is not totally same as before, as there are some new changes within $S_j$.}
-%%To maximize the increase of common channel in clusters in $S_j$, $j$ either stays in $C$, or leaves cluster $C$ and stay another cluster in $S_j$.
-%%$j$'s decision changes $C$'s membership, which will affect $i$'s decision.
-%%Assume $i$ makes decision before $j$ and chooses to stay in $C$, as which brings the most common channels in $i$' claiming clusters, and then it is $j$' turn to choose cluster.
-%%If $j$ leaves $C$, the smaller cluster $C$ will possibly make $i$ to leave it and join another cluster.
-%%and the choice of $j$ to stay in $C$ or not possibly changes $C$'s membership and  which potentially further triggers node $i$ to alter its previous decision. 
-%Thence, we need to answer this concern before implementing ROSS-DGA.
-%%, and if it converges, how good such a distributed scheme performs. 
 
 
 \subsubsection{Bridging ROSS-DGA with Congestion Game}
@@ -793,8 +684,7 @@ From the new perspective, the debatable nodes are not included in any cluster an
 When a debatable node $i$ join one cluster $C$, the decrease of CCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K(C) \vert=\sum_{C\in S_i}({\vert K(C) \vert-\vert K(C\cup i) \vert})$.
 Then, node $i$ chooses the cluster $C$, where the decrease of CCs in cluster $C$ is smaller than the decrease if $i$ would have joined any other claiming cluster in $S_i$.
 The relation between the debatable nodes and the claiming clusters is shown in Figure~\ref{debatable_nodes_claiming_cluster}.
-%The concern on convergence appears again as we have discussed in the previous subsubsection.
-%We give proof on convergence under game theoretic framework.
+
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=0.37\linewidth]{singletongame_matching.pdf}
@@ -803,38 +693,23 @@ The relation between the debatable nodes and the claiming clusters is shown in F
 \end{figure}
 
 
-%In the following we will introduce an \textit{server matching}~\cite{kothari:congestion_serverMatching} problem to illustrate congestion game's application in communication systems.
-
-
 In the following, we show that the decision of debatable nodes to clarify their membership can be mapped to the behaviour of the players in a \textit{player-specific singleton congestion game} when proper cost function is given.
 The game to be constructed is represented with a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, f)$ with the following elements:
-%To make the model of this game more clear, we make some change to our original problem. Previously, the nodes in overlapping areas belong to more than one cluster, and our scheme is to remove them out of some clusters to increase the set of common channels within the cluster form which the mode leave. In the new model, we assume all the nodes in overlapping nodes don't belong any cluster and the problem become into how do these nodes decide which cluster to join.
-
-%The components of the game are listed as follows,
 
 \begin{itemize}
-%	\item $\mathcal{D}=\left\{1,\ldots,n\right\}$, the set of players (debatable nodes).
 	\item $\mathcal{P}$, the set of players in the game, which are the debatable nodes in our problem.
-%	\item $\mathcal{R}=\left\{1,\ldots,m\right\}$, the set of resources which player can choose, which are all the clusters in our model.
 	\item $\mathcal{R} = \cup S_i, i\in \mathcal{P}$, the set of the resources for players to choose. In our problem, $S_i$ is the set of the claiming clusters of $i$, and $\mathcal{R}$ is the set of all claiming clusters.
 	\item Strategy space $\sum_i, i \in \mathcal{P}$, $\sum_i$ is the set of the claiming clusters $S_i$.
 	As debatable node $i$ is supposed to choose only one claiming cluster, then only one piece of resource will be allocated to $i$.%, accordingly this congestion game is a singleton game.
-	%when $i$ makes decision, only one resource (one claiming cluster) from the allowed resources is allocated.
-	
-	%\item We denote by $\mathcal{S}=\left(\mathcal{S}_1,\ldots,\mathcal{S}_n\right)\in \sum_1\times \cdots\times\sum_n$ the state of game where player $i$ plays strategy $\mathcal{S}_i\in \Sigma_i$.
-	
-	\item %For the clusters which are possible destination of debatable nodes, the decrease of common channels caused by different debatable node' join can be different because of the heterogeneity of channel availability within itself and on the debatable nodes. %furthermore, the sequence of debatable node's join can also alter the decrease. 
-	The utility (cost) function $f(C)$ as to a resource $C$. 
+	\item 	The cost function $f(C)$ as to a resource $C$. 
 	$f(C) = \Delta\vert K^i(C)|, C\in S_i$, which represents the decreased number of CCs in cluster $C$ when debatable node $i$ joins $C$.
-	As to cluster $C\in S_i$, the decrease of CCs caused by including the debatable nodes is $\sum_{i:C\in S_i, i\rightarrow C} \Delta\vert K^i(C) \vert$. 
+	As to cluster $C\in S_i$, the decrease of CCs caused by accepting the debatable nodes is $\sum_{i:C\in S_i, i\rightarrow C} \Delta\vert K^i(C) \vert$. 
 $i\rightarrow C$ means $i$ joins cluster $C$.
 Obviously this function is non-decreasing with respect to the number of nodes joining cluster $C$.
 	
-The utility function $f$ is not purely decided by the number of players accessing the resource (debatable nodes join claiming clusters), which happens in a canonical congestion game.
-The reason is in this game the channel availability on debatable nodes is different.
-Given two same groups of debatable nodes and their sizes are the same, when the nodes are not completely the same (neither are the channel availabilities on these nodes), the cost happened on one claiming cluster could be different if the two groups of debatable nodes join that cluster respectively.
-%In a canonical congestion game, the cost (or pay off) is function of only the number of players occupying the resource, and is mono-
-%In this new game, the cost function 
+When the utility function is decided purely by the amount of players accessing the resource, the game is a canonical congestion game~\cite{Ackermann06purenash}.
+In our game, as the channel availability on debatable nodes (players) is different, the loss of CCs (cost) caused by a debatable node could also be different.
+%For example, given two same groups of debatable nodes and their sizes are the same, when the nodes are not completely the same (neither are the channel availabilities on these nodes), the cost happened on one claiming cluster could be different if the two groups of debatable nodes join that cluster respectively.
 Hence, this congestion game is player specific~\cite{Ackermann06purenash}.
 In this game, every player greedily updates its strategy (choosing one claiming cluster to join) if joining a different claiming cluster minimizes the decrease of CCs $\sum_{i:C\in S_i} \Delta\vert K^i(C) \vert$, and a player's strategy in the game is exactly the same with the behaviour of a debatable node in the membership clarification phase.
 
@@ -865,22 +740,13 @@ In our problem, the players are the debatable nodes, and the resources are the c
 Thus the number of steps can be expressed as $\mathcal{O}(N^3)$.
 %
 In fact, the upper bound for the number of steps which are involved in this process is much smaller than $N^3$.
-The percentage of debatable nodes in the network is shown in Figure~\ref{percentage_overlapping_node}, which is between 10\% to 60\% of the total CR nodes in the network.
+The percentage of debatable nodes in the network is shown in Figure~\ref{percentage_overlapping_node}, which is between 10\% to 60\%.
 On the other hand, the number of clusters heads is dependent on the network density and the CR node's transmission range as mentioned in Section~\ref{phaseI}.
-The simulation in \cite{robust_clustering_arxiv} shows the cluster heads are only 3.4\% to 20\% of the total CR nodes.
+The simulation in \cite{robust_clustering_arxiv} shows the cluster heads account for from 3.4\% to 20\% of the total CR nodes with the increase of network density.
+Furthermore, as the game played locally and in parallel \ie a debatable node can only interact with a few claiming clusters, which greatly accelerates the execution speed.
 
-
-
-%and the number of steps towards \textit{Nash Equilibrium} is upper-bounded\footnote{Here we present this with modifying the original conclusion in \cite{Ackermann06purenash} according to our model.} by $ n^2\cdot m $. In our context, $n$ is the number of debatable nodes, $m$ is number of clusters in CRN, %$rk(\Gamma)$ of the matroid  is the cardinality of the maximal independent sets, which is 1 in the case of singleton game, 
-%so the total time complexity to achieve the \textit{Nash Equilibrium} using greedy approach is 	.
-%%(XXX Just mention after this complexity result the relationship to the system mdeol XX)
-%This is upper-bounded (in the worst case) by $O(\vert I\vert^3)$. 
-%Based on above model and analysis, phase II converges is Algorithm~\ref{alg4} is run by debatable nodes. 
-%Although the game version of DGA can achieve \textit{Nash Equilibrium}, the whole scheme can possibly obtain sub-optimal result.    %, furthermore,this stable state is a local minimum of the global decrease function.
-%\todo[inline]{The number of steps, or the upper bound of steps in convergence needs a formal proof}
 
 \subsubsection{Distributed Fast Algorithm (DFA)}
-%The convergence speed of DGA is large recalling that the number of steps is of $\mathcal{O}(N^3)$.
 On the basis of ROSS-DGA, we propose a faster version ROSS-DFA which differs from ROSS-DGA in the second phase.
 With ROSS-DFA, debatable nodes decide their respective cluster heads only once.
 The debatable nodes consider their claiming clusters to include all their debatable nodes, thus the membership of claiming clusters is static and all the debatable nodes can make decisions simultaneously without considering the change of membership of their claiming clusters.
@@ -911,14 +777,6 @@ After the decisions made similarly by the other debatable nodes $B$ and $D$, the
 \caption[]{Membership clarification: possible cluster formations caused by node A's different choices} %\subref{node A in $C_C$}, \subref{node A in $C_H$}}
 \label{fig3}
 \end{figure}
-
-\begin{comment}
-As an example, when node A comes to decide which cluster to stay, the memberships of relevant clusters, like $C_C$ and $C_H$, are $\{C,B,D,A\}$ and $\{H,B,G,A\}$ respectively. Before the other two debatable nodes B and D making their belonging clear, cluster $C_C$ and $C_H$ have them in the same time. So node A can decide which cluster to belong to without considering other debatable nodes' action. There are two strategies for node A, which is illustrated in Figure \ref{fig3}. Because staying in cluster $C_C$ brings in more common channels within relevant clusters, node A finally choose cluster $C_C$ to stay and caveat from cluster $C_H$. The membership of $C_H$ is updated in the same time. Node B and D undertake the same process and the clusters are formed finally as Figure \ref{fig4} shows.
-
-Because debatable nodes can conduct membership clarification abased on static membership information of relevant clusters, thus no iteration happens in this process. The time complexity of this algorithm is only decided by the number of debatable nodes, which is maximal $O(\vert I\vert)$. 
-
-As an example, when node A comes to decide which cluster to stay, the memberships of relevant clusters, like $C_C$ and $C_H$, are $\{C,B,D,A\}$ and $\{H,B,G,A\}$ respectively. Before the other two debatable nodes B and D making their belonging clear, cluster $C_C$ and $C_H$ have them in the same time. So node A can decide which cluster to belong to without considering other debatable nodes' action. Figure \ref{AinC}. Because staying in cluster $C_C$ brings in more common channels within relevant clusters, node A finally choose cluster $C_C$ to stay and retreat from cluster $C_H$. The membership of $C_H$ is updated in the same time. Node B and D undertake the same process and the clusters are formed finally as Figure \ref{final_clustering_ross} shows.
-\end{comment}
 
 
 \begin{figure}[h]
