@@ -333,13 +333,14 @@ As to a cognitive radio network where the set of CR nodes is $\mathcal{N}$, the 
 \item the sum over $f(C)$ for all clusters $C$ is maximized, where the number of common channels for cluster $C$ is denoted as $f(C)$ 
 \item all cluster sizes are within the range $\big[\delta_1, \delta_2\big]$, with $\delta_1, \delta_2\in \mathbb{Z}^+$ and $\delta_1 \leq \delta_2$.
 When the cluster size is larger or smaller than the range $\big[\delta_1, \delta_2\big]$, $f(C)$ is defined as 0.
+In particular, the range can be expressed as $[\delta-u, \delta+u]$, where $\delta$ is the desired cluster size, $u$ is a constant and $\delta-u > 0$.
 \item the size of $C$ in $\mathcal{T}$ is allowed to be 1.
 %, and $\delta$ is decided according to the application to be implemented in the CRN.
 \end{enumerate}
 \end{mydef}
 % XXX Di: What does the last statement mean with respect to the size of C being allowed to be 1. Does that mean for all C in T, the size is allowed to be 1? Doesn't that contradict what you have been saying in the definition before, where you come up with the range ?
 % XXXX 
-%1. we have a function f(C) to denote the number of CCs, if cluster size in the scope, fine; if not, f(C) equals zero.
+%1. we have a function f(C) to denote the number of CCs, if cluster size is in the scope, fine; if not, f(C) equals zero.
 %2. it is OK for every CR node to form their own cluster. Then according to rule 3, f(C) is zero and we obtain a 'bad' clustering result.
 % XXXX 
 
@@ -356,7 +357,9 @@ The proof is given in Appendix~\ref{proof_theorem1}.
 \section{Centralized Solution for Robust Clustering}
 \label{centralized_solution}
 When the global knowledge of the CRN \ie the locations of primary users and their working channels, and the locations of secondary users and available channels on them, we can propose a centralized scheme.
-We obtain the set of $\mathcal{S}$ which contains all the clusters in $\mathcal{N}$, \ie $\mathcal{S}=\{C_1, C_2,\ldots,C_i, \ldots, C_{|\mathcal{S}|}\}$ \footnote{The subscript $i$ means the $i$-th cluster in $\mathcal{S}$.} and there is $\bigcup_{1\leq i \leq |\mathcal{S}|} C_i = \mathcal{N}$.
+We obtain the set of $\mathcal{S}$ which contains all the clusters.
+These clusters satisfy the definition of cluster in Section~\ref{sec:model}, and they basically form a powerset of $\mathcal{N}$, which nevertheless are restricted by connectivity and spectrum availability.
+There are $\mathcal{S}=\{C_1, C_2, \ldots, C_{|\mathcal{S}|}\}$ \footnote{The subscript $i$ means the $i$-th cluster in $\mathcal{S}$.} and $|\mathcal{S}| = M$.
 The proposed centralized solution formulates the problem in Definition~\ref{def_centralized_clustering} as an optimization problem which is solved with standard software packages.
 The optimization decides on the clusters according to the following optimization formulation, which is a binary linear programming problem and can be solved by many available solvers.
 
@@ -364,7 +367,7 @@ The optimization decides on the clusters according to the following optimization
 
 \begin{equation}
 \begin{aligned}
-     &\max\limits_{y_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (y_i\cdot t_{ij}) \\
+     &\max\limits_{y_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (y_i\cdot \frac{q_{ij}}{|C_i|} - y_i\cdot p(C_i)) \\
      &\text{subject to}   && \Sigma_{i=1}^M x_{ij} = 1, for\,\,\forall j=1, \ldots, N \\
    &&& \Sigma_{j=1}^N x_{ij} = |C_i|\cdot y_i,\, for\,\,\forall i=1, \ldots, M \\
   % &&& \text{$x_{ij}$ and $w_i$ are binary variables.}\\
@@ -373,14 +376,10 @@ The optimization decides on the clusters according to the following optimization
 \end{aligned}
 \label{centralized_opt}
 \end{equation}
-$y_i$ and $x_{ij}$ are two binary variables.
-% where $j\in \{1,2,\cdots,N-1, N\}$ and $i\in \{1,2,\cdots,M-1, M\}$.
-%$G = |\mathcal{G}|$ and there is $\mathcal{G} \subseteq \mathcal{S}$.
+$N$ is the total number of CR users in network $\mathcal{N}$.
+$y_i$ and $x_{ij}$ are binary variables.
 Being either 1 or 0, $y_i$ denotes whether the $i$-th cluster $C_i$ in $\mathcal{S}$ is chosen or not.
-$x_{ij}$ indicates whether the CR node $j$ resides in the cluster $C_i$, \ie $x_{ij}=1$ means node $j$ resides in the cluster $C_i$. 
-%Node index $j$ is identical to the node ID.
-$N$ is the total number of CR users in network $\mathcal{N}$, $M$ is the number of clusters in $\mathcal{S}$.
-
+$x_{ij}$ indicates whether the CR node $j$ resides in the cluster $C_i$, \ie $x_{ij}=1$ means node $j$ resides in the cluster $C_i$.
 
 
 The constraints guarantee to obtain the clusters which together include all the CR users and don't overlap.
@@ -388,66 +387,38 @@ The first constraint regulates that a CR node should reside in exactly one clust
 The second constraint regulates that when the $i$-th cluster $C_i$ is chosen, there will be exactly $|C_i|$ CR nodes residing in $C_i$.
 
 %The optimization is a binary linear programming problem.
-The objective is to maximize the sum of the numbers of CCs in the clusters which constitute the CRN.
-$t_{ij}$ is a constant and there is
-%In practice, we can solve the problem with $\mathcal{G} = \mathcal{S}$ when $|\mathcal{S}|$ is not large. 
-%
-%
-%Given a CRN $\mathcal{N}$ and desired cluster size $\delta$, we obtain a collection of clusters $\mathcal{G}$ which contains all the \textit{potential} clusters, and the sizes of these clusters are $1,2,\ldots,\delta$.
-%Potential clusters are the clusters which satisfy the conditions introduced in Section~\ref{sec:model}. 
-%Note that the potential clusters include the singleton ones.
-%By permitting the existence of the singleton clusters, we can ensure that the $\mathcal{S}'$ in Definition~\ref{def_centralized_clustering} is always be feasible.
+As to the objective function, the sum of the first items is the sum of CCs of the clusters which constitute the CRN.
+In the second item, we propose $p(C_i)$ which is a size-related weight for cluster $C_i, i\in{1,\cdots, M}$.
+$p(C_i)$ is positively related with the difference between $C_i$'s size and the desired size $\delta$.
+The desired size $\delta$ is pre-decided based on the capability of the CR users and the tasks to be conveyed.
+When $y_i$ is 1 ($C_i$ is chosen) but $|C_i|$ doesn't equal to the desired cluster size $\delta$, it will be negative, which contradicts the direction of the optimization.
+Thus the second item discourages the appearance the clusters whose sizes deviate from $\delta$.
+The weight $p(C_i)$ with respect to different cluster sizes is as follows,
+%$$
+%p(C_i) = \left\{ \begin{array}{rl}
+%0 &\mbox{ if $|C_i|=\delta$} \\
+%\rho_1 &\mbox{if $||C_i|-1|=\delta$} \\
+%\rho_2 &\mbox{if $||C_i|-2|=\delta$} \\
+%\vdots\\
+%\rho_\sigma &\mbox{if $||C_i|-\sigma|=\delta$} \\
+%\end{array} \right.
+%$$
 
-\begin{equation}
-t_{ij} = \frac{q_{ij}}{|C_i|} - p_i(C_i)
-\end{equation}
-where constant $q_{ij}= |K(C_i)|$ when node $j\in C_i$, and $q_{ij}= 0$ when node $j\notin C_i$.
-%$|K(C_i)|$ is the number of CCs of cluster $C_i$, and $|C_i|$ is the size of cluster $C_i$.
-$p(C_i)$ is the size-related weight, which is positively related with the difference between $C_i$'s size and the desired size $\delta$.
-The desired size $\delta$ is decided based on the capability of the CR users and the tasks to be conveyed.
-The weight $p$ is decided with respect to cluster sizes 1,2, $\cdots$, $\sigma$ as follows,
 $$
 p(C_i) = \left\{ \begin{array}{rl}
 0 &\mbox{ if $|C_i|=\delta$} \\
-\rho_1 &\mbox{if $||C_i|-1|=\delta$} \\
-\rho_2 &\mbox{if $||C_i|-2|=\delta$} \\
+\rho_1 &\mbox{if $|C_i|=\delta \pm 1$ } \\
+\rho_2 &\mbox{if $|C_i|=\delta \pm 2$} \\
 \vdots\\
-\rho_\sigma &\mbox{if $||C_i|-\sigma|=\delta$} \\
+\rho_\sigma &\mbox{if $|C_i|=\delta \pm \sigma$} \\
 \end{array} \right.
 $$
 where $ 0 < \rho_1< \rho_2 < \cdots < \rho_\sigma$.
+Please note that here we adopt the desired cluster size in stead of the range for cluster sizes which is described in Definition~\ref{problem}.
+Because in implementation, we usually need a large range to guarantee a feasible result for the optimization problem.
+By adopting the desired size and the punishment for deviating from it, we actually set a large range of cluster sizes and meanwhile a better control of the resulted sizes. 
 
-%%Based on the knowledge on $\mathcal{S}$, we construct a $M\times N$ matrix $Q_{M\text{x}N}$ which is shown in Figure~\ref{costant_matrix_Q}. 
-%%Constant $q_{ij}$ is the element of $Q_{M\text{x}N}$, and its subscripts correspond to the $i$th cluster and CR node $j$ respectively.
-%$q_{ij}= |K(C_i)|/|C_i|$ when there is $j\in C_i$, and $q_{ij}= 0$ when there is $j\notin C_i$.
-%In other words, each non-zero element $q_{ij}$ means the number of CCs of the cluster $i$ where node $j$ resides.
 
-%\begin{figure}[ht!]
-%\centering
-%\bordermatrix{~ 		& 1 	& 2 	& 3 	& \cdots & j & \cdots	& N-1 	& N	\cr
-%                  1 	& |K(C_1)| 	& |K(C_1)| 	& 0 	& \cdots & \cdots &\cdots	& 0 	& 0	\cr
-%                  2 	& |K(C_2)| 	& 0 	& |K(C_2)| 	& \cdots & \cdots & \cdots 	& 0 	& 0	\cr
-%				\vdots  	&\vdots & 	 	& 		&  \vdots		& 		& \vdots \cr
-%				i 	& 0 	& |K(C_i)| 	& 0 	& \cdots  & \cdots & \cdots 	& |K(C_i)| 	& 0	\cr
-%				\vdots  	&\vdots & 	 	& 		&  \vdots & \cdots & \vdots 		& 		& \vdots \cr
-%				\vdots 	& 0  	& 0 	& 0 	& \cdots & \cdots & \cdots 	& |K(C_i')| 	& 0	\cr
-%				G  	& |K(C_G)| & \cdots	 	& 		&  \vdots	& \cdots & \vdots& 		& \vdots \cr}	
-%\caption{An example of Matrix $Q$, its rows correspond to all possible clusters, and columns correspond to the CR nodes in the CRN. }
-%\label{costant_matrix_Q}
-%\end{figure}
-
-%Now we examine the objective function to see whether it in line with the goal to maximize the total number of CCs meanwhile consider the restriction on the cluster size.
-When $t_{ij}$ is replaced by $\frac{q_{ij}}{|C_i|} - p(C_i)$, the objective function becomes,
-\begin{equation}
-\begin{aligned}
-     &\max\limits_{y_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (y_i\cdot \frac{q_{ij}}{|C_i|} - y_i\cdot p(C_i)) \\
-\notag
-\end{aligned}
-\label{centralized_opt}
-\end{equation}
-The sum of the first items is the sum of CCs of all the chosen clusters.
-As to the second item, when $w_i$ is 1 ($C_i$ is chosen) and $|C_i|\neq\delta$, it will be negative, which contradicts the direction of the optimization.
-Thus the second item discourages the appearance the clusters whose sizes deviate from $\delta$.
 
 The difficulty of using this method lies in obtaining the set $\mathcal{S}$.
 In the worst case, \ie every CR node communicates directly with any other node and the CRN forms a full connected graph, the size of $\mathcal{S}$ is $\Sigma_{r=1}^{N}\ {N \choose r} = 2^N-1$.
