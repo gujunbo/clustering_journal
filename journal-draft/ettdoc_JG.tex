@@ -368,8 +368,8 @@ The optimization decides on the clusters according to the following optimization
 \begin{equation}
 \begin{aligned}
      &\max\limits_{y_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (y_i\cdot \frac{q_{ij}}{|C_i|} - y_i\cdot p(C_i)) \\
-     &\text{subject to}   && \Sigma_{i=1}^M x_{ij} = 1, for\,\,\forall j=1, \ldots, N \\
-   &&& \Sigma_{j=1}^N x_{ij} = |C_i|\cdot y_i,\, for\,\,\forall i=1, \ldots, M \\
+     &\text{subject to}   && \Sigma_{i=1}^M x_{ij} = 1, \text{for}\,\,\forall j=1, \ldots, N \\
+   &&& \Sigma_{j=1}^N x_{ij} = |C_i|\cdot y_i,\, \text{for}\,\,\forall i=1, \ldots, M \\
   % &&& \text{$x_{ij}$ and $w_i$ are binary variables.}\\
    &&& i\in \{1,2, \cdots M\}, \hspace{0.3cm} j\in \{1,2,\cdots N\}
 %\notag
