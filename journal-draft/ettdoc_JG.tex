@@ -351,61 +351,54 @@ We initially consider a centralized solution for this problem.
 Assuming some global knowledge of the CRN to be given at some point in the network, \ie the locations of primary users and their working channels, and the locations of secondary users and available channels on them, we can propose a centralized scheme.
 We obtain the set of $\mathcal{S}$ which contains all the clusters which satisfy the definition of cluster in Section~\ref{sec:model}.
 $\mathcal{S}$ is basically a powerset of $\mathcal{N}$, which nevertheless is restricted by connectivity and spectrum availability in the network.
-There are $\mathcal{S}=\{C_1, C_2, \ldots, C_{|\mathcal{S}|}\}$ \footnote{The subscript $i$ means the $i$-th cluster in $\mathcal{S}$.} and $|\mathcal{S}| = M$.
+With $|\mathcal{S}| = M$, there is $\mathcal{S}=\{C_1, C_2, \ldots, C_M\}$ \footnote{The subscript $i$ means the $i$-th cluster in $\mathcal{S}$.}.
 Then the problem as defined in Definition~\ref{def_centralized_clustering} can be formulated as a binary linear programming problem and can be solved by many available solvers:
 \begin{equation}
+%\begin{aligned}
+%     &\max\limits_{y_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (y_i\cdot \frac{q_{ij}}{|C_i|} - y_i\cdot p(C_i)) \\
+%     &\text{subject to}   && \Sigma_{i=1}^M x_{ij} = 1, \text{for}\,\,\forall j=1, \ldots, N \\
+%   &&& \Sigma_{j=1}^N x_{ij} = |C_i|\cdot y_i,\, \text{for}\,\,\forall i=1, \ldots, M \\
+%  % &&& \text{$x_{ij}$ and $w_i$ are binary variables.}\\
+%   &&& i\in \{1,2, \cdots M\}, \hspace{0.3cm} j\in \{1,2,\cdots N\}
+%%\notag
+%\end{aligned}
 \begin{aligned}
-     &\max\limits_{y_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (y_i\cdot \frac{q_{ij}}{|C_i|} - y_i\cdot p(C_i)) \\
-     &\text{subject to}   && \Sigma_{i=1}^M x_{ij} = 1, \text{for}\,\,\forall j=1, \ldots, N \\
-   &&& \Sigma_{j=1}^N x_{ij} = |C_i|\cdot y_i,\, \text{for}\,\,\forall i=1, \ldots, M \\
-  % &&& \text{$x_{ij}$ and $w_i$ are binary variables.}\\
-   &&& i\in \{1,2, \cdots M\}, \hspace{0.3cm} j\in \{1,2,\cdots N\}
+     &\max\limits_{x_i} && \Sigma_{i=1}^M (x_i\cdot |K(C_i)| - x_i\cdot p(C_i)) \\
+     &\text{subject to}   && \Sigma_{i=1}^M (x_i\cdot e_{ij}) = 1  \quad\text{for}\,\,\forall j\in\{1, \ldots, N\} \\
 %\notag
 \end{aligned}
 \label{centralized_opt}
 \end{equation}
-$y_i$ and $x_{ij}$ are the two sets of binary optimization variables.
-Being either 1 or 0, $y_i$ denotes whether the $i$-th cluster $C_i$ in $\mathcal{S}$ is chosen or not.
-$x_{ij}$ indicates whether the CR node $j$ resides in the cluster $C_i$, \ie $x_{ij}=1$ means node $j$ resides in the cluster $C_i$.
-$q_{ij}$ is a constant and it equals $|K(C_i)|$ when node $j\in C_i$.
-$q_{ij}$ equals zero when node $j\notin C_i$.
+$x_i, i\in \{1,2, \cdots M\}$ is a set of binary optimization variables.
+Being either 1 or 0, $x_i$ denotes whether the $i$-th cluster $C_i$ in $\mathcal{S}$ is chosen or not.
+$e_{ij}, i\in \{1,2, \cdots M\}$ and $j=\{1, \ldots, N\}$ is a set of constants which indicate whether the CR node $j$ resides in the cluster $C_i$, \ie $e_{ij}=1$ means node $j$ resides in the cluster $C_i$, $e_{ij}=0$ indicates $j$ doesn't belong to that cluster .
 
+The constraint regulates that for any node $j$, the sum of $x_i\cdot e_{ij}$ over all the clusters in $\mathcal{S}$ is 1.
+This constraint has two implications.
+First, the sum being larger than zero indicates that every node should be involved.
+Second, the sum equals 1 means a node can only appear in one cluster, which prevents the chosen clusters from overlapping.
 
-The constraints guarantee to obtain the clusters which together include all the CR users and don't overlap.
-The first constraint regulates that a CR node should reside in exactly one cluster.
-The second constraint regulates that when the $i$-th cluster $C_i$ is chosen, there will be exactly $|C_i|$ CR nodes residing in $C_i$.
-
-%The optimization is a binary linear programming problem.
-As to the objective function, the sum of the first term in the bracket over all clusters in $\mathcal{S}$ and all CR node in $\mathcal{N}$ is the sum of CCs of the clusters which constitute the CRN.
+As to the objective function, the sum of the first term in the bracket over all clusters in $\mathcal{S}$ is the sum of CCs of the clusters which constitute the CRN.
 In the second term in the bracket, we propose $p(C_i)$ which is a size-related weight for cluster $C_i, i\in{1,\cdots, M}$.
 $p(C_i)$ is positively related with the difference between $C_i$'s size and the desired size $\delta$.
-When $y_i$ is 1 ($C_i$ is chosen) but $|C_i|$ doesn't equal to the desired cluster size $\delta$, the second item is negative, which contradicts the direction of the optimization.
+When $x_i$ is 1 ($C_i$ is chosen) but $|C_i|$ doesn't equal to the desired cluster size $\delta$, the second item is negative, which contradicts the direction of the optimization.
 Thus the second item discourages the appearance the clusters whose sizes deviate from the desired cluster size $\delta$.
 The weight $p(C_i)$ with respect to different cluster sizes is as follows,
-%$$
-%p(C_i) = \left\{ \begin{array}{rl}
-%0 &\mbox{ if $|C_i|=\delta$} \\
-%\rho_1 &\mbox{if $||C_i|-1|=\delta$} \\
-%\rho_2 &\mbox{if $||C_i|-2|=\delta$} \\
-%\vdots\\
-%\rho_\sigma &\mbox{if $||C_i|-\sigma|=\delta$} \\
-%\end{array} \right.
-%$$
 
 $$
 p(C_i) = \left\{ \begin{array}{rl}
 0 &\mbox{ if $|C_i|=\delta$} \\
-\rho_1 &\mbox{if $|C_i|=\delta \pm 1$ } \\
-\rho_2 &\mbox{if $|C_i|=\delta \pm 2$} \\
+\rho(1) &\mbox{if $|C_i|=\delta \pm 1$ } \\
+\rho(2) &\mbox{if $|C_i|=\delta \pm 2$} \\
 \vdots\\
-\rho_\sigma &\mbox{if $|C_i|=\delta \pm \sigma$} \\
+\rho(\sigma) &\mbox{if $|C_i|=\delta \pm \sigma$} \\
 \end{array} \right.
 $$
-where $ 0 < \rho_1< \rho_2 < \cdots < \rho_\sigma$.
+where $\rho$ is an increasing function and there is $ 0 < \rho(1)< \rho(2) < \cdots < \rho_(\sigma)$.
 Note that here we adopt the desired cluster size in stead of the range for cluster sizes which is described in Definition~\ref{problem}.
 Because in implementation, we usually need a large range to guarantee a feasible result for the optimization problem.
-By adopting the desired size and the punishment for deviating from it, we actually set a large range of cluster sizes and meanwhile a better control of the resulted sizes. 
-
+By adopting the desired size and the cost for deviating from it, we actually set a large range of cluster sizes and meanwhile a better control of the resulted sizes. 
+Still to guarantee the feasibility of the problem, we allow the singleton cluster to contribute the objective function.
 
 
 The difficulty of using this method lies in obtaining the set $\mathcal{S}$.
