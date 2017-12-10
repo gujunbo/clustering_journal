@@ -344,7 +344,7 @@ The proof is given in Appendix~\ref{proof_theorem1}.
 
 \section{Centralized Solution for Robust Clustering}
 \label{centralized_solution}
-%XXXXXX
+%XXXXXX%
 %Di: The first paragraph has been revised based on the first batch of comments for the camera-ready version, but somehow get lost in the last version. I take some parts from your revision and keep some from my revision.
 We now turn to algorithms that can solve the CRN robust clustering problem, despite its complexity. 
 We initially consider a centralized solution for this problem.
@@ -367,6 +367,8 @@ Then the problem as defined in Definition~\ref{def_centralized_clustering} can b
 $y_i$ and $x_{ij}$ are the two sets of binary optimization variables.
 Being either 1 or 0, $y_i$ denotes whether the $i$-th cluster $C_i$ in $\mathcal{S}$ is chosen or not.
 $x_{ij}$ indicates whether the CR node $j$ resides in the cluster $C_i$, \ie $x_{ij}=1$ means node $j$ resides in the cluster $C_i$.
+$q_{ij}$ is a constant and it equals $|K(C_i)|$ when node $j\in C_i$.
+$q_{ij}$ equals zero when node $j\notin C_i$.
 
 
 The constraints guarantee to obtain the clusters which together include all the CR users and don't overlap.
@@ -374,8 +376,8 @@ The first constraint regulates that a CR node should reside in exactly one clust
 The second constraint regulates that when the $i$-th cluster $C_i$ is chosen, there will be exactly $|C_i|$ CR nodes residing in $C_i$.
 
 %The optimization is a binary linear programming problem.
-As to the objective function, the sum of the first items is the sum of CCs of the clusters which constitute the CRN.
-In the second item, we propose $p(C_i)$ which is a size-related weight for cluster $C_i, i\in{1,\cdots, M}$.
+As to the objective function, the sum of the first term in the bracket over all clusters in $\mathcal{S}$ and all CR node in $\mathcal{N}$ is the sum of CCs of the clusters which constitute the CRN.
+In the second term in the bracket, we propose $p(C_i)$ which is a size-related weight for cluster $C_i, i\in{1,\cdots, M}$.
 $p(C_i)$ is positively related with the difference between $C_i$'s size and the desired size $\delta$.
 When $y_i$ is 1 ($C_i$ is chosen) but $|C_i|$ doesn't equal to the desired cluster size $\delta$, the second item is negative, which contradicts the direction of the optimization.
 Thus the second item discourages the appearance the clusters whose sizes deviate from the desired cluster size $\delta$.
