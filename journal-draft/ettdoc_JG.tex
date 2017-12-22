@@ -14,8 +14,8 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \newcommand{\eg}{e.g., }
 \newcommand{\ie}{i.e., }
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
-\DeclareMathOperator*{\argmin}{arg\,min}
-\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{\textbf{\upshape arg\,min}}
+\DeclareMathOperator*{\argmax}{\textbf{\upshape arg\,max}}
 
 \usepackage{times}
 %\usepackage{mathptmx}
@@ -275,19 +275,25 @@ $h(C)$ & the cluster head of a cluster C\\
 %$\text{CH}$ & cluster head\\
 %$\text{CH}$ & cluster head\\
 $\delta$ & the desired cluster size\\
-$S_i$ & a set of claiming clusters, each of which includes \\
-& debatable node $i$ after phase I\\
-$d_i$  & individual connectivity degree of CR node $i$\\
-$g_i$  & neighborhood connectivity degree of CR node $i$\\
-$f(C)$ & the number of CCs of a cluster $C$, which is used \\
-& in the problem description\\
+$S_i$ & a set of claiming clusters, each of which \\
+& includes debatable node $i$ after phase I\\
+$f(C)$ & the number of CCs of a cluster $C$ in the\\ 
+& problem description\\
 % $\mathcal{G}$ & a collection of some possible clusters in $\mathcal{N}$\\
  $\mathcal{S}$ & the collection of all the possible clusters in $\mathcal{N}$\\
  $C_i$  & the $i$-th cluster in $\mathcal{S}$ \\
  $|C_i|$ & the size of the cluster $C_i$\\
  $|K(C_i)|$ & the number of CCs of cluster $C_i$\\
- $n$ & the number of debatable nodes\\
+ $M$ & the cardinality of set $\mathcal{S}$ which contains all\\ 
+ & the possible clusters (Sec.~\ref{centralized_solution})\\
+ $p(C_i)$ & the weight with respect to cluster $C_i$ (Sec.~\ref{centralized_solution}) \\
+ $d_i$  & individual connectivity degree of CR node $i$\\
+$g_i$  & neighborhood connectivity degree of CR node $i$\\
+  $n$ & the number of debatable nodes\\
  $m$ & the number of claiming cluster heads\\
+ $J$ & the new value of $d_i$ for the CR node after it\\
+ & becomes a cluster member (Sec.~\ref{ross})\\
+ $e$ & cost function in the formulated game (Sec.~\ref{clustering:phaseII:game})\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -345,7 +351,7 @@ The proof is given in Appendix~\ref{proof_theorem1}.
 \section{Centralized Solution for Robust Clustering}
 \label{centralized_solution}
 %XXXXXX%
-%Di: The first paragraph has been revised based on the first batch of comments for the camera-ready version, but somehow get lost in the last version. I take some parts from your revision and keep some from my revision.
+%Di writes: The first paragraph has been revised based on the first batch of comments for the camera-ready version, but somehow get lost in the last version. I take some parts from your revision and keep some from my revision.
 We now turn to algorithms that can solve the CRN robust clustering problem, despite its complexity. 
 We initially consider a centralized solution for this problem.
 Assuming some global knowledge of the CRN to be given at some point in the network, \ie the locations of primary users and their working channels, and the locations of secondary users and available channels on them, we can propose a centralized scheme.
@@ -398,7 +404,7 @@ where $\rho$ is an increasing function and there is $ 0 < \rho(1)< \rho(2) < \cd
 Note that here we adopt the desired cluster size in stead of the range for cluster sizes which is described in Definition~\ref{problem}.
 Because in implementation, we usually need a large range to guarantee a feasible result for the optimization problem.
 By adopting the desired size and the cost for deviating from it, we actually set a large range of cluster sizes and meanwhile a better control of the resulted sizes. 
-Still to guarantee the feasibility of the problem, we allow the singleton cluster to contribute the objective function.
+Also to guarantee the feasibility of the problem, we allow the singleton cluster to contribute the objective function.
 
 
 The difficulty of using this method lies in obtaining the set $\mathcal{S}$.
@@ -462,8 +468,8 @@ In this step, nodes can become member of multiple clusters, depending on how man
 During the whole phase I, whenever a CR node becomes cluster head, or the cluster composition changes, the cluster head broadcasts new/updated information about the cluster structure, in particular the new/updated sets of available channels regarding itself and all its cluster members.
 Pseudo code regarding this process, i.e. the cluster head decision and the initial cluster formation, is provided as Algorithm~\ref{alg0} in the appendix.
 
-After a CR node, say $i$, receives notification that there is a new cluster head in its neighborhood, $i$ sets its individual connectivity degree to a positive number $M > |\mathcal{K}| \cdot N$, and broadcasts the new individual connectivity degree. 
-When node $i$ is associated with multiple clusters, \ie $i$ has received multiple notifications from different cluster heads, $d_i$ is still set to be $M$. 
+After a CR node, say $i$, receives notification that there is a new cluster head in its neighborhood, $i$ sets its individual connectivity degree to a positive number $J > |\mathcal{K}| \cdot N$, and broadcasts the new individual connectivity degree. 
+When node $i$ is associated with multiple clusters, \ie $i$ has received multiple notifications from different cluster heads, $d_i$ is still set to be $J$. 
 The manipulation of the individual connectivity degree of the cluster members accelerates the decision on the cluster heads.
 
 
@@ -532,7 +538,7 @@ When a secondary user becomes cluster head, it will not become cluster member ag
 \end{lemma}
 \begin{proof}
 A secondary node, say $i$, becomes cluster head when its \textit{individual connectivity degree} is smaller than any of its neighbors.
-Afterwards, the \textit{individual connectivity degrees} of its neighbors becomes $M$.
+Afterwards, the \textit{individual connectivity degrees} of its neighbors becomes $J$.
 %If all the neighbors stay in the cluster, the cluster head will remain to be cluster head.
 If certain nodes are removed from the cluster due to guaranteeing CC or size control, these nodes may become either cluster members of another cluster head, or cluster heads themselves.
 In both cases, $i$'s \textit{individual connectivity degree} is still smaller than the one of the respective other nodes.
@@ -568,9 +574,9 @@ Nevertheless, debatable nodes need to be exclusively associated with only one cl
 We refer to this procedure as \textit{cluster membership clarification}.
 
 \subsubsection{Distributed Greedy Algorithm (DGA)}
-When a debatable node $i$ decides to join cluster $C\in S_i$, the guiding idea is that its decision should result in the greatest increase of CCs in all its claiming clusters.
-As node $i$ has been notified of the spectrum availability on all the nodes in each claiming cluster, node $i$ is able to calculate how many more CCs will result in a claiming cluster if $i$ leaves that cluster.
-Then node $i$ decides on the cluster $C\in S_i$, if $i$ leaving cluster $C$ results in a lower increase in terms of CCs than leaving any other claiming clusters in $S_i$.
+When a debatable node $i$ decides to join the cluster $C\in S_i$, the guiding idea is that its decision should result in the greatest increase of CCs in all its claiming clusters.
+As the node $i$ has been notified of the spectrum availability on all the nodes in each claiming cluster, node $i$ can calculate how many more CCs will be generated in $\mathcal{S}_i$ if it chooses a claiming cluster and leaves the other claiming clusters.
+%Then node $i$ decides on the cluster $C\in S_i$, if $i$ leaving cluster $C$ results in a lower increase in terms of CCs than leaving any other claiming clusters in $S_i$.
 %As to a cluster $C\in S_i$, if $i$ leaves cluster $C$ and results in less increased CCs than leaving any other claiming clusters, then $i$ chooses to stay in cluster $C$.
 In case of a tie between two claiming clusters, $i$ chooses to stay in the cluster whose cluster head shares the most CCs with $i$.
 When a tie still exists, node $i$ chooses to stay in the claiming cluster which has the smallest size.
@@ -586,7 +592,7 @@ However, by formulating the process of membership clarification into a game, we 
 Thus, the membership clarification phase is guaranteed to terminate.
 
 
-\subsubsection{Bridging ROSS-DGA with Congestion Game}
+\subsubsection{Formulation of ROSS-DGA to Congestion Game}
 \label{clustering:phaseII:game}
 Game theory is a powerful mathematical tool for studying, modeling and analyzing the interactions among individuals.
 A game consists of three elements: a set of players, a selfish utility for each player, and a feasible strategy space for each player. 
@@ -612,15 +618,15 @@ The relation between the debatable nodes and the claiming clusters is shown in F
 
 
 In the following, we show that the decision of debatable nodes to clarify their membership can be mapped to the behaviour of the players in a \textit{player-specific singleton congestion game} when proper cost function is given.
-The game to be constructed is represented with a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, f)$ with the following elements:
+The game to be constructed is represented with a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, e)$ with the following elements:
 
 \begin{itemize}
 	\item $\mathcal{P}$, the set of players in the game, which are the debatable nodes in our problem.
 	\item $\mathcal{R} = \cup S_i, i\in \mathcal{P}$, the set of the resources for players to choose. In our problem, $S_i$ is the set of the claiming clusters of $i$, and $\mathcal{R}$ is the set of all claiming clusters.
 	\item Strategy space $\sum_i, i \in \mathcal{P}$, $\sum_i$ is the set of the claiming clusters $S_i$.
 	As debatable node $i$ is supposed to choose only one claiming cluster, only a single resource will be allocated to $i$.%, accordingly this congestion game is a singleton game.
-	\item 	The cost function $f(C)$ regarding resource $C$. 
-	$f(C) = \Delta\vert K^i(C)|, C\in S_i$, which represents the decreased number of CCs in cluster $C$ when debatable node $i$ joins $C$.
+	\item 	The cost function $e(C)$ regarding resource $C$. 
+	$e(C) = \Delta\vert K^i(C)|, C\in S_i$, which represents the decreased number of CCs in cluster $C$ when debatable node $i$ joins $C$.
 	As to cluster $C\in S_i$, the decrease of CCs caused by accepting the debatable nodes is $\sum_{i:C\in S_i, i\rightarrow C} \Delta\vert K^i(C) \vert$. 
 $i\rightarrow C$ means $i$ joins cluster $C$.
 Obviously this function is non-decreasing with respect to the number of nodes joining cluster $C$.
@@ -841,7 +847,7 @@ Figure~\ref{percentage_overlapping_node} shows the percentage of debatable nodes
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=0.6\linewidth]{percentage_overlapping_node.pdf}
-  \caption{Percentage of debatable nodes after phase I of ROSS.}
+  \caption{Percentage of debatable nodes after ROSS phase I}
   \label{percentage_overlapping_node}
 \end{figure}
 %
@@ -859,8 +865,8 @@ Meanwhile, the length of the control messages involved in the variants of ROSS i
 \begin{tabular}{|C{1.8 cm}|C{2.6 cm}|C{3 cm}|C{6.3 cm}|}
 \hline
  Scheme 				&Message Overhead 	&   Number of messages 		& Content and size of the message 									\\ \hline
- ROSS-DGA, ROSS-$\delta$-DGA 	&$\mathcal{O}(N^3)$ (\tnotex{tnote:robots-r0} 	)		&   $N+n^2m$ (upper bound)  				&   \multirow{2}{*}{\parbox{7.7cm}{PhaseI: ID, $d_i$,$g_i$, which are 3 bytes;\\ PhaseII: Cluster head $i$ broadcasts channel availability to all \\ members, where are $|C(i)| |\mathcal{K}|$ bytes}}								\\ \cline{1-3}
- ROSS-DFA, ROSS-$\delta$-DFA 	&$\mathcal{O}(N)$ (\tnotex{tnote:robots-r3} 	)		&   $N + n$	 (upper bound) 					& 	      												\\ \hline
+ ROSS-DGA, ROSS-$\delta$-DGA 	&$\mathcal{O}(N^3)$ \tnotex{tnote:robots-r0}		&   $N+n^2m$ (upper bound)  				&   \multirow{2}{*}{\parbox{7.7cm}{PhaseI: ID, $d_i$,$g_i$, which are 3 bytes;\\ PhaseII: Cluster head $i$ broadcasts channel availability to all \\ members, where are $|C(i)| |\mathcal{K}|$ bytes}}								\\ \cline{1-3}
+ ROSS-DFA, ROSS-$\delta$-DFA 	&$\mathcal{O}(N)$  \tnotex{tnote:robots-r3}   	&   $N + n$	 (upper bound) 					& 	      												\\ \hline
  SOC 					&$\mathcal{O}(N)$		&   $3N$									& Every CR node $i$ broadcasts channel availability on all cluster members, which is $|C(i)| |\mathcal{K}|$ bytes
  \\ \hline
  Centralized			&$\mathcal{O}(N)$			&	$N + n + m$ (upper bound) 		& clustering result, which is 2$N$ bytes \tnotex{tnote:robots-r1} 					\\ \hline
@@ -898,7 +904,7 @@ As shown in Table~\ref{Simulation_para}, the desired size equals to 60\% of the 
 The transmission range of CR is now set to $A/5$ while the primary user transmission range is set to $2A/5$.
 The initial number of primary users is set to 30.
 \begin{table}[ht]
-\caption{}
+\caption{The average numbers of neighbors and the chosen desired sizes with respect to different network scales}
 \label{Simulation_para}
 {\small
 %\hfill{}
@@ -932,9 +938,9 @@ When $N=300$, as shown in Figure~\ref{singleton_clusters_300}, and the amount of
 Also, Figures~\ref{singleton_clusters_100} to~\ref{singleton_clusters_300} reveal that ROSS with size control mechanism results in significantly less singleton clusters.
 \begin{figure*}[t]
 \begin{multicols}{3}
-    \includegraphics[width=\linewidth]{survival_rate_100_edge50.pdf}\par\caption{100 CRs}\label{singleton_clusters_100}
-    \includegraphics[width=\linewidth]{survival_rate_200_edge50.pdf}\par\caption{200 CRs}\label{singleton_clusters_200}
-    \includegraphics[width=\linewidth]{survival_rate_300_edge50.pdf}\par\caption{300 CRs}\label{singleton_clusters_300}
+    \includegraphics[width=\linewidth]{survival_rate_100_edge50.pdf}\par\caption{Percentage of Unclustered CR nodes when $N=100$}\label{singleton_clusters_100}
+    \includegraphics[width=\linewidth]{survival_rate_200_edge50.pdf}\par\caption{Percentage of Unclustered CR nodes when $N=200$}\label{singleton_clusters_200}
+    \includegraphics[width=\linewidth]{survival_rate_300_edge50.pdf}\par\caption{Percentage of Unclustered CR nodes when $N=300$}\label{singleton_clusters_300}
 \end{multicols}
 %\caption{Percentage of CR nodes which are not included in any non-singleton clusters}
 %\label{unclustered_100_200_300}
@@ -944,9 +950,9 @@ Also, Figures~\ref{singleton_clusters_100} to~\ref{singleton_clusters_300} revea
 
 \begin{figure*}[t]
 \begin{multicols}{3}
-    \includegraphics[width=\linewidth]{cdf_clusterSize_100.pdf}\par\caption{100 CRs, 30 PUs in network}\label{cdf_clusterSize_100}
-    \includegraphics[width=\linewidth]{cdf_clusterSize_200.pdf}\par\caption{200 CRs, 30 PUs in network}\label{cdf_clusterSize_200}
-    \includegraphics[width=\linewidth]{cdf_clusterSize_300.pdf}\par\caption{300 CRs, 30 PUs in network}\label{cdf_clusterSize_300}
+    \includegraphics[width=\linewidth]{cdf_clusterSize_100.pdf}\par\caption{Empirical distribution function associated with cluster sizes when there are 100 CRs and 30 PUs in network}\label{cdf_clusterSize_100}
+    \includegraphics[width=\linewidth]{cdf_clusterSize_200.pdf}\par\caption{Empirical distribution function associated with cluster sizes when there are 200 CRs and 30 PUs in network}\label{cdf_clusterSize_200}
+    \includegraphics[width=\linewidth]{cdf_clusterSize_300.pdf}\par\caption{Empirical distribution function associated with cluster sizes when there are 300 CRs  and 30 PUs in network}\label{cdf_clusterSize_300}
 \end{multicols}
 %\caption{Cumulative distribution of CRs residing in clusters with different sizes}
 %\label{cdf_100_200_300}
@@ -966,7 +972,7 @@ We furthermore consider the empirical distribution function of the size of the f
   \label{nClusters_largeNetwork}
 \end{figure}
 
-The ECDF results show that the cluster sizes resulting from the variants of ROSS are clearly governed by the desired size, \ie as shown in Figures~\ref{cdf_clusterSize_100}, where the number of CR nodes is 100 and the desired cluster size is 6, 90\% of CR nodes are in clusters whose sizes are between 3 and 9, while for SOC, only 17\% of nodes are in the clusters with these sizes.
+The empirical distribution functions (ECDF) associated with the cluster sizes show that the cluster sizes resulting from the variants of ROSS are clearly influenced by the chosen desired size, \ie as shown in Figures~\ref{cdf_clusterSize_100}, where the number of CR nodes is 100 and the desired cluster size is 6, 90\% of CR nodes are in clusters whose sizes are between 3 and 9, while for SOC, only 17\% of nodes are in the clusters with these sizes.
 Similarly, when $N=200$ and the desired size is 12 (as shown in Figure~\ref{cdf_clusterSize_200}), 80\% of nodes are in clusters whose sizes are between 6 and 18, while only 30\% of nodes are in clusters of similar sizes when SOC is executed.
 %Now we check how many CR nodes are in the clusters whose sizes deviate not much from the desired size, where we put the deviation limit at $\pm 50\%$ of the desired size.
 The cluster sizes from ROSS-$\delta$-DGA and ROSS-$\delta$-DFA concentrate more around the desired size than that of ROSS-DGA and ROSS-DFA.
@@ -991,7 +997,7 @@ This is an interesting and remarkable advantage of ROSS in comparison to SOC.
 \begin{figure}[!h]
   \centering
    \includegraphics[width=0.7\linewidth]{draw_cdf_clusterSize_with_false_negative.pdf}
-  \caption{100 CRs with false negative in spectrum sensing, 30 PUs in network}
+  \caption{Empirical distribution function associated with cluster sizes, where there are 30 PUs and 100 CRs with false negative in spectrum sensing}
   \label{false_negative_CDF}
 \end{figure}
 
@@ -1045,35 +1051,35 @@ The simulation confirms that the metric of average number of CCs of clusters alo
 \vspace{50mm} %xx mm vertical space
 
 \appendices
-\section{Peudo Code for Algorithm~\ref{alg0}, \ref{alg_size_control_available_CCC}, \ref{alg4}}
+\section{Peudo Code for Alg.~\ref{alg0}, \ref{alg_size_control_available_CCC}, \ref{alg4}}
 \begin{algorithm}              % enter the algorithm environment
 \caption{ROSS phase I: cluster head determination and initial cluster formation for CR node $i$}          % give the algorithm a caption
 \label{alg0} 
 \DontPrintSemicolon
 \SetAlgoLined
-\KwIn{$d_j, g_j, j\in \text{Nb}(i)\setminus \Lambda$, $\Lambda$ denotes the set of cluster heads among $\text{Nb}(i)$. Empty sets $\tau_1,\tau_2$}
+\KwIn{$d_j, g_j, j\in \text{Nb}(i)\setminus \Lambda$, $\Lambda$ denotes the set of cluster heads among $\text{Nb}(i)$. Empty sets $\tau_1,\tau_2$.}
 \KwResult{Returning 1 means $i$ is cluster head, and $d_j$ is set to 0, $j\in \text{Nb}(i)\setminus \Lambda$. Returning 0 means $i$ is not cluster head.}
 %C1-6-wording
-\If{$\nexists j\in \text{Nb}(i)\setminus \Lambda$, such that $d_i \geq d_j$}{
+\If{$\nexists j\in \text{\upshape Nb}(i)\setminus \Lambda$, \text{\upshape such that} $d_i \geq d_j$}{
 	return 1;
 	}
-\eIf{$\exists j\in \text{Nb}(i)\setminus \Lambda$, such that $d_i > d_j$}{
+\eIf{$\exists j\in \text{\upshape Nb}(i)\setminus \Lambda$, \text{\upshape such that} $d_i > d_j$}{
 	return 0;}{
-	\If{$\nexists j\in \text{Nb}(i)\setminus \Lambda$, such that $d_j == d_i$}{
+	\If{$\nexists j\in \text{\upshape Nb}(i)\setminus \Lambda$, \text{\upshape such that} $d_j == d_i$}{
 	$\tau_1 \leftarrow j$
 	}
 }
-\If{$\nexists j\in \tau_1$, such that $g_i \leq g_j$}{
+\If{$\nexists j\in \tau_1$, \text{\upshape such that} $g_i \leq g_j$}{
 	return 1;
 	}
-\eIf{$\exists j\in \tau_1$, such that $g_i < g_j$}{
+\eIf{$\exists j\in \tau_1$, \text{\upshape such that} $g_i < g_j$}{
 	return 0;
 	}
-	{\If{$\nexists j\in \tau_1$, such that $g_j == g_i$}{
+	{\If{$\nexists j\in \tau_1$, \text{\upshape such that} $g_j == g_i$}{
 		$\tau_2\leftarrow j$
 		}
 	}
-\If{$\texttt{ID}_i$ is smaller than any $\texttt{ID}_j$, $j\in \tau_2\setminus i$}{
+\If{$\text{\upshape ID}_i$ \text{\upshape is smaller than any} $\text{\upshape ID}_j$, $j\in \tau_2\setminus i$}{
 	return 1;
 	}
 	{return 0;
@@ -1092,17 +1098,17 @@ The simulation confirms that the metric of average number of CCs of clusters alo
 \While {$K_C =\emptyset$} {
 \While{$|C|> t\cdot \delta$}{
 	%calculate $\lambda = \min_{i\in C, i\neq H_C}(|K_{H_C}\cap K_i|)$;\\
-	\eIf{$\exists$ only one $i\in C\setminus h(C)$, $i = \argmin(|K_{h(C)}\cap K_i|)$}{
+	\eIf{$\exists$ \text{\upshape only one} $i\in C\setminus h(C)$, $i = \argmin(|K_{h(C)}\cap K_i|)$}{
 			$C=C\setminus i$;
 		}{
 				$\exists$ multiple $i$ which satisfies $i = \argmin(|K_{h(C)}\cap K_i|)$;\\ $\tau_1\leftarrow i$;		
 		}
 		
-	\eIf{$\exists$ only one $i\in \tau_1$, $i = \argmax(|\cap_{j\in C\setminus i} K_j|-|\cap_{j\in C} K_j|)$}{
+	\eIf{$\exists$ \text{\upshape only one} $i\in \tau_1$, $i = \argmax(|\cap_{j\in C\setminus i} K_j|-|\cap_{j\in C} K_j|)$}{
 		$C=C\setminus i$;
 		}{
 			%$\exists$ multiple $i$ which satisfies $i = \argmax(|\cap_{j\in C\setminus i} K_j|-|\cap_{j\in C} K_j|)$;\\
-			$C=C\setminus i$, where $i = \argmin_{i\in \tau_1} \texttt{ID}_i $
+			$C=C\setminus i$, where $i = \argmin\limits_{i\in \tau_1} \texttt{ID}_i $
 			%$\texttt{ID}_i$ is smaller than any $\texttt{ID}_j$, $j\in \tau_2\setminus i$;
 		}
 	}
@@ -1120,23 +1126,25 @@ The simulation confirms that the metric of average number of CCs of clusters alo
 \KwIn{all claiming clusters $C\in S_i$}
 \KwOut{one cluster $C\in S_i$, node $i$ notifies all its claiming clusters in $S_i$ about its affiliation decision.
 }
-\While{$i$ has not chosen the cluster, or $i$ has joined cluster $\tilde{C}$, but $\exists C'\in S_i, C'\neq \tilde{C}$, which has $|K(C'\setminus i)|-|K(C')|<|K(C\setminus i)|-|K(C)|$}{
-	\eIf{$\exists$ only one $C\in S_i$, $C = \argmin(|K(C\setminus i)| - |K(C)|)$}{
+\While{$i$ \text{\upshape has not chosen the cluster, or} $i$ \text{\upshape has joined} \text{\upshape cluster} $\tilde{C}$, \text{\upshape but} $\exists C'\in S_i (C'\neq \tilde{C})$, \text{\upshape which has} $|K(C'\setminus i)|-|K(C')|<|K(\tilde{C}\setminus i)|-|K(\tilde{C})|$}{
+	\eIf{$\exists$ \text{\upshape only one} $C\in S_i$, $C = \argmax\limits_{C'\in \mathcal{S}_i\backslash C} \Sigma (|K(C'\setminus i)| - |K(C')|)$}{
 			return $C$;
 		}{
-				$\exists$ multiple $C\in S_i$ which satisfies $C = \argmin(|K(C\setminus i)| - |K(C)|)$;\\ 
+				%$\exists$ multiple $C\in S_i$ which satisfies $C = \argmax \Sigma_{C'\in \mathcal{S}_i\backslash C}(|K(C'\setminus i)| - |K(C')|)$;\\ 
+				$\exists$ \text{\upshape multiple} $C$ satisfying the above condition, then
 				$\tau_1\leftarrow C$;		
 		}
-	\eIf{$\exists$ only one $C\in \tau_1$, $C = \argmax(K_{h(C)}\cap K_i)$}{
+	\eIf{$\exists$ \text{\upshape only one} $C\in \tau_1$, $C = \argmax(K_{h(C)}\cap K_i)$}{
 			return $C$;
 		}{
-				$\exists$ multiple $C\in S_i$ which satisfies $C = \argmax(K_{h(C)}\cap K_i)$;\\ 
+				%$\exists$ multiple $C\in S_i$ which satisfies $C = \argmax(K_{h(C)}\cap K_i)$;\\ 
+				$\exists$ \text{\upshape multiple} $C$ satisfying the above condition, then
 				$\tau_2\leftarrow C$;		
 		}
-	\eIf{$\exists$ only one $C\in \tau_2$, $C = \argmin|C|)$}{
+	\eIf{$\exists$ \text{\upshape only one} $C\in \tau_2$, $C = \argmin|C|$}{
 			return $C$;
 		}{
-				return $\argmin_{C\in \tau_2}h(C)$;\\
+				return $\argmin\limits_{C\in \tau_2}h(C)$;\\
 		}
 		}
 \end{algorithm}
@@ -1147,9 +1155,9 @@ The simulation confirms that the metric of average number of CCs of clusters alo
 \label{proof_clustering:lemma1}
 We consider a CRN which is represented by a connected graph.
 % (COMMENT: Why is it necessarily connected? No special case where the graph has two components? ANSWER(Di): It is possible for the graph to have two components. My point it, when theorem works in one component, it works in the complete graph.)
-To simplify the discussion, we assume that secondary users have unique individual connectivity degrees. 
-Each user has an identical ID and a neighborhood connectivity degree.
-This assumption is justified as the neighborhood connectivity degrees and node IDs are used to break ties in Algorithm~\ref{alg0}, when the individual connectivity degrees are unique, it is not necessary to use the former two metrics. 
+To simplify the discussion, we assume that secondary users have unique individual connectivity degrees.
+%Each user has an identical ID and a neighborhood connectivity degree.
+%This assumption is justified as the neighborhood connectivity degrees and node IDs are used to break ties in Algorithm~\ref{alg0}, when the individual connectivity degrees are unique, it is not necessary to use the former two metrics. 
 %(COMMENT: What do you mean by breaking ties?? I don't see why your argument holds. ANSWER(DI): according to Algorithm 1, to decide whether node $i$ is a cluster head, the comparision on $i$'s certain degrees with its neighbors needs to be made. It is possible that $i$ has the same degree with some neighbors, then we need ID to decide whether $i$ is cluster head.)
 
 %we assume every node has at least one neighbour.
@@ -1158,10 +1166,10 @@ Then there exists a node $\beta\in \text{Nb}(\alpha)$ such that $d_{\alpha} > d_
 In this case, according to Algorithm~\ref{alg0}, $\beta$ is not included into any cluster, because otherwise $d_{\beta} = M$, a large positive integer, which contradicts to $d_{\alpha} > d_{\beta}$.
 Now, we distinguish between two cases: 
 %Otherwise, node $\alpha$ is eligible to form a cluster. COMMENT: unnecessary sentence!
-If $\beta$ becomes cluster head, node $\alpha$ is included, the assumption is not true.
+If $\beta$ becomes cluster head, node $\alpha$ is included, the assumption that $\alpha$ is not included in any cluster is not true.
 If $\beta$ is not a cluster head, then $\beta$ is not in any cluster, we can repeat the previous analysis made on node $\alpha$, and deduce that node $\beta$ has a neighboring node $\gamma$ with $d_{\gamma} < d_{\beta}$.
 % (COMMENT: $\beta$ not being a cluster head and $\beta$ not belonging to any cluster is not the same statement!!! ANSWER(Di): I add some more words)
-So far, when there is no cluster head identified, the unclustered nodes, \ie $\alpha$, $\beta$ form a linked list, where their connectivity degrees monotonically decrease.
+So far, when no cluster head is identified, the unclustered nodes, \ie $\alpha$, $\beta$ form a linked list, where their individual connectivity degrees monotonically decrease.
 But this list will not continue growing, because the minimum individual connectivity degree is zero, and the length of this list is upper-bounded by the total number of nodes in the CRN.
 An example of the formed node series is shown as Figure~\ref{lemma1}.
 
@@ -1177,7 +1185,7 @@ An example of the formed node series is shown as Figure~\ref{lemma1}.
 In this example, node $\omega$ is at the tail of a list.
 As $\omega$ does not have neighboring nodes with lower individual connectivity degree, $\omega$ becomes a cluster head.
 Then $\omega$ incorporates all its one-hop neighbors (here we assume that every newly formed cluster has common channels), including the nodes which precede $\omega$ in the list.
-The nodes which join a cluster set their individual connection degrees to $M$, which makes the node immediately precede in the list to become a cluster head.
+The nodes which join a cluster set their individual connection degrees to $J$, which makes the node immediately precede in the list to become a cluster head.
 In this way, cluster heads are generated from the tail to the head in the list, and every node in the list is in at least one cluster, which contradicts the assumption that $\alpha$ is not included in any cluster.
 
 %If we see a secondary user \textit{becoming a cluster head}, or \textit{becoming a cluster member} as one step, as the length of the list of secondary users is not larger than $N$, there are $N$ steps for this scenario to form the initial clusters.
