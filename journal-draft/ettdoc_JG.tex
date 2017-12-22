@@ -293,7 +293,7 @@ $g_i$  & neighborhood connectivity degree of CR node $i$\\
  $m$ & the number of claiming cluster heads\\
  $J$ & the new value of $d_i$ for the CR node after it\\
  & becomes a cluster member (Sec.~\ref{ross})\\
- $e$ & cost function in the formulated game (Sec.~\ref{clustering:phaseII:game})\\
+% $e$ & cost function in the formulated game (Sec.~\ref{clustering:phaseII:game})\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -603,8 +603,8 @@ Congestion game is an interesting game model which describes the problem where p
 It has the good property that a Nash equilibrium can be achieved after finite steps of best response dynamic, \ie each player chooses the strategy to maximize/minimize its utility/cost with respect to the other players' strategies.
 The framework of the congestion game has been used to model server selection in distributed computing platforms~\cite{Cloud_Computing_2010}, or users downloading files from cloud, etc.
 
-To formulate the debatable nodes' membership clarification into a congestion game, we reexamine this process from a different perspective. 
-Thus, debatable nodes are not included in any cluster and they need to decide on one cluster to join.
+To formulate the debatable nodes' membership clarification into a congestion game, we see this process from a different perspective. 
+In particular, for a debatable node, instead being in all its claiming clusters, now it is not included in any claiming cluster and it needs to decide on one cluster to join.
 When a debatable node $i$ joins one cluster $C$, the decrease of CCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K(C) \vert=\sum_{C\in S_i}({\vert K(C) \vert-\vert K(C\cup i) \vert})$.
 Then, node $i$ chooses the cluster $C$, where the decrease of CCs in cluster $C$ is smaller than the decrease if $i$ would have joined any other claiming cluster in $S_i$.
 The relation between the debatable nodes and the claiming clusters is shown in Figure~\ref{debatable_nodes_claiming_cluster}.
@@ -886,7 +886,7 @@ Meanwhile, the length of the control messages involved in the variants of ROSS i
 \begin{figure}[ht!]
   \centering
   \includegraphics[width=0.7\linewidth]{number_controlMsg_debug.pdf}
-  \caption{The number of control messages required for clustering, which is based on the second column of Table~\ref{tab_overhead} }
+  \caption{The number of transmitted control messages required for clustering (based on the third column in Table~\ref{tab_overhead})}
   \label{control_msg}
 \end{figure}
 
@@ -1222,8 +1222,7 @@ We will construct the CRN and the clusters as follows:
 For every set $S\in \mathcal{Q}$, there will be a corresponding cluster composed with CR nodes constructed.
 For the set whose size is larger than 1, the IDs of the constructed CR nodes are identical with the elements in it, and we locate the CR nodes so that any two of them can communicate directly when common channels are available on them.
 Besides, a set of channels with cardinality of $|\omega(S)|$ is allocated to all the CR nodes in this cluster, and the channels are on the spectrum band which is exclusive for this cluster.
-For the set $S$ which contains only one element, \ie $S =\{t\}$ where $t\in\mathcal{P}$, a cluster composed with two CR nodes will be created.
-In this case, one CR node's ID is $t$, the other CR node is the dummy node of the former and its ID is $t+N$.
+For the set $S$ which contains only one element, \ie $S =\{t\}$ where $t\in\mathcal{P}$, a cluster composed with two CR nodes will be created, \ie one CR node's ID is $t$, the other CR node is the dummy node of the former and its ID is $t+N$.
 A number of $|\omega(S)|$ channels from the exclusive spectrum band for this cluster are allocated to these two CR nodes.
 Now we have constructed the clusters which correspond to all the sets in $\mathcal{Q}$.
 Note that every CR node is allowed to form a singleton cluster by itself, although its common channels don't contribute to the sum of $f(C)$.
@@ -1233,7 +1232,8 @@ Note that every CR node is allowed to form a singleton cluster by itself, althou
 %We call the latter kind of clusters the \textit{auxiliary singleton clusters}.
 
 Actually, all the constructed CR nodes can be assumed to locate in a very small area so that each CR node is within the transmission scope of every other CR node.
-Note that in each constructed cluster, the CR nodes occupy the common channels which are exclusive to this cluster, this design of transformation eliminates the formation of the cluster which doesn't have a corresponding set in $\mathcal{Q}$.
+Note that each constructed cluster maintains the common channels which are exclusive to that cluster.
+This rule in transformation makes the formation for every set in $\mathcal{Q}$ to be feasible.
 The existence of the singleton clusters ensures that it is always possible to find out a group of clusters, which together constitute the whole CRN.
 %Now we have completed a CRN and can claim that all the constructed clusters $C$ constitute the complete CRN network $\mathcal{N}$.
 
