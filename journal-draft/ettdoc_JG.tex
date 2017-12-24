@@ -603,8 +603,8 @@ Congestion game is an interesting game model which describes the problem where p
 It has the good property that a Nash equilibrium can be achieved after finite steps of best response dynamic, \ie each player chooses the strategy to maximize/minimize its utility/cost with respect to the other players' strategies.
 The framework of the congestion game has been used to model server selection in distributed computing platforms~\cite{Cloud_Computing_2010}, or users downloading files from cloud, etc.
 
-To formulate the debatable nodes' membership clarification into a congestion game, we see this process from a different perspective. 
-In particular, for a debatable node, instead being in all its claiming clusters, now it is not included in any claiming cluster and it needs to decide on one cluster to join.
+To formulate the debatable nodes' membership clarification into a congestion game, we see the process from a different perspective. 
+In particular, for a debatable node, instead being in all its claiming clusters, we see it is not included in any claiming cluster and it needs to decide on one cluster to join.
 When a debatable node $i$ joins one cluster $C$, the decrease of CCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K(C) \vert=\sum_{C\in S_i}({\vert K(C) \vert-\vert K(C\cup i) \vert})$.
 Then, node $i$ chooses the cluster $C$, where the decrease of CCs in cluster $C$ is smaller than the decrease if $i$ would have joined any other claiming cluster in $S_i$.
 The relation between the debatable nodes and the claiming clusters is shown in Figure~\ref{debatable_nodes_claiming_cluster}.
