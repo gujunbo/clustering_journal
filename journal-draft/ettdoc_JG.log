@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.3)  24 DEC 2017 16:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.3)  24 DEC 2017 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1162,21 +1162,21 @@ LaTeX Font Warning: Font shape `U/lasy/m/n' in size <3.25> not available
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <7.5> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 173.
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 173.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 165.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 165.
 
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsphv.fd
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <6.5> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 173.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 165.
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
-(Font)              size <6> substituted on input line 173.
+(Font)              size <6> substituted on input line 165.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <8> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 173.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 165.
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <6.5> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 173.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 165.
  [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -1186,52 +1186,54 @@ Non-PDF special ignored!
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <6.5> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 238.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 221.
  [2]
 Overfull \hbox (19.04947pt too wide) in paragraph at lines 262--300
  [][] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+[3]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 321.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 322.
-[3]
+
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 416.
+(amsmath)                 on input line 411.
 
-<../figures/04_clutering/flow_chart.pdf, id=199, 441.65pt x 343.2825pt>
+<../figures/04_clutering/flow_chart.pdf, id=189, 441.65pt x 343.2825pt>
 File: ../figures/04_clutering/flow_chart.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/flow_chart.pdf>
 Package pdftex.def Info: ../figures/04_clutering/flow_chart.pdf used on input l
-ine 427.
+ine 422.
 (pdftex.def)             Requested size: 188.99872pt x 146.90144pt.
- [4 <../figures/04_clutering/flow_chart.pdf>]
-<../figures/04_clutering/figure1.pdf, id=275, 298.11375pt x 173.64874pt>
+ [4]
+<../figures/04_clutering/figure1.pdf, id=213, 298.11375pt x 173.64874pt>
 File: ../figures/04_clutering/figure1.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure1.pdf>
 Package pdftex.def Info: ../figures/04_clutering/figure1.pdf used on input line
- 456.
+ 451.
 (pdftex.def)             Requested size: 146.99936pt x 85.6265pt.
- [5 <../figures/04_clutering/figure1.pdf>] <../figures/04_clutering/figure2.pdf
-, id=305, 298.11375pt x 193.72375pt>
+ [5 <../figures/04_clutering/flow_chart.pdf> <../figures/04_clutering/figure1.p
+df>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+<../figures/04_clutering/figure2.pdf, id=304, 298.11375pt x 193.72375pt>
 File: ../figures/04_clutering/figure2.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure2.pdf>
 Package pdftex.def Info: ../figures/04_clutering/figure2.pdf used on input line
- 524.
+ 519.
 (pdftex.def)             Requested size: 105.0pt x 68.23294pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [6 <../figures/04_clutering/figure2.pdf>]
 <../figures/04_clutering/singletongame_matching.pdf, id=340, 361.35pt x 311.162
 5pt>
@@ -1239,33 +1241,33 @@ File: ../figures/04_clutering/singletongame_matching.pdf Graphic file (type pdf
 )
  <use ../figures/04_clutering/singletongame_matching.pdf>
 Package pdftex.def Info: ../figures/04_clutering/singletongame_matching.pdf use
-d on input line 619.
+d on input line 614.
 (pdftex.def)             Requested size: 77.69897pt x 66.90813pt.
  [7 <../figures/04_clutering/singletongame_matching.pdf>]
-<../figures/04_clutering/figure4AinC.pdf, id=380, 177.66376pt x 109.40875pt>
+<../figures/04_clutering/figure4AinC.pdf, id=379, 177.66376pt x 109.40875pt>
 File: ../figures/04_clutering/figure4AinC.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure4AinC.pdf>
 Package pdftex.def Info: ../figures/04_clutering/figure4AinC.pdf used on input 
-line 701.
+line 696.
 (pdftex.def)             Requested size: 91.34949pt x 56.2568pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 701--701
+Underfull \hbox (badness 10000) in paragraph at lines 696--696
 \OT1/ptm/m/n/6.5 quits $\OML/cmm/m/it/6 C\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 H\OT1/
 cmr/m/n/6 )$\OT1/ptm/m/n/6.5 , $\OT1/cmr/m/n/6 ^^A\OMS/cmsy/m/n/6 j\OML/cmm/m/i
 t/6 K\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr
 /m/n/6 ))\OMS/cmsy/m/n/6 j \OT1/cmr/m/n/6 +
  []
 
-<../figures/04_clutering/figure4AinH.pdf, id=381, 177.66376pt x 107.40125pt>
+<../figures/04_clutering/figure4AinH.pdf, id=380, 177.66376pt x 107.40125pt>
 File: ../figures/04_clutering/figure4AinH.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/figure4AinH.pdf>
 Package pdftex.def Info: ../figures/04_clutering/figure4AinH.pdf used on input 
-line 706.
+line 701.
 (pdftex.def)             Requested size: 91.34949pt x 55.22456pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 706--706
+Underfull \hbox (badness 10000) in paragraph at lines 701--701
 \OT1/ptm/m/n/6.5 quits $\OML/cmm/m/it/6 C\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/
 cmr/m/n/6 )$\OT1/ptm/m/n/6.5 , $\OT1/cmr/m/n/6 ^^A\OMS/cmsy/m/n/6 j\OML/cmm/m/i
 t/6 K\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr
@@ -1273,76 +1275,62 @@ t/6 K\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr/m/n/6 (\OML/cmm/m/it/6 C\OT1/cmr
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-<../figures/04_clutering/final_clustering_ross.pdf, id=382, 284.06125pt x 181.6
+<../figures/04_clutering/final_clustering_ross.pdf, id=381, 284.06125pt x 181.6
 7876pt>
 File: ../figures/04_clutering/final_clustering_ross.pdf Graphic file (type pdf)
 
  <use ../figures/04_clutering/final_clustering_ross.pdf>
 Package pdftex.def Info: ../figures/04_clutering/final_clustering_ross.pdf used
- on input line 714.
+ on input line 709.
 (pdftex.def)             Requested size: 105.0pt x 67.15631pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-<../figures/04_clutering/final_clustering_soc.pdf, id=387, 284.06125pt x 171.64
+<../figures/04_clutering/final_clustering_soc.pdf, id=386, 284.06125pt x 171.64
 125pt>
 File: ../figures/04_clutering/final_clustering_soc.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/final_clustering_soc.pdf>
 Package pdftex.def Info: ../figures/04_clutering/final_clustering_soc.pdf used 
-on input line 730.
+on input line 725.
 (pdftex.def)             Requested size: 91.34949pt x 55.19608pt.
 
-<../figures/04_clutering/final_clustering_LP.pdf, id=388, 283.0575pt x 169.6337
+<../figures/04_clutering/final_clustering_LP.pdf, id=387, 283.0575pt x 169.6337
 4pt>
 File: ../figures/04_clutering/final_clustering_LP.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/final_clustering_LP.pdf>
 Package pdftex.def Info: ../figures/04_clutering/final_clustering_LP.pdf used o
-n input line 732.
+n input line 727.
 (pdftex.def)             Requested size: 91.34949pt x 54.74463pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [8 <../figures/04_clutering/figure4AinC.pdf> <../figures/04_clutering/figure4A
-inH.pdf> <../figures/04_clutering/final_clustering_ross.pdf> <../figures/04_clu
-tering/final_clustering_soc.pdf
-
-pdfTeX warning: /usr/local/texlive/2017/bin/x86_64-darwin/pdflatex (file ../fig
-ures/04_clutering/final_clustering_soc.pdf): PDF inclusion: multiple pdfs with 
-page group included in a single page
-> <../figures/04_clutering/final_clustering_LP.pdf
+inH.pdf> <../figures/04_clutering/final_clustering_ross.pdf>] [9 <../figures/04
+_clutering/final_clustering_soc.pdf> <../figures/04_clutering/final_clustering_
+LP.pdf
 
 pdfTeX warning: /usr/local/texlive/2017/bin/x86_64-darwin/pdflatex (file ../fig
 ures/04_clutering/final_clustering_LP.pdf): PDF inclusion: multiple pdfs with p
 age group included in a single page
->] <../figures/04_clutering/ccc_20.pdf, id=470, 399.4925pt x 319.1925pt>
+>] <../figures/04_clutering/ccc_20.pdf, id=477, 399.4925pt x 319.1925pt>
 File: ../figures/04_clutering/ccc_20.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/ccc_20.pdf>
 Package pdftex.def Info: ../figures/04_clutering/ccc_20.pdf used on input line 
-806.
+801.
 (pdftex.def)             Requested size: 134.0pt x 107.06287pt.
 
-<../figures/04_clutering/cdf_clusterSize_20.pdf, id=471, 400.49625pt x 311.1625
+<../figures/04_clutering/cdf_clusterSize_20.pdf, id=478, 400.49625pt x 311.1625
 pt>
 File: ../figures/04_clutering/cdf_clusterSize_20.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_20.pdf>
 Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_20.pdf used on
- input line 807.
+ input line 802.
 (pdftex.def)             Requested size: 134.0pt x 104.11307pt.
 
-<../figures/04_clutering/survival_rate_20.pdf, id=472, 390.45876pt x 310.15875p
+<../figures/04_clutering/survival_rate_20.pdf, id=479, 390.45876pt x 310.15875p
 t>
 File: ../figures/04_clutering/survival_rate_20.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/survival_rate_20.pdf>
 Package pdftex.def Info: ../figures/04_clutering/survival_rate_20.pdf used on i
-nput line 808.
+nput line 803.
 (pdftex.def)             Requested size: 134.0pt x 106.4417pt.
- [9]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1352,24 +1340,24 @@ File: ../figures/04_clutering/percentage_overlapping_node.pdf Graphic file (typ
 e pdf)
  <use ../figures/04_clutering/percentage_overlapping_node.pdf>
 Package pdftex.def Info: ../figures/04_clutering/percentage_overlapping_node.pd
-f used on input line 854.
+f used on input line 849.
 (pdftex.def)             Requested size: 126.00128pt x 99.13722pt.
 
-Overfull \vbox (4.01509pt too high) detected at line 873
+Overfull \vbox (4.01509pt too high) detected at line 868
  []
 
 
-Overfull \hbox (39.83368pt too wide) in paragraph at lines 873--873
+Overfull \hbox (39.83368pt too wide) in paragraph at lines 868--868
  []|[]| 
  []
 
 
-Overfull \hbox (3.22806pt too wide) in paragraph at lines 868--888
+Overfull \hbox (3.22806pt too wide) in paragraph at lines 863--883
 []  [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 868--888
+Underfull \hbox (badness 10000) in paragraph at lines 863--883
 
  []
 
@@ -1380,149 +1368,137 @@ File: ../figures/04_clutering/number_controlMsg_debug.pdf Graphic file (type pd
 f)
  <use ../figures/04_clutering/number_controlMsg_debug.pdf>
 Package pdftex.def Info: ../figures/04_clutering/number_controlMsg_debug.pdf us
-ed on input line 893.
+ed on input line 888.
 (pdftex.def)             Requested size: 146.99936pt x 103.85982pt.
+ [10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 <../figures/04_clutering/ccc_large_scale_color_082017_newdata_no_texture.pdf, i
-d=499, 362.35374pt x 288.07625pt>
+d=510, 362.35374pt x 288.07625pt>
 File: ../figures/04_clutering/ccc_large_scale_color_082017_newdata_no_texture.p
 df Graphic file (type pdf)
 
 <use ../figures/04_clutering/ccc_large_scale_color_082017_newdata_no_texture.pd
 f>
 Package pdftex.def Info: ../figures/04_clutering/ccc_large_scale_color_082017_n
-ewdata_no_texture.pdf used on input line 929.
+ewdata_no_texture.pdf used on input line 924.
 (pdftex.def)             Requested size: 146.99936pt x 116.86804pt.
 
-<../figures/04_clutering/survival_rate_100_edge50.pdf, id=506, 397.485pt x 311.
+<../figures/04_clutering/survival_rate_100_edge50.pdf, id=517, 397.485pt x 311.
 1625pt>
 File: ../figures/04_clutering/survival_rate_100_edge50.pdf Graphic file (type p
 df)
  <use ../figures/04_clutering/survival_rate_100_edge50.pdf>
 Package pdftex.def Info: ../figures/04_clutering/survival_rate_100_edge50.pdf u
-sed on input line 946.
+sed on input line 941.
 (pdftex.def)             Requested size: 134.0pt x 104.90123pt.
 
-<../figures/04_clutering/survival_rate_200_edge50.pdf, id=507, 398.48875pt x 30
+<../figures/04_clutering/survival_rate_200_edge50.pdf, id=518, 398.48875pt x 30
 5.14pt>
 File: ../figures/04_clutering/survival_rate_200_edge50.pdf Graphic file (type p
 df)
  <use ../figures/04_clutering/survival_rate_200_edge50.pdf>
 Package pdftex.def Info: ../figures/04_clutering/survival_rate_200_edge50.pdf u
-sed on input line 947.
+sed on input line 942.
 (pdftex.def)             Requested size: 134.0pt x 102.61014pt.
 
-<../figures/04_clutering/survival_rate_300_edge50.pdf, id=508, 407.5225pt x 311
+<../figures/04_clutering/survival_rate_300_edge50.pdf, id=519, 407.5225pt x 311
 .1625pt>
 File: ../figures/04_clutering/survival_rate_300_edge50.pdf Graphic file (type p
 df)
  <use ../figures/04_clutering/survival_rate_300_edge50.pdf>
 Package pdftex.def Info: ../figures/04_clutering/survival_rate_300_edge50.pdf u
-sed on input line 948.
+sed on input line 943.
 (pdftex.def)             Requested size: 134.0pt x 102.3136pt.
- [10]
-[11 <../figures/04_clutering/ccc_20.pdf> <../figures/04_clutering/cdf_clusterSi
-ze_20.pdf> <../figures/04_clutering/survival_rate_20.pdf> <../figures/04_cluter
-ing/percentage_overlapping_node.pdf> <../figures/04_clutering/number_controlMsg
-_debug.pdf
+ [11 <../figures/04_clutering/ccc_20.pdf> <../figures/04_clutering/cdf_clusterS
+ize_20.pdf> <../figures/04_clutering/survival_rate_20.pdf> <../figures/04_clute
+ring/percentage_overlapping_node.pdf> <../figures/04_clutering/number_controlMs
+g_debug.pdf
 
 pdfTeX warning: /usr/local/texlive/2017/bin/x86_64-darwin/pdflatex (file ../fig
 ures/04_clutering/number_controlMsg_debug.pdf): PDF inclusion: multiple pdfs wi
 th page group included in a single page
-> <../figures/04_clutering/ccc_large_scale_color_082017_newdata_no_texture.pdf
-
-pdfTeX warning: /usr/local/texlive/2017/bin/x86_64-darwin/pdflatex (file ../fig
-ures/04_clutering/ccc_large_scale_color_082017_newdata_no_texture.pdf): PDF inc
-lusion: multiple pdfs with page group included in a single page
 >]
-<../figures/04_clutering/cdf_clusterSize_100.pdf, id=669, 397.485pt x 311.1625p
+<../figures/04_clutering/cdf_clusterSize_100.pdf, id=652, 397.485pt x 311.1625p
 t>
 File: ../figures/04_clutering/cdf_clusterSize_100.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_100.pdf>
 Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_100.pdf used o
-n input line 958.
+n input line 953.
 (pdftex.def)             Requested size: 134.0pt x 104.90123pt.
 
-<../figures/04_clutering/cdf_clusterSize_200.pdf, id=670, 397.485pt x 311.1625p
+<../figures/04_clutering/cdf_clusterSize_200.pdf, id=653, 397.485pt x 311.1625p
 t>
 File: ../figures/04_clutering/cdf_clusterSize_200.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_200.pdf>
 Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_200.pdf used o
-n input line 959.
+n input line 954.
 (pdftex.def)             Requested size: 134.0pt x 104.90123pt.
 
-<../figures/04_clutering/cdf_clusterSize_300.pdf, id=671, 396.48125pt x 311.162
+<../figures/04_clutering/cdf_clusterSize_300.pdf, id=654, 396.48125pt x 311.162
 5pt>
 File: ../figures/04_clutering/cdf_clusterSize_300.pdf Graphic file (type pdf)
  <use ../figures/04_clutering/cdf_clusterSize_300.pdf>
 Package pdftex.def Info: ../figures/04_clutering/cdf_clusterSize_300.pdf used o
-n input line 960.
+n input line 955.
 (pdftex.def)             Requested size: 134.0pt x 105.16711pt.
 
-<../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf, id=677, 363.357
+<../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf, id=660, 363.357
 5pt x 291.0875pt>
 File: ../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf Graphic fil
 e (type pdf)
 
 <use ../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf>
 Package pdftex.def Info: ../figures/04_clutering/nClusters_largeNetwork_no_text
-ure.pdf used on input line 974.
+ure.pdf used on input line 969.
 (pdftex.def)             Requested size: 146.99936pt x 117.76541pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<../figures/04_clutering/false_negative.pdf, id=681, 343.2825pt x 238.8925pt>
+<../figures/04_clutering/false_negative.pdf, id=664, 343.2825pt x 238.8925pt>
 File: ../figures/04_clutering/false_negative.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/false_negative.pdf>
 Package pdftex.def Info: ../figures/04_clutering/false_negative.pdf used on inp
-ut line 991.
+ut line 986.
 (pdftex.def)             Requested size: 146.99936pt x 102.29527pt.
 
-<../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf, id=683, 
+<../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf, id=666, 
 385.44pt x 312.16624pt>
 File: ../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf Grap
 hic file (type pdf)
 
 <use ../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf>
 Package pdftex.def Info: ../figures/04_clutering/draw_cdf_clusterSize_with_fals
-e_negative.pdf used on input line 1004.
+e_negative.pdf used on input line 999.
 (pdftex.def)             Requested size: 146.99936pt x 119.0531pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <22> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1058.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1053.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1071.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 1121
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1066.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12 <../figures/04_clutering/ccc_large_scale_color_082017_newdata_no_texture.p
+df>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 1116
 .
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12]
-<../figures/04_clutering/lemma1.pdf, id=703, 563.87807pt x 108.10442pt>
-File: ../figures/04_clutering/lemma1.pdf Graphic file (type pdf)
-
-<use ../figures/04_clutering/lemma1.pdf>
-Package pdftex.def Info: ../figures/04_clutering/lemma1.pdf used on input line 
-1183.
-(pdftex.def)             Requested size: 126.00128pt x 24.15584pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13 <../figures/04_clutering/survival_rate_100_edge50.pdf> <../figures/04_clut
@@ -1535,8 +1511,19 @@ df> <../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf> <../figures
 pdfTeX warning: /usr/local/texlive/2017/bin/x86_64-darwin/pdflatex (file ../fig
 ures/04_clutering/false_negative.pdf): PDF inclusion: multiple pdfs with page g
 roup included in a single page
->] [14 <../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf> <
-../figures/04_clutering/lemma1.pdf>] (./ettdoc_JG.bbl [15]
+>] <../figures/04_clutering/lemma1.pdf, id=884, 563.87807pt x 108.10442pt>
+File: ../figures/04_clutering/lemma1.pdf Graphic file (type pdf)
+
+<use ../figures/04_clutering/lemma1.pdf>
+Package pdftex.def Info: ../figures/04_clutering/lemma1.pdf used on input line 
+1178.
+(pdftex.def)             Requested size: 126.00128pt x 24.15584pt.
+ [14 <../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf> <..
+/figures/04_clutering/lemma1.pdf>]
+(./ettdoc_JG.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -1546,37 +1533,39 @@ roup included in a single page
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
 Missing character: There is no Ã in font ptmr7t!
 Missing character: There is no ¶ in font ptmr7t!
 Missing character: There is no Ã in font ptmr7t!
 Missing character: There is no ¶ in font ptmr7t!
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1310.
- [16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1310.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1305.
 
-(./ettdoc_JG.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1310.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1310.
+[17
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1305.
+ (./ettdoc_JG.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1305.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1305.
 
 Package rerunfilecheck Info: File `ettdoc_JG.out' has not changed.
 (rerunfilecheck)             Checksum: EC7E87F604556271BED51EFE880B1A86;1109.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.75pt have occurred.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1310.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1305.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 20790 strings out of 492995
- 360057 string characters out of 6132704
- 871277 words of memory out of 5000000
+ 20791 strings out of 492995
+ 360064 string characters out of 6132704
+ 867277 words of memory out of 5000000
  23771 multiletter control sequences out of 15000+600000
  68541 words of font info for 143 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
@@ -1607,10 +1596,10 @@ lvetic/uhvro8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/ut
 mb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loca
 l/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ettdoc_JG.pdf (16 pages, 929539 bytes).
+Output written on ettdoc_JG.pdf (17 pages, 931122 bytes).
 PDF statistics:
- 1112 PDF objects out of 1200 (max. 8388607)
- 885 compressed objects within 9 object streams
- 187 named destinations out of 1000 (max. 500000)
+ 1120 PDF objects out of 1200 (max. 8388607)
+ 892 compressed objects within 9 object streams
+ 188 named destinations out of 1000 (max. 500000)
  254 words of extra memory for PDF output out of 10000 (max. 10000000)
 

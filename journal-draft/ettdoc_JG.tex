@@ -123,17 +123,17 @@ Germany
 
 
 \begin{abstract}
-%Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionalities.
-%Unlicensed channels, which are temporally available for a group of cognitive radio users in one area, consolidate the group into a cluster.
-%More available unlicensed channels in a cluster make the cluster more likely to uphold against the licensed users' influence, making clusters more robust.
-%This paper analyses the problem of how to form robust clusters in a cognitive radio network such that cognitive radio systems benefit from collaboration within clusters despite intense primary user activity.
-%%In the process of forming clusters, every secondary user decides with whom to form a cluster, or which cluster to join.
-%We give a formal description of the robust clustering problem, prove it to be NP-hard and propose both centralized and distributed solutions.
-%The congestion game model is adopted to analyze the process of cluster formation, which not only contributes to the design of the distributed clustering scheme, but also provides a guarantee on the convergence to a Nash equilibrium and the convergence speed.
-%%Our proposed clustering solution is versatile to fulfill some other requirements such as faster convergence and cluster size control.
-%The proposed distributed clustering scheme outperforms state-of-the-art related works in terms of cluster robustness, convergence speed and overhead.
-%%Besides, we prove the clustering problem is NP-hard, and also propose the centralized solution.
-%Extensive simulations are presented supporting the theoretical claims.
+Cluster structure in cognitive radio networks facilitates cooperative spectrum sensing, routing and other functionalities.
+Unlicensed channels, which are temporally available for a group of cognitive radio users in one area, consolidate the group into a cluster.
+More available unlicensed channels in a cluster make the cluster more likely to uphold against the licensed users' influence, making clusters more robust.
+This paper analyses the problem of how to form robust clusters in a cognitive radio network such that cognitive radio systems benefit from collaboration within clusters despite intense primary user activity.
+%In the process of forming clusters, every secondary user decides with whom to form a cluster, or which cluster to join.
+We give a formal description of the robust clustering problem, prove it to be NP-hard and propose both centralized and distributed solutions.
+The congestion game model is adopted to analyze the process of cluster formation, which not only contributes to the design of the distributed clustering scheme, but also provides a guarantee on the convergence to a Nash equilibrium and the convergence speed.
+%Our proposed clustering solution is versatile to fulfill some other requirements such as faster convergence and cluster size control.
+The proposed distributed clustering scheme outperforms state-of-the-art related works in terms of cluster robustness, convergence speed and overhead.
+%Besides, we prove the clustering problem is NP-hard, and also propose the centralized solution.
+Extensive simulations are presented supporting the theoretical claims.
 \end{abstract}
 
 %\keywords{class file; \LaTeXe; \emph{\journalabb}}
@@ -287,7 +287,7 @@ $f(C)$ & the number of CCs of a cluster $C$ in the\\
  $C_i$  & the $i$-th cluster in $\mathcal{S}$ (Sec.~\ref{centralized_solution})\\
  %$|C_i|$ & the size of the cluster $C_i$\\
  %$|K(C_i)|$ & the number of CCs of cluster $C_i$\\
- %$p(C_i)$ & the weight with respect to cluster $C_i$ (Sec.~\ref{centralized_solution}) \\
+ $p$ & the weight with respect to cluster's size (Sec.~\ref{centralized_solution}) \\
  $d_i$  & individual connectivity degree of CR node $i$\\
 $g_i$  & neighborhood connectivity degree of CR node $i$\\
   $n$ & the number of debatable nodes\\
@@ -370,7 +370,7 @@ Then the problem as defined in Definition~\ref{def_centralized_clustering} can b
 %%\notag
 %\end{aligned}
 \begin{aligned}
-     &\max\limits_{x_i} && \Sigma_{i=1}^M (x_i\cdot |K(C_i)| - x_i\cdot p(C_i)) \\
+     &\max\limits_{x_i} && \Sigma_{i=1}^M (x_i\cdot |K(C_i)| - x_i\cdot p(||C_i|-\delta|)) \\
      &\text{subject to}   && \Sigma_{i=1}^M (x_i\cdot e_{ij}) = 1  \quad\text{for}\,\,\forall j\in\{1, \ldots, N\} \\
 %\notag
 \end{aligned}
@@ -386,12 +386,7 @@ First, the sum being larger than zero indicates that every node should be involv
 Second, the sum equals 1 means a node can only appear in one cluster, which prevents the chosen clusters from overlapping.
 
 As to the objective function, the sum of the first term in the bracket over all clusters in $\mathcal{S}$ is the sum of CCs of the clusters which constitute the CRN.
-For the second term in the bracket, we propose $p(C_i)$ which is a size-related weight for cluster $C_i, i\in{1,\cdots, M}$.
-There is, 
-$$
-p(C_i) = \rho(||C_i|-\delta|)
-$$
-where $\rho$ is a positive increasing function with respect to the the difference between $C_i$'s size and the desired size $\delta$.
+For the second term in the bracket, $p$ is a positive increasing function with respect to the the difference between $C_i$'s size and the desired size $\delta$.
 When $x_i$ is 1 ($C_i$ is chosen) but $|C_i|$ doesn't equal to the desired cluster size $\delta$, the second item is negative, which contradicts the direction of the optimization.
 Thus the second item discourages the appearance the clusters whose sizes deviate from the desired cluster size $\delta$.
 %The weight $p(C_i)$ with respect to different cluster sizes is as follows,
@@ -471,7 +466,7 @@ As a consequence, all neighbors - which have not become cluster head themselves 
 In this step, nodes can become member of multiple clusters, depending on how many neighbors declare themselves as cluster heads.
 \footnote{The issues arising out of cluster heads in the neighborhood of a newly formed cluster head are addressed in Section~\ref{ross_p1_guarantee_ccc} and \ref{ross_p2_cluster_pruning}}
 During the whole phase I, whenever a CR node becomes cluster head, or the cluster composition changes, the cluster head broadcasts new/updated information about the cluster structure, in particular the new/updated sets of available channels regarding itself and all its cluster members.
-Pseudo code regarding this process, i.e. the cluster head decision and the initial cluster formation, is provided as Algorithm~\ref{alg0} in the appendix.
+Pseudo code regarding this process, i.e. the cluster head decision and the initial cluster formation, is in Algorithm~\ref{alg0} in appendix.
 
 After a CR node, say $i$, receives notification that there is a new cluster head in its neighborhood, $i$ sets its individual connectivity degree to a positive number $J > |\mathcal{K}| \cdot N$, and broadcasts the new individual connectivity degree. 
 When node $i$ is associated with multiple clusters, \ie $i$ has received multiple notifications from different cluster heads, $d_i$ is still set to be $J$. 
@@ -623,15 +618,15 @@ The relation between the debatable nodes and the claiming clusters is shown in F
 
 
 In the following, we show that the decision of debatable nodes to clarify their membership can be mapped to the behaviour of the players in a \textit{player-specific singleton congestion game} when proper cost function is given.
-The game to be constructed is represented with a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, e)$ with the following elements:
+The game to be constructed is represented with a 4-tuple $\Gamma=(\mathcal{P},\mathcal{R},\sum_{i, i \in \mathcal{P}}, \rho)$ with the following elements:
 
 \begin{itemize}
 	\item $\mathcal{P}$, the set of players in the game, which are the debatable nodes in our problem.
 	\item $\mathcal{R} = \cup S_i, i\in \mathcal{P}$, the set of the resources for players to choose. In our problem, $S_i$ is the set of the claiming clusters of $i$, and $\mathcal{R}$ is the set of all claiming clusters.
 	\item Strategy space $\sum_i, i \in \mathcal{P}$, $\sum_i$ is the set of the claiming clusters $S_i$.
 	As debatable node $i$ is supposed to choose only one claiming cluster, only a single resource will be allocated to $i$.%, accordingly this congestion game is a singleton game.
-	\item 	The cost function $e(C)$ regarding resource $C$. 
-	$e(C) = \Delta\vert K^i(C)|, C\in S_i$, which represents the decreased number of CCs in cluster $C$ when debatable node $i$ joins $C$.
+	\item 	The cost function $\rho(C)$ regarding resource $C$. 
+	$\rho(C) = \Delta\vert K^i(C)|, C\in S_i$, which represents the decreased number of CCs in cluster $C$ when debatable node $i$ joins $C$.
 	As to cluster $C\in S_i$, the decrease of CCs caused by accepting the debatable nodes is $\sum_{i:C\in S_i, i\rightarrow C} \Delta\vert K^i(C) \vert$. 
 $i\rightarrow C$ means $i$ joins cluster $C$.
 Obviously this function is non-decreasing with respect to the number of nodes joining cluster $C$.
@@ -793,7 +788,7 @@ Transmission ranges of both primary and CR users are set to $A/3$.
 By doing this, we abstract from the influence of any given physical layer technology and propagation environment parameters.
 Due to the parameterization, on average 7 channels are available per CR node when the clustering process is started.
 We set the desired cluster size $\delta$ as 3.
-As for the centralized schemes, we set the following parameters numerically: $\rho_1 =  0.4$, $\rho_2 =  0.6$.
+As for the centralized schemes, we set the following parameters numerically: $p(1) =  0.4$, $p(2) =  0.6$.
 
 We start with the consideration of the CCs in all non-singleton clusters.
 Figure~\ref{ccc_per_nonsingleton} shows that basically the centralized schemes outperform all distributed schemes in terms of the average number of CCs per cluster.
@@ -811,7 +806,7 @@ As to the variants of ROSS, we notice that the greedy mechanism (i.e. the ROSS-D
 \end{figure*}
 
 Figure~\ref{size_control} provides further insights into the performance comparison.
-Here, we depict the empirical cumulative distribution function of the size of the clusters.
+Here, we depict the empirical cumulative distribution function (ECDF) of the size of the clusters.
 %First, given the channel availability in the CRN, SOC generates more unclustered CR nodes than other schemes.
 The centralized schemes don't result in any singleton clusters in the the considered evaluation scenarios.
 In contrast, ROSS-DGA/DFA account for 3\% singleton clusters of the total CR nodes, as compared to 10\% of nodes being unclustered when applying SOC.
@@ -977,7 +972,7 @@ We furthermore consider the empirical distribution function of the size of the f
   \label{nClusters_largeNetwork}
 \end{figure}
 
-The empirical distribution functions (ECDF) associated with the cluster sizes show that the cluster sizes resulting from the variants of ROSS are clearly influenced by the chosen desired size, \ie as shown in Figures~\ref{cdf_clusterSize_100}, where the number of CR nodes is 100 and the desired cluster size is 6, 90\% of CR nodes are in clusters whose sizes are between 3 and 9, while for SOC, only 17\% of nodes are in the clusters with these sizes.
+The ECDF associated with the cluster sizes show that the cluster sizes resulting from the variants of ROSS are clearly influenced by the chosen desired size, \ie as shown in Figures~\ref{cdf_clusterSize_100}, where the number of CR nodes is 100 and the desired cluster size is 6, 90\% of CR nodes are in clusters whose sizes are between 3 and 9, while for SOC, only 17\% of nodes are in the clusters with these sizes.
 Similarly, when $N=200$ and the desired size is 12 (as shown in Figure~\ref{cdf_clusterSize_200}), 80\% of nodes are in clusters whose sizes are between 6 and 18, while only 30\% of nodes are in clusters of similar sizes when SOC is executed.
 %Now we check how many CR nodes are in the clusters whose sizes deviate not much from the desired size, where we put the deviation limit at $\pm 50\%$ of the desired size.
 The cluster sizes from ROSS-$\delta$-DGA and ROSS-$\delta$-DFA concentrate more around the desired size than that of ROSS-DGA and ROSS-DFA.
