@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.3)  23 DEC 2017 00:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.3)  24 DEC 2017 00:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1498,13 +1498,6 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12]
-
-LaTeX Warning: Text page 13 contains only floats.
-
-
-Overfull \vbox (1.01306pt too high) has occurred while \output is active []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13 <../figures/04_clutering/survival_rate_100_edge50.pdf> <../figures/04_clut
@@ -1512,19 +1505,24 @@ ering/survival_rate_200_edge50.pdf> <../figures/04_clutering/survival_rate_300_
 edge50.pdf> <../figures/04_clutering/cdf_clusterSize_100.pdf> <../figures/04_cl
 utering/cdf_clusterSize_200.pdf> <../figures/04_clutering/cdf_clusterSize_300.p
 df> <../figures/04_clutering/nClusters_largeNetwork_no_texture.pdf> <../figures
-/04_clutering/false_negative.pdf> <../figures/04_clutering/draw_cdf_clusterSize
-_with_false_negative.pdf>]
-<../figures/04_clutering/lemma1.pdf, id=883, 563.87807pt x 108.10442pt>
+/04_clutering/false_negative.pdf
+
+pdfTeX warning: /usr/local/texlive/2017/bin/x86_64-darwin/pdflatex (file ../fig
+ures/04_clutering/false_negative.pdf): PDF inclusion: multiple pdfs with page g
+roup included in a single page
+>] <../figures/04_clutering/lemma1.pdf, id=880, 563.87807pt x 108.10442pt>
 File: ../figures/04_clutering/lemma1.pdf Graphic file (type pdf)
 
 <use ../figures/04_clutering/lemma1.pdf>
 Package pdftex.def Info: ../figures/04_clutering/lemma1.pdf used on input line 
 1178.
 (pdftex.def)             Requested size: 126.00128pt x 24.15584pt.
-
+ [14 <../figures/04_clutering/draw_cdf_clusterSize_with_false_negative.pdf> <..
+/figures/04_clutering/lemma1.pdf>]
+(./ettdoc_JG.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14 <../figures/04_clutering/lemma1.pdf>] (./ettdoc_JG.bbl [15]
+ [15]
 ** WARNING: IEEEtran.bst: No hyphenation pattern has been
 ** loaded for the language `English'. Using the pattern for
 ** the default language instead.
@@ -1600,10 +1598,10 @@ lvetic/uhvro8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/ut
 mb8a.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/loca
 l/texlive/2017/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ettdoc_JG.pdf (17 pages, 917838 bytes).
+Output written on ettdoc_JG.pdf (17 pages, 931463 bytes).
 PDF statistics:
- 1106 PDF objects out of 1200 (max. 8388607)
- 882 compressed objects within 9 object streams
+ 1116 PDF objects out of 1200 (max. 8388607)
+ 888 compressed objects within 9 object streams
  188 named destinations out of 1000 (max. 500000)
  254 words of extra memory for PDF output out of 10000 (max. 10000000)
 
