@@ -253,7 +253,8 @@ The number of nodes belonging to $C$ is denoted by $|C|$.
 When the cluster head of a cluster is $i$, we denote that cluster by $C(i)$.
 $K(C)$ denotes the set of CCs of all nodes in cluster $C$, i.e. $ K(C) = \bigcap_{i\in C} K_i$.
 %Clustering is performed periodically, because the secondary users are mobile and the primary users change their operation channels, thus the channel availability on secondary users changes accordingly.
-Table~\ref{tab1} summarizes all parameters and their assumed relevance in our system model.
+Table~\ref{tab1} summarizes all parameters and their assumed relevance in our system model. 
+The usage scope is also provided when they are not used throughout the paper.
 \begin{table}[h!]
 \caption{Notations}
 \label{tab1}
@@ -265,7 +266,7 @@ Symbol & Description \\
 $\mathcal{N}$  & set of CR users in a CRN\\
 $N$ & number of CR users in a CRN, $N=|\mathcal{N}|$\\
 $\mathcal{K}$	& set of licensed channels\\
-$k(i)$ & the working channel of user $i$\\
+%$k(i)$ & the working channel of user $i$\\
 $\text{Nb}(i)$ & the neighborhood of CR node $i$    \\
 $C(i)$ & a cluster whose cluster head is $i$  \\
 $K_i$   & the set of available channels at CR node $i$  \\
@@ -278,14 +279,14 @@ $\delta$ & the desired cluster size\\
 $S_i$ & a set of claiming clusters, each of which \\
 & includes debatable node $i$ after phase I\\
 $f(C)$ & the number of CCs of a cluster $C$ in the\\ 
-& problem description\\
+& problem description (Sec.~\ref{problem})\\
 % $\mathcal{G}$ & a collection of some possible clusters in $\mathcal{N}$\\
- $\mathcal{S}$ & the collection of all the possible clusters in $\mathcal{N}$\\
- $C_i$  & the $i$-th cluster in $\mathcal{S}$ \\
- $|C_i|$ & the size of the cluster $C_i$\\
- $|K(C_i)|$ & the number of CCs of cluster $C_i$\\
- $M$ & the cardinality of set $\mathcal{S}$ which contains all\\ 
- & the possible clusters (Sec.~\ref{centralized_solution})\\
+ $\mathcal{S}$ & the collection of all the possible clusters \\
+ & in $\mathcal{N}$ (Sec.~\ref{centralized_solution})\\
+ $M$ & the cardinality of $\mathcal{S}$ (Sec.~\ref{centralized_solution})\\
+ $C_i$  & the $i$-th cluster in $\mathcal{S}$ (Sec.~\ref{centralized_solution})\\
+ %$|C_i|$ & the size of the cluster $C_i$\\
+ %$|K(C_i)|$ & the number of CCs of cluster $C_i$\\
  $p(C_i)$ & the weight with respect to cluster $C_i$ (Sec.~\ref{centralized_solution}) \\
  $d_i$  & individual connectivity degree of CR node $i$\\
 $g_i$  & neighborhood connectivity degree of CR node $i$\\
@@ -385,7 +386,7 @@ First, the sum being larger than zero indicates that every node should be involv
 Second, the sum equals 1 means a node can only appear in one cluster, which prevents the chosen clusters from overlapping.
 
 As to the objective function, the sum of the first term in the bracket over all clusters in $\mathcal{S}$ is the sum of CCs of the clusters which constitute the CRN.
-In the second term in the bracket, we propose $p(C_i)$ which is a size-related weight for cluster $C_i, i\in{1,\cdots, M}$.
+For the second term in the bracket, we propose $p(C_i)$ which is a size-related weight for cluster $C_i, i\in{1,\cdots, M}$.
 $p(C_i)$ is positively related with the difference between $C_i$'s size and the desired size $\delta$.
 When $x_i$ is 1 ($C_i$ is chosen) but $|C_i|$ doesn't equal to the desired cluster size $\delta$, the second item is negative, which contradicts the direction of the optimization.
 Thus the second item discourages the appearance the clusters whose sizes deviate from the desired cluster size $\delta$.
@@ -401,10 +402,10 @@ p(C_i) = \left\{ \begin{array}{rl}
 \end{array} \right.
 $$
 where $\rho$ is an increasing function and there is $ 0 < \rho(1)< \rho(2) < \cdots < \rho_(\sigma)$.
-Note that here we adopt the desired cluster size in stead of the range for cluster sizes which is described in Definition~\ref{problem}.
-Because in implementation, we usually need a large range to guarantee a feasible result for the optimization problem.
-By adopting the desired size and the cost for deviating from it, we actually set a large range of cluster sizes and meanwhile a better control of the resulted sizes. 
-Also to guarantee the feasibility of the problem, we allow the singleton cluster to contribute the objective function.
+Note that here we adopt the desired cluster size in stead of the upper and lower bounds for cluster sizes which is described in Definition~\ref{problem}.
+%Because in implementation, we usually need a large range to guarantee a feasible result for the optimization problem.
+With $\delta$ and the deviation from it, we actually set a large range of cluster sizes, which guarantees the feasibility of the problem as we allow the singleton cluster to appear, meanwhile a better control of the resulted sizes by setting weights for the formed clusters based on their deviations from the desired size.
+%Also to guarantee the feasibility of the problem, we allow the singleton cluster to contribute the objective function.
 
 
 The difficulty of using this method lies in obtaining the set $\mathcal{S}$.
@@ -603,8 +604,8 @@ Congestion game is an interesting game model which describes the problem where p
 It has the good property that a Nash equilibrium can be achieved after finite steps of best response dynamic, \ie each player chooses the strategy to maximize/minimize its utility/cost with respect to the other players' strategies.
 The framework of the congestion game has been used to model server selection in distributed computing platforms~\cite{Cloud_Computing_2010}, or users downloading files from cloud, etc.
 
-To formulate the debatable nodes' membership clarification into a congestion game, we see the process from a different perspective. 
-In particular, for a debatable node, instead being in all its claiming clusters, we see it is not included in any claiming cluster and it needs to decide on one cluster to join.
+To formulate the debatable nodes' membership clarification into a congestion game, we see this process from a different perspective. 
+In particular, for a debatable node, instead being in all its claiming clusters, now it is not included in any claiming cluster and it needs to decide on one cluster to join.
 When a debatable node $i$ joins one cluster $C$, the decrease of CCs in cluster $C$ is $\sum_{C\in S_i}\Delta\vert K(C) \vert=\sum_{C\in S_i}({\vert K(C) \vert-\vert K(C\cup i) \vert})$.
 Then, node $i$ chooses the cluster $C$, where the decrease of CCs in cluster $C$ is smaller than the decrease if $i$ would have joined any other claiming cluster in $S_i$.
 The relation between the debatable nodes and the claiming clusters is shown in Figure~\ref{debatable_nodes_claiming_cluster}.
