@@ -287,7 +287,7 @@ $f(C)$ & the number of CCs of a cluster $C$ in the\\
  $C_i$  & the $i$-th cluster in $\mathcal{S}$ (Sec.~\ref{centralized_solution})\\
  %$|C_i|$ & the size of the cluster $C_i$\\
  %$|K(C_i)|$ & the number of CCs of cluster $C_i$\\
- $p(C_i)$ & the weight with respect to cluster $C_i$ (Sec.~\ref{centralized_solution}) \\
+ %$p(C_i)$ & the weight with respect to cluster $C_i$ (Sec.~\ref{centralized_solution}) \\
  $d_i$  & individual connectivity degree of CR node $i$\\
 $g_i$  & neighborhood connectivity degree of CR node $i$\\
   $n$ & the number of debatable nodes\\
@@ -387,28 +387,32 @@ Second, the sum equals 1 means a node can only appear in one cluster, which prev
 
 As to the objective function, the sum of the first term in the bracket over all clusters in $\mathcal{S}$ is the sum of CCs of the clusters which constitute the CRN.
 For the second term in the bracket, we propose $p(C_i)$ which is a size-related weight for cluster $C_i, i\in{1,\cdots, M}$.
-$p(C_i)$ is positively related with the difference between $C_i$'s size and the desired size $\delta$.
+There is, 
+$$
+p(C_i) = \rho(||C_i|-\delta|)
+$$
+where $\rho$ is a positive increasing function with respect to the the difference between $C_i$'s size and the desired size $\delta$.
 When $x_i$ is 1 ($C_i$ is chosen) but $|C_i|$ doesn't equal to the desired cluster size $\delta$, the second item is negative, which contradicts the direction of the optimization.
 Thus the second item discourages the appearance the clusters whose sizes deviate from the desired cluster size $\delta$.
-The weight $p(C_i)$ with respect to different cluster sizes is as follows,
+%The weight $p(C_i)$ with respect to different cluster sizes is as follows,
 
-$$
-p(C_i) = \left\{ \begin{array}{rl}
-0 &\mbox{ if $|C_i|=\delta$} \\
-\rho(1) &\mbox{if $|C_i|=\delta \pm 1$ } \\
-\rho(2) &\mbox{if $|C_i|=\delta \pm 2$} \\
-\vdots\\
-\rho(\sigma) &\mbox{if $|C_i|=\delta \pm \sigma$} \\
-\end{array} \right.
-$$
-where $\rho$ is an increasing function and there is $ 0 < \rho(1)< \rho(2) < \cdots < \rho_(\sigma)$.
-Note that here we adopt the desired cluster size in stead of the upper and lower bounds for cluster sizes which is described in Definition~\ref{problem}.
+%$$
+%p(C_i) = \left\{ \begin{array}{rl}
+%0 &\mbox{ if $|C_i|=\delta$} \\
+%\rho(1) &\mbox{if $|C_i|=\delta \pm 1$ } \\
+%\rho(2) &\mbox{if $|C_i|=\delta \pm 2$} \\
+%\vdots\\
+%%\rho(\sigma) &\mbox{if $|C_i|=\delta \pm \sigma$} \\
+%\end{array} \right.
+%$$
+%where $\rho$ is an increasing function and there is $ 0 < \rho(1)< \rho(2) < \cdots $.
+Note here we adopt the desired cluster size in stead of the upper and lower bounds for cluster sizes which is described in Definition~\ref{problem}.
 %Because in implementation, we usually need a large range to guarantee a feasible result for the optimization problem.
-With $\delta$ and the deviation from it, we actually set a large range of cluster sizes, which guarantees the feasibility of the problem as we allow the singleton cluster to appear, meanwhile a better control of the resulted sizes by setting weights for the formed clusters based on their deviations from the desired size.
+With $\delta$ and the deviation from it, we actually have a large range of cluster sizes, which guarantees the feasibility of the problem as we allow the singleton cluster to exist, meanwhile a better control of the resulted sizes by setting weights for the formed clusters based on their deviations from the desired size.
 %Also to guarantee the feasibility of the problem, we allow the singleton cluster to contribute the objective function.
 
 
-The difficulty of using this method lies in obtaining the set $\mathcal{S}$.
+The difficulty of implementing this method is obtaining the set $\mathcal{S}$.
 In the worst case, \ie if every CR node can communicate directly with any other node, then the CRN forms a full connected graph and therefore the size of the powerset $\mathcal{S}$ is $\Sigma_{r=1}^{N}\ {N \choose r} = 2^N-1$.
 
 \section{Distributed Clustering Algorithm: Variants of ROSS}
@@ -1066,7 +1070,7 @@ The simulation confirms that the metric of average number of CCs of clusters alo
 	}
 \eIf{$\exists j\in \text{\upshape Nb}(i)\setminus \Lambda$, \text{\upshape such that} $d_i > d_j$}{
 	return 0;}{
-	\If{$\nexists j\in \text{\upshape Nb}(i)\setminus \Lambda$, \text{\upshape such that} $d_j == d_i$}{
+	\If{$\nexists j\in \text{\upshape Nb}(i)\setminus \Lambda$, \text{\upshape such that} $d_j$ \text{\upshape equals}  $ d_i$}{
 	$\tau_1 \leftarrow j$
 	}
 }
@@ -1076,7 +1080,7 @@ The simulation confirms that the metric of average number of CCs of clusters alo
 \eIf{$\exists j\in \tau_1$, \text{\upshape such that} $g_i < g_j$}{
 	return 0;
 	}
-	{\If{$\nexists j\in \tau_1$, \text{\upshape such that} $g_j == g_i$}{
+	{\If{$\nexists j\in \tau_1$, \text{\upshape such that} $g_j$ \text{\upshape equals} $g_i$}{
 		$\tau_2\leftarrow j$
 		}
 	}
@@ -1125,10 +1129,10 @@ The simulation confirms that the metric of average number of CCs of clusters alo
 \DontPrintSemicolon
 \SetAlgoLined
 \KwIn{all claiming clusters $C\in S_i$}
-\KwOut{one cluster $C\in S_i$, node $i$ notifies all its claiming clusters in $S_i$ about its affiliation decision.
+\KwOut{one cluster $C\in S_i$, afterwards node $i$ notifies all its claiming clusters in $S_i$ about its affiliation decision.
 }
-\While{$i$ \text{\upshape has not chosen the cluster, or} $i$ \text{\upshape has joined} \text{\upshape cluster} $\tilde{C}$, \text{\upshape but} $\exists C'\in S_i (C'\neq \tilde{C})$, \text{\upshape which has} $|K(C'\setminus i)|-|K(C')|<|K(\tilde{C}\setminus i)|-|K(\tilde{C})|$}{
-	\eIf{$\exists$ \text{\upshape only one} $C\in S_i$, $C = \argmax\limits_{C'\in \mathcal{S}_i\backslash C} \Sigma (|K(C'\setminus i)| - |K(C')|)$}{
+\While{$i$ \text{\upshape has not chosen a cluster, or} $i$ \text{\upshape has chosen cluster} $\tilde{C}$, \text{\upshape but} $\exists C'\in S_i (C'\neq \tilde{C})$, \text{\upshape which has} $|K(C'\setminus i)|-|K(C')|<|K(\tilde{C}\setminus i)|-|K(\tilde{C})|$}{
+	\eIf{$\exists$ \text{\upshape only one} $C\in S_i$, $C = \argmax \sum\limits_{C'\in \mathcal{S}_i\backslash C} (|K(C'\setminus i)| - |K(C')|)$}{
 			return $C$;
 		}{
 				%$\exists$ multiple $C\in S_i$ which satisfies $C = \argmax \Sigma_{C'\in \mathcal{S}_i\backslash C}(|K(C'\setminus i)| - |K(C')|)$;\\ 
@@ -1214,7 +1218,7 @@ The problem is to find a collection $\mathcal{I} \subseteq \mathcal{Q}$ such tha
 %First, we argue that robust clustering problem is in NP, since given a collection of clusters, a certifier can efficiently check that such clusters are pairwise disjoint, indeed contains all the CR nodes in the CRN $\mathcal{N}$ and the sum of $f(C)$ as shown in Definition~\ref{def_centralized_clustering} is greater than a certain value.
 
 We will show that the weighted $k$-set packing problem $\leq_P$ CRN robust clustering problem.
-Given an instance of the weighted $k$-set packing problem, \ie a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$, where the set $S_i, i\in \{1,2,\ldots,m\}$ consists of positive integers.
+Given an instance of the weighted $k$-set packing problem, \ie a collection of sets $\mathcal{Q}=\{S_1,S_2,\cdots,S_m\}$, where each set $S_i, i\in \{1,2,\ldots,m\}$ consists of positive integers.
 There is an integer weight $\omega(S_i)$ for $S_i$, in the end an integer $\lambda$ completes the description of this instance.
 We will construct an instance of a CRN robust clustering problem within polynomial time.
 W.l.o.g. we let set $\cup_{i\in\{1, 2,\ldots, m\}}S_i = \{ 1, 2,\ldots , N \} = \mathcal{P}$.
@@ -1224,31 +1228,28 @@ For every set $S\in \mathcal{Q}$, there will be a corresponding cluster composed
 For the set whose size is larger than 1, the IDs of the constructed CR nodes are identical with the elements in it, and we locate the CR nodes so that any two of them can communicate directly when common channels are available on them.
 Besides, a set of channels with cardinality of $|\omega(S)|$ is allocated to all the CR nodes in this cluster, and the channels are on the spectrum band which is exclusive for this cluster.
 For the set $S$ which contains only one element, \ie $S =\{t\}$ where $t\in\mathcal{P}$, a cluster composed with two CR nodes will be created, \ie one CR node's ID is $t$, the other CR node is the dummy node of the former and its ID is $t+N$.
-A number of $|\omega(S)|$ channels from the exclusive spectrum band for this cluster are allocated to these two CR nodes.
-Now we have constructed the clusters which correspond to all the sets in $\mathcal{Q}$.
-Note that every CR node is allowed to form a singleton cluster by itself, although its common channels don't contribute to the sum of $f(C)$.
-%In the end, we construct the singleton clusters, \ie for each element in $\mathcal{P}$, a corresponding singleton cluster is constructed.
-%In particular, if the CR node has been constructed and has been in certain clusters already through the previous steps, the CR node with all the channels assigned to it constitute a singleton cluster.
-%If there is an element in $\mathcal{P}$, which doesn't has a corresponding CR node yet, we simply construct this singleton cluster by adding that CR node, and assign it with a random number of channels from a exclusive spectrum band.
-%We call the latter kind of clusters the \textit{auxiliary singleton clusters}.
+Afterwards, $|\omega(S)|$ channels which are exclusively allocated to this cluster are assigned to these two CR nodes.
+Now we have constructed the clusters which correspond to every set in $\mathcal{Q}$.
+In the end, singleton clusters are formed with respect to every element in $\mathcal{P}$.
+Note that the common channels in these singleton clusters don't contribute to the sum of $f(C)$.
+The existence of the singleton clusters ensures that it is always possible to find out a group of clusters, which together constitute the whole CRN.
 
 Actually, all the constructed CR nodes can be assumed to locate in a very small area so that each CR node is within the transmission scope of every other CR node.
-Note that each constructed cluster maintains the common channels which are exclusive to that cluster.
-This rule in transformation makes the formation for every set in $\mathcal{Q}$ to be feasible.
-The existence of the singleton clusters ensures that it is always possible to find out a group of clusters, which together constitute the whole CRN.
-%Now we have completed a CRN and can claim that all the constructed clusters $C$ constitute the complete CRN network $\mathcal{N}$.
+Note that each constructed cluster maintains certain common channels which are exclusive to other clusters.
+This rule in transformation makes the transformation for every set in $\mathcal{Q}$ to be feasible.
 
-Now suppose there is a set of pairwise disjoint clusters which constitute the CRN $\mathcal{N}$, and the sum of $f(C)$ is greater than $\lambda$.
-After removing the singleton clusters, we can easily find the natural association between the remaining clusters and the sets in $\mathcal{Q}$. 
-The clusters in the CRN correspond to the sets in $\mathcal{Q}$ according to the mapping between the node IDs in the clusters and the elements in the sets.
-In particular, the clusters which contain dummy CR nodes correspond to the sets which contain only one element.
+Given any instance $\mathcal{I}$ of the maximum weighted k-set packing problem, we can now formulate it to an instance $\mathcal{T}$ of the robust clustering problem.
+For each set in $\mathcal{I}$, we find out the corresponding clusters, as well as the singleton clusters, whose IDs are from $\mathcal{P}\setminus(\cup S_i), S_i\in \mathcal{I}$.
+%Given any clusters formation with respect to the instance of the maximum weighted k-set packing problem, after removing the singleton clusters, we can easily find the direct association between the remaining clusters and the sets in the instance $\mathcal{I}\subseteq \mathcal{Q}$. 
+%The clusters in the CRN correspond to the sets in $\mathcal{I}$ according to the mapping between the node IDs in the clusters and the elements in the sets.
+%In particular, the clusters which contain dummy CR nodes correspond to the sets which contain only one element.
 Then the sum of the weights of the corresponding sets equals to the sum of $f(C)$ and thus greater than $\lambda$.
 
+%Now suppose there is a set of pairwise disjoint clusters which constitute the CRN $\mathcal{N}$, and the sum of $f(C)$ is greater than $\lambda$, the robust clustering black box will say yes, then the instance $\mathcal{I}$ is the answer to the maximum weighted k-set packing problem.
+Based on the above construction and transformation, if robust clustering black box says yes to a clusters formation $\mathcal{T}$, then the corresponding $\mathcal{I}$ is an instance for the maximum weighted k-set packing problem.
+If the clusters formation $\mathcal{T}$ is not a solution for the robust clustering problem, then $\mathcal{I}$ is an instance for the maximum weighted k-set packing problem.
 
-
-
-We have now shown that our algorithm solves the weighted $k$-set packing problem using a black box for the robust clustering problem. 
-Since our construction takes polynomial time, we can conclude that the robust clustering problem is NP-hard.
+Since the construction and transformation from instance to clusters formation take polynomial time, we can conclude that the robust clustering problem is NP-hard.
 %\begin{itemize}
 %\item First, all the sets in the instance $\mathcal{I}$ are mapped sequentially to a group of clusters, \ie for a set $S\in\mathcal{I}$, the elements in $S$ are mapped to CR nodes which compose a cluster $C$, moreover, the resultant CR node's ID equals to the corresponding element in $\mathcal{S}$.
 %This transformation takes $N$ steps.
