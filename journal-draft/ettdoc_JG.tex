@@ -359,7 +359,8 @@ Assuming some global knowledge of the CRN to be given at some point in the netwo
 We obtain the set of $\mathcal{S}$ which contains all the clusters which satisfy the definition of cluster in Section~\ref{sec:model}.
 $\mathcal{S}$ is basically a powerset of $\mathcal{N}$, which nevertheless is restricted by connectivity and spectrum availability in the network.
 With $|\mathcal{S}| = M$, there is $\mathcal{S}=\{C_1, C_2, \ldots, C_M\}$ \footnote{The subscript $i$ means the $i$-th cluster in $\mathcal{S}$.}.
-Then the problem as defined in Definition~\ref{def_centralized_clustering} can be formulated as a binary linear programming problem and can be solved by many available solvers:
+Then the problem as defined in Definition~\ref{def_centralized_clustering} can be formulated as a binary linear programming problem.
+% and can be solved by many available solvers:
 \begin{equation}
 %\begin{aligned}
 %     &\max\limits_{y_i, x_{ij}} && \Sigma_{j=1}^N\Sigma_{i=1}^M (y_i\cdot \frac{q_{ij}}{|C_i|} - y_i\cdot p(C_i)) \\
