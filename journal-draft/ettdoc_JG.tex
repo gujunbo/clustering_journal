@@ -9,7 +9,7 @@
 \newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
 T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
-\def\volumeyear{2017}
+\def\volumeyear{2018}
 
 \newcommand{\eg}{e.g., }
 \newcommand{\ie}{i.e., }
@@ -127,12 +127,9 @@ Cluster structure in cognitive radio networks facilitates cooperative spectrum s
 Unlicensed channels, which are temporally available for a group of cognitive radio users in one area, consolidate the group into a cluster.
 More available unlicensed channels in a cluster make the cluster more likely to uphold against the licensed users' influence, making clusters more robust.
 This paper analyses the problem of how to form robust clusters in a cognitive radio network such that cognitive radio systems benefit from collaboration within clusters despite intense primary user activity.
-%In the process of forming clusters, every secondary user decides with whom to form a cluster, or which cluster to join.
 We give a formal description of the robust clustering problem, prove it to be NP-hard and propose both centralized and distributed solutions.
 The congestion game model is adopted to analyze the process of cluster formation, which not only contributes to the design of the distributed clustering scheme, but also provides a guarantee on the convergence to a Nash equilibrium and the convergence speed.
-%Our proposed clustering solution is versatile to fulfill some other requirements such as faster convergence and cluster size control.
 The proposed distributed clustering scheme outperforms state-of-the-art related works in terms of cluster robustness, convergence speed and overhead.
-%Besides, we prove the clustering problem is NP-hard, and also propose the centralized solution.
 Extensive simulations are presented supporting the theoretical claims.
 \end{abstract}
 
@@ -189,7 +186,7 @@ Extensive performance evaluation is given in Section~\ref{performance} before we
 
 \section{Related Work}
 \label{related_work}
-In the following we first review briefly state-of-the-art regarding clustering in CRN in general, and then focus on robust clustering in particular.
+In the following we first review the state-of-the-art regarding clustering in CRN in general, and then focus on robust clustering in particular.
 With regard to forming clusters in CRN, deciding on the common channel within each cluster is the foremost question to answer.
 \cite{Zhao07, Chen07,Affinity_clustering_09icccn} propose different clustering schemes and enforce that every cluster possesses at least one CC.
 The clustering scheme in~\cite{Consensus_based_clustering12} looks for a network partition which improves the accuracy of spectrum sensing without considering robustness.
@@ -343,7 +340,7 @@ The decision version of this problem is to determine whether there exists a set 
 We have the following theorem on the problem's complexity.
 \begin{theorem}
 \label{theorem1}
-The robust clustering problem in CRN is NP-hard, when $\delta_1=2$ and $\delta_2 > 3$.
+The robust clustering problem in CRN is NP-hard, when $\delta_1=2$ and $\delta_2 $ is $\infty$.
 %when the maximum size of clusters is larger than 3
 %Assume a CRN can be represented by a connected graph, and there is at least one common channel between any pair of neighbours, then forming at least two CR nodes into one cluster is NP-complete.
 \end{theorem}
